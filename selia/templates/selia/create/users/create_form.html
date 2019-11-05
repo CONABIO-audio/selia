@@ -1,0 +1,26 @@
+{% extends 'selia/create/base.html' %}
+{% load selia_components %}
+{% load i18n %}
+
+{% block toolbar-title %}
+  {% trans 'Invite user' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+{% include 'selia/navbars/user.html' %}
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Invite user' %}
+{% endblock %}
+
+
+{% block form-content %}
+  <div class="row">
+    <div class="col">
+      <div class="container p-5">
+        {% bootstrap_form form.email %}
+      </div>
+    </div>
+  </div>
+{% endblock form-content %}

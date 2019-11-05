@@ -1,0 +1,55 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load static %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="row w-100">
+  <div class="col">
+    {% listtitle %}
+      {% list_icon item.physical_device.device.device_type.icon %}
+    {% endlistimage %}
+      {{ item.physical_device.device.brand }}
+    {% endlistheader %}
+      <div>{{ item.physical_device.device.model }}</div>
+      <div>
+        {{ item.physical_device.device.device_type }}
+      </div>
+    {% endlisttitle %}
+  </div>
+
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Serial Number' %}
+      {% attributevalue %}
+        {{ item.physical_device.serial_number }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Name' %}
+      {% attributevalue %}
+        {{ item.internal_id }}
+      {% endlistattribute %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Owner' %}
+      {% attributevalue %}
+        {{ item.physical_device.created_by }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Added on' %}
+      {% attributevalue %}
+        {{ item.created_on.date }}
+      {% endlistattribute %}
+    </div>
+  </div>
+</div>
+{% endblock list-item-content %}

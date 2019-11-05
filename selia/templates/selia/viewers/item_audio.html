@@ -1,0 +1,25 @@
+{% load static %}
+{% load i18n %}
+
+<div class="rounded w-100 h-100 p-2" style="overflow-x:auto; background-color:black;" id="audioviewer">
+	<div id="waveform-body" style="margin-left:auto; margin-right:auto;">
+		<div id="loading_audioviewer" align="center" style="height:300px;">
+			<h4 class="text-muted text-light" style="padding-top:160px;">{% trans 'Loading...' %}</h4>
+		</div>
+		<div id="wave-spectrogram">
+		</div>
+		<div id="waveform" class="rounded" style="background-color:black;">
+		</div>
+	</div>
+	<h5 id="remainingTime" class="text-light text-center" style="padding-top:20px; display:none;">
+		00:00:00
+	</h5>
+	<div id="waveform-footer" style="display:none;" align="center">
+		<button class="rounded" id="playpause">
+			<i class="fas fa-play"></i>
+		</button>
+		<button class="rounded" id="rewind">
+			<i class="fas fa-backward"></i>
+		</button>
+	</div>
+</div>

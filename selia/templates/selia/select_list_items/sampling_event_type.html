@@ -1,0 +1,37 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="col">
+  <div class="row">
+    <div class="col">
+      {% listtitle %}
+      {% list_icon item.icon %}
+      {% endlistimage %}
+      {{ item }}
+      {% endlistheader %}
+      {{ item.description }}
+      {% endlisttitle %}
+    </div>
+  </div>
+
+  {% if item.restrict_device_types %}
+  <div class="row mt-4">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Allowed device types' %}
+      {% endhead %}
+        <div class="col">
+          {% for device_type in item.device_types.all %}
+          <div class="row">
+            + {{ device_type }}
+          </div>
+          {% endfor %}
+        </div>
+      {% enddetailitem %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock list-item-content %}

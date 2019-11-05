@@ -1,0 +1,55 @@
+{% extends 'selia/detail/base.html' %}
+
+{% load i18n %}
+{% load selia_components %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}{{ collection }}{% endblock %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
+  </li>
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block main-content %}
+<div class="container-fluid w-100">
+  <div class="row p-2">
+    <div class="col-6">
+      <div class="row p-2">
+        {% detail_component detail_template=detail_template object=collection %}
+      </div>
+      <div class="row p-2">
+        <div class="container-fluid w-100 h-100 description_object">
+          {% include "selia/components/details/administrators.html" with object=collection %}
+        </div>
+      </div>
+    </div>
+    <div class="col-6 p-2">
+      {% summary_component summary_template=summary_template object=collection %}
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
+
+{% block modals-extra %}
+  {% help_component help_template=help_template %}
+  {% if permissions.change %}
+    {% update_component update_template=update_form_template form=form %}
+  {% endif %}
+  {% if permissions.delete %}
+    {% delete_component object=object %}
+  {% endif %}
+{% endblock modals-extra %}
+
+{% block scripts-extra %}
+{{ block.super }}
+{% autocomplete_media %}
+{% endblock scripts-extra %}

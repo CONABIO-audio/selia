@@ -1,0 +1,58 @@
+{% extends 'selia/detail/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/sampling_event.html' %}
+{% endblock secondary-navbar %}
+
+{% block head-extra %}
+  {{ block.super }}
+  {% include 'selia/components/media/map_media.html' %}
+{% endblock head-extra %}
+
+{% block toolbar-title %}{{ sampling_event.collection }}{% trans ': Sampling Event ' %} {{ sampling_event.pk }}{% endblock %}
+
+{% block toolbar-items %}
+<li class="nav-item">
+  <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">{% trans 'Help' %} <i class="fas fa-question"></i></a>
+</li>
+{% endblock toolbar-items %}
+
+{% block main-content %}
+  <div class="container-fluid w-100">
+      <div class="row p-2">
+        <div class="col-6 p-2">
+          {% detail_component detail_template=detail_template object=sampling_event %}
+        </div>
+        <div class="col-6">
+          <div class="row p-2">
+            {% viewer_component viewer_template="selia/components/viewers/collection_site.html" object=sampling_event.collection_site %}
+          </div>
+          <div class="row p-2">
+            {% summary_component summary_template=summary_template object=sampling_event %}
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock main-content %}
+
+
+{% block modals-extra %}
+  {% help_component help_template=help_template %}
+  {% if permissions.change %}
+    {% update_component update_template=update_form_template form=form %}
+  {% endif %}
+  {% if permissions.delete %}
+    {% delete_component object=object %}
+  {% endif %}
+{% endblock modals-extra %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+  {% include 'selia/components/media/datetime_media.html' %}
+{% endblock %}

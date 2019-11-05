@@ -1,0 +1,91 @@
+{% load i18n %}
+{% load widget_tweaks %}
+{% load selia_components %}
+
+<div class="row w-100 p-2">
+  <div class="col">
+      <div class="dropdown">
+        <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseSamplingEventTYpe">
+          {% trans 'Sampling event type' %}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="container p-3">
+            {{ filter.form.sampling_event_type | selia_form:None }}
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseCollection">
+        {% trans 'Collection' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          {{ filter.form.collection | selia_form:None }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseStartedOn">
+        {% trans 'Started on' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          {% trans 'From' as label%}
+          {{ filter.form.started_on__gt | selia_form:label}}
+
+          {% trans 'To' as label %}
+          {{ filter.form.started_on__lt | selia_form:label }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseEndedOn">
+        {% trans 'Ended on' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          {% trans 'From' as label %}
+          {{ filter.form.ended_on__gt | selia_form:label }}
+
+          {% trans 'To' as label %}
+          {{ filter.form.ended_on__lt | selia_form:label }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseEndedOn">
+        {% trans 'Date of creation' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          {% trans 'From' as label %}
+          {{ filter.form.created_on__gt | selia_form:label }}
+
+          {% trans 'To' as label %}
+          {{ filter.form.created_on__lt | selia_form:label }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if 'user' not in request.path %}
+  <div class="col">
+    <label class="text-light">
+      {% is_own_checkbox filter.form %}
+    </label>
+  </div>
+  {% endif %}
+
+</div>

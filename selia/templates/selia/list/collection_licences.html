@@ -1,0 +1,35 @@
+{% extends 'selia/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+  {{ collection }}: {% trans 'Licences' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% if permissions.create %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_licence' %}?collection={{ collection.pk }}">{% trans 'Add licence' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i></a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No signed licences for the collection were found.
+  {% endblocktrans%}
+</h4>
+<p>
+  <a href="{% url 'selia:create_licence' %}?collection={{ collection.pk }}">
+    {% trans 'Add licence to the collection' %}
+  </a>
+</p>
+{% endblock %}

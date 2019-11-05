@@ -1,0 +1,58 @@
+{% extends 'selia/create/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/user.html' %}
+{% endblock %}
+
+{% block toolbar-title %}
+  {% trans 'Add user to collection' %}
+{% endblock toolbar-title %}
+
+{% block step-title %}
+{% trans 'Select a user' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_collection_user'%}?{{ request.GET | remove_fields:'collection'}}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Select user' %}</li>
+<li>{% trans 'Select role' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+{% endblock previously-selected %}
+
+{% block step-description %}
+{% blocktrans %}
+Search for a user to add to the collection, or
+{% endblocktrans %}
+<a href="{% url 'selia:create_user' %}?{{ request.GET.urlencode }}">{% trans 'invite a user to selia' %}.</a>
+{% endblock %}
+
+{% block form-content %}
+<div class="container">
+  <div class="col">
+    <div class="row">
+      {% bootstrap_form form.email %}
+    </div>
+    {% if form.email.errors %}
+    <div class="row p-4">
+      <h5 class="w-100 text-center">
+        {% blocktrans %}
+        No user with the given email was found. Do you wish to
+        {% endblocktrans %}
+        <a href="{% url 'selia:create_user' %}?{{ request.GET.urlencode }}">{% trans 'invite a new user' %}</a>?
+      </h5>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock form-content %}

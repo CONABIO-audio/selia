@@ -1,0 +1,75 @@
+{% extends 'selia/base_with_toolbar.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block stylesheet %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static 'selia/css/step-progress.css'%}">
+{% endblock stylesheet %}
+
+{% block head-extra %}
+  {% include 'selia/components/media/json_form_media.html' %}
+{% endblock %}
+
+{% block toolbar-items%}
+<li>
+  <div class="container-fluid">
+    <ul class="list-unstyled multi-steps">
+      {% block toolbar-steps %}
+      {% endblock toolbar-steps %}
+    </ul>
+  </div>
+</li>
+{% endblock toolbar-items%}
+
+{% block main-content %}
+<div class="container">
+  <div class="jumbotron m-3">
+    <h1 class="display-6">
+      {% block step-title %}
+      {% endblock %}
+    </h1>
+    <p class="lead">
+      {% block step-description %}
+      {% endblock %}
+    </p>
+  </div>
+
+  {% block previously-selected %}
+  {% endblock previously-selected %}
+
+  {% block form-errors %}
+    {% if form.errors %}
+    <div class="row">
+      {% include 'selia/components/error_list.html' with errors=form.errors %}
+    </div>
+    {% endif %}
+  {% endblock form-errors%}
+
+  <div class="form-container mb-4">
+    {% block form %}
+    <form action="?{{ request.GET.urlencode }}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {% block form-content %}
+      {% endblock form-content %}
+
+      <div class="col mt-3">
+        {% block pre-submit-text %}
+        <div class="row">
+          <p class="text-muted w-100 text-center mb-1">
+            {% blocktrans %}
+            Please check that all provided information is correct before submitting.
+            {% endblocktrans %}
+          </p>
+        </div>
+        {% endblock %}
+        <div class="row justify-content-center">
+          <input type="submit" id="formSubmit" class="btn btn-primary" value="{% trans 'Create' %}">
+        </div>
+      </div>
+    </form>
+    {% endblock form %}
+  </div>
+</div>
+{% endblock main-content %}

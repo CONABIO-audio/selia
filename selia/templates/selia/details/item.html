@@ -1,0 +1,115 @@
+{% load json_tags %}
+{% load selia_tags %}
+{% load selia_buttons %}
+{% load i18n %}
+
+{% detailtitle %}
+  {% detail_icon object.item_type.icon %}
+{% enddetailimage %}
+  {% trans 'Item ' %} {{ object.pk }}
+{% enddetailheader %}
+  <div>
+    {{ object.item_type }}
+  </div>
+{% enddetailtitle %}
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Sampling event' %}
+      {% endhead %}
+        <a href="{% url 'selia:sampling_event_detail' object.sampling_event_device.sampling_event.pk %}" target="_blank">
+          {{ object.sampling_event_device.sampling_event.pk }}
+        </a>
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Device' %}
+      {% endhead %}
+        <a href="{% url 'selia:sampling_event_device_detail' object.sampling_event_device.pk %}" target="_blank">
+          {{ object.sampling_event_device.pk }}
+        </a>
+      {% enddetailitem %}
+    </div>
+  </div>
+   <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Item type' %}
+      {% endhead %}
+        {{ object.item_type }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'File size' %}
+      {% endhead %}
+        {{ object.filesize }}
+      {% enddetailitem %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Captured on' %}
+      {% endhead %}
+        {{ object.captured_on }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Licence' %}
+      {% endhead %}
+        {{ object.licence.licence_type }}
+      {% enddetailitem %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Tags' %}
+      {% endhead %}
+        <div class="container-fluid">
+          {% for tag in item.tags.all %}
+            <span class="badge badge-dark">{{ tag }}</span>
+          {% empty %}
+            <span class="text-muted">{% trans 'No tags' %}</span>
+          {% endfor %}
+        </div>
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+      {% trans 'File' %}
+      {% endhead %}
+      {% if permissions.download %}
+      <a href="{{ object.item_file.url }}" target="_blank">{% trans 'Download' %}</a>
+      {% else %}
+      {% trans 'Sorry. You don\'t have permissions to download the original file' %}
+      {% endif %}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  {% if object.media_info %}
+    {% detailsection %}
+      {% trans 'Media info' %}
+    {% enddetailsection %}
+
+    <div class="d-flex flex-wrap">
+      {% show_json object.media_info %}
+    </div>
+  {% endif %}
+
+  {% if object.metadata %}
+    {% detailsection %}
+      {% trans 'Metadata' %}
+    {% enddetailsection %}
+
+    <div class="d-flex flex-wrap">
+      {% show_json object.metadata %}
+    </div>
+  {% endif %}
+
+</div>

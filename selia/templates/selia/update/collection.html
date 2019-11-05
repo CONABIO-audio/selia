@@ -1,0 +1,11 @@
+{% load selia_components %}
+
+{% bootstrap_form form.name %}
+{% bootstrap_form form.institution %}
+{% bootstrap_form form.description %}
+
+{% if object.collection_type.metadata_schema %}
+{{ form.metadata }}
+{% endif %}
+
+{% bootstrap_form form.logo %}

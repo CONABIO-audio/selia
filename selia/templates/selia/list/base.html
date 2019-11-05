@@ -1,0 +1,51 @@
+{% extends 'selia/base_with_toolbar.html' %}
+{% load i18n %}
+{% load static %}
+{% load selia_components %}
+{% load widget_tweaks %}
+
+{% block main-content %}
+  <div class="container-fluid w-100 p-0">
+    {% block filter-component %}
+      {% filter_component templates.filter_form forms %}
+    {% endblock filter-component %}
+  </div>
+
+  {% block list-component %}
+  <div class="px-4">
+    <div class="w-100 bg-light p-4 list-group rounded my-4">
+      {% for item in object_list.object_list %}
+
+        {% include templates.list_item with item=item %}
+
+      {% empty %}
+
+        <div class="container-fluid bg-light text-center">
+          <div class="container p-4 empty-list-message rounded">
+            {% block empty-message %}
+              <h4>{{ empty_message }}</h4>
+            {% endblock empty-message %}
+
+            {% include 'selia/components/empty_list_message.html' %}
+          </div>
+        </div>
+
+      {% endfor %}
+
+      <div class="container center w-100 p-4">
+        {% include 'selia/components/pagination.html' with list=object_list %}
+      </div>
+    </div>
+  </div>
+  {% endblock list-component %}
+{% endblock main-content %}
+
+{% block modals-extra %}
+  {% help_component help_template=templates.help %}
+{% endblock modals-extra %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+
+  <script type="text/javascript" src="{% static 'selia/js/list.js' %}"></script>
+{% endblock scripts-extra %}

@@ -1,0 +1,34 @@
+{% load i18n %}
+{% load selia_components %}
+
+<div class="row">
+  <div class="col">
+    <h6 class="w-100 text-center">{% trans 'Started on'%}</h6>
+    <div class="w-100 p-auto">
+      {{ form.started_on }}
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col">
+    <h6 class="w-100 text-center">{% trans 'Ended on'%}</h6>
+    <div class="w-100 p-auto">
+      {{ form.ended_on }}
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col">
+    {% bootstrap_form form.commentaries %}
+  </div>
+</div>
+
+{% if object.sampling_event_type.metadata_schema %}
+<div class="row mt-3">
+  <div class="col">
+    {% bootstrap_form form.metadata %}
+  </div>
+</div>
+{% endif %}

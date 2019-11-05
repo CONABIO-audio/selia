@@ -1,0 +1,63 @@
+{% load json_tags %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% detailtitle %}
+  {% detail_icon object.device.device_type.icon %}
+{% enddetailimage %}
+  {% if object.identifier %}
+    {{ object.identifier }}
+  {% else %}
+    {% trans 'Device' %}
+  {% endif %}
+{% enddetailheader %}
+  {{ object.device.device_type }}
+{% enddetailtitle %}
+
+<div class="container-fluid mt-3 mb-3">
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Brand' %}
+      {% endhead %}
+        {{ object.device.brand }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Model' %}
+      {% endhead %}
+        {{ object.device.model }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Serial number' %}
+      {% endhead %}
+        {{ object.serial_number }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Name' %}
+      {% endhead %}
+        {{ object.identifier }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  {% if object.metadata %}
+    {% detailsection %}
+      {% trans 'Metadata' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="d-flex flex-wrap">
+        {% show_json object.metadata %}
+      </div>
+    </div>
+  {% endif %}
+</div>

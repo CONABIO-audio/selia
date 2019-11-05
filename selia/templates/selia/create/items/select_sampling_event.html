@@ -1,0 +1,46 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock %}
+
+{% block toolbar-title %}
+  {% trans 'Add items' %}
+{% endblock toolbar-title %}
+
+{% block toolbar-steps %}
+  <li>
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'collection' }}">
+      {% trans 'Select collection' %}
+    </a>
+  </li>
+  <li class="is-active">{% trans 'Select sampling event' %}</li>
+  <li>{% trans 'Select deployed device' %}</li>
+  <li>{% trans 'Select licence' %}</li>
+  <li>{% trans 'Upload files' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select a sampling event' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose a sampling event from the collection or
+  {% endblocktrans %}
+  <a href="{% url 'selia:create_sampling_event' %}?{{ request.GET.urlencode }}">{% trans 'create a new one' %}.</a>
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+{% endblock previously-selected %}
+
+{% block empty-message %}
+<h4>{% trans 'No available sampling events.' %}</h4>
+<p>
+  <a href="{% url 'selia:create_sampling_event' %}?{{ request.GET.urlencode }}">{% trans 'Create a new one' %}.</a>
+</p>
+{% endblock %}

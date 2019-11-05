@@ -1,0 +1,39 @@
+{% extends 'selia/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block head-extra %}
+  {% include 'selia/components/media/map_media.html' %}
+{% endblock head-extra %}
+
+{% block toolbar-title %}
+  {{ collection }}: {% trans 'Sites' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% if permissions.create %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_collection_site' %}?collection={{ collection.pk }}">{% trans 'Add Site' %} <i class="fas fa-plus"></i> <i class="fas fa-map-marked-alt"></i></a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No sites registered to the collection were found.
+  {% endblocktrans%}
+</h4>
+<p>
+  <a href="{% url 'selia:create_collection_site' %}?collection={{ collection.pk }}">
+    {% trans 'Add site to the collection' %}
+  </a>
+</p>
+{% endblock %}

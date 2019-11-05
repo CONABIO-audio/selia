@@ -1,0 +1,72 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/sampling_event_device.html' %}
+{% endblock %}
+
+{% block toolbar-title %}
+  {% trans 'Add items' %}
+{% endblock toolbar-title %}
+
+{% block toolbar-steps %}
+  <li>
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'collection&sampling_event&sampling_event_device' }}">
+      {% trans 'Select collection' %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'sampling_event&sampling_event_device' }}">
+      {% trans 'Select sampling event' %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'sampling_event_device' }}">
+      {% trans 'Select deployed device' %}
+    </a>
+  </li>
+  <li class="is-active">{% trans 'Select licence' %}</li>
+  <li>{% trans 'Upload files' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select licence' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Please select a licence for the items you wish to upload.
+  {% endblocktrans %}
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' sampling_event_device.sampling_event.collection label %}
+
+  {% trans 'Selected sampling event' as label %}
+  {% selected_item 'sampling_events' sampling_event_device.sampling_event label %}
+
+  {% trans 'Selected deployed device' as label %}
+  {% selected_item 'sampling_event_devices' sampling_event_device label %}
+{% endblock previously-selected %}
+
+{% block list-container %}
+  <div class="container-fluid form-container w-100 p-4">
+      <div class="row d-flex justify-content-center flex-wrap">
+        {% for item in list %}
+          <div class="p-2" style="width: 20em;">
+            <a href="{% url 'selia:create_item' %}?{{ request.GET.urlencode }}&licence={{ item.pk }}">
+              {% include 'selia/components/select_list_items/licences.html' with item=item %}
+            </a>
+          </div>
+        {% empty %}
+
+        <div class="container-fluid bg-light text-center">
+            <h4>{% trans 'No available licences.' %}</h4>
+        </div>
+
+        {% endfor %}
+      </div>
+  </div>
+{% endblock %}

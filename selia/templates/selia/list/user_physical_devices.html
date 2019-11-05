@@ -1,0 +1,35 @@
+{% extends 'selia/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+  {% trans 'User' %}: {% trans 'Devices' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_physical_device' %}?">
+      {% trans 'Add a device' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+  <h4>
+    {% blocktrans %}
+      No user devices were found.
+    {% endblocktrans%}
+  </h4>
+  <p>
+    <a href="{% url 'selia:create_physical_device' %}?">
+      {% trans 'Add a device' %}
+    </a>
+  </p>
+{% endblock %}

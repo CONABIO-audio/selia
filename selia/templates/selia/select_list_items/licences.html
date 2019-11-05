@@ -1,0 +1,71 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load i18n %}
+{% load selia_tags %}
+
+{% block list-item-content %}
+<div class="col">
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Licence type' %}
+      {% endhead %}
+        {{ item.licence_type }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Signed by' %}
+      {% endhead %}
+        {{ item.created_by }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Valid until' %}
+      {% endhead %}
+        {% if item.licence_type.years_valid_for > 50 %}
+          <i class="fas fa-infinity"></i>
+        {% else %}
+          {{ item.created_on.year|add:item.licence_type.years_valid_for }}
+        {% endif %}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+      <div class="w-100 text-center">
+        {% trans 'Permissions' %}
+      </div>
+      {% endhead %}
+      <div class="col">
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can view items' %}</div>
+          <div class="col-4">{{ item.licence_type.can_view|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can download item.licence_types'%}</div>
+          <div class="col-4">{{ item.licence_type.can_download|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can view annotations'%}</div>
+          <div class="col-4">{{ item.licence_type.can_view_annotations|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can annotate'%}</div>
+          <div class="col-4">{{ item.licence_type.can_annotate|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can vote annotations'%}</div>
+          <div class="col-4">{{ item.licence_type.can_vote_annotations|yesno }}</div>
+        </div>
+      </div>
+      {% enddetailitem %}
+    </div>
+  </div>
+</div>
+{% endblock list-item-content %}

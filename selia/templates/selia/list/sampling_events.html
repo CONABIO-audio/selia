@@ -1,0 +1,37 @@
+{% extends 'selia/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+  {{ collection }}: {% trans 'Sampling Events' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% if permissions.create %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_sampling_event' %}?collection={{ collection.pk }}">
+      {% trans 'Add sampling event' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
+    </a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No sampling events were found in this collection.
+  {% endblocktrans%}
+</h4>
+<p>
+  <a href="{% url 'selia:create_sampling_event' %}?collection={{ collection.pk }}">
+    {% trans 'Add a sampling event' %}
+  </a>
+</p>
+{% endblock %}

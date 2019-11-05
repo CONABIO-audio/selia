@@ -1,0 +1,41 @@
+{% extends 'selia/components/secondary_navbar.html' %}
+{% load i18n %}
+
+{% block navbar-brand %}
+<div class="dropdown">
+  <a class="navbar-brand text-nowrap dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'Site ' %}{{ collection_site.pk }}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item active" href={% url 'selia:collection_site_detail' collection_site.pk %}>{% trans 'Site ' %}{{ collection_site.pk }}</a>
+    <a class="dropdown-item" href={% url 'selia:collection_sites' collection_site.collection.pk %}>{{collection_site.collection.pk}}{% trans ': Sites' %}</a>
+    <a class="dropdown-item" href={% url 'selia:collection_detail' collection_site.collection.pk %}>{{collection_site.collection.pk}}</a>
+    <a class="dropdown-item" href={% url 'selia:collections_user' %}>{% trans 'Collections' %}</a>
+  </div>
+</div>
+
+{% endblock navbar-brand %}
+
+{% block navbar-items %}
+{% url 'selia:collection_site_detail' collection_site.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url == request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+    <i class="fas fa-info"></i>
+    {% trans 'About' %}
+  </a>
+</li>
+{% url 'selia:collection_site_items' collection_site.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+  <i class="far fa-file"></i>
+    {% trans 'Items' %}
+  </a>
+</li>
+{% endblock navbar-items %}

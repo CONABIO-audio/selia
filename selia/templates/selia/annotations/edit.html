@@ -1,0 +1,27 @@
+{% extends 'selia/base_with_toolbar.html' %}
+
+{% load i18n %}
+{% load selia_components %}
+{% load selia_buttons %}
+{% load static %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/item.html' %}
+{% endblock secondary-navbar %}
+
+{% block stylesheet-extra %}
+<link rel="stylesheet" type="text/css" href="{% static 'selia/css/image_annotator.css'%}">
+{% endblock stylesheet-extra %}
+
+{% block scripts-extra %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'selia/js/image_annotator.js' %}"></script>
+{% endblock scripts-extra %}
+
+{% block main-content %}
+{% annotator_component annotator_template=annotator_template item=item annotation_list=annotation_list mode=mode %}
+{% endblock main-content %}
+
+{% block modals-extra %}
+
+{% endblock modals-extra %}

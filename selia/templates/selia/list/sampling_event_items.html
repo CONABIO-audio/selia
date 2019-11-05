@@ -1,0 +1,35 @@
+{% extends 'selia/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block toolbar-title %}
+  {{ sampling_event.collection }}: {% trans 'Sampling Event' %} {{ sampling_event.pk }}: {% trans 'Items' %}
+{% endblock %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/sampling_event.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-items %}
+  {% if permissions.create %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ sampling_event.collection.pk }}&sampling_event={{ sampling_event.pk }}">{% trans 'Add Items' %} <i class="fas fa-plus"></i> <i class="far fa-file"></i></a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No items captured in this sampling event were found.
+  {% endblocktrans%}
+</h4>
+<p>
+  <a href="{% url 'selia:create_item' %}?collection={{ sampling_event.collection.pk }}&sampling_event={{ sampling_event.pk }}">
+    {% trans 'Deploy a device in this sampling event' %}
+  </a>
+</p>
+{% endblock %}

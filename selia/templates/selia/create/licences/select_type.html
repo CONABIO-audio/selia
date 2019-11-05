@@ -1,0 +1,36 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add licence' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li class="is-active">{% trans 'Select licence type' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select licence type' %}
+{% endblock %}
+
+{% block list-container %}
+  <div class="container-fluid form-container mb-4 px-4 pb-5">
+    <div class="row d-flex justify-content-center flex-wrap">
+      {% for licence_type in list %}
+      <div class="p-2" style="width: 20em;">
+        <a href="{% url 'selia:create_licence' %}?{{ request.GET.urlencode }}&licence_type={{ licence_type.pk }}">
+          {% include 'selia/components/select_list_items/licence_type.html' with item=licence_type %}
+        </a>
+      </div>
+      {% empty %}
+      <h4>{% trans 'No licence types are valid for this collection' %}</h4>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load selia_buttons %}
+
+<div class="media text-muted pt-3">
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <strong class="d-block text-gray-dark">{% trans 'Items under this licence' %}</strong>
+    <div class="row">
+      <div class="col-3">
+        {% trans 'Number' %}: {{ object.item_set.count }}
+      </div>
+      <div class="col-7">
+        {% trans 'Last added on' %}: {{ object.item_set.first.created_on }}
+      </div>
+    </div>
+  </div>
+</div>

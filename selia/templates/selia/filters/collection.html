@@ -1,0 +1,118 @@
+{% load i18n %}
+{% load widget_tweaks %}
+{% load selia_components %}
+
+
+<div class="row w-100 p-2">
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseCollectionType">
+        {% trans 'Details' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Collection type' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans 'Equals' as label %}
+              {{ filter.form.collection_type | selia_form:label }}
+            </div>
+          </div>
+
+          <div class="dropdown-divider"></div>
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Is open?' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans 'Equals' as label %}
+              {{ filter.form.is_open | selia_form:label }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseName">
+        {% trans 'Name' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          {% trans 'Contains' as label %}
+          {{ filter.form.name__icontains | selia_form:label }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseInstitutionName">
+        {% trans 'Institution' %}
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Institution name' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans 'Contains' as label %}
+              {{ filter.form.institution__institution_name__icontains | selia_form:label }}
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Institution country' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans 'Contains' as label %}
+              {{ filter.form.institution__country__icontains | selia_form:label }}
+            </div>
+          </div>
+
+          <div class="dropdown-divider"></div>
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Institution code' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans 'Equals' as label %}
+              {{ filter.form.institution__institution_code | selia_form:label }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <div class="dropdown">
+        <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseEndedOn">
+          {% trans 'Date of creation' %}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="container p-3">
+          {% trans 'From' as label %}
+          {{ filter.form.created_on__gt | selia_form:label }}
+
+          {% trans 'To' as label %}
+          {{ filter.form.created_on__lt | selia_form:label }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

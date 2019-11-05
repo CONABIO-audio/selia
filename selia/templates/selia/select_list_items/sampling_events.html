@@ -1,0 +1,62 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load selia_tags %}
+{% load selia_buttons %}
+{% load static %}
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="row w-100">
+    <div class="col">
+      {% listtitle %}
+        {% list_icon item.sampling_event_type.icon %}
+      {% endlistimage %}
+        {% trans 'Sampling event' %}
+      {% endlistheader %}
+        <div>
+          {{ item.sampling_event_type }}
+        </div>
+      {% endlisttitle %}
+    </div>
+    <div class="col">
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Sampling event type' %}
+        {% attributevalue %}
+          {{ item.sampling_event_type }}
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Collection' %}
+        {% attributevalue %}
+          {{ item.collection }}
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Collection site' %}
+        {% attributevalue %}
+          {{ item.collection_site.site.name }}
+        {% endlistattribute %}
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Started on' %}
+        {% attributevalue %}
+          {{ item.started_on | date }}
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Ended on' %}
+        {% attributevalue %}
+          {{ item.ended_on | date }}
+        {% endlistattribute %}
+      </div>
+    </div>
+
+  </div>
+{% endblock list-item-content %}

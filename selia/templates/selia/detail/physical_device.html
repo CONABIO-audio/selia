@@ -1,0 +1,44 @@
+{% extends 'selia/detail/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+{% include 'selia/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}{% trans 'User device detail' %}{% endblock %}
+
+{% block toolbar-items %}
+  <li class="navbar-item ">
+    <button type="button" class="btn btn-link">{% trans "Download Summary" %} <i class="fas fa-file-download"></i></button>
+  </li>
+  <li class="navbar-item ">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block main-content %}
+  <div class="container-fluid">
+    <div class="row p-2">
+      <div class="col-6 p-2">
+        {% detail_component detail_template=detail_template object=object %}
+      </div>
+      <div class="col-6 p-2">
+        {% summary_component summary_template=summary_template object=object %}
+      </div>
+    </div>
+  </div>
+{% endblock main-content %}
+
+{% block modals-extra %}
+  {% help_component help_template=help_template %}
+
+  {% if permissions.change %}
+    {% update_component update_template=update_form_template form=form %}
+  {% endif %}
+
+  {% if permissions.delete %}
+    {% delete_component object=object %}
+  {% endif %}
+{% endblock modals-extra %}

@@ -1,0 +1,51 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="col">
+  <div class="row">
+    {% listattribute %}
+      {% trans 'Username' %}
+    {% attributevalue %}
+      {% if item.username %}
+        {{ item.username }}
+      {% else %}
+        {% trans 'pending...' %}
+      {% endif %}
+    {% endlistattribute %}
+  </div>
+  <div class="row">
+    {% listattribute %}
+      {% trans 'First name' %}
+    {% attributevalue %}
+      {% if item.first_name %}
+        {{ item.first_name }}
+      {% else %}
+        {% trans 'pending' %}...
+      {% endif %}
+    {% endlistattribute %}
+  </div>
+</div>
+<div class="col">
+  <div class="row">
+    {% listattribute %}
+      {% trans 'Email' %}
+    {% attributevalue %}
+      {{ item.email }}
+    {% endlistattribute %}
+  </div>
+  <div class="row">
+    {% listattribute %}
+      {% trans 'Last name' %}
+    {% attributevalue %}
+      {% if item.last_name %}
+        {{ item.last_name }}
+      {% else %}
+        {% trans 'pending' %}...
+      {% endif %}
+    {% endlistattribute %}
+  </div>
+</div>
+
+{% endblock list-item-content %}

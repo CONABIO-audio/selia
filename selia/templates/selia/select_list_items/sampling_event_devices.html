@@ -1,0 +1,66 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load static %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="row w-100">
+  <div class="col">
+    {% listtitle %}
+      {% list_icon item.collection_device.physical_device.device.device_type.icon %}
+    {% endlistimage %}
+      {{ item.collection_device.physical_device.device.brand }}
+    {% endlistheader %}
+      {{ item.collection_device.physical_device.device.model }}
+    {% endlisttitle %}
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Device type' %}
+      {% attributevalue %}
+        {{ item.collection_device.physical_device.device.device_type }}
+      {% listattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Serial Number' %}
+      {% attributevalue %}
+        {{ item.collection_device.physical_device.serial_number }}
+      {% listattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Device Name' %}
+      {% attributevalue %}
+        {{ item.collection_device.internal_id }}
+      {% listattribute %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Collection' %}
+      {% attributevalue %}
+        {{ item.collection_device.collection }}
+      {% listattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Owner' %}
+      {% attributevalue %}
+        {{ item.collection_device.physical_device.created_by }}
+      {% listattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Added on' %}
+      {% attributevalue %}
+        {{ item.collection_device.created_on }}
+      {% listattribute %}
+    </div>
+  </div>
+
+</div>
+{% endblock list-item-content %}

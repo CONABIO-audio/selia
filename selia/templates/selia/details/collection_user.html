@@ -1,0 +1,94 @@
+{% load i18n %}
+{% load country_tags %}
+{% load selia_tags %}
+{% load json_tags %}
+{% load static %}
+
+
+{% detailtitle %}
+{% detail_icon object.role.icon %}
+{% enddetailimage %}
+{% trans 'Collection user'%}
+{% enddetailheader %}
+{{ object.role }}
+{% enddetailtitle %}
+
+{% detailsection %}
+{% trans 'User info' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Username' %}
+    {% endhead %}
+      {{ object.user.username }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Institution' %}
+    {% endhead %}
+      {{ object.user.institution }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'First name' %}
+    {% endhead %}
+      {{ object.user.first_name }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Last name' %}
+    {% endhead %}
+      {{ object.user.last_name }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Email' %}
+    {% endhead %}
+      {{ object.user.email }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+{% detailsection %}
+  {% trans 'Role' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Role' %}
+    {% endhead %}
+      {{ object.role }}
+    {% enddetailitem %}
+  </div>
+
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Description' %}
+    {% endhead %}
+      {{ object.role.description }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+{% if object.metadata %}
+  {% detailsection %}
+    {% trans 'Metadata' %}
+  {% enddetailsection %}
+
+  <div class="row">
+    {% show_json object.metadata %}
+  </div>
+{% endif %}

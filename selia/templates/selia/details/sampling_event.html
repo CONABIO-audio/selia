@@ -1,0 +1,91 @@
+{% load json_tags %}
+{% load selia_tags %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% detailtitle %}
+  {% detail_icon object.sampling_event_type.icon %}
+{% enddetailimage %}
+  {% trans 'Sampling event' %}
+{% enddetailheader %}
+  <div>
+    {{ object.sampling_event_type }}
+  </div>
+{% enddetailtitle %}
+
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Started on' %}
+      {% endhead %}
+        {{ object.started_on }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Ended on' %}
+      {% endhead %}
+        {{ object.ended_on }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  {% detailsection %}
+    <a href="{% url 'selia:collection_site_detail' object.collection_site.pk %}">
+      {% trans 'Site info' %}
+    </a>
+  {% enddetailsection %}
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Site name' %}
+      {% endhead %}
+        {{ object.collection_site.internal_id }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Site locality' %}
+      {% endhead %}
+        {{ object.collection_site.site.locality }}
+      {% enddetailitem %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Site altitude' %}
+      {% endhead %}
+        {{ object.collection_site.site.altitude | floatformat:'1' }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Site latitude' %}
+      {% endhead %}
+        {{ object.collection_site.site.latitude | floatformat:'3' }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Site longitude' %}
+      {% endhead %}
+        {{ object.collection_site.site.longitude | floatformat:'3' }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  {% if object.metadata %}
+    {% detailsection %}
+      {% trans 'Metadata' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="d-flex flex-wrap">
+        {% show_json object.metadata %}
+      </div>
+    </div>
+  {% endif %}
+</div>

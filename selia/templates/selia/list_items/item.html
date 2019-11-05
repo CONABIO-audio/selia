@@ -1,0 +1,114 @@
+{% extends 'selia/components/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+
+
+{% block list-item-content %}
+<div class="row w-100">
+    <div class="col">
+      {% listtitle %}
+      <div class="mr-2">
+        <a href="{% url 'selia:item_detail' item.pk %}">
+          {% thumbnail item.item_thumbnail "100x80" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+          {% endthumbnail %}
+        </a>
+      </div>
+      {% endlistimage %}
+        {% trans 'Item' %} {{ item.pk }}
+      {% endlistheader %}
+        <div>
+          {{ item.item_type }}
+        </div>
+        <a href="{% url 'selia:item_detail' item.pk %}">{% enter_button %}</a>
+      {% endlisttitle %}
+    </div>
+
+    <div class="col">
+       <div class="row">
+         {% listattribute %}
+          {% trans 'Captured on' %}
+         {% attributevalue %}
+           {{ item.captured_on }}
+         {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Owner' %}
+        {% attributevalue %}
+          {{ item.created_by }}
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Licence' %}
+        {% attributevalue %}
+          {{ item.licence.licence_type }}
+        {% endlistattribute %}
+      </div>
+      {% if item.tags.count != 0 %}
+      <div class="row d-flex flex-row">
+        {% listattribute %}
+          {% trans 'Tags' %}
+        {% attributevalue %}
+          <div class="d-inline mx-2">
+            {% for tag in item.tags.all %}
+              <span class="badge badge-dark">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endlistattribute %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="col">
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Site Name' %}
+        {% attributevalue %}
+          <a href="{% url 'selia:collection_site_detail' item.sampling_event_device.sampling_event.collection_site.pk %}">
+            {{ item.sampling_event_device.sampling_event.collection_site.internal_id }}
+          </a>
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Sampling event' %}
+        {% attributevalue %}
+          <a href="{% url 'selia:sampling_event_detail' item.sampling_event_device.sampling_event.pk %}">
+            {{ item.sampling_event_device.sampling_event.pk }}
+          </a>
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Device Name' %}
+        {% attributevalue %}
+          <a href="{% url 'selia:sampling_event_device_detail' item.sampling_event_device.collection_device.pk %}">
+            {{ item.sampling_event_device.collection_device.internal_id }}
+          </a>
+        {% endlistattribute %}
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Annotations' %}
+        {% summarycount %}
+          {{ item.annotation_set.count }}
+        {% summarybuttons %}
+          <a href="{% url 'selia:item_annotations' item.pk %}">
+            {% see_button %}
+          </a>
+          <a class="ml-2" href="{% url 'selia:item_annotations' item.pk %}">
+            {% add_button %}
+          </a>
+        {% endlistsummary %}
+      </div>
+    </div>
+  </div>
+{% endblock list-item-content %}

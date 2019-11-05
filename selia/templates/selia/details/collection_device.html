@@ -1,0 +1,89 @@
+{% load json_tags %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% detailtitle %}
+  {% detail_icon object.physical_device.device.device_type.icon %}
+{% enddetailimage %}
+  {% trans 'Collection Device' %}
+{% enddetailheader %}
+  <p>
+    {{ object.physical_device.device.device_type }}
+  </p>
+{% enddetailtitle %}
+
+
+<div class="container-fluid p-2">
+  <div class="row mt-2">
+    <div class="col">
+      {% detailitem %}
+      {% trans 'Device type' %}
+      {% endhead %}
+      {{ object.physical_device.device.device_type }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Name' %}
+      {% endhead %}
+        {{ object.internal_id }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Owner' %}
+      {% endhead %}
+        {{ object.physical_device.created_by }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  {% detailsection %}
+    {% if object.created_by == user %}
+    <a href="{% url 'selia:physical_device_detail' object.physical_device.pk %}">
+      {% trans 'Device Info' %}
+    </a>
+    {% else %}
+      {% trans 'Device Info' %}
+    {% endif %}
+  {% enddetailsection %}
+
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Brand' %}
+      {% endhead %}
+        {{ object.physical_device.device.brand }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Model' %}
+      {% endhead %}
+        {{ object.physical_device.device.model }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Serial number' %}
+      {% endhead %}
+        {{ object.physical_device.serial_number }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  {% if object.metadata %}
+  <div class="row">
+    <div class="col">
+      {% detailsection %}
+        {% trans 'Metadata' %}
+      {% enddetailsection %}
+
+      <div class="d-flex flex-wrap">
+        {% show_json object.metadata %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>

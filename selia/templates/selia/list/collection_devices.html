@@ -1,0 +1,37 @@
+{% extends 'selia/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+  {{ collection }}: {% trans 'Devices' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    {% if permissions.create %}
+    <a class="nav-link" href="{% url 'selia:create_collection_device' %}?collection={{ collection.pk }}">
+      {% trans 'Add Device' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
+    </a>
+    {% endif %}
+  </li>
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No devices registered to the collection were found.
+  {% endblocktrans%}
+</h4>
+<p>
+  <a href="{% url 'selia:create_collection_device' %}?collection={{ collection.pk }}">
+    {% trans 'Add devices to the collection' %}
+  </a>
+</p>
+{% endblock %}

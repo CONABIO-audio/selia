@@ -1,0 +1,17 @@
+{% load selia_components %}
+
+<div class="col">
+  <div class="row">
+    {% bootstrap_form form.identifier %}
+  </div>
+  <div class="row">
+    {% bootstrap_form form.serial_number %}
+  </div>
+
+  {% if physical_device.device.metadata_schema %}
+  <hr/>
+  <div class="row">
+    {{ form.metadata }}
+  </div>
+  {% endif %}
+</div>

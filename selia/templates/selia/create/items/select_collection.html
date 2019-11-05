@@ -1,0 +1,33 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/user.html' %}
+{% endblock %}
+
+{% block toolbar-title %}
+  {% trans 'Add items' %}
+{% endblock toolbar-title %}
+
+{% block toolbar-steps %}
+  <li class="is-active">{% trans 'Select collection' %}</li>
+  <li>{% trans 'Select sampling event' %}</li>
+  <li>{% trans 'Select deployed device' %}</li>
+  <li>{% trans 'Select licence' %}</li>
+  <li>{% trans 'Upload files' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {%trans 'Select one of your collections' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose a collection from the list.
+  {% endblocktrans %}
+{% endblock %}
+
+{% block empty-message %}
+  <h4>{% trans 'No collections were found' %}</h4>
+{% endblock %}

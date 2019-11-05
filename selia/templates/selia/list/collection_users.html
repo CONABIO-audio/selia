@@ -1,0 +1,36 @@
+{% extends 'selia/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+  {{ collection }}: {% trans 'Users' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% if permissions.create %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_collection_user' %}?collection={{ collection.pk }}">{% trans 'Add User' %} <i class="fas fa-plus"></i> <i class="fas fa-user"></i></a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No collection users were found.
+  {% endblocktrans%}
+</h4>
+<p>
+  <a href="{% url 'selia:create_collection_user' %}?collection={{ collection.pk }}">
+    {% trans 'Add user to the collection' %}
+  </a>
+</p>
+{% endblock %}

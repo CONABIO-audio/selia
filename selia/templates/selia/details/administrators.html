@@ -1,0 +1,32 @@
+{% load i18n %}
+<div class="container-fluid p-4">
+  <div class="row">
+    <h4>{% trans 'Collection administrators' %}</h4>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      {% for admin in object.administrators.all %}
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-4">
+          <div class="row">
+            <p>{% trans 'Name' %}</p>
+          </div>
+          <div class="row">
+            <p class="text-muted">{{ admin.first_name }} {{ admin.last_name }}</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="row">
+            <p>{% trans 'Email' %}</p>
+          </div>
+          <div class="row">
+            <p class="text-muted"><a href="mailto{{ admin.email }}:"><i class="fas fa-envelope-open-text"></i> {{ admin.email }}</a></p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

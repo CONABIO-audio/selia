@@ -1,0 +1,13 @@
+{% extends 'selia/list/base.html' %}
+{% load selia_buttons %}
+{% load i18n %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collections.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}

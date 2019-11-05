@@ -1,0 +1,52 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="col">
+  <div class="row">
+    <div class="col">
+      {% listtitle %}
+        {% list_icon item.icon %}
+      {% endlistimage %}
+        {{ item.name }}
+      {% endlistheader %}
+        <p class="text-muted">{{ item.description }}</p>
+      {% endlisttitle %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+      <div class="w-100 text-center">
+        {% trans 'Permissions' %}
+      </div>
+      {% endhead %}
+      <div class="col">
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can view items' %}</div>
+          <div class="col-4">{{ item.can_view|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can download items'%}</div>
+          <div class="col-4">{{ item.can_download|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can view annotations'%}</div>
+          <div class="col-4">{{ item.can_view_annotations|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can annotate'%}</div>
+          <div class="col-4">{{ item.can_annotate|yesno }}</div>
+        </div>
+        <div class="row">
+          <div class="col-8 p-0 text-right">{% trans 'Can vote annotations'%}</div>
+          <div class="col-4">{{ item.can_vote_annotations|yesno }}</div>
+        </div>
+      </div>
+      {% enddetailitem %}
+    </div>
+  </div>
+</div>
+{% endblock list-item-content %}

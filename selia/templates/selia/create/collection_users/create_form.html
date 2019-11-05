@@ -1,0 +1,68 @@
+{% extends 'selia/create/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add user to collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_collection_user'%}?{{ request.GET | remove_fields:'user&role&collection'}}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li>
+  <a href="{% url 'selia:create_collection_user'%}?{{ request.GET | remove_fields:'user&role'}}">
+    {% trans 'Select user' %}
+  </a>
+</li>
+<li>
+  <a href="{% url 'selia:create_collection_user'%}?{{ request.GET | remove_fields:'role'}}">
+    {% trans 'Select role' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {%trans 'Fill in details' %}
+{% endblock step-title %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+
+  {% trans 'Selected user' as label %}
+  {% selected_item 'user' selected_user label %}
+
+  {% trans 'Selected role' as label %}
+  {% selected_item 'role' role label %}
+{% endblock previously-selected %}
+
+{% block form-content %}
+  <input type="hidden" id="collection_field" name="collection" value="{{ collection.pk }}">
+  <input type="hidden" id="user_field" name="user" value="{{ selected_user.pk }}">
+  <input type="hidden" id="role_field" name="role" value="{{ role.pk }}">
+
+  {% if role_info.metadata_schema %}
+  <div class="row d-flex justify-content-center w-100">
+    <div class="col">
+      <div class="row">
+        <h4 class="w-100 text-center">{% trans 'Metadata' %}</h4>
+      </div>
+      <div class="row px-5">
+        {{ form.metadata }}
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="row p-4">
+    <h4 class="w-100 text-center">{% trans 'No additional information required' %}</h4>
+  </div>
+  {% endif %}
+{% endblock %}

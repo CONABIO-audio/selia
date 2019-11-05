@@ -1,0 +1,93 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add site to collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock %}
+
+{% block head-extra %}
+  {% include 'selia/components/media/map_media.html' %}
+{% endblock head-extra %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_collection_site' %}?{{ request.GET|remove_fields:'site_type&collection' }}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li>
+  <a href="{% url 'selia:create_collection_site' %}?{{ request.GET|remove_fields:'site_type' }}">
+    {% trans 'Select site type' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Select site' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {%trans 'Add site to collection' %}
+{% endblock %}
+
+{% block step-description %}
+{% blocktrans %}
+  Please select a site to add or
+  {% endblocktrans %}
+  <a href="#collapseSite" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSite">{% trans 'create a new one' %}</a>
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+
+  {% trans 'Selected site type' as label %}
+  {% selected_item 'site_type' site_type label %}
+{% endblock previously-selected %}
+
+{% block extra-forms %}
+<form action="?{{ request.GET.urlencode }}" method="post">
+  {% csrf_token %}
+  <div class="container-fluid px-4 pb-4">
+    <div class="collapse" id="collapseSite">
+      <div class="card card-body">
+        <h5 class="w-100 text-center">{% trans 'Create new site' %}</h5>
+        <div class="row">
+          <div class="col">
+            {% bootstrap_form form.latitude %}
+          </div>
+          <div class="col">
+            {% bootstrap_form form.longitude %}
+          </div>
+          <div class="col">
+            {% bootstrap_form form.altitude %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            {% bootstrap_form form.locality %}
+          </div>
+          <div class="col">
+            {% bootstrap_form form.name %}
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <input type="submit" class="btn btn-primary" value="{% trans 'Create' %}">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
+{% block empty-message %}
+<h4>{% trans 'No available sites.' %}</h4>
+<p>
+  <a href="#collapseSite" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSite">
+    <i class="fas fa-plus"></i> {% trans ' Please register new site' %}
+  </a>
+</p>
+{% endblock %}

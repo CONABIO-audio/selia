@@ -1,0 +1,93 @@
+{% load i18n %}
+{% load widget_tweaks %}
+{% load selia_components %}
+
+<div class="row w-100 p-0">
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseCollectionType">
+        {% trans 'Collection type' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="collectionTypeDropdown">
+        <div class="container p-3">
+          <div class="form-group">
+            {{ filter.form.collection_type.label_tag }}
+            {{ filter.form.collection_type }}
+            <small class="form-text text-muted">{{ filter.form.collection_type.help_text }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseInstitution">
+        {% trans 'Institution' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="institutionDropdown">
+        <div class="container p-3">
+          <div class="form-group">
+            {{ filter.form.institution.label_tag }}
+            {{ filter.form.institution }}
+            <small class="form-text text-muted">{{ filter.form.institution.help_text }}</small>
+          </div>
+          <div class="form-group">
+            {{ filter.form.institution__institution_name__icontains.label_tag }}
+            {{ filter.form.institution__institution_name__icontains|add_class:"form-control" }}
+            <small class="form-text text-muted">{{ filter.form.institution__institution_name__icontains.help_text }}</small>
+          </div>
+          <div class="form-group">
+            {{ filter.form.institution__institution_code__icontains.label_tag }}
+            {{ filter.form.institution__institution_code__icontains|add_class:"form-control" }}
+            <small class="form-text text-muted">{{ filter.form.institution__institution_code__icontains.help_text }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseCreatedOn">
+        {% trans 'Date of creation' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="institutionDropdown">
+        <div class="container p-3">
+          <div class="form-group">
+            {{ filter.form.created_on__gt.label_tag }}
+            {{ filter.form.created_on__gt }}
+            <small class="form-text text-muted">{{ filter.form.created_on__gt.help_text }}</small>
+          </div>
+          <div class="form-group">
+            {{ filter.form.created_on__lt.label_tag }}
+            {{ filter.form.created_on__lt }}
+            <small class="form-text text-muted">{{ filter.form.created_on__lt.help_text }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="form-group">
+      {{ filter.form.is_open.label_tag }}
+      {{ filter.form.is_open|add_class:"form-control" }}
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    ;(function ($) {
+      $('#id_collection_type').select2({
+        dropdownParent: $('#collectionTypeDropdown')
+      });
+      $('#id_institution').select2({
+        dropdownParent: $('#institutionDropdown')
+      });
+    })(yl.jQuery);
+  });
+</script>
+

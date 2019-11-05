@@ -1,0 +1,48 @@
+{% extends 'selia/components/list_item.html' %}
+{% load selia_buttons %}
+{% load static %}
+{% load json_tags %}
+
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="row w-100 annotation_row">
+    <input type="hidden" id="annotation" name="annotation" value="{{ item.annotation }}">
+    <div class="col-4" align="center">
+       <div class="row">
+        <h5>{% trans 'Annotation ' %}{{ item.pk }}</h5>
+      </div>
+
+        {% parse_annotation_label item.label %}
+      <div class="row p-2">
+        <a id="edit_annotation_btn" href="{% url 'selia:item_annotation_create' item.item.pk %}?mode=edit&annotation={{ item.pk }}">{% edit_button %}</a>
+      </div>
+        
+    </div>
+  	<div class="col-4">
+       <div class="row">
+        <h6>{% trans 'Event type' %}</h6>
+        <div class="text-muted ml-4">{{ item.event_type }}</div>
+      </div>
+     <div class="row">
+        <h6>{% trans 'Annotation type' %}</h6>
+        <div class="text-muted ml-4">{{ item.annotation_type }}</div>
+      </div>
+  	</div>
+
+    <div class="col-4">
+       <div class="row">
+        <h6>{% trans 'Certainty' %}</h6>
+        <div class="text-muted ml-4">{{ item.certainty }}</div>
+      </div>
+     <div class="row">
+        <h6>{% trans 'Quality' %}</h6>
+        <div class="text-muted ml-4">{{ item.quality }}</div>
+      </div>
+      <div class="row">
+        <h6>{% trans 'Owner' %}</h6>
+        <div class="text-muted ml-4">{{ item.created_by }}</div>
+      </div>
+    </div>
+  </div>
+{% endblock list-item-content %}

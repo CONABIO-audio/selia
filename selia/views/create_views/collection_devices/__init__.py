@@ -1,0 +1,4 @@
+from .manager import CreateCollectionDeviceManager
+from .create_collection_device import CreateCollectionDeviceView
+from .select_collection import SelectCollectionDeviceCollectionView
+from .select_device import SelectCollectionDevicePhysicalDeviceView

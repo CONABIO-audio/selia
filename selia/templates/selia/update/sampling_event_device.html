@@ -1,0 +1,17 @@
+{% load selia_components %}
+
+<div class="col">
+  <div class="row">
+    {% bootstrap_form form.commentaries %}
+  </div>
+  {% if info.metadata_schema %}
+  <div class="row">
+    {{ form.metadata }}
+  </div>
+  {% endif %}
+  {% if device.configuration_schema %}
+  <div class="row">
+    {{ form.configuration }}
+  </div>
+  {% endif %}
+</div>

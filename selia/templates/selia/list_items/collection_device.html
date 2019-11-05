@@ -1,0 +1,108 @@
+{% extends 'selia/components/list_item.html' %}
+{% load static %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="row w-100">
+  <div class="col">
+    {% listtitle %}
+      {% list_icon item.physical_device.device.device_type.icon %}
+    {% endlistimage %}
+      {{ item.physical_device.device.brand }}
+    {% endlistheader %}
+      <p class="mb-0">
+        {{ item.physical_device.device.model }}
+      </p>
+      <p>
+        <a href="{% url 'selia:collection_device_detail' item.pk %}">
+          {% enter_button %}
+        </a>
+      </p>
+    {% endlisttitle %}
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Device type' %}
+      {% attributevalue %}
+        {{ item.physical_device.device.device_type }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Serial Number' %}
+      {% attributevalue %}
+        {{ item.physical_device.serial_number }}
+      {% endlistattribute %}
+
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Name' %}
+      {% attributevalue %}
+        {{ item.internal_id }}
+      {% endlistattribute %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Collection' %}
+      {% attributevalue %}
+        {{ item.collection }}
+      {% endlistattribute %}
+    </div>
+
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Owner' %}
+      {% attributevalue %}
+        {{ item.physical_device.created_by }}
+      {% endlistattribute %}
+    </div>
+
+    {% if item.physical_device.created_by == request.user %}
+    <div class="row">
+      {% listattribute %}
+      {% trans 'Personal name' %}
+      {% attributevalue %}
+      {{ item.physical_device.identifier }}
+      {% endlistattribute %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="col">
+    <div class="row">
+      {% listsummary %}
+        {% trans 'Items' %}
+      {% summarycount %}
+        {{ item.items.count }}
+      {% summarybuttons %}
+        <a href="{% url 'selia:create_item' %}?collection={{ collection.pk }}&collection_device={{ item.pk }}">
+          {% add_button %}
+        </a>
+        <a class="ml-2" href="{% url 'selia:collection_items' collection.pk %}?sampling_event_device__collection_device={{ item.pk }}">
+          {% see_button %}
+        </a>
+      {% endlistsummary %}
+    </div>
+    <div class="row">
+      {% listsummary %}
+        {% trans 'Sampling events' %}
+      {% summarycount %}
+        {{ item.samplingeventdevice_set.count }}
+        {% summarybuttons %}
+        <a href="{% url 'selia:create_sampling_event_device' %}?collection={{ collection.pk }}&collection_device={{ item.pk }}">
+          {% add_button %}
+        </a>
+        <a href="{% url 'selia:collection_sampling_events' collection.pk %}?collection_device={{ item.pk }}">
+          {% see_button %}
+        </a>
+      {% endlistsummary %}
+    </div>
+  </div>
+</div>
+{% endblock list-item-content %}

@@ -1,0 +1,11 @@
+{% extends 'selia/base_with_toolbar.html' %}
+{% load selia_components %}
+
+{% block head-extra %}
+  {{ block.super }}
+  {% include 'selia/components/media/json_form_media.html' %}
+{% endblock head-extra %}
+
+{% block modals-extra %}
+  {% help_component help_template=templates.help %}
+{% endblock modals-extra %}

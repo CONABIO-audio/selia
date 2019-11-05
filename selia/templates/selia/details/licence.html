@@ -1,0 +1,75 @@
+{% load json_tags %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% detailtitle %}
+  {% detail_icon object.licence_type.icon %}
+{% enddetailimage %}
+  {% trans 'Licence ' %}
+{% enddetailheader %}
+  <div>
+    {{ object.licence_type }}
+  </div>
+{% enddetailtitle %}
+
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Signed on'%}
+      {% endhead %}
+        {{ object.created_on | date }}
+      {% detailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Signer'%}
+      {% endhead %}
+        {{ object.created_by }}
+      {% detailitem %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Valid until' %}
+      {% endhead %}
+        {% if object.licence_type.years_valid_for > 50 %}
+          -
+        {% else %}
+          {{ object.created_on.year|add:object.licence_type.years_valid_for }}
+        {% endif %}
+      {% detailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Document' %}
+      {% endhead %}
+        {% if object.document %}
+          <a href="{{ object.document.url }}" download>
+            {% trans 'Download' %}
+          </a>
+        {% else %}
+          -
+        {% endif %}
+      {% detailitem %}
+    </div>
+  </div>
+
+  {% detailsection %}
+    {% trans 'Licence type' %}
+  {% enddetailsection %}
+
+  {% include 'selia/components/details/licence_type.html' with object=object.licence_type %}
+
+  {% if object.metadata %}
+    {% detailsection %}
+      {% trans 'Metadata' %}
+    {% enddetailsection %}
+
+    <div class="d-flex flex-wrap justify-content-between">
+      {% show_json object.metadata %}
+    </div>
+  {% endif %}
+</div>

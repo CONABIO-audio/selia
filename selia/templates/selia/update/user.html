@@ -1,0 +1,19 @@
+{% load selia_components %}
+
+{% bootstrap_form form.username %}
+<div class="form-row">
+  <div class="form-group col-md-6">
+    {% bootstrap_form form.first_name %}
+  </div>
+  <div class="form-group col-md-6">
+    {% bootstrap_form form.last_name %}
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    {% bootstrap_form form.email %}
+  </div>
+  <div class="form-group col-md-6">
+    {% bootstrap_form form.institution %}
+  </div>
+</div>

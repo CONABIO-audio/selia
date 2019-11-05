@@ -1,0 +1,45 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add site to collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_collection_site' %}?{{ request.GET|remove_fields:'collection' }}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Select site  type' %}</li>
+<li>{% trans 'Select site' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {%  trans 'Select site type' %}
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+{% endblock previously-selected %}
+
+{% block list-container %}
+  <div class="form-container mb-4">
+    <div class="row d-flex flex-wrap justify-content-center">
+      {% for site_type in list %}
+      <a href="{% url 'selia:create_collection_site' %}?{{ request.GET.urlencode }}&site_type={{ site_type.pk }}">
+        <div class="p-2" style="width: 20em;">
+          {% include 'selia/components/select_list_items/site_type.html' with item=site_type %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

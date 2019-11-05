@@ -1,0 +1,29 @@
+{% extends 'selia/components/secondary_navbar.html' %}
+{% load i18n %}
+
+{% block navbar-brand %}
+  <div class="dropdown">
+    <a class="navbar-brand text-nowrap dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'Licence ' %}{{ licence.pk }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item active" href={% url 'selia:licence_detail' licence.pk %}>{% trans 'Licence ' %}{{ licence.pk }}</a>
+      <a class="dropdown-item" href={% url 'selia:collection_licences' licence.collection.pk %}>{{licence.collection.pk}}{% trans ': Licences' %}</a>
+      <a class="dropdown-item" href={% url 'selia:collection_detail' licence.collection.pk %}>{{licence.collection.pk}}</a>
+      <a class="dropdown-item" href={% url 'selia:collections_user' %}>{% trans 'Collections' %}</a>
+    </div>
+  </div>
+{% endblock navbar-brand %}
+
+{% block navbar-items %}
+  {% url 'selia:licence_detail' licence.pk as detail_url %}
+  <li class="nav-item">
+    {% if detail_url == request.path|urlencode %}
+    <a class="nav-link active" href={{ detail_url }}>
+    {% else %}
+    <a class="nav-link" href={{ detail_url }}>
+    {% endif %}
+      <i class="fas fa-info"></i>
+      {% trans 'About' %}
+    </a>
+  </li>
+{% endblock navbar-items %}

@@ -1,0 +1,98 @@
+{% load i18n %}
+{% load widget_tweaks %}
+{% load selia_components %}
+
+<div class="row w-100 p-2">
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseSerialNumber">
+        {% trans 'Device details' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Serial number' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans "Contains" as label %}
+              {{ filter.form.serial_number__icontains | selia_form:label }}
+            </div>
+          </div>
+
+          <div class="dropdown-divider"></div>
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Custom name' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans "Contains" as label %}
+              {{ filter.form.identifier__icontains | selia_form:label}}
+            </div>
+          </div>
+
+          <div class="dropdown-divider"></div>
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Is bundle' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ filter.form.bundle | selia_form:None }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseBrand">
+        {% trans 'Hardware details' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Brand' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans "Contains" as label %}
+              {{ filter.form.device__brand__name__icontains | selia_form:label }}
+            </div>
+          </div>
+
+          <div class="dropdown-divider"></div>
+
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Model' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans "Contains" as label %}
+              {{ filter.form.device__model__icontains | selia_form:label }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseEndedOn">
+        {% trans 'Date of creation' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          {% trans 'From' as label %}
+          {{ filter.form.created_on__gt | selia_form:label }}
+
+          {% trans 'To' as label %}
+          {{ filter.form.created_on__lt | selia_form:label }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

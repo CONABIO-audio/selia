@@ -1,0 +1,96 @@
+{% extends 'selia/components/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="row w-100">
+    <div class="col">
+      {% listtitle %}
+        {% list_icon item.logo size="7em" %}
+      {% endlistimage %}
+        {{ item.name }}
+      {% endlistheader %}
+        <p class="mb-0 text-justify">
+          {{ item.description }}
+        </p>
+        <p>
+          <a href="{% url 'selia:collection_detail' item.name %}">
+            {% enter_button %}
+          </a>
+        </p>
+      {% endlisttitle %}
+    </div>
+    <div class="col">
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Collection type' %}
+        {% attributevalue %}
+          {{ item.collection_type }}
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Institution' %}
+        {% attributevalue %}
+          {{ item.institution }}
+        {% endlistattribute %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+
+        {% listsummary %}
+          {% trans 'Users' %}
+        {% summarycount %}
+          {{ item.users.count }}
+        {% endlistsummary %}
+
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Sites' %}
+        {% summarycount %}
+          {{ item.sites.count }}
+        {% summarybuttons %}
+          <a href="{% url 'selia:create_collection_site' %}?collection={{ item.pk }}">
+            {% add_button %}
+          </a>
+          <a class="ml-2" href="{% url 'selia:collection_sites' item.pk %}">
+            {% see_button %}
+          </a>
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Sampling Events' %}
+        {% summarycount %}
+          {{ item.samplingevent_set.count }}
+        {% summarybuttons %}
+        <a href="{% url 'selia:create_sampling_event' %}?collection={{ item.pk }}">{% add_button %}</a>
+        <a class="ml-2" href="{% url 'selia:collection_sampling_events' item.pk %}">{% see_button %}</a>
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Devices' %}
+        {% summarycount %}
+          {{ item.collectiondevice_set.count }}
+        {% summarybuttons %}
+          <a href="{% url 'selia:create_collection_device' %}?collection={{ item.pk }}">{% add_button %}</a>
+          <a class="ml-2" href="{% url 'selia:collection_devices' item.pk %}">{% see_button %}</a>
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Items' %}
+        {% summarycount %}
+          {{ item.items.count }}
+        {% summarybuttons %}
+          <a href="{% url 'selia:create_item' %}?collection={{ item.pk }}">{% add_button %}</a>
+          <a class="ml-2" href="{% url 'selia:collection_items' item.pk %}">{% see_button %}</a>
+        {% endlistsummary %}
+      </div>
+    </div>
+  </div>
+{% endblock list-item-content %}

@@ -1,0 +1,33 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="col">
+  <div class="row">
+    <div class="col">
+      {% listtitle %}
+        {% list_icon item.icon size="3em" %}
+      {% endlistimage %}
+        {{ item.name }}
+      {% endlistheader %}
+        <p>{{ item.description }}</p>
+      {% endlisttitle %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <h4 class="w-100 text-center">{% trans 'Permissions' %}</h4>
+      </div>
+      {% for permission in item.permissions.all %}
+      <div class="row w-100">
+        <small class="text-muted w-100 text-center">{{ permission.name }}</small>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% endblock list-item-content %}

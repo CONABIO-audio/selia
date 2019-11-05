@@ -1,0 +1,52 @@
+{% extends 'selia/detail/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+{% load selia_buttons %}
+
+{% block head-extra %}
+  {{ block.super }}
+  {% include 'selia/components/media/map_media.html' %}
+{% endblock head-extra %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}{{ collection }}: {% trans 'Site' %} {{ collection_site.pk }}{% endblock %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
+  </li>
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block main-content %}
+<div class="container-fluid">
+  <div class="row p-2">
+    <div class="col-6 p-2">
+      {% detail_component detail_template=detail_template object=collection_site %}
+    </div>
+    <div class="col-6">
+      <div class="row p-2">
+          {% viewer_component viewer_template=viewer_template object=collection_site %}
+      </div>
+      <div class="row p-2">
+          {% summary_component summary_template=summary_template object=collection_site %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
+
+{% block modals-extra %}
+  {% help_component help_template=help_template %}
+  {% if permissions.change %}
+    {% update_component update_template=update_form_template form=form %}
+  {% endif %}
+  {% if permissions.delete %}
+    {% delete_component object=collection_site %}
+  {% endif %}
+{% endblock modals-extra %}

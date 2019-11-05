@@ -1,0 +1,15 @@
+{% load static %}
+{% load i18n %}
+
+<div class="container-fluid p-2 rounded" id="pdfviewer">
+  <div class="col">
+    <div class="row p-1">
+      <h5 class="w-100 text-center">{% trans 'Document'%}</h5>
+    </div>
+    <div class="row mx-1 mb-4">
+      {% if object.document %}
+      <iframe class="w-100 pdf-viewer" src="{{ object.document.url }}" height="700px" align="middle" frameborder="0"></iframe>
+      {% endif %}
+    </div>
+  </div>
+</div>

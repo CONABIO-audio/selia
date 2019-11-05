@@ -1,0 +1,64 @@
+{% extends 'selia/create/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add device to collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+  <li>
+    <a href="{% url 'selia:create_collection_device' %}?{{ request.GET | remove_fields:'physical_device&collection'}}">
+      {% trans 'Select collection' %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'selia:create_collection_device' %}?{{ request.GET | remove_fields:'physical_device'}}">
+      {% trans 'Select user device' %}
+    </a>
+  </li>
+  <li class="is-active">{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block head-extra %}
+  {% include 'selia/components/media/json_form_media.html' %}
+{% endblock head-extra %}
+
+{% block step-title %}
+  {% trans 'Fill in details' %}
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+
+  {% trans 'Selected device' as label %}
+  {% selected_item 'physical_devices' physical_device label %}
+{% endblock previously-selected %}
+
+{% block form-content %}
+<input type="hidden" id="physical_device_field" name="physical_device" value="{{ physical_device.pk }}">
+<input type="hidden" id="collection_field" name="collection" value="{{ collection.pk }}">
+
+<div class="row w-100 p-4">
+  <div class="col">
+    <div class="row">
+      {% bootstrap_form form.internal_id %}
+    </div>
+  </div>
+  {% if physical_device.device.metadata_schema %}
+  <div class="col">
+    <div class="row">
+      <h4 class="w-100 text-center">{% trans 'Metadata' %}</h4>
+    </div>
+    <div class="row px-5">
+      {{ form.metadata }}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock form-content %}

@@ -1,0 +1,69 @@
+{% extends 'selia/components/secondary_navbar.html' %}
+{% load i18n %}
+
+{% block navbar-brand %}
+<a class="navbar-brand" id="dropdownMenuButton" href={% url 'selia:user_home' %}>{% trans 'Home' %}</a>
+{% endblock navbar-brand %}
+
+{% block navbar-items %}
+{% url 'selia:user_home' as home_url %}
+<li class="nav-item">
+  {% if home_url == request.path|urlencode %}
+  <a class="nav-link active" href={{ home_url }}>
+  {% else %}
+  <a class="nav-link" href={{ home_url }}>
+  {% endif %}
+    <i class="fas fa-home"></i>
+    {% trans 'Summary' %}
+  </a>
+</li>
+
+{% url 'selia:user_physical_devices' as devices_url %}
+<li class="nav-item">
+  {% if devices_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ devices_url }}>
+  {% else %}
+  <a class="nav-link" href={{ devices_url }}>
+  {% endif %}
+    <i class="fas fa-tools"></i>
+    {% trans 'My Devices' %}
+  </a>
+</li>
+
+{% url 'selia:user_sites' as sites_url %}
+<li class="nav-item">
+  {% if sites_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ sites_url }}>
+  {% else %}
+  <a class="nav-link" href={{ sites_url }}>
+  {% endif %}
+    <i class="fas fa-map-marked-alt"></i>
+    {% trans 'My Sites' %}
+  </a>
+</li>
+
+{% url 'selia:user_sampling_events' as sampling_events_url %}
+<li class="nav-item">
+  {% if sampling_events_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ sampling_events_url }}>
+  {% else %}
+  <a class="nav-link" href={{ sampling_events_url }}>
+  {% endif %}
+    <i class="fas fa-calendar-week"></i>
+    {% trans 'My Sampling events' %}
+  </a>
+</li>
+
+{% url 'selia:user_items' as items_url %}
+<li class="nav-item">
+  {% if items_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ items_url }}>
+  {% else %}
+  <a class="nav-link" href={{ items_url }}>
+  {% endif %}
+    <i class="far fa-file"></i>
+    {% trans 'My Items' %}
+  </a>
+</li>
+
+{% endblock navbar-items %}

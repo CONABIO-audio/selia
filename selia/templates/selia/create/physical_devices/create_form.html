@@ -1,0 +1,65 @@
+{% extends 'selia/create/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add user device' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_physical_device' %}?{{ request.GET|remove_fields:'device'}}">
+    {% trans 'Select hardware' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Fill in details' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Register any individual traits
+  {% endblocktrans %}
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected hardware' as label %}
+  {% selected_item 'devices' device label %}
+{% endblock previously-selected %}
+
+{% block form-content %}
+  <input type="hidden" id="device_field" name="device" value="{{ device.pk }}">
+
+  <div class="form-row">
+    <div class="col-1"></div>
+    <div class="col">
+      {% bootstrap_form form.serial_number%}
+    </div>
+    <div class="col">
+      {% bootstrap_form form.identifier %}
+    </div>
+    <div class="col-1"></div>
+  </div>
+
+  {% if device.device_type.metadata_schema %}
+  <hr/>
+  <div class="form-row">
+    <div class="form-group col">
+      <div class="row">
+        <h5>{% trans 'Metadata' %}</h5>
+      </div>
+      <div class="row">
+        {{ form.metadata }}
+      </div>
+      <small id="brandInput" class="form-text text-muted">{{ form.metadata.help_text }}</small>
+    </div>
+  </div>
+  {% endif %}
+{% endblock form-content %}

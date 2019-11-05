@@ -1,0 +1,61 @@
+{% load json_tags %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% detailtitle %}
+  {% detail_icon object.logo %}
+{% enddetailimage %}
+  {% if object.name %}
+    {{ object.name }}
+  {% else %}
+    {% trans 'Site' %}
+  {% endif %}
+{% enddetailheader %}
+  {% if object.locality %}
+    {{ object.locality }}
+  {% endif %}
+{% enddetailtitle %}
+
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Name' %}
+      {% endhead %}
+        {{ object.name }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Locality' %}
+      {% endhead %}
+        {{ object.locality }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Latitude' %}
+      {% endhead %}
+        {{ object.latitude | floatformat:'3' }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Longitude' %}
+      {% endhead %}
+        {{ object.longitude | floatformat:'3' }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Altitude' %}
+      {% endhead %}
+        {{ object.altitude | floatformat:'1' }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+</div>

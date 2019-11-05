@@ -1,0 +1,40 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Create sampling event' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+{% include 'selia/navbars/collection.html' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_sampling_event' %}?{{ request.GET|remove_fields:'collection' }}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Select sampling event type' %}</li>
+<li>{% trans 'Select collection site' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+{% trans 'Select sampling event type' %}
+{% endblock %}
+
+{% block list-container %}
+  <div class="form-container mb-4">
+    <div class="row d-flex flex-wrap justify-content-center">
+      {% for sampling_event_type in sampling_event_types %}
+      <div class="p-2" style="width: 20em;">
+        <a href="{% url 'selia:create_sampling_event' %}?{{ request.GET.urlencode }}&sampling_event_type={{ sampling_event_type.pk }}">
+          {% include 'selia/components/select_list_items/sampling_event_type.html' with item=sampling_event_type %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

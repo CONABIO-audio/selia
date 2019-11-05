@@ -1,0 +1,33 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load selia_buttons %}
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="row w-100">
+    <div class="col">
+      <div class="media">
+        {% if item.logo %}
+        <img class="mr-3 img-thumbnail" src="{{ item.logo.url }}" alt="logo">
+        {% endif %}
+        <div class="media-body mt-0">
+          <h4 class="mt-0">{{ item.name }}</h4>
+          {{ item.description }}
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <h6>{% trans 'Collection type' %}</h6>
+        <div class="text-muted ml-4">{{ item.collection_type }}</div>
+      </div>
+      <div class="row">
+        <h6>{% trans 'Institution' %}</h6>
+        <div class="text-muted ml-4">{{ item.institution }}</div>
+      </div>
+      <div class="row">
+        <h6>{% trans 'Created on' %}</h6>
+        <div class="text-muted ml-4">{{ item.created_on }}</div>
+      </div>
+    </div>
+  </div>
+{% endblock list-item-content %}

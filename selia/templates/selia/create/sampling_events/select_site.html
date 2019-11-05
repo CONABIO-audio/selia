@@ -1,0 +1,60 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block head-extra %}
+  {% include 'selia/components/media/map_media.html' %}
+{% endblock head-extra %}
+
+{% block secondary-navbar %}
+{% include 'selia/navbars/collection.html' %}
+{% endblock %}
+
+{% block toolbar-title %}
+  {% trans 'Create sampling event' %}
+{% endblock toolbar-title %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_sampling_event' %}?{{ request.GET|remove_fields:'collection&sampling_event_type' }}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li>
+  <a href="{% url 'selia:create_sampling_event' %}?{{ request.GET|remove_fields:'sampling_event_type' }}">
+    {% trans 'Select sampling event type' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Select collection site' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {%trans 'Select a registered site' %}
+{% endblock %}
+
+{% block step-description %}
+{% blocktrans %}
+  Please select a collection site to associate or
+{% endblocktrans %} <a href="{% url 'selia:create_collection_site' %}?{{ request.GET.urlencode }}"> {% trans 'add a new one' %}</a>.
+{% endblock %}
+
+{% block empty-message %}
+  <h4>{% trans 'No collection sites found.' %}</h4>
+  <p>
+    <a href="{% url 'selia:create_collection_site' %}?{{ request.GET.urlencode }}">
+      <i class="fas fa-plus"></i> {% trans 'register new site' %}
+    </a>
+  </p>
+{% endblock %}
+
+{% block scripts-extra %}
+{{ block.super }}
+
+<script charset="utf-8">
+  $("a").on("click", "canvas", function (e) {
+    e.preventDefault();
+  });
+</script>
+{% endblock scripts-extra %}
+

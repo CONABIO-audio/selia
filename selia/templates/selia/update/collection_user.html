@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load selia_components %}
+
+<div class="row">
+  <div class="col">
+    {% bootstrap_form form.role %}
+  </div>
+</div>
+
+{% if object.role.metadata_schema %}
+<div class="row">
+  <div class="col">
+    <h5>{% trans 'Metadata' %}</h5>
+    {{ form.metadata }}
+  </div>
+</div>
+{% endif %}

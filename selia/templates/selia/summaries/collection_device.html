@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load selia_buttons %}
+
+<div class="media text-muted pt-3">
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <strong class="d-block text-gray-dark">{% trans 'Items' %}</strong>
+    <div class="row">
+      <div class="col-3">
+        {% trans 'Number' %}: {{ object.items.count }}
+      </div>
+      <div class="col-7">
+        {% trans 'Last added on' %}: {{ object.items.first.created_on }}
+      </div>
+      <div class="col-2">
+        <a href="#">{% see_button %}</a>
+      </div>
+    </div>
+  </div>
+</div>

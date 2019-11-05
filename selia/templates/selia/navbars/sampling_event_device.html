@@ -1,0 +1,44 @@
+{% extends 'selia/components/secondary_navbar.html' %}
+{% load i18n %}
+
+{% block navbar-brand %}
+<div class="dropdown">
+  <a class="navbar-brand text-nowrap dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans 'Deployed device' %} {{ sampling_event_device.pk }}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item active" href={% url 'selia:sampling_event_device_detail' sampling_event_device.pk %}>{% trans 'Deployed device' %} {{ sampling_event_device.pk }}</a>
+
+    <a class="dropdown-item" href={% url 'selia:sampling_event_devices' sampling_event_device.sampling_event.pk %}>{% trans 'Sampling event' %} {{ sampling_event_device.sampling_event.pk }}: {% trans 'Deployed devices'%}</a>
+    <a class="dropdown-item" href={% url 'selia:sampling_event_detail' sampling_event_device.sampling_event.pk %}>{% trans 'Sampling event' %} {{ sampling_event_device.sampling_event.pk }}</a>
+    <a class="dropdown-item" href={% url 'selia:collection_sampling_events' sampling_event_device.sampling_event.collection.pk %}>{{sampling_event_device.sampling_event.collection.pk}}: {% trans 'Sampling events' %}</a>
+    <a class="dropdown-item" href={% url 'selia:collection_detail' sampling_event_device.sampling_event.collection.pk %}>{{sampling_event_device.sampling_event.collection.pk}}</a>
+    <a class="dropdown-item" href={% url 'selia:user_collections' %}>{% trans 'Collections' %}</a>
+  </div>
+</div>
+
+{% endblock navbar-brand %}
+
+{% block navbar-items %}
+{% url 'selia:sampling_event_device_detail' sampling_event_device.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url == request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+    <i class="fas fa-info"></i>
+    {% trans 'About' %}
+  </a>
+</li>
+{% url 'selia:sampling_event_device_items' sampling_event_device.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+  <i class="far fa-file"></i>
+    {% trans 'Items' %}
+  </a>
+</li>
+{% endblock navbar-items %}

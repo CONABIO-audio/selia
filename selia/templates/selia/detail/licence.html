@@ -1,0 +1,53 @@
+{% extends 'selia/detail/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}{{ licence.collection }}{% trans ': Licence ' %} {{ licence.pk }}{% endblock %}
+
+{% block toolbar-items %}
+<li class="nav-item">
+  <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">{% trans 'Help' %} <i class="fas fa-question"></i></a>
+</li>
+{% endblock toolbar-items %}
+
+{% block main-content %}
+<div class="container-fluid">
+  <div class="row p-2">
+    <div class="col-6">
+      <div class="row p-2">
+        {% detail_component detail_template=detail_template object=licence %}
+      </div>
+      {% if licence.document %}
+        <div class="row p-2">
+          {% summary_component summary_template=summary_template object=licence %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="col-6 p-2">
+      {% if licence.document %}
+        {% viewer_component viewer_template=viewer_template object=licence %}
+      {% else %}
+        {% summary_component summary_template=summary_template object=licence %}
+      {% endif %}
+     </div>
+  </div>
+</div>
+{% endblock main-content %}
+
+{% block modals-extra %}
+  {% help_component help_template=help_template %}
+  {% if permissions.change %}
+    {% update_component update_template=update_form_template form=form %}
+  {% endif %}
+  {% if permissions.delete %}
+    {% delete_component object=object %}
+  {% endif %}
+{% endblock modals-extra %}

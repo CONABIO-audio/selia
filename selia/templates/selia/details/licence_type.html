@@ -1,0 +1,62 @@
+{% load i18n %}
+{% load selia_tags %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Licence type' %}
+    {% endhead %}
+      {{ object }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Years valid for' %}
+    {% endhead %}
+      {{ object.years_valid_for }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Description' %}
+    {% endhead %}
+      {{ object.description }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+    <div class="w-100 text-center">
+      {% trans 'Permissions' %}
+    </div>
+    {% endhead %}
+    <div class="col">
+      <div class="row">
+        <div class="col text-right">{% trans 'Can view items' %}</div>
+        <div class="col">{{ object.can_view|yesno }}</div>
+      </div>
+      <div class="row">
+        <div class="col text-right">{% trans 'Can download items'%}</div>
+        <div class="col">{{ object.can_download|yesno }}</div>
+      </div>
+      <div class="row">
+        <div class="col text-right">{% trans 'Can view annotations'%}</div>
+        <div class="col">{{ object.can_view_annotations|yesno }}</div>
+      </div>
+      <div class="row">
+        <div class="col text-right">{% trans 'Can annotate'%}</div>
+        <div class="col">{{ object.can_annotate|yesno }}</div>
+      </div>
+      <div class="row">
+        <div class="col text-right">{% trans 'Can vote annotations'%}</div>
+        <div class="col">{{ object.can_vote_annotations|yesno }}</div>
+      </div>
+    </div>
+    {% enddetailitem %}
+  </div>
+</div>

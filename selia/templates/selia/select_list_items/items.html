@@ -1,0 +1,58 @@
+{% extends 'selia/components/select_list_item.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block list-item-content %}
+  <div class="row w-100">
+    <div class="col-3">
+    <div class="row media">
+      <a href="{% url 'selia:item_detail' item.pk %}">
+        <img class="itemimage" src="{{ item.item_file.url }}">
+      </a>
+    </div>
+    </div>
+    <div class="col-3">
+       <div class="row">
+        <h6>{% trans 'Captured on' %}</h6>
+        <div class="text-muted ml-4">{{ item.captured_on }}</div>
+      </div>
+     <div class="row">
+        <h6>{% trans 'Type' %}</h6>
+        <div class="text-muted ml-4">{{ item.item_type.pk }}</div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="row">
+        <h6>{% trans 'Site' %}</h6>
+        <div class="text-muted ml-4">
+          <a href="{% url 'selia:collection_site_detail' item.sampling_event_device.sampling_event.collection_site.pk %}">{{ item.sampling_event_device.sampling_event.collection_site.site.name }}</a>
+        </div>
+      </div>
+      <div class="row">
+        <h6>{% trans 'Sampling event' %}</h6>
+        <div class="text-muted ml-4">
+          <a href="{% url 'selia:sampling_event_detail' item.sampling_event_device.sampling_event.pk %}">Sampling event {{ item.sampling_event_device.sampling_event.pk }}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <div class="row">
+        <h6>{% trans 'Device' %}</h6>
+        <div class="text-muted ml-4">
+          <a href="{% url 'selia:sampling_event_device_detail' item.sampling_event_device.collection_device.pk %}">Device {{ item.sampling_event_device.collection_device.pk }}</a>
+        </div>
+      </div>
+      <div class="row">
+        <h6>{% trans 'Owner' %}</h6>
+        <div class="text-muted ml-4">{{ item.created_by }}</div>
+      </div>
+      <div class="row">
+        <h6>{% trans 'Licence' %}</h6>
+        <div class="text-muted ml-4">{{ item.licence.licence_type }}</div>
+      </div>
+    </div>
+
+  </div>
+{% endblock list-item-content %}

@@ -1,0 +1,98 @@
+{% extends 'selia/create/base.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add licence' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_licence' %}?{{ request.GET|remove_fields:'licence_type' }}">
+    {% trans 'Select licence type' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block scripts-extra %}
+  {% include 'selia/components/media/json_form_media.html' %}
+{% endblock scripts-extra %}
+
+{% block step-title %}
+  {%trans 'Fill in details' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+  Please download a copy of licence template, fill it in and upload the completed document.
+  {% endblocktrans %}
+{% endblock %}
+
+
+{% block previously-selected %}
+  <div class="row w-100 my-2">
+    <div class="col">
+      <a class="w-100 text-center" href="#collapseSamplingEvent" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSamplingEvent">
+        <h4>{% trans 'Selected licence type' %}: {{ licence_type.pk }}</h4>
+      </a>
+      <div class="collapse w-100" id="collapseSamplingEvent">
+        <div class="d-flex justify-content-center w-100">
+          {% include 'selia/components/select_list_items/licence_type.html' with item=licence_type %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock previously-selected %}
+
+{% block form-content %}
+  <input type="hidden" id="collection_field" name="collection" value="{{ collection }}">
+  <input type="hidden" id="licence_type_field" name="licence_type" value="{{ licence_type.pk }}">
+  <div class="row">
+    {% if licence_type.document_template %}
+    <div class="col mx-5">
+      <div class="row">
+        <div class="p-3">
+          {% blocktrans %}
+          Please download the licence document template and upload a filled in version.
+          {% endblocktrans %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="p-3">
+          <a href="{{ licence_type.document_template.url }}" download>{% trans "Template" %}</a>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-between">
+        <div class="p-3">
+          {% bootstrap_form form.document %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if licence_type.metadata_schema %}
+      <div class="col mx-5">
+        <div class="row d-flex justify-content-between">
+          <div class="p-3">
+            {{ form.metadata.errors }}
+            {{ form.metadata.label_tag }}
+            {{ form.metadata }}
+            <small id="metadataInput" class="form-text text-muted">{{ form.metadata.help_text }}</small>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="col p-4">
+        <div class="row">
+          <h4 class="text-center w-100">{% trans 'No additional information is required'%}</h4>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock form-content %}

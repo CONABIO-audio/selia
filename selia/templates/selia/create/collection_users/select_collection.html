@@ -1,0 +1,32 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add user to collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li class="is-active">{% trans 'Select collection' %}</li>
+<li>{% trans 'Select user' %}</li>
+<li>{% trans 'Select role' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select one of your collections' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose a collection from the list.
+  {% endblocktrans %}
+{% endblock %}
+
+{% block empty-message %}
+  <h4>{% trans 'No available collections' %}.</h4>
+{% endblock %}

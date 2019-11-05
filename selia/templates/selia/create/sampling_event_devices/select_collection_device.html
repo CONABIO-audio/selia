@@ -1,0 +1,48 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add deployed device' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/sampling_event.html' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia:create_sampling_event_device' %}?{{ request.GET|remove_fields:'collection&sampling_event' }}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li>
+  <a href="{% url 'selia:create_sampling_event_device' %}?{{ request.GET|remove_fields:'sampling_event' }}">
+    {% trans 'Select sampling event' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Select device' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {%trans 'Select device to deploy' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose a registered collection device to deploy or
+  {% endblocktrans %}
+  <a href="{% url 'selia:create_collection_device' %}?{% remove_form_fields request.GET list.forms %}">
+    {% trans 'add a new one to the collection' %}.
+  </a>
+{% endblock %}
+
+{% block empty-message %}
+  <h4>{% trans 'No collection devices were found.' %}</h4>
+  <p>
+    <a href="{% url 'selia:create_collection_device' %}?{% remove_form_fields request.GET list.forms %}">
+      {% trans 'Add a new one' %}
+    </a>
+  </p>
+{% endblock %}

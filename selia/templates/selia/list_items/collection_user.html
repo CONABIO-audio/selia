@@ -1,0 +1,82 @@
+{% extends 'selia/components/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+
+{% block list-item-content %}
+<div class="row w-100">
+  <div class="col">
+    {% listtitle %}
+      {% list_icon item.role.icon %}
+    {% endlistimage %}
+      {% if item.user.last_name and item.user.first_name %}
+        {{ item.user.last_name }}, {{ item.user.first_name}}
+      {% else %}
+        {{ item.user.username }}
+      {% endif %}
+    {% endlistheader %}
+      <p class="mb-0">
+        {{ item.role.name }}
+      </p>
+      <div>
+        <a href="{% url 'selia:collection_user_detail' item.pk %}">
+          {% enter_button %}
+        </a>
+      </div>
+    {% endlisttitle %}
+  </div>
+
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'First name' %}
+      {% attributevalue %}
+        {{ item.user.first_name }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Last name' %}
+      {% attributevalue %}
+        {{ item.user.last_name }}
+      {% endlistattribute %}
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Username' %}
+      {% attributevalue %}
+        {{ item.user.username }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Email' %}
+      {% attributevalue %}
+        {{ item.user.email }}
+      {% endlistattribute %}
+    </div>
+
+  </div>
+
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Role' %}
+      {% attributevalue %}
+        {{ item.role }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Institution' %}
+      {% attributevalue %}
+        {{ item.user.institution }}
+      {% endlistattribute %}
+    </div>
+  </div>
+</div>
+{% endblock list-item-content %}

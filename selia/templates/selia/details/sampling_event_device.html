@@ -1,0 +1,140 @@
+{% load json_tags %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% detailtitle %}
+  {% detail_icon object.collection_device.physical_device.device.device_type.icon %}
+{% enddetailimage %}
+  {% if object.collection_device.internal_id %}
+    {{ object.collection_device.internal_id }} ({% trans 'deployed' %})
+  {% else %}
+    {% trans 'Deployed device' %}
+  {% endif %}
+{% enddetailheader %}
+  <div>
+    {{ object.collection_device.physical_device.device.device_type }}
+  </div>
+{% enddetailtitle %}
+
+{% detailsection %}
+  <a href="{% url 'selia:sampling_event_detail' object.sampling_event.pk %}">
+    {% trans 'Sampling Event Info' %}
+  </a>
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Started on' %}
+    {% endhead %}
+      {{ object.sampling_event.started_on | date }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Ended on' %}
+    {% endhead %}
+      {{ object.sampling_event.ended_on | date}}
+    {% detailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Site name' %}
+    {% endhead %}
+      {{ object.sampling_event.collection_site.internal_id }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Site locality' %}
+    {% endhead %}
+      {{ object.sampling_event.collection_site.site.locality }}
+    {% detailitem %}
+  </div>
+</div>
+
+{% detailsection %}
+    <a href="{% url 'selia:collection_device_detail' object.collection_device.pk %}">
+      {% trans 'Device Info' %}
+    </a>
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Device type' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.device.device_type }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      {{ object.collection_device.internal_id }}
+    {% detailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Brand' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.device.brand }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Model' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.device.model }}
+    {% detailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Serial number' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.serial_number }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Owner' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.created_by }}
+    {% detailitem %}
+  </div>
+</div>
+
+{% if object.metadata or object.configuration %}
+  {% if object.metadata %}
+    {% detailsection %}
+      {% trans 'Deployment metadata' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="d-flex flex-wrap">
+        {% show_json object.metadata %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if object.metadata %}
+    {% detailsection %}
+      {% trans 'Device configuration' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="d-flex flex-wrap">
+        {% show_json object.configuration %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

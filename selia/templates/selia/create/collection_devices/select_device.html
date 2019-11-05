@@ -1,0 +1,46 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_components %}
+
+{% block toolbar-title %}
+  {% trans 'Add device to collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+  <li>
+    <a href="{% url 'selia:create_collection_device' %}?{{ request.GET|remove_fields:'collection' }}">
+      {% trans 'Select collection' %}
+    </a>
+  </li>
+  <li class="is-active">{% trans 'Select user device' %}</li>
+  <li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select a device' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose one of your previously registered devices to register to the collection or
+  {% endblocktrans %}
+  <a href="{% url 'selia:create_physical_device' %}?{% remove_form_fields request.GET list.forms %}">
+    {% trans 'add a new device' %}.
+  </a>
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+{% endblock previously-selected %}
+
+{% block empty-message %}
+  <h4>{% trans 'No user devices where found' %}.</h4>
+  <a href="{% url 'selia:create_physical_device' %}?{% remove_form_fields request.GET list.forms %}">
+    {% trans 'Add a new device' %}.
+  </a>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'selia/components/secondary_navbar.html' %}
+{% load i18n %}
+
+{% block navbar-brand %}
+<div class="dropdown">
+  <a class="navbar-brand text-nowrap dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ collection }}
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item active" href={% url 'selia:collection_detail' collection.pk %}>{{ collection }}</a>
+    <a class="dropdown-item" href={% url 'selia:user_collections' %}>{% trans 'Collections' %}</a>
+  </div>
+</div>
+
+{% endblock navbar-brand %}
+
+{% block navbar-items %}
+{% url 'selia:collection_detail' collection.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url == request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+    <i class="fas fa-info"></i>
+    {% trans 'About' %}
+  </a>
+</li>
+
+{% url 'selia:collection_items' collection.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+    <i class="far fa-file"></i>
+    {% trans 'Items' %}
+  </a>
+</li>
+
+{% url 'selia:collection_devices' collection.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode or 'physical_device' in request.path|urlencode%}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+    <i class="fas fa-tools"></i>
+    {% trans 'Devices' %}
+  </a>
+</li>
+
+{% url 'selia:collection_sampling_events' collection.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+  <i class="fas fa-calendar-week"></i>
+    {% trans 'Sampling events' %}
+  </a>
+</li>
+
+{% url 'selia:collection_sites' collection.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+    <i class="fas fa-map-marked-alt"></i>
+    {% trans 'Sites' %}
+  </a>
+</li>
+
+{% if permissions.list_collection_licences %}
+{% url 'selia:collection_licences' collection.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+  <i class="fas fa-user-lock"></i>
+    {% trans 'Licences' %}
+  </a>
+</li>
+{% endif %}
+
+{% if permissions.list_collection_users %}
+{% url 'selia:collection_users' collection.pk as users_url %}
+<li class="nav-item">
+  {% if users_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ users_url }}>
+  {% else %}
+  <a class="nav-link" href={{ users_url }}>
+  {% endif %}
+  <i class="fas fa-user"></i>
+    {% trans 'Users' %}
+  </a>
+</li>
+{% endif %}
+{% endblock navbar-items %}

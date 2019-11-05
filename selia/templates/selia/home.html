@@ -1,0 +1,66 @@
+{% extends 'selia/base.html' %}
+
+{% block view-content %}
+<div class="container">
+  <!-- Heading Row -->
+  <div class="row align-items-center my-5">
+    <div class="col-lg-7">
+      <img class="img-fluid rounded mb-4 mb-lg-0" src="https://coati.conabio.gob.mx/archivos/fotos_porintegrar/702b591a3ae523c0b4a99ac85e5e0a0d.JPG" alt="SNMB" width="60%">
+    </div>
+
+    <div class="col-lg-5">
+      <h1 class="font-weight-light">Selia: Admitir - Recibir</h1>
+      <p>
+        Selia es una herramienta para la captura y administración de fotografías de cámara trampa.
+      </p>
+      <a class="btn btn-primary" href="{% url 'selia_registration:login' %}">Entrar</a>
+    </div>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+    <div class="col-md-6 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">¿Qué es?</h2>
+          <p>
+            Es una aplicación para la gestión y procesamiento de colecciones digitales de biodiversidad.
+          </p>
+          <p>
+            Tras un muestreo en campo con sensores para el monitoreo de biodiversidad, se pueden subir los archivos resultantes a una colección previamente creada. Ahí se puede:
+            <ul>
+              <li>
+                Revisar los archivos, ya sean fotografías, videos o sonidos.
+              </li>
+              <li>
+                Anotarlos, con base en los diccionarios taxonómicos de la Conabio y
+              </li>
+              <li>
+                Mostrarlos al mundo si así se desea.
+              </li>
+            </ul>
+          </p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Más Info</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">¿A quién está orientada?</h2>
+          <p class="card-text">
+            A cualquier persona o grupo de trabajo que lleve a cabo muestreos de biodiversidad utilizando trampas cámara o grabadoras pasivas. Sin importar la dimensión del proyecto.
+          </p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="btn btn-primary btn-sm">Más Info</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'selia/components/footer.html' %}
+{% endblock view-content %}
