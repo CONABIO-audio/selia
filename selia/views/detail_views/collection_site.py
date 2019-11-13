@@ -29,11 +29,11 @@ class DetailCollectionSiteView(SeliaDetailView, SingleObjectMixin):
     delete_redirect_url = 'selia:collection_sites'
 
     template_name = 'selia/detail/collection_site.html'
-    help_template = 'selia/components/help/collection_site_detail.html'
-    detail_template = 'selia/components/details/collection_site.html'
-    summary_template = 'selia/components/summaries/collection_site.html'
-    update_form_template = 'selia/components/update/collection_site.html'
-    viewer_template = 'selia/components/viewers/collection_site.html'
+    help_template = 'selia/help/collection_site_detail.html'
+    detail_template = 'selia/details/collection_site.html'
+    summary_template = 'selia/summaries/collection_site.html'
+    update_form_template = 'selia/update/collection_site.html'
+    viewer_template = 'selia/viewers/collection_site.html'
 
     def has_view_permission(self):
         user = self.request.user

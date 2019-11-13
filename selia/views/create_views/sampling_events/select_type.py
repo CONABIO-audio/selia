@@ -17,7 +17,7 @@ class SelectSamplingEventTypeView(TemplateView):
     def get_objects(self):
         if not hasattr(self, 'collection'):
             self.collection = Collection.objects.get(
-                pk=self.request.GET['collection'])
+                name=self.request.GET['collection'])
 
     def has_view_permission(self):
         user = self.request.user

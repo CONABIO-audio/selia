@@ -43,11 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.postgres',
     'django.contrib.gis',
-
     'irekua_database',
     'irekua_rest_api',
     'irekua_autocomplete',
     'selia',
+    'selia_templates',
+    'selia_forms',
+    'selia_registration',
+    'selia_about',
 ]
 
 
@@ -131,6 +134,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(
+    os.path.dirname(BASE_DIR),
+    'media')
 
 # Locale files
 LOCALE_PATHS = (

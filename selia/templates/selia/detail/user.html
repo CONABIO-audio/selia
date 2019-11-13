@@ -20,26 +20,16 @@
 
 {% block main-content %}
   <div class="container-fluid w-100">
-      <div class="row p-2">
-        <div class="col-6 p-2">
-          {% detail_component detail_template=detail_template object=user %}
-        </div>
-        <div class="col-6 p-2">
-          {% summary_component summary_template=summary_template object=user %}
-        </div>
+    <div class="row p-2">
+      <div class="col p-2">
+        {% detail_component detail_template=detail_template object=user %}
       </div>
+      <div class="col p-2">
+        {% summary_component summary_template=summary_template object=user %}
+      </div>
+    </div>
   </div>
 {% endblock main-content %}
-
-{% block modals-extra %}
-  {% help_component help_template=help_template %}
-  {% if permissions.change %}
-    {% update_component update_template=update_form_template form=form %}
-  {% endif %}
-  {% if permissions.delete %}
-    {% delete_component object=object %}
-  {% endif %}
-{% endblock modals-extra %}
 
 {% block scripts-extra %}
   {{ form.media }}

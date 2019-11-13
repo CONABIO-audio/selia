@@ -3,7 +3,7 @@ import json
 
 
 class JsonSchemaFormWidget(Widget):
-    template_name = 'selia/widgets/json_form_widget.html'
+    template_name = 'selia_templates/widgets/json_form_widget.html'
     input_type = 'text'
 
     def format_value(self, value):

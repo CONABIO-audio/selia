@@ -43,7 +43,7 @@
       {% for role in list %}
         <div class="p-2" style="width: 20em;">
           <a href="{% url 'selia:create_collection_user' %}?{{ request.GET.urlencode }}&role={{ role.pk }}">
-            {% include 'selia/components/select_list_items/role.html' with item=role %}
+            {% include 'selia/select_list_items/role.html' with item=role %}
           </a>
         </div>
       {% empty %}

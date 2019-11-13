@@ -38,7 +38,7 @@ class SelectCollectionSiteSiteView(SeliaCreateView):
 
     def get_objects(self):
         if not hasattr(self, 'collection'):
-            self.collection = Collection.objects.get(pk=self.request.GET['collection'])
+            self.collection = Collection.objects.get(name=self.request.GET['collection'])
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -76,8 +76,8 @@ class SelectCollectionSiteSiteView(SeliaCreateView):
 
             queryset = sites
 
-            list_item_template = 'selia/components/select_list_items/sites.html'
-            filter_form_template = 'selia/components/filters/site.html'
+            list_item_template = 'selia/select_list_items/sites.html'
+            filter_form_template = 'selia/filters/site.html'
 
         site_list = SiteList()
         return site_list.get_context_data(self.request)

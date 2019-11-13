@@ -2,20 +2,16 @@ from django.views.generic.detail import SingleObjectMixin
 from django import forms
 
 from irekua_database.models import CollectionUser
-from selia.views.detail_views.base import SeliaDetailView
-from selia.forms.json_field import JsonField
-
 from irekua_database.models import SamplingEvent
 from irekua_database.models import CollectionSite
 from irekua_database.models import CollectionDevice
 from irekua_database.models import Item
 from irekua_database.models import Annotation
-from irekua_permissions.data_collections import (
-    users as user_permissions)
-from irekua_permissions.data_collections import (
-    users as user_permissions)
-from irekua_permissions import (
-    licences as licence_permissions)
+from irekua_permissions.data_collections import users as user_permissions
+from irekua_permissions import licences as licence_permissions
+
+from selia.views.detail_views.base import SeliaDetailView
+from selia.forms.json_field import JsonField
 
 
 class CollectionUserUpdateForm(forms.ModelForm):
@@ -36,11 +32,11 @@ class DetailCollectionUserView(SeliaDetailView, SingleObjectMixin):
 
     template_name = 'selia/detail/collection_user.html'
 
-    help_template = 'selia/components/help/collection_user_detail.html'
-    detail_template = 'selia/components/details/collection_user.html'
-    summary_template = 'selia/components/summaries/collection_user.html'
-    update_form_template = 'selia/components/update/collection_user.html'
-    viewer_template = 'selia/components/viewers/collection_user.html'
+    help_template = 'selia/help/collection_user_detail.html'
+    detail_template = 'selia/details/collection_user.html'
+    summary_template = 'selia/summaries/collection_user.html'
+    update_form_template = 'selia/update/collection_user.html'
+    viewer_template = 'selia/viewers/collection_user.html'
 
     def has_view_permission(self):
         user = self.request.user

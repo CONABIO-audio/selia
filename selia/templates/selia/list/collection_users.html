@@ -13,7 +13,7 @@
 {% block toolbar-items %}
   {% if permissions.create %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'selia:create_collection_user' %}?collection={{ collection.pk }}">{% trans 'Add User' %} <i class="fas fa-plus"></i> <i class="fas fa-user"></i></a>
+    <a class="nav-link" href="{% url 'selia:create_collection_user' %}?collection={{ collection.name }}">{% trans 'Add User' %} <i class="fas fa-plus"></i> <i class="fas fa-user"></i></a>
   </li>
   {% endif %}
   <li class="nav-item">
@@ -29,7 +29,7 @@
   {% endblocktrans%}
 </h4>
 <p>
-  <a href="{% url 'selia:create_collection_user' %}?collection={{ collection.pk }}">
+  <a href="{% url 'selia:create_collection_user' %}?collection={{ collection.name }}">
     {% trans 'Add user to the collection' %}
   </a>
 </p>

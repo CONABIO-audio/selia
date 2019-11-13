@@ -15,15 +15,18 @@ from irekua_permissions import (
 class ListCollectionSamplingEventView(SeliaListView, SingleObjectMixin):
     template_name = 'selia/list/sampling_events.html'
 
-    list_item_template = 'selia/components/list_items/sampling_event.html'
-    help_template = 'selia/components/help/collection_sampling_events.html'
-    filter_form_template = 'selia/components/filters/collection_sampling_event.html'
+    list_item_template = 'selia/list_items/sampling_event.html'
+    help_template = 'selia/help/collection_sampling_events.html'
+    filter_form_template = 'selia/filters/collection_sampling_event.html'
 
     empty_message = _('No sampling events are registered in this sampling event')
 
     filter_class = sampling_events.Filter
     search_fields = sampling_events.search_fields
     ordering_fields = sampling_events.ordering_fields
+
+    slug_url_kwarg = 'name'
+    slug_field = 'name'
 
     def get_permissions(self):
         permissions = super().get_permissions()

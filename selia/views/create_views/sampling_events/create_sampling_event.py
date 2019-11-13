@@ -42,7 +42,7 @@ class SamplingEventCreateView(SeliaCreateView):
     def get_objects(self):
         if not hasattr(self, 'collection'):
             self.collection = Collection.objects.get(
-                pk=self.request.GET['collection'])
+                name=self.request.GET['collection'])
         if not hasattr(self, 'collection_site'):
             self.collection_site = CollectionSite.objects.get(
                 pk=self.request.GET['collection_site'])

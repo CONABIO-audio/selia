@@ -1,6 +1,7 @@
 {% extends 'selia/create/base.html' %}
 {% load i18n %}
 {% load selia_components %}
+{% load selia_tags %}
 
 {% block toolbar-title %}
   {% trans 'Add deployed device' %}
@@ -47,7 +48,7 @@
       </a>
       <div class="collapse w-100" id="collapseSamplingEvent">
         <div class="d-flex justify-content-center w-100">
-          {% include 'selia/components/select_list_items/sampling_events.html' with item=sampling_event %}
+          {% include 'selia/select_list_items/sampling_events.html' with item=sampling_event %}
         </div>
       </div>
     </div>
@@ -60,7 +61,7 @@
       </a>
       <div class="collapse w-100" id="collapseSiteType">
         <div class="d-flex justify-content-center w-100">
-          {% include 'selia/components/select_list_items/collection_devices.html' with item=collection_device %}
+          {% include 'selia/select_list_items/collection_devices.html' with item=collection_device %}
         </div>
       </div>
     </div>
@@ -79,17 +80,17 @@
     </div>
   </div>
 
-  {% if collection_device.physical_device.device.configuration_schema or info.metadata_schema %}
+  {% if collection_device.physical_device.device.configuration_schema|is_not_trivial_schema or info.metadata_schema|is_not_trivial_schema %}
   <hr/>
   <div class="row mb-3">
-    {% if collection_device.physical_device.device.configuration_schema %}
+    {% if collection_device.physical_device.device.configuration_schema|is_not_trivial_schema %}
     <div class="col mx-1">
       <div class="container">
         {{ form.configuration }}
       </div>
     </div>
     {% endif %}
-    {% if info.metadata_schema %}
+    {% if info.metadata_schema|is_not_trivial_schema %}
     <div class="col mx-1">
       <div class="container">
         {{ form.metadata }}

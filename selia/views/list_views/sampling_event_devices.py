@@ -11,9 +11,9 @@ from django.utils.translation import gettext as _
 class ListSamplingEventDevicesView(SeliaListView, SingleObjectMixin):
     template_name = 'selia/list/sampling_event_devices.html'
 
-    list_item_template = 'selia/components/list_items/sampling_event_device.html'
-    help_template = 'selia/components/help/sampling_event_device.html'
-    filter_form_template = 'selia/components/filters/sampling_event_device.html'
+    list_item_template = 'selia/list_items/sampling_event_device.html'
+    help_template = 'selia/help/sampling_event_device.html'
+    filter_form_template = 'selia/filters/sampling_event_device.html'
 
     empty_message = _('No devices are registered in this sampling event')
 

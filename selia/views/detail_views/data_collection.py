@@ -2,12 +2,9 @@ from django import forms
 from dal import autocomplete
 
 from irekua_database.models import Collection
-from irekua_permissions.data_collections import (
-    data_collections as collection_permissions)
-from irekua_permissions.data_collections import (
-    users as user_permissions)
-from irekua_permissions import (
-    licences as licence_permissions)
+from irekua_permissions.data_collections import data_collections as collection_permissions
+from irekua_permissions.data_collections import users as user_permissions
+from irekua_permissions import licences as licence_permissions
 from selia.views.detail_views.base import SeliaDetailView
 from selia.forms.json_field import JsonField
 
@@ -37,11 +34,13 @@ class DetailCollectionView(SeliaDetailView):
     form_class = CollectionUpdateForm
 
     template_name = 'selia/detail/collection.html'
+    slug_url_kwarg = 'name'
+    slug_field = 'name'
 
-    help_template = 'selia/components/help/collection_detail.html'
-    detail_template = 'selia/components/details/collection.html'
-    summary_template = 'selia/components/summaries/collection.html'
-    update_form_template = 'selia/components/update/collection.html'
+    help_template = 'selia/help/collection_detail.html'
+    detail_template = 'selia/details/collection.html'
+    summary_template = 'selia/summaries/collection.html'
+    update_form_template = 'selia/update/collection.html'
 
     def has_view_permission(self):
         user = self.request.user

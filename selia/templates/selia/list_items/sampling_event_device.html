@@ -1,4 +1,4 @@
-{% extends 'selia/components/list_item.html' %}
+{% extends 'selia_templates/list/list_item.html' %}
 {% load selia_buttons %}
 {% load selia_tags %}
 {% load static %}
@@ -69,10 +69,10 @@
       {% summarycount %}
         {{ item.item_set.count }}
       {% summarybuttons %}
-        <a href="{% url 'selia:collection_items' item.sampling_event.collection.pk %}?sampling_event_device={{ item.pk }}">
+        <a href="{% url 'selia:collection_items' item.sampling_event.collection.name %}?sampling_event_device={{ item.pk }}">
           {% see_button %}
         </a>
-        <a class="ml-2" href="{% url 'selia:create_item' %}?collection={{ item.sampling_event.collection.pk }}&sampling_event={{ item.sampling_event.pk }}&sampling_event_device={{ item.pk }}">
+        <a class="ml-2" href="{% url 'selia:create_item' %}?collection={{ item.sampling_event.collection.name }}&sampling_event={{ item.sampling_event.pk }}&sampling_event_device={{ item.pk }}">
           {% add_button %}
         </a>
       {% endlistsummary %}

@@ -1,3 +1,5 @@
+{% load selia_tags %}
+
 <div class="card rounded w-100 h-100 shadow-sm">
-	{{ object.map_widget }}
+	{{ object | site_map }}
 </div>

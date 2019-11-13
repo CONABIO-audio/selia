@@ -14,7 +14,7 @@ class SelectCollectionUserRoleView(SeliaSelectView):
 
     def get_objects(self):
         if not hasattr(self, 'collection'):
-            self.collection = Collection.objects.get(pk=self.request.GET['collection'])
+            self.collection = Collection.objects.get(name=self.request.GET['collection'])
 
         if not hasattr(self, 'role_types'):
             self.role_types = self.collection.collection_type.roles.all()

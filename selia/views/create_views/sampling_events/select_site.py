@@ -17,7 +17,7 @@ class SelectSamplingEventSiteView(SeliaSelectView):
 
     def get_objects(self):
         if not hasattr(self, 'collection'):
-            self.collection = Collection.objects.get(pk=self.request.GET['collection'])
+            self.collection = Collection.objects.get(name=self.request.GET['collection'])
 
     def has_view_permission(self):
         user = self.request.user
@@ -47,7 +47,7 @@ class SelectSamplingEventSiteView(SeliaSelectView):
 
             queryset = collection_sites
 
-            list_item_template = 'selia/components/select_list_items/collection_sites.html'
-            filter_form_template = 'selia/components/filters/collection_site.html'
+            list_item_template = 'selia/select_list_items/collection_sites.html'
+            filter_form_template = 'selia/filters/collection_site.html'
 
         return CollectionSiteList

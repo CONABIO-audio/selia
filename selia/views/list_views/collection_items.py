@@ -18,15 +18,18 @@ from selia.views.list_views.base import SeliaListView
 class ListCollectionItemsView(SeliaListView, SingleObjectMixin):
     template_name = 'selia/list/collection_items.html'
 
-    list_item_template = 'selia/components/list_items/item.html'
-    help_template = 'selia/components/help/collection_items.html'
-    filter_form_template = 'selia/components/filters/item.html'
+    list_item_template = 'selia/list_items/item.html'
+    help_template = 'selia/help/collection_items.html'
+    filter_form_template = 'selia/filters/item.html'
 
     empty_message = _('No items are registered in this collection')
 
     filter_class = items.Filter
     search_fields = items.search_fields
     ordering_fields = items.ordering_fields
+
+    slug_url_kwarg = 'name'
+    slug_field = 'name'
 
     def has_view_permission(self):
         user = self.request.user

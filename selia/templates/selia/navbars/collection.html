@@ -1,4 +1,4 @@
-{% extends 'selia/components/secondary_navbar.html' %}
+{% extends 'selia_templates/secondary_navbar.html' %}
 {% load i18n %}
 
 {% block navbar-brand %}
@@ -7,7 +7,7 @@
     {{ collection }}
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item active" href={% url 'selia:collection_detail' collection.pk %}>{{ collection }}</a>
+    <a class="dropdown-item active" href={% url 'selia:collection_detail' collection.name %}>{{ collection }}</a>
     <a class="dropdown-item" href={% url 'selia:user_collections' %}>{% trans 'Collections' %}</a>
   </div>
 </div>
@@ -15,7 +15,7 @@
 {% endblock navbar-brand %}
 
 {% block navbar-items %}
-{% url 'selia:collection_detail' collection.pk as detail_url %}
+{% url 'selia:collection_detail' collection.name as detail_url %}
 <li class="nav-item">
   {% if detail_url == request.path|urlencode %}
   <a class="nav-link active" href={{ detail_url }}>
@@ -27,7 +27,7 @@
   </a>
 </li>
 
-{% url 'selia:collection_items' collection.pk as detail_url %}
+{% url 'selia:collection_items' collection.name as detail_url %}
 <li class="nav-item">
   {% if detail_url in request.path|urlencode %}
   <a class="nav-link active" href={{ detail_url }}>
@@ -39,7 +39,7 @@
   </a>
 </li>
 
-{% url 'selia:collection_devices' collection.pk as detail_url %}
+{% url 'selia:collection_devices' collection.name as detail_url %}
 <li class="nav-item">
   {% if detail_url in request.path|urlencode or 'physical_device' in request.path|urlencode%}
   <a class="nav-link active" href={{ detail_url }}>
@@ -51,7 +51,7 @@
   </a>
 </li>
 
-{% url 'selia:collection_sampling_events' collection.pk as detail_url %}
+{% url 'selia:collection_sampling_events' collection.name as detail_url %}
 <li class="nav-item">
   {% if detail_url in request.path|urlencode %}
   <a class="nav-link active" href={{ detail_url }}>
@@ -63,7 +63,7 @@
   </a>
 </li>
 
-{% url 'selia:collection_sites' collection.pk as detail_url %}
+{% url 'selia:collection_sites' collection.name as detail_url %}
 <li class="nav-item">
   {% if detail_url in request.path|urlencode %}
   <a class="nav-link active" href={{ detail_url }}>
@@ -76,7 +76,7 @@
 </li>
 
 {% if permissions.list_collection_licences %}
-{% url 'selia:collection_licences' collection.pk as detail_url %}
+{% url 'selia:collection_licences' collection.name as detail_url %}
 <li class="nav-item">
   {% if detail_url in request.path|urlencode %}
   <a class="nav-link active" href={{ detail_url }}>
@@ -90,7 +90,7 @@
 {% endif %}
 
 {% if permissions.list_collection_users %}
-{% url 'selia:collection_users' collection.pk as users_url %}
+{% url 'selia:collection_users' collection.name as users_url %}
 <li class="nav-item">
   {% if users_url in request.path|urlencode %}
   <a class="nav-link active" href={{ users_url }}>

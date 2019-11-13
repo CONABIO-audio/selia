@@ -33,10 +33,10 @@ class DetailSamplingEventView(SeliaDetailView):
 
     template_name = 'selia/detail/sampling_event.html'
 
-    help_template = 'selia/components/help/collection_sampling_events.html'
-    summary_template = 'selia/components/summaries/sampling_event.html'
-    detail_template = 'selia/components/details/sampling_event.html'
-    update_form_template = 'selia/components/update/sampling_event.html'
+    help_template = 'selia/help/collection_sampling_events.html'
+    summary_template = 'selia/summaries/sampling_event.html'
+    detail_template = 'selia/details/sampling_event.html'
+    update_form_template = 'selia/update/sampling_event.html'
 
     def has_view_permission(self):
         user = self.request.user

@@ -10,9 +10,9 @@ from selia.views.list_views.base import SeliaListView
 class ListUserSitesView(SeliaListView):
     template_name = 'selia/list/user_sites.html'
 
-    list_item_template = 'selia/components/list_items/site.html'
-    help_template = 'selia/components/help/user_sites.html'
-    filter_form_template = 'selia/components/filters/site.html'
+    list_item_template = 'selia/list_items/site.html'
+    help_template = 'selia/help/user_sites.html'
+    filter_form_template = 'selia/filters/site.html'
 
     empty_message = _('User has no registered sites')
 

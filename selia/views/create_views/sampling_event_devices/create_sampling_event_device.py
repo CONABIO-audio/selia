@@ -5,10 +5,9 @@ from irekua_database.models import SamplingEventDevice
 from irekua_database.models import SamplingEvent
 from irekua_database.models import CollectionDevice
 from irekua_database.models import SamplingEventTypeDeviceType
+from irekua_permissions.sampling_events import devices as device_permissions
 
 from selia.forms.json_field import JsonField
-from irekua_permissions.sampling_events import (
-    devices as device_permissions)
 
 
 class CreateSamplingEventDeviceForm(forms.ModelForm):

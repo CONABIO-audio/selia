@@ -1,11 +1,18 @@
-{% extends 'selia/base_with_toolbar.html' %}
+{% extends 'selia_templates/base_with_toolbar.html' %}
 {% load selia_components %}
 
 {% block head-extra %}
   {{ block.super }}
-  {% include 'selia/components/media/json_form_media.html' %}
+  {% include 'selia/media/json_form_media.html' %}
 {% endblock head-extra %}
 
-{% block modals-extra %}
-  {% help_component help_template=templates.help %}
-{% endblock modals-extra %}
+{% block modals %}
+  {{ block.super }}
+  {% help_component help_template=help_template %}
+  {% if permissions.change %}
+    {% update_component update_template=update_form_template form=form %}
+  {% endif %}
+  {% if permissions.delete %}
+    {% delete_component object=collection_device %}
+  {% endif %}
+{% endblock modals %}

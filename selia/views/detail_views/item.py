@@ -1,12 +1,12 @@
-from django.views.generic.detail import SingleObjectMixin
+import mimetypes
 from django import forms
 
 from irekua_database.models import Item
-from irekua_permissions.items import (
-    items as item_permissions)
+from irekua_permissions.items import items as item_permissions
 from selia.views.detail_views.base import SeliaDetailView
 from selia.forms.json_field import JsonField
-import mimetypes
+
+
 mimetypes.init()
 
 
@@ -29,11 +29,11 @@ class DetailItemView(SeliaDetailView):
     delete_redirect_url = 'selia:collection_items'
 
     template_name = 'selia/detail/item.html'
-    help_template = 'selia/components/help/collection_item_detail.html'
-    detail_template = 'selia/components/details/item.html'
-    summary_template = 'selia/components/summaries/item.html'
-    update_form_template = 'selia/components/update/item.html'
-    viewer_template = 'selia/components/viewers/item_audio.html'
+    help_template = 'selia/help/collection_item_detail.html'
+    detail_template = 'selia/details/item.html'
+    summary_template = 'selia/summaries/item.html'
+    update_form_template = 'selia/update/item.html'
+    viewer_template = 'selia/viewers/item_audio.html'
 
     def has_view_permission(self):
         user = self.request.user
@@ -58,9 +58,9 @@ class DetailItemView(SeliaDetailView):
     def get_viewer_template(self):
         mimetype = self.get_object_mimetype()
         if mimetype == "audio/x-wav":
-            return 'selia/components/viewers/item_audio.html'
+            return 'selia/viewers/item_audio.html'
         else:
-            return 'selia/components/viewers/item_image.html'
+            return 'selia/viewers/item_image.html'
 
     def get_permissions(self):
         permissions = super().get_permissions()

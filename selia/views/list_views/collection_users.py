@@ -16,13 +16,16 @@ from irekua_filters.data_collections import collection_users
 class ListCollectionUserView(SeliaListView, SingleObjectMixin):
     template_name = 'selia/list/collection_users.html'
 
-    list_item_template = 'selia/components/list_items/collection_user.html'
-    help_template = 'selia/components/help/collection_users.html'
-    filter_form_template = 'selia/components/filters/collection_user.html'
+    list_item_template = 'selia/list_items/collection_user.html'
+    help_template = 'selia/help/collection_users.html'
+    filter_form_template = 'selia/filters/collection_user.html'
 
     filter_class = collection_users.Filter
     search_fields = collection_users.search_fields
     ordering_fields = collection_users.ordering_fields
+
+    slug_url_kwarg = 'name'
+    slug_field = 'name'
 
     def has_view_permission(self):
         user = self.request.user

@@ -1,4 +1,4 @@
-{% extends 'selia/components/secondary_navbar.html' %}
+{% extends 'selia_templates/secondary_navbar.html' %}
 {% load i18n %}
 
 {% block navbar-brand %}
@@ -7,8 +7,8 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item active" href={% url 'selia:licence_detail' licence.pk %}>{% trans 'Licence ' %}{{ licence.pk }}</a>
-      <a class="dropdown-item" href={% url 'selia:collection_licences' licence.collection.pk %}>{{licence.collection.pk}}{% trans ': Licences' %}</a>
-      <a class="dropdown-item" href={% url 'selia:collection_detail' licence.collection.pk %}>{{licence.collection.pk}}</a>
+      <a class="dropdown-item" href={% url 'selia:collection_licences' licence.collection.name %}>{{licence.collection.name}}{% trans ': Licences' %}</a>
+      <a class="dropdown-item" href={% url 'selia:collection_detail' licence.collection.name %}>{{licence.collection.name}}</a>
       <a class="dropdown-item" href={% url 'selia:collections_user' %}>{% trans 'Collections' %}</a>
     </div>
   </div>

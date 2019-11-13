@@ -38,7 +38,7 @@ class SelectItemSamplingEventDeviceView(SeliaSelectView):
 
             queryset = SamplingEventDevice.objects.filter(sampling_event__pk=sampling_event)
 
-            list_item_template = 'selia/components/select_list_items/sampling_event_devices.html'
-            filter_form_template = 'selia/components/filters/sampling_event_device.html'
+            list_item_template = 'selia/select_list_items/sampling_event_devices.html'
+            filter_form_template = 'selia/filters/sampling_event_device.html'
 
         return SamplingEventDeviceList

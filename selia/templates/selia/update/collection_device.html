@@ -1,2 +1,18 @@
-{% load crispy_forms_tags %}
-{{ form | crispy }}
+{% load i18n %}
+{% load selia_components %}
+{% load selia_tags %}
+
+<div class="row">
+  <div class="col">
+    {% bootstrap_form form.internal_id %}
+  </div>
+</div>
+
+{% if collection_device_type.metadata_schema|is_not_trivial_schema %}
+<div class="row">
+  <div class="col">
+    <h5>{% trans 'Metadata' %}</h5>
+    {{ form.metadata }}
+  </div>
+</div>
+{% endif %}

@@ -33,7 +33,7 @@ class CreateCollectionDeviceView(SeliaCreateView):
 
     def get_initial(self):
         self.collection = Collection.objects.get(
-            pk=self.request.GET['collection'])
+            name=self.request.GET['collection'])
         self.physical_device = PhysicalDevice.objects.get(
             pk=self.request.GET['physical_device'])
 

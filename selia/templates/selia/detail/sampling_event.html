@@ -9,7 +9,7 @@
 
 {% block head-extra %}
   {{ block.super }}
-  {% include 'selia/components/media/map_media.html' %}
+  {% include 'selia/media/map_media.html' %}
 {% endblock head-extra %}
 
 {% block toolbar-title %}{{ sampling_event.collection }}{% trans ': Sampling Event ' %} {{ sampling_event.pk }}{% endblock %}
@@ -31,7 +31,7 @@
         </div>
         <div class="col-6">
           <div class="row p-2">
-            {% viewer_component viewer_template="selia/components/viewers/collection_site.html" object=sampling_event.collection_site %}
+            {% viewer_component viewer_template="selia/viewers/collection_site.html" object=sampling_event.collection_site %}
           </div>
           <div class="row p-2">
             {% summary_component summary_template=summary_template object=sampling_event %}
@@ -41,18 +41,7 @@
   </div>
 {% endblock main-content %}
 
-
-{% block modals-extra %}
-  {% help_component help_template=help_template %}
-  {% if permissions.change %}
-    {% update_component update_template=update_form_template form=form %}
-  {% endif %}
-  {% if permissions.delete %}
-    {% delete_component object=object %}
-  {% endif %}
-{% endblock modals-extra %}
-
 {% block scripts-extra %}
   {{ block.super }}
-  {% include 'selia/components/media/datetime_media.html' %}
+  {% include 'selia/media/datetime_media.html' %}
 {% endblock %}

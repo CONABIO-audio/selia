@@ -1,4 +1,4 @@
-{% extends 'selia/components/select_list_item.html' %}
+{% extends 'selia_templates/select/select_list_item.html' %}
 {% load static %}
 {% load selia_tags %}
 {% load i18n %}
@@ -8,7 +8,7 @@
   <div class="col">
     {% listtitle %}
       <div class="pr-2">
-        {{ item.map_widget_no_controls }}
+        {{ item | site_map:"no controls" }}
       </div>
     {% endlistimage %}
       {% if item.name %}

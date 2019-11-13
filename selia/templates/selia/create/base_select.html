@@ -1,4 +1,4 @@
-{% extends 'selia/base_with_toolbar.html' %}
+{% extends 'selia_templates/base_with_toolbar.html' %}
 {% load i18n %}
 {% load static %}
 {% load selia_components %}
@@ -57,13 +57,13 @@
               {% block empty-message %}
               {% endblock %}
 
-              {% include 'selia/components/empty_list_message.html' with forms=list.forms %}
+              {% include 'selia_templates/list/empty_list_message.html' with forms=list.forms %}
             </div>
           </div>
         {% endfor %}
 
         <div class="container center w-100 p-4">
-          {% include 'selia/components/pagination.html' with list=list.queryset %}
+          {% include 'selia_templates/list/pagination.html' with list=list.queryset %}
         </div>
       </div>
     </div>

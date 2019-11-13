@@ -8,7 +8,7 @@
         <strong class="d-block text-gray-dark">{% trans 'Sites added to collection' %}</strong>
         <div class="row">
           <div class="col">
-            <a href="{% url 'selia:collection_sites' collection.pk %}?created_by={{object.user.pk}}">{{ summary_info.collection_sites }} {% see_button %}</a>
+            <a href="{% url 'selia:collection_sites' collection.name %}?created_by={{object.user.pk}}">{{ summary_info.collection_sites }} {% see_button %}</a>
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
         <strong class="d-block text-gray-dark">{% trans 'Devices added to collection' %}</strong>
         <div class="row">
           <div class="col">
-            <a href="{% url 'selia:collection_devices' collection.pk %}?created_by={{object.user.pk}}">{{ summary_info.collection_devices }} {% see_button %}</a>
+            <a href="{% url 'selia:collection_devices' collection.name %}?created_by={{object.user.pk}}">{{ summary_info.collection_devices }} {% see_button %}</a>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <strong class="d-block text-gray-dark">{% trans 'Sampling events created in collection' %}</strong>
         <div class="row">
           <div class="col">
-            <a href="{% url 'selia:collection_sampling_events' collection.pk %}?created_by={{object.user.pk}}">{{ summary_info.sampling_events }} {% see_button %}</a>
+            <a href="{% url 'selia:collection_sampling_events' collection.name %}?created_by={{object.user.pk}}">{{ summary_info.sampling_events }} {% see_button %}</a>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
         <strong class="d-block text-gray-dark">{% trans 'Items added to collection' %}</strong>
         <div class="row">
           <div class="col">
-            <a href="{% url 'selia:collection_items' collection.pk %}?created_by={{object.user.pk}}">{{ summary_info.items }} {% see_button %}</a>
+            <a href="{% url 'selia:collection_items' collection.name %}?created_by={{object.user.pk}}">{{ summary_info.items }} {% see_button %}</a>
           </div>
         </div>
       </div>

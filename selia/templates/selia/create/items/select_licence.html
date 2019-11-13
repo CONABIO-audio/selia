@@ -57,7 +57,7 @@
         {% for item in list %}
           <div class="p-2" style="width: 20em;">
             <a href="{% url 'selia:create_item' %}?{{ request.GET.urlencode }}&licence={{ item.pk }}">
-              {% include 'selia/components/select_list_items/licences.html' with item=item %}
+              {% include 'selia/select_list_items/licences.html' with item=item %}
             </a>
           </div>
         {% empty %}

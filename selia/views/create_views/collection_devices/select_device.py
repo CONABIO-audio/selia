@@ -44,7 +44,7 @@ class SelectCollectionDevicePhysicalDeviceView(SeliaSelectView):
 
             queryset = devices
 
-            list_item_template = 'selia/components/select_list_items/physical_devices.html'
-            filter_form_template = 'selia/components/filters/physical_device.html'
+            list_item_template = 'selia/select_list_items/physical_devices.html'
+            filter_form_template = 'selia/filters/physical_device.html'
 
         return DeviceList

@@ -32,7 +32,7 @@ class CreateLicenceView(SeliaCreateView):
     def get_objects(self):
         if not hasattr(self, 'collection'):
             self.collection = Collection.objects.get(
-                pk=self.request.GET['collection'])
+                name=self.request.GET['collection'])
 
         if not hasattr(self, 'licence_type'):
             self.licence_type = LicenceType.objects.get(

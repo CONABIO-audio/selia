@@ -61,14 +61,14 @@
                 No annotations
               {% endblocktrans %}.
             </h4>
-            {% include 'selia/components/empty_list_message.html' %}
+            {% include 'selia_templates/list/empty_list_message.html' %}
           </div>
         </div>
       {% endfor %}
     </div>
 
     <div class="container center w-100 p-4">
-      {% include 'selia/components/pagination.html' with list=object_list %}
+      {% include 'selia_templates/list/pagination.html' with list=object_list %}
     </div>
   </div>
 </div>

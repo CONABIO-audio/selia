@@ -1,6 +1,7 @@
 {% extends 'selia/create/base.html' %}
 {% load i18n %}
 {% load selia_components %}
+{% load selia_tags %}
 
 {% block toolbar-title %}
   {% trans 'Add site to collection' %}
@@ -11,8 +12,8 @@
 {% endblock %}
 
 {% block head-extra %}
-  {% include 'selia/components/media/map_media.html' %}
-  {% include 'selia/components/media/json_form_media.html' %}
+  {% include 'selia/media/map_media.html' %}
+  {% include 'selia/media/json_form_media.html' %}
 {% endblock head-extra %}
 
 {% block toolbar-steps %}
@@ -60,7 +61,7 @@
     </div>
   </div>
 
-  {% if site_type.metadata_schema %}
+  {% if site_type.metadata_schema|is_not_trivial_schema %}
   <div class="row p-3">
     <div class="col">
       {{ form.metadata }}

@@ -1,4 +1,4 @@
-{% extends 'selia/components/secondary_navbar.html' %}
+{% extends 'selia_templates/secondary_navbar.html' %}
 {% load i18n %}
 
 {% block navbar-brand %}
@@ -7,8 +7,8 @@
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item active" href={% url 'selia:collection_site_detail' collection_site.pk %}>{% trans 'Site ' %}{{ collection_site.pk }}</a>
-    <a class="dropdown-item" href={% url 'selia:collection_sites' collection_site.collection.pk %}>{{collection_site.collection.pk}}{% trans ': Sites' %}</a>
-    <a class="dropdown-item" href={% url 'selia:collection_detail' collection_site.collection.pk %}>{{collection_site.collection.pk}}</a>
+    <a class="dropdown-item" href={% url 'selia:collection_sites' collection_site.collection.name %}>{{collection_site.collection.name}}{% trans ': Sites' %}</a>
+    <a class="dropdown-item" href={% url 'selia:collection_detail' collection_site.collection.name %}>{{collection_site.collection.name}}</a>
     <a class="dropdown-item" href={% url 'selia:collections_user' %}>{% trans 'Collections' %}</a>
   </div>
 </div>

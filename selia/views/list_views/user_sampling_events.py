@@ -9,9 +9,9 @@ from selia.views.list_views.base import SeliaListView
 class ListUserSamplingEventsView(SeliaListView):
     template_name = 'selia/list/user_sampling_events.html'
     
-    list_item_template = 'selia/components/list_items/sampling_event.html'
-    help_template = 'selia/components/help/user_sampling_events.html'
-    filter_form_template = 'selia/components/filters/sampling_event.html'
+    list_item_template = 'selia/list_items/sampling_event.html'
+    help_template = 'selia/help/user_sampling_events.html'
+    filter_form_template = 'selia/filters/sampling_event.html'
 
     empty_message = _('User has no registered sampling events')
 

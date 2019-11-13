@@ -10,9 +10,9 @@ from selia.views.list_views.base import SeliaListView
 class ListUserItemsView(SeliaListView):
     template_name = 'selia/list/user_items.html'
 
-    list_item_template = 'selia/components/list_items/item.html'
-    help_template = 'selia/components/help/user_items.html'
-    filter_form_template = 'selia/components/filters/item.html'
+    list_item_template = 'selia/list_items/item.html'
+    help_template = 'selia/help/user_items.html'
+    filter_form_template = 'selia/filters/item.html'
 
     empty_message = _('User has no registered items')
 

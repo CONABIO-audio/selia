@@ -8,7 +8,7 @@
 {% endblock secondary-navbar %}
 
 {% block head-extra %}
-  {% include 'selia/components/media/map_media.html' %}
+  {% include 'selia/media/map_media.html' %}
 {% endblock head-extra %}
 
 {% block toolbar-title %}{% trans 'User Site Detail' %}{% endblock %}
@@ -43,12 +43,7 @@
 </div>
 {% endblock main-content %}
 
-{% block modals-extra %}
-  {% help_component help_template=help_template %}
-  {% if permissions.change %}
-    {% update_component update_template=update_form_template form=form %}
-  {% endif %}
-  {% if permissions.delete %}
-    {% delete_component object=object %}
-  {% endif %}
-{% endblock modals-extra %}
+{% block scripts-extra %}
+  {{ block.super }}
+  {% autocomplete_media %}
+{% endblock scripts-extra %}

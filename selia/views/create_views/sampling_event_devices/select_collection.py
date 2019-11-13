@@ -17,7 +17,7 @@ class SelectSamplingEventDeviceCollectionView(SeliaSelectView):
 
             queryset = Collection.objects.all()
 
-            list_item_template = 'selia/components/select_list_items/user_collections.html'
-            filter_form_template = 'selia/components/filters/collection.html'
+            list_item_template = 'selia/select_list_items/user_collections.html'
+            filter_form_template = 'selia/filters/collection.html'
 
         return CollectionList

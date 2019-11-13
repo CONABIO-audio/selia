@@ -36,7 +36,7 @@ class SelectCollectionSiteTypeView(TemplateView):
         return redirect(full_url)
 
     def get_objects(self):
-        self.collection = Collection.objects.get(pk=self.request.GET['collection'])
+        self.collection = Collection.objects.get(name=self.request.GET['collection'])
 
     def no_permission_redirect(self):
         return render(self.request, self.no_permission_template)

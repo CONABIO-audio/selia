@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load widget_tweaks %}
+{% load selia_forms %}
 {% load selia_components %}
 
 <div class="row w-100 p-2">
@@ -46,7 +46,7 @@
             <div class="row">
               <div class="col">
                 {% trans "Contains" as label %}
-                {{ filter.form.site__locality__icontains | selia_form:label }}
+                {{ filter.form.site__locality__name__icontains | selia_form:label }}
               </div>
             </div>
           </div>

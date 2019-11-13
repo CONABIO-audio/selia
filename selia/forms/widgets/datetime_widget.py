@@ -2,7 +2,7 @@ from django.forms import DateTimeInput
 
 
 class BootstrapDateTimePickerInput(DateTimeInput):
-    template_name = 'selia/widgets/bootstrap_datetimepicker.html'
+    template_name = 'selia_templates/widgets/bootstrap_datetimepicker.html'
 
     def get_context(self, name, value, attrs):
         datetimepicker_id = 'datetimepicker_{name}'.format(name=name)

@@ -42,7 +42,7 @@ class CollectionSiteCreateView(SeliaCreateView):
     def get_objects(self):
         if not hasattr(self, 'collection'):
             self.collection = Collection.objects.get(
-                pk=self.request.GET['collection'])
+                name=self.request.GET['collection'])
 
         if not hasattr(self, 'site'):
             self.site = Site.objects.get(

@@ -14,7 +14,7 @@ class SelectLicenceTypeView(SeliaSelectView):
 
     def get_objects(self):
         if not hasattr(self, 'collection'):
-            self.collection = Collection.objects.get(pk=self.request.GET['collection'])
+            self.collection = Collection.objects.get(name=self.request.GET['collection'])
 
     def has_view_permission(self):
         user = self.request.user

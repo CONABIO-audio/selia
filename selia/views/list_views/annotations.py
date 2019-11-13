@@ -11,9 +11,9 @@ class ListAnnotationView(SeliaListView, SingleObjectMixin):
     paginate_by = 3
 
     template_name = 'selia/list/annotations.html'
-    list_item_template = 'selia/components/list_items/annotation.html'
-    help_template = 'selia/components/help/item_annotations.html'
-    filter_form_template = 'selia/components/filters/annotation.html'
+    list_item_template = 'selia/list_items/annotation.html'
+    help_template = 'selia/help/item_annotations.html'
+    filter_form_template = 'selia/filters/annotation.html'
 
     filter_class = annotations.Filter
     search_fields = annotations.search_fields

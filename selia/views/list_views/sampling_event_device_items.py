@@ -12,9 +12,9 @@ from selia.views.list_views.base import SeliaListView
 class ListSamplingEventDeviceItemsView(SeliaListView, SingleObjectMixin):
     template_name = 'selia/list/sampling_event_device_items.html'
 
-    list_item_template = 'selia/components/list_items/item.html'
-    help_template = 'selia/components/help/sampling_event_device_items.html'
-    filter_form_template = 'selia/components/filters/item.html'
+    list_item_template = 'selia/list_items/item.html'
+    help_template = 'selia/help/sampling_event_device_items.html'
+    filter_form_template = 'selia/filters/item.html'
 
     empty_message = _('No items are registered to this sampling event device')
 

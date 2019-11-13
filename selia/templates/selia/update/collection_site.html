@@ -1,5 +1,7 @@
 {% load i18n %}
 {% load selia_components %}
+{% load selia_tags %}
+
 
 <div class="row">
   <div class="col">
@@ -7,7 +9,7 @@
   </div>
 </div>
 
-{% if object.site_type.metadata_schema %}
+{% if object.site_type.metadata_schema|is_not_trivial_schema %}
 <div class="row">
   <div class="col">
     <h5>{% trans 'Metadata' %}</h5>

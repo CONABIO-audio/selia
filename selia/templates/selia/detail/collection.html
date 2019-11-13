@@ -28,7 +28,7 @@
       </div>
       <div class="row p-2">
         <div class="container-fluid w-100 h-100 description_object">
-          {% include "selia/components/details/administrators.html" with object=collection %}
+          {% include "selia/details/administrators.html" with object=collection %}
         </div>
       </div>
     </div>
@@ -38,16 +38,6 @@
   </div>
 </div>
 {% endblock main-content %}
-
-{% block modals-extra %}
-  {% help_component help_template=help_template %}
-  {% if permissions.change %}
-    {% update_component update_template=update_form_template form=form %}
-  {% endif %}
-  {% if permissions.delete %}
-    {% delete_component object=object %}
-  {% endif %}
-{% endblock modals-extra %}
 
 {% block scripts-extra %}
 {{ block.super }}

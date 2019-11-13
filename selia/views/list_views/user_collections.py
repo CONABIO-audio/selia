@@ -7,9 +7,9 @@ from irekua_filters.data_collections import data_collections
 class ListUserCollectionsView(SeliaListView):
     template_name = 'selia/list/user_collections.html'
 
-    list_item_template = 'selia/components/list_items/collection.html'
-    help_template = 'selia/components/help/user_collections.html'
-    filter_form_template = 'selia/components/filters/collection.html'
+    list_item_template = 'selia/list_items/collection.html'
+    help_template = 'selia/help/user_collections.html'
+    filter_form_template = 'selia/filters/collection.html'
 
     filter_class = data_collections.Filter
     search_fields = data_collections.search_fields

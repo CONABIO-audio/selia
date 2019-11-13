@@ -13,7 +13,7 @@
 {% block toolbar-items %}
   {% if permissions.create %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ sampling_event_device.sampling_event.collection.pk }}&sampling_event={{ sampling_event_device.sampling_event.pk }}&sampling_event_device={{ sampling_event_device.pk }}">{% trans 'Add Items' %} <i class="fas fa-plus"></i> <i class="far fa-file"></i></a>
+    <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ sampling_event_device.sampling_event.collection.name }}&sampling_event={{ sampling_event_device.sampling_event.pk }}&sampling_event_device={{ sampling_event_device.pk }}">{% trans 'Add Items' %} <i class="fas fa-plus"></i> <i class="far fa-file"></i></a>
   </li>
   {% endif %}
   <li class="nav-item">
@@ -28,7 +28,7 @@
   {% endblocktrans%}
 </h4>
 <p>
-  <a href="{% url 'selia:create_item' %}?collection={{ sampling_event_device.sampling_event.collection.pk }}&sampling_event={{ sampling_event_device.sampling_event.pk }}&sampling_event_device={{ sampling_event_device.pk }}">
+  <a href="{% url 'selia:create_item' %}?collection={{ sampling_event_device.sampling_event.collection.name }}&sampling_event={{ sampling_event_device.sampling_event.pk }}&sampling_event_device={{ sampling_event_device.pk }}">
     {% trans 'Add item to the deployed device' %}
   </a>
 </p>

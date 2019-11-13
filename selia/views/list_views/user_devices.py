@@ -9,9 +9,9 @@ from selia.views.list_views.base import SeliaListView
 class ListUserPhysicalDeviceView(SeliaListView):
     template_name = 'selia/list/user_physical_devices.html'
 
-    list_item_template = 'selia/components/list_items/physical_device.html'
-    help_template = 'selia/components/help/user_devices.html'
-    filter_form_template = 'selia/components/filters/physical_device.html'
+    list_item_template = 'selia/list_items/physical_device.html'
+    help_template = 'selia/help/user_devices.html'
+    filter_form_template = 'selia/filters/physical_device.html'
 
     empty_message = _('User has no registered devices')
 

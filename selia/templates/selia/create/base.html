@@ -1,4 +1,4 @@
-{% extends 'selia/base_with_toolbar.html' %}
+{% extends 'selia_templates/base_with_toolbar.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -8,7 +8,7 @@
 {% endblock stylesheet %}
 
 {% block head-extra %}
-  {% include 'selia/components/media/json_form_media.html' %}
+  {% include 'selia/media/json_form_media.html' %}
 {% endblock %}
 
 {% block toolbar-items%}
@@ -24,7 +24,7 @@
 
 {% block main-content %}
 <div class="container">
-  <div class="jumbotron m-3">
+  <div class="jumbotron my-3" style="background-color: #ffb74d">
     <h1 class="display-6">
       {% block step-title %}
       {% endblock %}
@@ -41,7 +41,7 @@
   {% block form-errors %}
     {% if form.errors %}
     <div class="row">
-      {% include 'selia/components/error_list.html' with errors=form.errors %}
+      {% include 'selia_templates/create/error_list.html' with errors=form.errors %}
     </div>
     {% endif %}
   {% endblock form-errors%}

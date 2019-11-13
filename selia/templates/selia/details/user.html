@@ -1,82 +1,96 @@
 {% load i18n %}
+{% load selia_tags %}
 {% load country_tags %}
 
+{% detailtitle %}
+{% enddetailimage %}
+  {% trans 'User Details' %}
+{% enddetailheader %}
+{% enddetailtitle %}
+
+{% detailsection %}
+  {% trans 'User info' %}
+{% enddetailsection %}
+
 <div class="row">
-  <h5 class="text-center h-100">{% trans 'User Details' %}</h5>
-</div>
-
-<div class="row w-100">
   <div class="col">
-    <div class="row p-2">
-      <h5 class="text-center w-100">
-        <span class="border-bottom">
-          {% trans 'User info' %}
-        </span>
-      </h5>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <h6 class="mt-0">{% trans 'Username' %}</h6>
-        <p class="text-muted">{{ object.username }}</p>
-      </div>
-
-      <div class="col">
-        <h6 class="mt-0">{% trans 'Email' %}</h6>
-        <p class="text-muted">{{ object.email }}</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <h6 class="mt-0">{% trans 'First name' %}</h6>
-        <p class="text-muted">{{ object.first_name }}</p>
-      </div>
-
-      <div class="col">
-        <h6 class="mt-0">{% trans 'Last name' %}</h6>
-        <p class="text-muted">{{ object.last_name }}</p>
-      </div>
-    </div>
-
-    <div class="row py-4">
-      <a href="{% url 'selia_registration:password_reset' %}" class="btn btn-link text-primary">{% trans 'Change password' %}</a>
-    </div>
+    {% detailitem %}
+      {% trans 'Username' %}
+    {% endhead %}
+      {{ object.username }}
+    {% enddetailitem %}
   </div>
 
-  {% if object.institution %}
   <div class="col">
-    <div class="row p-2">
-      <h5 class="text-center w-100">
-        <span class="border-bottom">
-          {% trans 'Institution info' %}
-        </span>
-      </h5>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h6 class="mt-0">{% trans 'Name' %}</h6>
-        <p class="text-muted">{{ object.institution.institution_name }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h6 class="mt-0">{% trans 'Institution code' %}</h6>
-        <p class="text-muted">{{ object.institution.institution_code }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h6 class="mt-0">{% trans 'Subdependency' %}</h6>
-        <p class="text-muted">{{ object.institution.subdependency }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h6 class="mt-0">{% trans 'Country' %}</h6>
-        <p class="text-muted">{{ object.institution.country }}</p>
-      </div>
-    </div>
+    {% detailitem %}
+      {% trans 'Email' %}
+    {% endhead %}
+      {{ object.email }}
+    {% enddetailitem %}
   </div>
-  {% endif %}
 </div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'First name' %}
+    {% endhead %}
+      {{ object.first_name }}
+    {% enddetailitem %}
+  </div>
+
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Last name' %}
+    {% endhead %}
+      {{ object.last_name }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row py-4">
+  <a href="{% url 'selia_registration:password_reset' %}" class="btn btn-link text-primary">
+    {% trans 'Change password' %}
+  </a>
+</div>
+
+
+{% if object.institution %}
+
+{% detailsection %}
+  {% trans 'Institution info' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      {{ object.institution.institution_name }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Institution code' %}
+    {% endhead %}
+      {{ object.institution.institution_code }}
+    {% enddetailitem %}
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Subdependency' %}
+    {% endhead %}
+      {{ object.institution.subdependency }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Country' %}
+    {% endhead %}
+      {{ object.institution.country }}
+    {% enddetailitem %}
+  </div>
+</div>
+{% endif %}

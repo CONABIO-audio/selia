@@ -52,7 +52,7 @@ class SelectSamplingEventDeviceCollectionDeviceView(SeliaSelectView):
 
             queryset = collection_devices
 
-            list_item_template = 'selia/components/select_list_items/collection_devices.html'
-            filter_form_template = 'selia/components/filters/collection_device.html'
+            list_item_template = 'selia/select_list_items/collection_devices.html'
+            filter_form_template = 'selia/filters/collection_device.html'
 
         return CollectionDeviceList

@@ -24,8 +24,8 @@
     <div class="row d-flex justify-content-center flex-wrap">
       {% for licence_type in list %}
       <div class="p-2" style="width: 20em;">
-        <a href="{% url 'selia:create_licence' %}?{{ request.GET.urlencode }}&licence_type={{ licence_type.pk }}">
-          {% include 'selia/components/select_list_items/licence_type.html' with item=licence_type %}
+        <a href="{% url 'selia:create_licence' %}?{{ request.GET.urlencode }}&licence_type={{ licence_type.name }}">
+          {% include 'selia/select_list_items/licence_type.html' with item=licence_type %}
         </a>
       </div>
       {% empty %}

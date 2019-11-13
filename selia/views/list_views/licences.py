@@ -4,10 +4,8 @@ from irekua_database.models import Collection, Licence
 
 from irekua_filters.data_collections import collection_licences
 from irekua_permissions import licences as licence_permissions
-from irekua_permissions.data_collections import (
-    users as user_permissions)
-from irekua_permissions import (
-    licences as licence_permissions)
+from irekua_permissions.data_collections import users as user_permissions
+from irekua_permissions import licences as licence_permissions
 
 from selia.views.list_views.base import SeliaListView
 
@@ -15,14 +13,17 @@ from selia.views.list_views.base import SeliaListView
 class ListCollectionLicencesView(SeliaListView, SingleObjectMixin):
     template_name = 'selia/list/collection_licences.html'
 
-    list_item_template = 'selia/components/list_items/licence.html'
-    help_template = 'selia/components/help/collection_licences.html'
-    filter_form_template = 'selia/components/filters/licence.html'
-    viewer_template = 'selia/components/viewers/licence.html'
+    list_item_template = 'selia/list_items/licence.html'
+    help_template = 'selia/help/collection_licences.html'
+    filter_form_template = 'selia/filters/licence.html'
+    viewer_template = 'selia/viewers/licence.html'
 
     filter_class = collection_licences.Filter
     search_fields = collection_licences.search_fields
     ordering_fields = collection_licences.ordering_fields
+
+    slug_url_kwarg = 'name'
+    slug_field = 'name'
 
     def has_view_permission(self):
         user = self.request.user

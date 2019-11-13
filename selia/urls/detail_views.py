@@ -16,7 +16,7 @@ urlpatterns = [
         detail_views.DetailCollectionUserView.as_view(),
         name='collection_user_detail'),
     path(
-        'collections/detail/<pk>/',
+        'collections/detail/<name>/',
         detail_views.DetailCollectionView.as_view(),
         name='collection_detail'),
     path(

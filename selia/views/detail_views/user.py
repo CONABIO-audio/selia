@@ -32,10 +32,10 @@ class DetailUserView(SeliaDetailView):
 
     template_name = 'selia/detail/user.html'
 
-    help_template = 'selia/components/help/user_home.html'
-    detail_template = 'selia/components/details/user.html'
-    summary_template = 'selia/components/summaries/user.html'
-    update_form_template = 'selia/components/update/user.html'
+    help_template = 'selia/help/user_home.html'
+    detail_template = 'selia/details/user.html'
+    summary_template = 'selia/summaries/user.html'
+    update_form_template = 'selia/update/user.html'
 
     def get_object(self):
         return self.request.user

@@ -4,23 +4,23 @@ from selia.views import list_views
 
 urlpatterns = [
     path(
-        'collections/detail/<pk>/devices/',
+        'collections/detail/<name>/devices/',
         list_views.ListCollectionDevicesView.as_view(),
         name='collection_devices'),
     path(
-        'collections/detail/<pk>/items/',
+        'collections/detail/<name>/items/',
         list_views.ListCollectionItemsView.as_view(),
         name='collection_items'),
     path(
-        'collections/detail/<pk>/sites/',
+        'collections/detail/<name>/sites/',
         list_views.ListCollectionSitesView.as_view(),
         name='collection_sites'),
     path(
-        'collections/detail/<pk>/users/',
+        'collections/detail/<name>/users/',
         list_views.ListCollectionUserView.as_view(),
         name='collection_users'),
     path(
-        'collections/detail/<pk>/licences/',
+        'collections/detail/<name>/licences/',
         list_views.ListCollectionLicencesView.as_view(),
         name='collection_licences'),
     path(
@@ -40,7 +40,7 @@ urlpatterns = [
         list_views.ListSamplingEventItemsView.as_view(),
         name='sampling_event_items'),
     path(
-        'collections/detail/<pk>/sampling_events/',
+        'collections/detail/<name>/sampling_events/',
         list_views.ListCollectionSamplingEventView.as_view(),
         name='collection_sampling_events'),
     path(

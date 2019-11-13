@@ -29,11 +29,11 @@ class DetailLicenceView(SeliaDetailView, SingleObjectMixin):
     delete_redirect_url = 'selia:collection_licences'
 
     template_name = 'selia/detail/licence.html'
-    help_template = 'selia/components/help/collection_licences.html'
-    detail_template = 'selia/components/details/licence.html'
-    summary_template = 'selia/components/summaries/licence.html'
-    update_form_template = 'selia/components/update/licence.html'
-    viewer_template = 'selia/components/viewers/licence.html'
+    help_template = 'selia/help/collection_licences.html'
+    detail_template = 'selia/details/licence.html'
+    summary_template = 'selia/summaries/licence.html'
+    update_form_template = 'selia/update/licence.html'
+    viewer_template = 'selia/viewers/licence.html'
 
     def has_view_permission(self):
         user = self.request.user
