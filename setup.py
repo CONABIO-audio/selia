@@ -24,6 +24,11 @@ setup(
         'irekua-permissions',
         'irekua-autocomplete',
         'irekua-rest-api',
+        'selia_templates',
+        'selia_forms',
+        'selia_about',
+        'selia_thumbnails',
+        'selia_registration',
         'timezonefinder',
     ],
     classifiers=[

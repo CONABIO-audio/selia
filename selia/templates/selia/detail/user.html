@@ -1,10 +1,10 @@
 {% extends 'selia/detail/base.html' %}
 {% load i18n %}
-{% load selia_components %}
+{% load selia_tags %}
 {% load selia_buttons %}
 
 {% block secondary-navbar %}
-{% include 'selia/navbars/user.html' %}
+  {% include 'selia/navbars/user.html' %}
 {% endblock secondary-navbar %}
 
 {% block toolbar-title %}{% trans 'User' %}{% endblock %}

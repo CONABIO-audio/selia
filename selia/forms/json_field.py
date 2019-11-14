@@ -31,5 +31,5 @@ class JsonField(forms.Field):
 
         try:
             return json.loads(value)
-        except:
-            raise forms.ValidationError
+        except Exception as err:
+            raise forms.ValidationError(str(err))

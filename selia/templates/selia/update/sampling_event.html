@@ -1,5 +1,8 @@
 {% load i18n %}
-{% load selia_components %}
+{% load selia_filters %}
+{% load selia_forms %}
+
+{{ form.errors }}
 
 <div class="row">
   <div class="col">
@@ -25,10 +28,10 @@
   </div>
 </div>
 
-{% if object.sampling_event_type.metadata_schema %}
+{% if object.sampling_event_type.metadata_schema|is_not_trivial_schema %}
 <div class="row mt-3">
   <div class="col">
-    {% bootstrap_form form.metadata %}
+    {{ form.metadata }}
   </div>
 </div>
 {% endif %}

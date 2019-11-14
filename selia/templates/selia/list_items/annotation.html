@@ -1,7 +1,7 @@
 {% extends 'selia_templates/list/list_item.html' %}
 {% load selia_buttons %}
+{% load selia_tags %}
 {% load static %}
-{% load json_tags %}
 
 {% load i18n %}
 
@@ -17,7 +17,7 @@
       <div class="row p-2">
         <a id="edit_annotation_btn" href="{% url 'selia:item_annotation_create' item.item.pk %}?mode=edit&annotation={{ item.pk }}">{% edit_button %}</a>
       </div>
-        
+
     </div>
   	<div class="col-4">
        <div class="row">

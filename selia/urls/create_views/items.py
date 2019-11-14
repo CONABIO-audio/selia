@@ -22,9 +22,5 @@ urlpatterns = [
     path(
         'items/create/4/',
         items.SelectItemLicenceView.as_view(),
-        name='create_item_select_licence'),
-    path(
-        'items/create/5/',
-        items.ItemUploadView.as_view(),
-        name='create_item_upload_app'),
+        name='create_item_select_licence')
 ]

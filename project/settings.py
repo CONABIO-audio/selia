@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     'selia_forms',
     'selia_registration',
     'selia_about',
+    'selia_thumbnails',
+    'selia_uploader',
+    'selia_admin',
+    'sorl.thumbnail',
 ]
 
 
@@ -143,3 +147,5 @@ MEDIA_ROOT = os.path.join(
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+#

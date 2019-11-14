@@ -3,4 +3,3 @@ from .select_collection import SelectItemCollectionView
 from .select_licence import SelectItemLicenceView
 from .select_sampling_event import SelectItemSamplingEventView
 from .select_sampling_event_device import SelectItemSamplingEventDeviceView
-from .upload_app import ItemUploadView

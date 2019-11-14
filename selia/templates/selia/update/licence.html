@@ -1,16 +1,18 @@
 {% load i18n %}
-{% load selia_components %}
+{% load selia_filters %}
+{% load selia_forms %}
 
 <div class="col">
   <div class="row">
     {% bootstrap_form form.document %}
   </div>
-  {% if object.licence_type.metadata_schema %}
-  <div class="row">
-    <h4>{% trans 'Metadata' %}</h4>
-  </div>
-  <div class="row">
-    {{ form.metadata }}
-  </div>
+
+  {% if object.licence_type.metadata_schema|is_not_trivial_schema %}
+    <div class="row">
+      <h4>{% trans 'Metadata' %}</h4>
+    </div>
+    <div class="row">
+      {{ form.metadata }}
+    </div>
   {% endif %}
 </div>

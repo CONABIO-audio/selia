@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load selia_forms %}
-{% load selia_components %}
+{% load selia_tags %}
 
 
 <div class="row w-100 mb-2">
@@ -14,7 +14,7 @@
             <div class="row">
               <div class="col">
                 {% trans 'Equals' as label %}
-                {{ filter.form.item_type | selia_form:label }}
+                {{ filter.form.item_type | selia_filter:label }}
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
             <div class="row">
               <div class="col">
                 {% trans 'Contains' as label %}
-                {{ filter.form.created_by__username__icontains | selia_form:label }}
+                {{ filter.form.created_by__username__icontains | selia_filter:label }}
               </div>
             </div>
             <div class="dropdown-divider"></div>
@@ -46,7 +46,7 @@
             <div class="row">
               <div class="col">
                 {% trans 'Contains' as label %}
-                {{ filter.form.created_by__first_name__icontains | selia_form:label }}
+                {{ filter.form.created_by__first_name__icontains | selia_filter:label }}
               </div>
             </div>
             <div class="dropdown-divider"></div>
@@ -56,7 +56,7 @@
             <div class="row">
               <div class="col">
                 {% trans 'Contains' as label %}
-                {{ filter.form.created_by__last_name__icontains | selia_form:label }}
+                {{ filter.form.created_by__last_name__icontains | selia_filter:label }}
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@
               <div class="row">
                 <div class="col">
                   {% trans 'Contains' as label %}
-                  {{ filter.form.created_by__institution__institution_name__icontains | selia_form:label }}
+                  {{ filter.form.created_by__institution__institution_name__icontains | selia_filter:label }}
                 </div>
               </div>
               <div class="dropdown-divider"></div>
@@ -88,7 +88,7 @@
               <div class="row">
                 <div class="col">
                   {% trans 'Contains' as label %}
-                  {{ filter.form.created_by__institution__country__icontains | selia_form:label }}
+                  {{ filter.form.created_by__institution__country__icontains | selia_filter:label }}
                 </div>
               </div>
               <div class="dropdown-divider"></div>
@@ -99,7 +99,7 @@
               <div class="row">
                 <div class="col">
                   {% trans 'Equals' as label %}
-                  {{ filter.form.created_by__institution__institution_code | selia_form:label }}
+                  {{ filter.form.created_by__institution__institution_code | selia_filter:label }}
                 </div>
               </div>
             </div>
@@ -115,10 +115,10 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div class="container p-3">
           {% trans 'From' as label %}
-          {{ filter.form.created_on__gt | selia_form:label }}
+          {{ filter.form.created_on__gt | selia_filter:label }}
 
           {% trans 'To' as label %}
-          {{ filter.form.created_on__lt | selia_form:label }}
+          {{ filter.form.created_on__lt | selia_filter:label }}
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@
 {% load selia_tags %}
 {% load static %}
 {% load i18n %}
-{% load thumbnail %}
 
 
 {% block list-item-content %}
@@ -12,9 +11,7 @@
       {% listtitle %}
       <div class="mr-2">
         <a href="{% url 'selia:item_detail' item.pk %}">
-          {% thumbnail item.item_thumbnail "100x80" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-          {% endthumbnail %}
+          <img src="{% url 'selia_thumbnails:thumbnails' %}?pk={{ item.pk }}&size=100x100" width="100" height="100">
         </a>
       </div>
       {% endlistimage %}

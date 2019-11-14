@@ -19,5 +19,14 @@ urlpatterns = [
         include(('selia_registration.urls', 'selia_registration'))),
     url(
         r'^about/',
-        include(('selia_about.urls', 'selia_about')))
+        include(('selia_about.urls', 'selia_about'))),
+    url(
+        r'^processes/thumbnails/',
+        include(('selia_thumbnails.urls', 'selia_thumbnails'))),
+    url(
+        r'^upload/',
+        include(('selia_uploader.urls', 'selia_uploader'))),
+    url(
+        r'^admin/',
+        include(('selia_admin.urls', 'selia_admin'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -18,4 +18,4 @@ class CreateItemManager(CreateManagerBase):
         if 'licence' not in self.request.GET:
             return 'selia:create_item_select_licence'
 
-        return 'selia:create_item_upload_app'
+        return 'selia_uploader:upload_app'

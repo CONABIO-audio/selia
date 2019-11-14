@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load selia_forms %}
-{% load selia_components %}
+{% load selia_tags %}
 
 <div class="row w-100 p-2">
   <div class="col">
@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col">
                 {% trans 'Equals' as label %}
-                {{ filter.form.site_type | selia_form:label }}
+                {{ filter.form.site_type | selia_filter:label }}
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@
             <div class="row">
               <div class="col">
                 {% trans "Contains" as label %}
-                {{ filter.form.site__name__icontains | selia_form:label }}
+                {{ filter.form.site__name__icontains | selia_filter:label }}
               </div>
             </div>
 
@@ -46,7 +46,7 @@
             <div class="row">
               <div class="col">
                 {% trans "Contains" as label %}
-                {{ filter.form.site__locality__name__icontains | selia_form:label }}
+                {{ filter.form.site__locality__name__icontains | selia_filter:label }}
               </div>
             </div>
           </div>
@@ -66,11 +66,11 @@
             <div class="row">
               <div class="col">
                 {% trans 'Greater than' as label %}
-                {{ filter.form.site__latitude__gt | selia_form:label }}
+                {{ filter.form.site__latitude__gt | selia_filter:label }}
               </div>
               <div class="col">
                 {% trans 'Less than' as label %}
-                {{ filter.form.site__latitude__lt | selia_form:label }}
+                {{ filter.form.site__latitude__lt | selia_filter:label }}
               </div>
             </div>
             <div class="dropdown-divider"></div>
@@ -80,11 +80,11 @@
             <div class="row">
               <div class="col">
                 {% trans 'Greater than' as label %}
-                {{ filter.form.site__longitude__gt | selia_form:label }}
+                {{ filter.form.site__longitude__gt | selia_filter:label }}
               </div>
               <div class="col">
                 {% trans 'Less than' as label %}
-                {{ filter.form.site__longitude__lt | selia_form:label }}
+                {{ filter.form.site__longitude__lt | selia_filter:label }}
               </div>
             </div>
             <div class="dropdown-divider"></div>
@@ -94,11 +94,11 @@
             <div class="row">
               <div class="col">
                 {% trans 'Greater than' as label %}
-                {{ filter.form.site__altitude__gt | selia_form:label }}
+                {{ filter.form.site__altitude__gt | selia_filter:label }}
               </div>
               <div class="col">
                 {% trans 'Less than' as label %}
-                {{ filter.form.site__altitude__lt | selia_form:label }}
+                {{ filter.form.site__altitude__lt | selia_filter:label }}
               </div>
             </div>
           </div>
@@ -113,10 +113,10 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div class="container p-3">
             {% trans 'From' as label %}
-            {{ filter.form.created_on__gt | selia_form:label }}
+            {{ filter.form.created_on__gt | selia_filter:label }}
 
             {% trans 'To' as label %}
-            {{ filter.form.created_on__lt | selia_form:label }}
+            {{ filter.form.created_on__lt | selia_filter:label }}
           </div>
         </div>
       </div>

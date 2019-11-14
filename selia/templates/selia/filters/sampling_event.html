@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load selia_forms %}
-{% load selia_components %}
+{% load selia_tags %}
 
 <div class="row w-100 p-2">
   <div class="col">
@@ -10,7 +10,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div class="container p-3">
-            {{ filter.form.sampling_event_type | selia_form:None }}
+            {{ filter.form.sampling_event_type | selia_filter:None }}
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div class="container p-3">
-          {{ filter.form.collection | selia_form:None }}
+          {{ filter.form.collection | selia_filter:None }}
         </div>
       </div>
     </div>
@@ -37,10 +37,10 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div class="container p-3">
           {% trans 'From' as label%}
-          {{ filter.form.started_on__gt | selia_form:label}}
+          {{ filter.form.started_on__gt | selia_filter:label}}
 
           {% trans 'To' as label %}
-          {{ filter.form.started_on__lt | selia_form:label }}
+          {{ filter.form.started_on__lt | selia_filter:label }}
         </div>
       </div>
     </div>
@@ -54,10 +54,10 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div class="container p-3">
           {% trans 'From' as label %}
-          {{ filter.form.ended_on__gt | selia_form:label }}
+          {{ filter.form.ended_on__gt | selia_filter:label }}
 
           {% trans 'To' as label %}
-          {{ filter.form.ended_on__lt | selia_form:label }}
+          {{ filter.form.ended_on__lt | selia_filter:label }}
         </div>
       </div>
     </div>
@@ -71,10 +71,10 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <div class="container p-3">
           {% trans 'From' as label %}
-          {{ filter.form.created_on__gt | selia_form:label }}
+          {{ filter.form.created_on__gt | selia_filter:label }}
 
           {% trans 'To' as label %}
-          {{ filter.form.created_on__lt | selia_form:label }}
+          {{ filter.form.created_on__lt | selia_filter:label }}
         </div>
       </div>
     </div>
