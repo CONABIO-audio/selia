@@ -29,4 +29,7 @@ urlpatterns = [
     url(
         r'^admin/',
         include(('selia_admin.urls', 'selia_admin'))),
+    url(
+        r'^annotator/',
+        include(('selia_annotator.urls', 'selia_annotator'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

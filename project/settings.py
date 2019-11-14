@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'selia_thumbnails',
     'selia_uploader',
     'selia_admin',
+    'selia_annotator',
     'sorl.thumbnail',
 ]
 

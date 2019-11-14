@@ -98,10 +98,10 @@
         {% summarycount %}
           {{ item.annotation_set.count }}
         {% summarybuttons %}
-          <a href="{% url 'selia:item_annotations' item.pk %}">
+          <a href="{% url 'selia_annotator:annotator_app' %}?pk={{ item.pk }}">
             {% see_button %}
           </a>
-          <a class="ml-2" href="{% url 'selia:item_annotations' item.pk %}">
+          <a class="ml-2" href="{% url 'selia_annotator:annotator_app' %}?pk={{ item.pk }}">
             {% add_button %}
           </a>
         {% endlistsummary %}
