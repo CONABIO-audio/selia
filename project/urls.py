@@ -13,7 +13,7 @@ urlpatterns = [
         include(('irekua_autocomplete.urls', 'irekua_autocomplete'))),
     url(
         r'^api/',
-        include(('irekua_rest_api.urls', 'irekua_rest_api'))),
+        include('irekua_rest_api.urls')),
     url(
         r'^registration/',
         include(('selia_registration.urls', 'selia_registration'))),
