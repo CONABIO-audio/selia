@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
+{% load selia_forms %}
 
 {% block toolbar-title %}
   {% trans 'Add site to collection' %}
@@ -61,11 +62,27 @@
     </div>
   </div>
 
+  {% if form.type_fields.size != 0 %}
+  <div class="row">
+    <h4 class="w-100 text-center">{% trans 'Site descriptors' %}</h4>
+  </div>
+  <div class="row w-100 p-4">
+    <div class="col">
+      {% for field in form %}
+        {% if field.label in form.type_fields %}
+          {% bootstrap_form field %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
   {% if site_type.metadata_schema|is_not_trivial_schema %}
   <div class="row p-3">
     <div class="col">
       {{ form.metadata }}
     </div>
   </div>
+
   {% endif %}
 {% endblock form-content %}

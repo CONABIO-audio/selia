@@ -5,32 +5,37 @@ from django.shortcuts import reverse
 from irekua_database.models import Collection
 from irekua_database.models import Site
 from irekua_database.models import SiteType
+from irekua_autocomplete.utils import get_autocomplete_widget
 
 from irekua_filters import sites as site_utils
-from irekua_permissions.data_collections import (
-    sites as site_permissions)
+from irekua_permissions.data_collections import sites as site_permissions
 from selia.views.create_views.create_base import SeliaCreateView
 from selia.views.utils import SeliaList
 
 
-class SiteCreateForm(forms.ModelForm):
-    class Meta:
-        model = Site
-        fields = [
-            'latitude',
-            'longitude',
-            'altitude',
-            'name',
-            'locality',
-        ]
-
-
 class SelectCollectionSiteSiteView(SeliaCreateView):
     model = Site
-    form_class = SiteCreateForm
     template_name = 'selia/create/collection_sites/select_site.html'
     prefix = 'site'
     create_url = 'selia:create_collection_site'
+
+    def get_form_class(self):
+        class SiteCreateForm(forms.ModelForm):
+            class Meta:
+                model = Site
+                fields = [
+                    'latitude',
+                    'longitude',
+                    'altitude',
+                    'name',
+                    'locality',
+                ]
+
+                widgets = {
+                    'locality': get_autocomplete_widget(name='locality')
+                }
+
+        return SiteCreateForm
 
     def has_view_permission(self):
         user = self.request.user
@@ -47,6 +52,7 @@ class SelectCollectionSiteSiteView(SeliaCreateView):
         context['list'] = self.get_site_list()
         context['prefix'] = self.prefix
         context['create_url'] = self.create_url
+
         return context
 
     def redirect_on_success(self):

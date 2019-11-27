@@ -51,7 +51,7 @@ class DetailSamplingEventView(SeliaDetailView):
         return sampling_event_permissions.delete(user, sampling_event=self.object)
 
     def get_delete_redirect_url_args(self):
-        return [self.object.collection.pk]
+        return [self.object.collection.name]
 
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)

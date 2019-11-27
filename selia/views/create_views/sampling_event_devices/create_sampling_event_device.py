@@ -7,6 +7,7 @@ from irekua_database.models import CollectionDevice
 from irekua_database.models import SamplingEventTypeDeviceType
 from irekua_permissions.sampling_events import devices as device_permissions
 
+from selia.forms.widgets import BootstrapDateTimePickerInput
 from selia.forms.json_field import JsonField
 
 
@@ -22,8 +23,15 @@ class CreateSamplingEventDeviceForm(forms.ModelForm):
             'metadata',
             'commentaries',
             'configuration',
-            'licence'
+            'licence',
+            'deployed_on',
+            'recovered_on',
         ]
+
+        widgets = {
+            'deployed_on': BootstrapDateTimePickerInput(),
+            'recovered_on': BootstrapDateTimePickerInput(),
+        }
 
 
 class CreateSamplingEventDeviceView(SeliaCreateView):

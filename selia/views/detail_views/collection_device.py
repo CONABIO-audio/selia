@@ -55,7 +55,7 @@ class DetailCollectionDeviceView(SeliaDetailView, SingleObjectMixin):
         return permissions
 
     def get_delete_redirect_url_args(self):
-        return [self.object.collection.pk]
+        return [self.object.collection.name]
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

@@ -56,7 +56,7 @@
           <a href="{% url 'selia:create_collection_site' %}?collection={{ item.pk }}">
             {% add_button %}
           </a>
-          <a class="ml-2" href="{% url 'selia:collection_sites' item.pk %}">
+          <a class="ml-2" href="{% url 'selia:collection_sites' item.name %}">
             {% see_button %}
           </a>
         {% endlistsummary %}
@@ -68,7 +68,7 @@
           {{ item.samplingevent_set.count }}
         {% summarybuttons %}
         <a href="{% url 'selia:create_sampling_event' %}?collection={{ item.pk }}">{% add_button %}</a>
-        <a class="ml-2" href="{% url 'selia:collection_sampling_events' item.pk %}">{% see_button %}</a>
+        <a class="ml-2" href="{% url 'selia:collection_sampling_events' item.name %}">{% see_button %}</a>
         {% endlistsummary %}
       </div>
       <div class="row">
@@ -78,7 +78,7 @@
           {{ item.collectiondevice_set.count }}
         {% summarybuttons %}
           <a href="{% url 'selia:create_collection_device' %}?collection={{ item.pk }}">{% add_button %}</a>
-          <a class="ml-2" href="{% url 'selia:collection_devices' item.pk %}">{% see_button %}</a>
+          <a class="ml-2" href="{% url 'selia:collection_devices' item.name %}">{% see_button %}</a>
         {% endlistsummary %}
       </div>
       <div class="row">
@@ -88,7 +88,7 @@
           {{ item.items.count }}
         {% summarybuttons %}
           <a href="{% url 'selia:create_item' %}?collection={{ item.pk }}">{% add_button %}</a>
-          <a class="ml-2" href="{% url 'selia:collection_items' item.pk %}">{% see_button %}</a>
+          <a class="ml-2" href="{% url 'selia:collection_items' item.name %}">{% see_button %}</a>
         {% endlistsummary %}
       </div>
     </div>

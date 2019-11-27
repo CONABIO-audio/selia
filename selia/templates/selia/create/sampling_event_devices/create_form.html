@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
+{% load selia_forms %}
 
 {% block toolbar-title %}
   {% trans 'Add deployed device' %}
@@ -10,6 +11,16 @@
 {% block secondary-navbar %}
   {% include 'selia/navbars/sampling_event.html' %}
 {% endblock %}
+
+{% block head-extra %}
+  {{ block.super }}
+  {% include 'selia/media/json_form_media.html' %}
+{% endblock %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+  {% include 'selia/media/datetime_media.html' %}
+{% endblock scripts-extra%}
 
 {% block toolbar-steps %}
 <li>
@@ -77,6 +88,18 @@
       <div class="row px-5">
           {% bootstrap_form form.commentaries %}
       </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+        {% bootstrap_form form.deployed_on %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+        {% bootstrap_form form.recovered_on %}
     </div>
   </div>
 

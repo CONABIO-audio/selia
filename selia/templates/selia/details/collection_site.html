@@ -80,6 +80,22 @@
     </div>
   </div>
 
+  {% if object.site_descriptors.exists %}
+    {% detailsection %}
+      {% trans 'Site descriptors' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      {% for descriptor in object.site_descriptors.all %}
+      {% detailitem %}
+        {{ descriptor.descriptor_type }}
+      {% endhead %}
+        {{ descriptor.value }}
+      {% enddetailitem %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
   {% if object.metadata %}
     {% detailsection %}
       {% trans 'Metadata' %}

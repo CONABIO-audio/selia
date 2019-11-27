@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
+{% load selia_forms %}
 
 {% block toolbar-title %}
   {% trans 'Add site to collection' %}
@@ -92,3 +93,8 @@
   </a>
 </p>
 {% endblock %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+  {% autocomplete_media %}
+{% endblock scripts-extra %}

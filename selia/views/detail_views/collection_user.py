@@ -51,7 +51,7 @@ class DetailCollectionUserView(SeliaDetailView, SingleObjectMixin):
         return user_permissions.delete(user, collection_user=self.object)
 
     def get_delete_redirect_url_args(self):
-        return [self.object.collection.pk]
+        return [self.object.collection.name]
 
     def get_permissions(self):
         permissions = super().get_permissions()
