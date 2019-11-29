@@ -27,9 +27,6 @@ urlpatterns = [
         r'^upload/',
         include(('selia_uploader.urls', 'selia_uploader'))),
     url(
-        r'^admin/',
-        include(('selia_admin.urls', 'selia_admin'))),
-    url(
         r'^annotator/',
         include(('selia_annotator.urls', 'selia_annotator'))),
     url(
