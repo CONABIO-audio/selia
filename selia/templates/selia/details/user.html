@@ -8,89 +8,98 @@
 {% enddetailheader %}
 {% enddetailtitle %}
 
-{% detailsection %}
-  {% trans 'User info' %}
-{% enddetailsection %}
 
 <div class="row">
   <div class="col">
-    {% detailitem %}
-      {% trans 'Username' %}
-    {% endhead %}
-      {{ object.username }}
-    {% enddetailitem %}
+    {% detailsection %}
+      {% trans 'User info' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="col">
+        {% detailitem %}
+          {% trans 'Username' %}
+        {% endhead %}
+          {{ object.username }}
+        {% enddetailitem %}
+      </div>
+
+      <div class="col">
+        {% detailitem %}
+          {% trans 'Email' %}
+        {% endhead %}
+          {{ object.email }}
+        {% enddetailitem %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        {% detailitem %}
+          {% trans 'First name' %}
+        {% endhead %}
+          {{ object.first_name }}
+        {% enddetailitem %}
+      </div>
+
+      <div class="col">
+        {% detailitem %}
+          {% trans 'Last name' %}
+        {% endhead %}
+          {{ object.last_name }}
+        {% enddetailitem %}
+      </div>
+    </div>
+
+    <div class="row py-4">
+      <a href="{% url 'selia_registration:password_reset' %}" class="btn btn-link text-primary">
+        {% trans 'Change password' %}
+      </a>
+    </div>
   </div>
 
   <div class="col">
-    {% detailitem %}
-      {% trans 'Email' %}
-    {% endhead %}
-      {{ object.email }}
-    {% enddetailitem %}
+    {% detailsection %}
+      {% trans 'Institution info' %}
+    {% enddetailsection %}
+
+    {% if object.institution %}
+      <div class="row">
+        <div class="col">
+          {% detailitem %}
+            {% trans 'Name' %}
+          {% endhead %}
+            {{ object.institution.institution_name }}
+          {% enddetailitem %}
+        </div>
+        <div class="col">
+          {% detailitem %}
+            {% trans 'Institution code' %}
+          {% endhead %}
+            {{ object.institution.institution_code }}
+          {% enddetailitem %}
+        </div>
+      </div>
+    <div class="row">
+      <div class="col">
+        {% detailitem %}
+          {% trans 'Subdependency' %}
+        {% endhead %}
+          {{ object.institution.subdependency }}
+        {% enddetailitem %}
+      </div>
+      <div class="col">
+        {% detailitem %}
+          {% trans 'Country' %}
+        {% endhead %}
+          {{ object.institution.country }}
+        {% enddetailitem %}
+      </div>
+    </div>
+    {% else %}
+    <div class="col text-center text-muted">
+      {% trans 'No institution info' %}
+    </div>
+    {% endif %}
   </div>
 </div>
-
-<div class="row">
-  <div class="col">
-    {% detailitem %}
-      {% trans 'First name' %}
-    {% endhead %}
-      {{ object.first_name }}
-    {% enddetailitem %}
-  </div>
-
-  <div class="col">
-    {% detailitem %}
-      {% trans 'Last name' %}
-    {% endhead %}
-      {{ object.last_name }}
-    {% enddetailitem %}
-  </div>
-</div>
-
-<div class="row py-4">
-  <a href="{% url 'selia_registration:password_reset' %}" class="btn btn-link text-primary">
-    {% trans 'Change password' %}
-  </a>
-</div>
-
-
-{% if object.institution %}
-
-{% detailsection %}
-  {% trans 'Institution info' %}
-{% enddetailsection %}
-
-<div class="row">
-  <div class="col">
-    {% detailitem %}
-      {% trans 'Name' %}
-    {% endhead %}
-      {{ object.institution.institution_name }}
-    {% enddetailitem %}
-  </div>
-  <div class="col">
-    {% detailitem %}
-      {% trans 'Institution code' %}
-    {% endhead %}
-      {{ object.institution.institution_code }}
-    {% enddetailitem %}
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    {% detailitem %}
-      {% trans 'Subdependency' %}
-    {% endhead %}
-      {{ object.institution.subdependency }}
-    {% enddetailitem %}
-  </div>
-  <div class="col">
-    {% detailitem %}
-      {% trans 'Country' %}
-    {% endhead %}
-      {{ object.institution.country }}
-    {% enddetailitem %}
-  </div>
-</div>
-{% endif %}

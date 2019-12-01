@@ -3,6 +3,9 @@ from django import forms
 
 from irekua_database.models import Item
 from irekua_permissions.items import items as item_permissions
+
+from selia_visualizers.utils import get_visualizer
+
 from selia.views.detail_views.base import SeliaDetailView
 from selia.forms.json_field import JsonField
 
@@ -33,7 +36,7 @@ class DetailItemView(SeliaDetailView):
     detail_template = 'selia/details/item.html'
     summary_template = 'selia/summaries/item.html'
     update_form_template = 'selia/update/item.html'
-    viewer_template = 'selia/viewers/item_audio.html'
+    viewer_template = 'selia/viewers/item.html'
 
     def has_view_permission(self):
         user = self.request.user
@@ -51,21 +54,15 @@ class DetailItemView(SeliaDetailView):
         user = self.request.user
         return item_permissions.download(user, item=self.object)
 
-    def get_object_mimetype(self):
-        mimeguess = mimetypes.guess_type(self.get_object().item_file.url)
-        return mimeguess[0]
-
-    def get_viewer_template(self):
-        mimetype = self.get_object_mimetype()
-        if mimetype == "audio/x-wav":
-            return 'selia/viewers/item_audio.html'
-        else:
-            return 'selia/viewers/item_image.html'
-
     def get_permissions(self):
         permissions = super().get_permissions()
         permissions['download'] = self.has_download_permission()
         return permissions
+
+    def get_visualizer(self):
+        item_type = self.object.item_type
+        visualizer = get_visualizer(item_type)
+        return visualizer.visualizer_component.javascript_file.url
 
     def get_delete_redirect_url_args(self):
         return [self.object.collection.pk]
@@ -80,8 +77,11 @@ class DetailItemView(SeliaDetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['mimetype'] = self.get_object_mimetype()
+
         context['collection_device'] = self.object
         context["next_object"] = self.get_next_object()
         context["prev_object"] = self.get_prev_object()
+
+        if context['permissions']['download']:
+            context['visualizer_url'] = self.get_visualizer()
         return context

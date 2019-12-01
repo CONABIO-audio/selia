@@ -1,0 +1,96 @@
+<script src="https://unpkg.com/wavesurfer.js/dist/wavesurfer.js"></script>
+<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.spectrogram.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var loading_audioviewer = document.getElementById('loading_audioviewer');
+    var waveform_footer = document.getElementById('waveform-footer');
+    var audio_url = '{{ item.item_file.url }}';
+    var audio = new Audio();
+    var rewind = document.getElementById("rewind");
+    var playpause = document.getElementById("playpause");
+    var waveform_time = document.getElementById("remainingTime");
+    var wavesurfer = null;
+
+    rewind.onclick = function(event){
+      wavesurfer.seekTo(0);
+    }
+    playpause.onclick = function(event){
+      if (wavesurfer.isPlaying()){
+        wavesurfer.pause();
+      } else {
+        wavesurfer.play();
+      }
+    }
+
+    $(audio).on("loadedmetadata",function(){
+      var pxpersec = Math.round(900.0/audio.duration);
+      wavesurfer = WaveSurfer.create({
+                  container:"#waveform",
+                  waveColor: 'white',
+                  progressColor: 'green',
+                  normalize: true,
+                  minPxPerSec: pxpersec,
+                  height: 100,
+                  barWidth: 1,
+                  barGap: 1,
+                  plugins: [
+                      WaveSurfer.spectrogram.create({
+                          wavesurfer: this,
+                          container: "#wave-spectrogram",
+                          labels: true
+                      })
+                ],
+                  fillParent: true
+      });
+      function format_time_display(number){
+        if (number > 0){
+          if (number < 10){
+            return "0"+number;
+          } else {
+            return number;
+          }
+        } else {
+          return "00";
+        }
+      }
+        wavesurfer.on('play',function(){
+          playpause.innerHTML = "<i class='fas fa-pause'></i>";
+        });
+        wavesurfer.on('pause',function(){
+          playpause.innerHTML = "<i class='fas fa-play'></i>";
+        });
+        wavesurfer.on('audioprocess',function(){
+          if (wavesurfer.isPlaying()){
+            var new_time = wavesurfer.getCurrentTime();
+            var hours = Math.floor(new_time/3600);
+            var minutes = Math.floor((new_time-hours*3600)/60);
+            var seconds = Math.floor(new_time-hours*3600-minutes*60);
+
+            waveform_time.innerHTML = format_time_display(hours)+":"+format_time_display(minutes)+":"+format_time_display(seconds);
+          }
+        });
+        wavesurfer.on('seek',function(position){
+          if (!wavesurfer.isPlaying()){
+            var new_time = position*wavesurfer.getDuration();
+            var hours = Math.floor(new_time/3600);
+            var minutes = Math.floor((new_time-hours*3600)/60);
+            var seconds = Math.floor(new_time-hours*3600-minutes*60);
+
+            waveform_time.innerHTML = format_time_display(hours)+":"+format_time_display(minutes)+":"+format_time_display(seconds);
+          }
+
+
+        });
+        wavesurfer.on('ready', function () {
+          wavesurfer.drawBuffer();
+          loading_audioviewer.style.display = 'none';
+          waveform_time.style.display = 'block';
+          waveform_footer.style.display = 'block';
+        });
+
+        wavesurfer.empty();
+        wavesurfer.load(audio_url);
+    });
+    audio.src = audio_url;
+  });
+</script>

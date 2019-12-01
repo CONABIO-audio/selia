@@ -20,11 +20,13 @@
 
 {% block main-content %}
   <div class="container-fluid w-100">
-    <div class="row p-2">
-      <div class="col p-2">
+    <div class="row bg-light my-4">
+      <div class="container">
         {% detail_component detail_template=detail_template object=user %}
       </div>
-      <div class="col p-2">
+    </div>
+    <div class="row bg-light my-4">
+      <div class="container">
         {% summary_component summary_template=summary_template object=user %}
       </div>
     </div>

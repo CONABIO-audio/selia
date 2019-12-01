@@ -1,0 +1,45 @@
+{% load i18n %}
+
+<div class="card w-100 h-100 shadow-sm p-1">
+	<div class="container-fluid rounded bg-secondary w-100">
+		<img class="mx-auto d-block" src="{% url 'selia_thumbnails:thumbnails' %}?pk={{ item.pk }}&height=x500&crop=noop&upscale=False">
+	</div>
+
+	{% if permissions.download %}
+		<button id="openVisualizerButton" type="button" class="btn btn-text text-primary" data-toggle="modal" data-target="#visualizerModal">
+			{% trans 'See full item' %}
+		</button>
+	{% endif %}
+</div>
+
+{% if permissions.download %}
+
+<!-- Visualizer Modal -->
+<div class="modal fade" id="visualizerModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+        <div class="container-fluid w-100">
+					<div class="row">
+			      <div class="col p-2">
+			        <div class="w-100 border rounded">
+			          <div id="toolbar">
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="row">
+			      <div class="col" style="height: 70vh;">
+			        <canvas id="visualizerCanvas">
+			        </canvas>
+			      </div>
+			    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

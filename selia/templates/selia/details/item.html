@@ -81,13 +81,13 @@
     </div>
     <div class="col">
       {% detailitem %}
-      {% trans 'File' %}
+        {% trans 'File' %}
       {% endhead %}
-      {% if permissions.download %}
-      <a href="{{ object.item_file.url }}" target="_blank">{% trans 'Download' %}</a>
-      {% else %}
-      {% trans 'Sorry. You don\'t have permissions to download the original file' %}
-      {% endif %}
+        {% if permissions.download %}
+          <a href="{{ object.item_file.url }}" target="_blank">{% trans 'Download' %}</a>
+        {% else %}
+          {% trans 'Sorry. You don\'t have permissions to download the original file' %}
+        {% endif %}
       {% enddetailitem %}
     </div>
   </div>

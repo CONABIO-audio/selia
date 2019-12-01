@@ -1,19 +1,57 @@
 {% load selia_forms %}
+{% load selia_tags %}
+{% load i18n %}
 
-{% bootstrap_form form.username %}
-<div class="form-row">
-  <div class="form-group col-md-6">
-    {% bootstrap_form form.first_name %}
+<div class="row p-1">
+  <div class="col">
+    {% detailsection %}
+      {% trans 'User info' %}
+    {% enddetailsection %}
+    <div class="form-row">
+      {% bootstrap_form form.username %}
+    </div>
+    <div class="form-row">
+      {% bootstrap_form form.first_name %}
+    </div>
+    <div class="form-row">
+      {% bootstrap_form form.last_name %}
+    </div>
+    <div class="form-row">
+      {% bootstrap_form form.email %}
+    </div>
   </div>
-  <div class="form-group col-md-6">
-    {% bootstrap_form form.last_name %}
-  </div>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6">
-    {% bootstrap_form form.email %}
-  </div>
-  <div class="form-group col-md-6">
-    {% bootstrap_form form.institution %}
+  <div class="col">
+    {% detailsection %}
+      {% trans 'Institution info' %}
+    {% enddetailsection %}
+    <div class="form-row">
+      {% bootstrap_form form.institution%}
+      <p>
+        {% trans 'Select an institution or' %} <span data-toggle="collapse" data-target="#institutionForm" id="createInstitution" class="btn-link text-primary">{% trans 'create a new one'%}</span>
+      </p>
+    </div>
+    <div class="container-fluid collapse" id="institutionForm">
+      <div class="form-row">
+        {% bootstrap_form form.institution_name %}
+      </div>
+      <div class="form-row">
+        {% bootstrap_form form.institution_code %}
+      </div>
+      <div class="form-row">
+        {% bootstrap_form form.subdependency%}
+      </div>
+      <div class="form-row">
+        {% bootstrap_form form.country %}
+      </div>
+      <div class="form-row">
+        {% bootstrap_form form.postal_code %}
+      </div>
+      <div class="form-row">
+        {% bootstrap_form form.address %}
+      </div>
+      <div class="form-row">
+        {% bootstrap_form form.website %}
+      </div>
+    </div>
   </div>
 </div>

@@ -60,8 +60,8 @@ class DetailSamplingEventDeviceView(SeliaDetailView):
 
         if sampling_event_type.restrict_device_types:
             info = SamplingEventTypeDeviceType.objects.get(
-                    sampling_event_type=sampling_event_type,
-                    device_type=device.device_type)
+                sampling_event_type=sampling_event_type,
+                device_type=device.device_type)
 
             context['info'] = info
             context['form'].fields['metadata'].update_schema(
