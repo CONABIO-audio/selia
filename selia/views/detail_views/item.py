@@ -61,11 +61,14 @@ class DetailItemView(SeliaDetailView):
 
     def get_visualizer(self):
         item_type = self.object.item_type
-        visualizer = get_visualizer(item_type)
-        return visualizer.visualizer_component.javascript_file.url
+        try:
+            visualizer = get_visualizer(item_type)
+            return visualizer.visualizer_component.javascript_file.url
+        except:
+            return None
 
     def get_delete_redirect_url_args(self):
-        return [self.object.collection.pk]
+        return [self.object.collection.name]
 
     def get_next_object(self):
         next_object = Item.objects.filter(pk__gt=self.kwargs['pk']).order_by('pk').first()
