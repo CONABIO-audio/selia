@@ -93,7 +93,6 @@ class DetailUserView(SeliaDetailView):
             initial['postal_code'] = self.object.institution.postal_code
             initial['address'] = self.object.institution.address
             initial['website'] = self.object.institution.website
-
         return initial
 
     def get_context_data(self, *args, **kwargs):
@@ -108,8 +107,8 @@ class DetailUserView(SeliaDetailView):
             field: form.cleaned_data[field]
             for field in INSTITUTION_FIELDS}
 
-        institution_form = InstitutionForm(institution_data)
-
+        print('captured data', institution_data)
+        institution_form = InstitutionForm(institution_data.copy())
         institution = None
         try:
             institution = Institution.objects.get(

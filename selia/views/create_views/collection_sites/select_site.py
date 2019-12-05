@@ -32,7 +32,7 @@ class SelectCollectionSiteSiteView(SeliaCreateView):
                 ]
 
                 widgets = {
-                    'locality': get_autocomplete_widget(name='locality')
+                    'locality': get_autocomplete_widget(name='localities')
                 }
 
         return SiteCreateForm

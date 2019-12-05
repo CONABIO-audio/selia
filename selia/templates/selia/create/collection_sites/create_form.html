@@ -86,3 +86,8 @@
 
   {% endif %}
 {% endblock form-content %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+  {% autocomplete_media %}
+{% endblock scripts-extra %}

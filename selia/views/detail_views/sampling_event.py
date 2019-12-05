@@ -2,7 +2,7 @@ from django import forms
 
 from selia.views.detail_views.base import SeliaDetailView
 from selia.forms.json_field import JsonField
-from selia.forms.widgets import BootstrapDateTimePickerInput
+from selia_templates.widgets import BootstrapDateTimePickerInput
 from irekua_permissions.sampling_events import (
     sampling_events as sampling_event_permissions)
 from irekua_database.models import SamplingEvent

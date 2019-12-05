@@ -5,10 +5,11 @@ from irekua_database.models import Collection
 from irekua_database.models import Site
 from irekua_database.models import SiteType
 from irekua_database.models import SiteDescriptor
+from irekua_autocomplete.utils import get_autocomplete_widget
+from irekua_permissions.data_collections import sites as site_permissions
 
 from selia.forms.json_field import JsonField
 from selia.views.create_views.create_base import SeliaCreateView
-from irekua_permissions.data_collections import sites as site_permissions
 
 
 class CollectionSiteCreateView(SeliaCreateView):
@@ -40,7 +41,13 @@ class CollectionSiteCreateView(SeliaCreateView):
                 for site_descriptor_type in site_descriptor_types:
                     name = site_descriptor_type.name
                     queryset = SiteDescriptor.objects.filter(descriptor_type=site_descriptor_type)
-                    field = forms.ModelChoiceField(queryset, label=name)
+                    field = forms.ModelChoiceField(
+                        queryset,
+                        label=name,
+                        widget=get_autocomplete_widget(
+                            name='site_descriptors',
+                            type=site_descriptor_type.pk))
+
                     self.fields[name] = field
                     self.type_fields.add(name)
 
