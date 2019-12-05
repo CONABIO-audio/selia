@@ -42,7 +42,9 @@
 <div class="row">
   <div class="col">
     {% detailitem %}
-      {% trans 'Site name' %}
+      <a href="{% url 'selia:collection_site_detail' object.sampling_event.collection_site.pk %}">
+        {% trans 'Site' %}
+      </a>
     {% endhead %}
       {{ object.sampling_event.collection_site.internal_id }}
     {% detailitem %}

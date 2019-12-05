@@ -64,29 +64,29 @@
     <div class="col">
       <div class="row">
         {% listattribute %}
-          {% trans 'Site Name' %}
-        {% attributevalue %}
           <a href="{% url 'selia:collection_site_detail' item.sampling_event_device.sampling_event.collection_site.pk %}">
+            {% trans 'Site Name' %}
+          </a>
+        {% attributevalue %}
             {{ item.sampling_event_device.sampling_event.collection_site.internal_id }}
-          </a>
         {% endlistattribute %}
       </div>
       <div class="row">
         {% listattribute %}
-          {% trans 'Sampling event' %}
-        {% attributevalue %}
           <a href="{% url 'selia:sampling_event_detail' item.sampling_event_device.sampling_event.pk %}">
-            {{ item.sampling_event_device.sampling_event.pk }}
+            {% trans 'Sampling event' %}
           </a>
+        {% attributevalue %}
+            {{ item.sampling_event_device.sampling_event.started_on | date:"SHORT_DATE_FORMAT" }} - {{ item.sampling_event_device.sampling_event.ended_on | date:"SHORT_DATE_FORMAT" }}
         {% endlistattribute %}
       </div>
       <div class="row">
         {% listattribute %}
-          {% trans 'Device Name' %}
-        {% attributevalue %}
           <a href="{% url 'selia:sampling_event_device_detail' item.sampling_event_device.collection_device.pk %}">
-            {{ item.sampling_event_device.collection_device.internal_id }}
+            {% trans 'Device Name' %}
           </a>
+        {% attributevalue %}
+            {{ item.sampling_event_device.collection_device.internal_id }}
         {% endlistattribute %}
       </div>
     </div>

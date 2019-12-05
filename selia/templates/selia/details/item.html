@@ -16,20 +16,20 @@
   <div class="row">
     <div class="col">
       {% detailitem %}
-        {% trans 'Sampling event' %}
-      {% endhead %}
         <a href="{% url 'selia:sampling_event_detail' object.sampling_event_device.sampling_event.pk %}" target="_blank">
-          {{ object.sampling_event_device.sampling_event.pk }}
+          {% trans 'Sampling event' %}
         </a>
+      {% endhead %}
+          {{ object.sampling_event_device.sampling_event.started_on | date:"SHORT_DATE_FORMAT" }} - {{ object.sampling_event_device.sampling_event.started_on | date:"SHORT_DATE_FORMAT" }}
       {% enddetailitem %}
     </div>
     <div class="col">
       {% detailitem %}
-        {% trans 'Device' %}
-      {% endhead %}
         <a href="{% url 'selia:sampling_event_device_detail' object.sampling_event_device.pk %}" target="_blank">
-          {{ object.sampling_event_device.pk }}
+          {% trans 'Device' %}
         </a>
+      {% endhead %}
+          {{ object.sampling_event_device.collection_device.internal_id }}
       {% enddetailitem %}
     </div>
   </div>
