@@ -10,7 +10,7 @@ from irekua_permissions.data_collections import (
 
 
 class SelectCollectionSiteTypeView(TemplateView):
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
     template_name = 'selia/create/collection_sites/select_type.html'
 
     def has_view_permission(self):

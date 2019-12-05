@@ -9,7 +9,7 @@ from django.shortcuts import reverse
 
 
 class SeliaCreateView(CreateView, SingleObjectMixin):
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
     success_url = 'selia:home'
 
     def has_view_permission(self):

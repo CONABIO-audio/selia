@@ -6,7 +6,7 @@ from django.db.models import ProtectedError
 
 class SeliaDetailView(UpdateView):
     success_url = '#'
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
     protected_template = 'selia/protected.html'
 
     delete_redirect_url = 'selia:home'

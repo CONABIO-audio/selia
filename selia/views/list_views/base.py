@@ -16,7 +16,7 @@ class SearchForm(forms.Form):
 class SeliaListView(ListView):
     paginate_by = 10
     empty_message = _('Empty list')
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
 
     def has_view_permission(self):
         return self.request.user.is_authenticated

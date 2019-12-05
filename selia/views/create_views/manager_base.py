@@ -11,7 +11,7 @@ class MissingParameterError(Exception):
 
 
 class CreateManagerBase(View):
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
     required_get_parameters = []
     manager_name = 'base_manager'
 

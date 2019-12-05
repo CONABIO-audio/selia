@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 class SeliaSelectView(TemplateView):
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
     prefix = ''
     create_url = ''
 

@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 class SeliaAnnotationView(TemplateView):
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
 
     def has_view_permission(self):
         return self.request.user.is_authenticated

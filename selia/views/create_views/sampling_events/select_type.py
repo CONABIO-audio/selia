@@ -10,7 +10,7 @@ from irekua_permissions.sampling_events import (
 
 
 class SelectSamplingEventTypeView(TemplateView):
-    no_permission_template = 'selia/no_permission.html'
+    no_permission_template = 'selia_templates/generic/no_permission.html'
     template_name = 'selia/create/sampling_events/select_type.html'
     navbar_template = 'selia/collection_detail/components/secondary_navbar.html'
 
