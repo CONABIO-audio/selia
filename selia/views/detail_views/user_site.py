@@ -31,7 +31,7 @@ class DetailUserSiteView(SeliaDetailView):
                     'altitude'
                 ]
 
-                widgets = {'locality': get_autocomplete_widget(name='locality')}
+                widgets = {'locality': get_autocomplete_widget(name='localities')}
 
         return SiteUpdateForm
 
