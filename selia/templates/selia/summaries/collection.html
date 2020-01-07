@@ -12,7 +12,7 @@
         {% trans 'Last added on' %}: {{ object.sites.first.created_on }}
       </div>
       <div class="col-2">
-        <a href="{% url 'selia:collection_sites' object.pk %}">{% see_button %}</a>
+        <a href="{% url 'selia:collection_sites' object.name %}">{% see_button %}</a>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
         {% trans 'Last added on' %}: {{ object.collectiondevice_set.first.created_on }}
       </div>
       <div class="col-2">
-        <a href="{% url 'selia:collection_devices' object.pk %}">{% see_button %}</a>
+        <a href="{% url 'selia:collection_devices' object.name %}">{% see_button %}</a>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
         {% trans 'Last added on' %}: {{ object.samplingevent_set.first.created_on }}
       </div>
       <div class="col-2">
-        <a href="{% url 'selia:collection_sampling_events' object.pk %}">{% see_button %}</a>
+        <a href="{% url 'selia:collection_sampling_events' object.name %}">{% see_button %}</a>
       </div>
     </div>
   </div>
@@ -60,7 +60,7 @@
         {% trans 'Last added on' %}: {{ object.items.first.created_on }}
       </div>
       <div class="col-2">
-        <a href="{% url 'selia:collection_items' object.pk %}">{% see_button %}</a>
+        <a href="{% url 'selia:collection_items' object.name %}">{% see_button %}</a>
       </div>
     </div>
   </div>

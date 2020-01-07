@@ -12,7 +12,7 @@
   {% include 'selia/media/map_media.html' %}
 {% endblock head-extra %}
 
-{% block toolbar-title %}{{ sampling_event.collection }}{% trans ': Sampling Event ' %} {{ sampling_event.pk }}{% endblock %}
+{% block toolbar-title %}{{ sampling_event.collection }}: {{ sampling_event }}{% endblock %}
 
 {% block toolbar-items %}
 <li class="nav-item">
