@@ -26,6 +26,10 @@ class CreateSamplingEventDeviceForm(forms.ModelForm):
             'licence',
             'deployed_on',
             'recovered_on',
+            'latitude',
+            'longitude',
+            'altitude',
+            'geo_ref'
         ]
 
         widgets = {
@@ -69,7 +73,10 @@ class CreateSamplingEventDeviceView(SeliaCreateView):
             'sampling_event': self.sampling_event,
             'collection_device': self.collection_device,
             'deployed_on': self.sampling_event.started_on,
-            'recovered_on': self.sampling_event.ended_on
+            'recovered_on': self.sampling_event.ended_on,
+            'longitude': self.sampling_event.collection_site.site.longitude,
+            'latitude': self.sampling_event.collection_site.site.latitude,
+            'altitude': self.sampling_event.collection_site.site.altitude,
         }
 
     def get_context_data(self, *args, **kwargs):

@@ -4,12 +4,8 @@ from irekua_database.models import Collection
 from irekua_database.models import CollectionUser
 
 from selia.views.list_views.base import SeliaListView
-from irekua_permissions.data_collections import (
-    users as user_permissions)
-from irekua_permissions.data_collections import (
-    users as user_permissions)
-from irekua_permissions import (
-    licences as licence_permissions)
+from irekua_permissions.data_collections import users as user_permissions
+from irekua_permissions import licences as licence_permissions
 from irekua_filters.data_collections import collection_users
 
 

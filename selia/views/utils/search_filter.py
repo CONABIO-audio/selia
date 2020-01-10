@@ -74,7 +74,11 @@ class SearchFilter(object):
                 for orm_lookup in orm_lookups
             ]
             conditions.append(reduce(operator.or_, queries))
+
+        print('queryset', queryset)
+        print('filter', reduce(operator.and_, conditions))
         queryset = queryset.filter(reduce(operator.and_, conditions))
+        print('queryset after search filter', queryset, queryset.query)
 
         if self.must_call_distinct(queryset, search_fields):
             # Filtering against a many-to-many field requires us to
@@ -82,4 +86,5 @@ class SearchFilter(object):
             # in the resulting queryset.
             # We try to avoid this if possible, for performance reasons.
             queryset = distinct(queryset, base)
+
         return queryset

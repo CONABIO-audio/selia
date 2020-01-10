@@ -24,7 +24,7 @@ class CollectionDeviceUpdateForm(forms.ModelForm):
 class DetailCollectionDeviceView(SeliaDetailView, SingleObjectMixin):
     model = CollectionDevice
     form_class = CollectionDeviceUpdateForm
-    delete_redirect_url = 'selia:collection_sampling_events'
+    delete_redirect_url = 'selia:collection_devices'
 
     template_name = 'selia/detail/collection_device.html'
 

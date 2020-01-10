@@ -1,3 +1,4 @@
+from django.db.models import Q
 from irekua_database.models import Collection
 
 from selia.views.list_views.base import SeliaListView
@@ -17,15 +18,20 @@ class ListUserCollectionsView(SeliaListView):
 
     def get_initial_queryset(self):
         user = self.request.user
-        queryset = user.collection_users.all()
 
-        if user.collection_administrators.exists():
-            queryset = queryset.union(user.collection_administrators.all())
+        queryset = Collection.objects.all()
 
-        if user.collectiontype_set.exists():
-            managed_collections = Collection.objects.filter(
-                collection_type__in=user.collectiontype_set.all())
-            queryset = queryset.union(managed_collections)
+        if user.is_special:
+            return queryset
+
+        collection_user_query = Q(collectionuser__user=user)
+        collection_admin_query = Q(administrators=user)
+        collection_type_admin = Q(collection_type__administrators=user)
+
+        queryset = queryset.filter(
+            collection_user_query |
+            collection_admin_query |
+            collection_type_admin)
 
         return queryset
 

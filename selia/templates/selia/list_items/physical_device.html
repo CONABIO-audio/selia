@@ -10,9 +10,9 @@
     {% listtitle %}
       {% list_icon item.device.device_type.icon %}
     {% endlistimage %}
-      {{ item.device.brand }}
+      {{ item.identifier }}
     {% endlistheader %}
-      <div>{{ item.device.model }}</div>
+      <div><b>{{ item.device.brand }}</b> {{ item.device.model }}</div>
       <div>
         <a href="{% url 'selia:physical_device_detail' item.pk %}">
           {% enter_button %}

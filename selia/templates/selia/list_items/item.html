@@ -29,7 +29,7 @@
          {% listattribute %}
           {% trans 'Captured on' %}
          {% attributevalue %}
-           {{ item.captured_on }}
+           {{ item.captured_on | date:'SHORT_DATETIME_FORMAT' }}
          {% endlistattribute %}
       </div>
       <div class="row">

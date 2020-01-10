@@ -110,8 +110,7 @@ class SeliaListView(ListView):
 
     def get_queryset(self):
         queryset = self.get_initial_queryset()
-        filtered_queryset = self.filter_queryset(queryset)
-        return filtered_queryset
+        return self.filter_queryset(queryset)
 
     def filter_queryset_with_query(self, queryset):
         try:
@@ -148,8 +147,7 @@ class SeliaListView(ListView):
     def filter_queryset(self, queryset):
         queryset = self.filter_queryset_with_query(queryset)
         queryset = self.filter_queryset_with_search(queryset)
-        self.queryset = self.order_queryset(queryset)
-        return self.queryset
+        return self.order_queryset(queryset)
 
     def get_permissions(self):
         return {

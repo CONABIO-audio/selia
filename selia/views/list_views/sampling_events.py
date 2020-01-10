@@ -4,12 +4,9 @@ from django.utils.translation import gettext as _
 from irekua_database.models import Collection, SamplingEvent
 from selia.views.list_views.base import SeliaListView
 from irekua_filters.sampling_events import sampling_events
-from irekua_permissions.sampling_events import (
-    sampling_events as sampling_event_permissions)
-from irekua_permissions.data_collections import (
-    users as user_permissions)
-from irekua_permissions import (
-    licences as licence_permissions)
+from irekua_permissions.sampling_events import sampling_events as sampling_event_permissions
+from irekua_permissions.data_collections import users as user_permissions
+from irekua_permissions import licences as licence_permissions
 
 
 class ListCollectionSamplingEventView(SeliaListView, SingleObjectMixin):

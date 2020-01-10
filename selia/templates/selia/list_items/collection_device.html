@@ -10,10 +10,14 @@
     {% listtitle %}
       {% list_icon item.physical_device.device.device_type.icon %}
     {% endlistimage %}
-      {{ item.physical_device.device.brand }}
+      {% if item.internal_id %}
+      {{ item.internal_id }}
+      {% else %}
+        {{ item.physical_device.device.device_type.name }}
+      {% endif %}
     {% endlistheader %}
       <p class="mb-0">
-        {{ item.physical_device.device.model }}
+        <b>{{ item.physical_device.device.brand}}</b> {{ item.physical_device.device.model }}
       </p>
       <p>
         <a href="{% url 'selia:collection_device_detail' item.pk %}">

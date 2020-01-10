@@ -103,6 +103,18 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col">
+      {% bootstrap_form form.latitude %}
+    </div>
+    <div class="col">
+      {% bootstrap_form form.longitude %}
+    </div>
+    <div class="col">
+      {% bootstrap_form form.altitude %}
+    </div>
+  </div>
+
   {% if collection_device.physical_device.device.configuration_schema|is_not_trivial_schema or info.metadata_schema|is_not_trivial_schema %}
   <hr/>
   <div class="row mb-3">

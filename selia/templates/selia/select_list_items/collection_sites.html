@@ -8,16 +8,19 @@
 <div class="row ml-0 w-100">
   <div class="col">
     {% listtitle %}
-      <div class="mr-2 rounded" style="width: 15em;">
+      <div class="mr-2 rounded" style="width: 12em;">
         {{ item.site | site_map:"no controls" }}
       </div>
     {% endlistimage %}
-      {% if item.name %}
-        {{ item.name }}
+      {% if item.internal_id %}
+        {{ item.internal_id }}
       {% else %}
-        {% trans 'Site' %}
+        {% trans 'Site' %} {{ item.pk }}
       {% endif %}
     {% endlistheader %}
+      <div>
+        <b> {{ item.site.locality.name }}</b>
+      </div>
       <div>
         {{ item.site_type }}
       </div>
@@ -53,7 +56,7 @@
       {% listattribute %}
         {% trans 'Locality' %}
       {% attributevalue %}
-        {{ item.site.locality }}
+        {{ item.site.locality.name }}
       {% endlistattribute %}
     </div>
     <div class="row">

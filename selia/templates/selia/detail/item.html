@@ -61,7 +61,7 @@
       canvas: document.getElementById('visualizerCanvas'),
       active: true,
       itemInfo: {
-        url: "{% url 'irekua_rest_api:item-detail' item.pk %}",
+        url: "{% url 'irekua_rest_api:item-detail' item.pk %}download",
       }
     }
 
@@ -71,15 +71,22 @@
     $('#visualizerModal').on('shown.bs.modal', function (e) {
       if (!(isLoaded)) {
         visualizer = new Visualizer.default(config)
+
+        visualizer.init();
+
+        ReactDOM.render(
+            visualizer.renderToolbar(),
+            document.getElementById('toolbar'),
+            () => {
+              visualizer.adjustSize();
+              visualizer.draw();
+            });
+          return;
       }
 
       visualizer.init();
       visualizer.adjustSize();
       visualizer.draw();
-
-      ReactDOM.render(
-          visualizer.renderToolbar(),
-          document.getElementById('toolbar'));
     });
   </script>
 {% endblock %}
