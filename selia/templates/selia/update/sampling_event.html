@@ -6,19 +6,10 @@
 
 <div class="row">
   <div class="col">
-    <h6 class="w-100 text-center">{% trans 'Started on'%}</h6>
-    <div class="w-100 p-auto">
-      {{ form.started_on }}
-    </div>
+    {% bootstrap_form form.started_on %}
   </div>
-</div>
-
-<div class="row mt-3">
   <div class="col">
-    <h6 class="w-100 text-center">{% trans 'Ended on'%}</h6>
-    <div class="w-100 p-auto">
-      {{ form.ended_on }}
-    </div>
+    {% bootstrap_form form.ended_on %}
   </div>
 </div>
 

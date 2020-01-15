@@ -5,11 +5,10 @@ from irekua_database.models import SamplingEventType
 from irekua_database.models import Collection
 from irekua_database.models import CollectionSite
 
-from selia_templates.widgets import BootstrapDateTimePickerInput
+from selia_forms.widgets import BootstrapDateTimePickerInput
 from selia.forms.json_field import JsonField
 from selia.views.create_views.create_base import SeliaCreateView
-from irekua_permissions.sampling_events import (
-    sampling_events as sampling_event_permissions)
+from irekua_permissions.sampling_events import sampling_events as sampling_event_permissions
 
 
 class SamplingEventCreateForm(forms.ModelForm):

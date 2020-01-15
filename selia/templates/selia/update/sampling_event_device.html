@@ -1,5 +1,32 @@
 {% load selia_filters %}
 {% load selia_forms %}
+{% load i18n %}
+
+{{ form.errors }}
+<div class="col">
+  <div class="row mb-2">
+    <div class="col px-2">
+      {{ form.deployed_on.label_tag }}
+      {{ form.deployed_on }}
+    </div>
+    <div class="col px-2">
+      {{ form.recovered_on.label_tag }}
+      {{ form.recovered_on }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col px-2">
+      {% bootstrap_form form.latitude %}
+    </div>
+    <div class="col px-2">
+      {% bootstrap_form form.latitude %}
+    </div>
+    <div class="col px-2">
+      {% bootstrap_form form.altitude %}
+    </div>
+  </div>
+</div>
 
 <div class="col">
   <div class="row">

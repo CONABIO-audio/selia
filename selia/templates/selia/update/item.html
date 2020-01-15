@@ -1,3 +1,20 @@
 {% load selia_forms %}
+{% load selia_filters %}
 
-{{ form | selia_form }}
+<div class="col">
+  <div class="row mb-2">
+    {{ form.captured_on.label_tag }}
+    {{ form.captured_on }}
+  </div>
+
+  <div class="row mb-2">
+    {{ form.tags.label_tag }}
+    <div class="w-100">
+      {{ form.tags }}
+    </div>
+  </div>
+
+  {% if object.collection_type.metadata_schema|is_not_trivial_schema %}
+    {{ form.metadata }}
+  {% endif %}
+</div>

@@ -2,33 +2,21 @@ import mimetypes
 from django import forms
 
 from irekua_database.models import Item
+from irekua_database.models import Tag
 from irekua_permissions.items import items as item_permissions
-
+from selia_forms.widgets import BootstrapDateTimePickerInput
 from selia_visualizers.utils import get_visualizer
+from irekua_autocomplete.utils import get_autocomplete_widget
 
-from selia.views.detail_views.base import SeliaDetailView
 from selia.forms.json_field import JsonField
+from selia.views.detail_views.base import SeliaDetailView
 
 
 mimetypes.init()
 
 
-class CollectionItemUpdateForm(forms.ModelForm):
-    metadata = JsonField()
-
-    class Meta:
-        model = Item
-        fields = [
-            'sampling_event_device',
-            'captured_on',
-            'tags',
-            'metadata'
-        ]
-
-
 class DetailItemView(SeliaDetailView):
     model = Item
-    form_class = CollectionItemUpdateForm
     delete_redirect_url = 'selia:collection_items'
 
     template_name = 'selia/detail/item.html'
@@ -37,6 +25,25 @@ class DetailItemView(SeliaDetailView):
     summary_template = 'selia/summaries/item.html'
     update_form_template = 'selia/update/item.html'
     viewer_template = 'selia/viewers/item.html'
+
+    def get_form_class(self):
+        class Form(forms.ModelForm):
+            metadata = JsonField()
+
+            class Meta:
+                model = Item
+                fields = [
+                    'captured_on',
+                    'tags',
+                    'metadata'
+                ]
+
+                widgets = {
+                    'tags': get_autocomplete_widget(Tag, multiple=True),
+                    'captured_on': BootstrapDateTimePickerInput(),
+                }
+
+        return Form
 
     def has_view_permission(self):
         user = self.request.user

@@ -11,7 +11,7 @@
       {% list_icon item.physical_device.device.device_type.icon %}
     {% endlistimage %}
       {% if item.internal_id %}
-      {{ item.internal_id }}
+        {{ item.internal_id }}
       {% else %}
         {{ item.physical_device.device.device_type.name }}
       {% endif %}

@@ -16,11 +16,24 @@ class SearchFilter(object):
         '$': 'iregex',
     }
 
+    def __init__(self, prefix='', search_param=None):
+        self.prefix = prefix
+
+        if search_param is not None:
+            self.search_param = search_param
+
     def get_search_fields(self, view, request):
         return getattr(view, 'search_fields', None)
 
+    def get_search_param(self):
+        if self.prefix:
+            return '{}-{}'.format(self.prefix, self.search_param)
+
+        return self.search_param
+
     def get_search_terms(self, request):
-        params = request.GET.get(self.search_param, '')
+        search_param = self.get_search_param()
+        params = request.GET.get(search_param, '')
         return params.replace(',', ' ').split()
 
     def construct_search(self, field_name):
@@ -75,11 +88,7 @@ class SearchFilter(object):
             ]
             conditions.append(reduce(operator.or_, queries))
 
-        print('queryset', queryset)
-        print('filter', reduce(operator.and_, conditions))
         queryset = queryset.filter(reduce(operator.and_, conditions))
-        print('queryset after search filter', queryset, queryset.query)
-
         if self.must_call_distinct(queryset, search_fields):
             # Filtering against a many-to-many field requires us to
             # call queryset.distinct() in order to avoid duplicate items

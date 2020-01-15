@@ -27,8 +27,8 @@ class SeliaSelectView(TemplateView):
         if not list_class.prefix:
             list_class.prefix = self.prefix
 
-        list_instance = list_class()
-        return list_instance.get_context_data(self.request)
+        list_instance = list_class(self.request)
+        return list_instance.get_context_data()
 
     def has_view_permission(self):
         return self.request.user.is_authenticated

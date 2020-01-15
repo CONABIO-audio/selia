@@ -75,23 +75,16 @@
   <input type="hidden" id="collection_site_field" name="collection_site" value="{{ collection_site.pk }}">
 
   <div class="row d-flex justify-content-center">
-    <div class="col-md-8">
-      <div class="row">
-        <h4 class="w-100 text-center">{% trans 'Started on' %}</h4>
-      </div>
-      <div class="row px-5">
-        {{ form.started_on }}
-      </div>
-    </div>
-  </div>
-
-  <div class="row mt-4 d-flex justify-content-center">
-    <div class="col-md-8">
-      <div class="row">
-        <h4 class="w-100 text-center">{% trans 'Ended on' %}</h4>
-      </div>
-      <div class="row px-5">
-        {{ form.ended_on }}
+    <div class="col">
+      <div class="form-row">
+        <div class="col px-4">
+          {{ form.started_on.label_tag }}
+          {{ form.started_on }}
+        </div>
+        <div class="col px-4">
+          {{ form.ended_on.label_tag }}
+          {{ form.ended_on }}
+        </div>
       </div>
     </div>
   </div>

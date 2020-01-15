@@ -10,9 +10,13 @@
     {% listtitle %}
       {% list_icon item.collection_device.physical_device.device.device_type.icon %}
     {% endlistimage %}
-      {{ item.collection_device.physical_device.device.brand }}
+      {% if item.collection_device.internal_id %}
+        {{ item.collection_device.internal_id }}
+      {% else %}
+        {% trans 'Collection Device' %} {{item.pk}}
+      {% endif %}
     {% endlistheader %}
-      {{ item.collection_device.physical_device.device.model }}
+      <b>{{ item.collection_device.physical_device.device.brand}}</b> {{ item.collection_device.physical_device.device.model }}
     {% endlisttitle %}
   </div>
   <div class="col">
@@ -41,13 +45,6 @@
   <div class="col">
     <div class="row">
       {% listattribute %}
-        {% trans 'Collection' %}
-      {% attributevalue %}
-        {{ item.collection_device.collection }}
-      {% listattribute %}
-    </div>
-    <div class="row">
-      {% listattribute %}
         {% trans 'Owner' %}
       {% attributevalue %}
         {{ item.collection_device.physical_device.created_by }}
@@ -57,7 +54,14 @@
       {% listattribute %}
         {% trans 'Added on' %}
       {% attributevalue %}
-        {{ item.collection_device.created_on }}
+        {{ item.collection_device.created_on | date }}
+      {% listattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Items' %}
+      {% attributevalue %}
+        {{ item.item_set.count }}
       {% listattribute %}
     </div>
   </div>

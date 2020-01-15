@@ -12,104 +12,201 @@
     {{ object.item_type }}
   </div>
 {% enddetailtitle %}
-<div class="container mt-3 mb-3">
-  <div class="row">
-    <div class="col">
-      {% detailitem %}
-        <a href="{% url 'selia:sampling_event_detail' object.sampling_event_device.sampling_event.pk %}" target="_blank">
-          {% trans 'Sampling event' %}
-        </a>
-      {% endhead %}
-          {{ object.sampling_event_device.sampling_event.started_on | date:"SHORT_DATE_FORMAT" }} - {{ object.sampling_event_device.sampling_event.started_on | date:"SHORT_DATE_FORMAT" }}
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        <a href="{% url 'selia:sampling_event_device_detail' object.sampling_event_device.pk %}" target="_blank">
-          {% trans 'Device' %}
-        </a>
-      {% endhead %}
-          {{ object.sampling_event_device.collection_device.internal_id }}
-      {% enddetailitem %}
-    </div>
+
+{% detailsection %}
+  {% trans 'Item Info' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Item type' %}
+    {% endhead %}
+      {{ object.item_type }}
+    {% enddetailitem %}
   </div>
-   <div class="row">
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Item type' %}
-      {% endhead %}
-        {{ object.item_type }}
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        {% trans 'File size' %}
-      {% endhead %}
-        {{ object.filesize }}
-      {% enddetailitem %}
-    </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'File size' %}
+    {% endhead %}
+      {{ object.filesize }}
+    {% enddetailitem %}
   </div>
-  <div class="row">
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Captured on' %}
-      {% endhead %}
-        {{ object.captured_on }}
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Licence' %}
-      {% endhead %}
-        {{ object.licence.licence_type }}
-      {% enddetailitem %}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Tags' %}
-      {% endhead %}
-        <div class="container-fluid">
-          {% for tag in item.tags.all %}
-            <span class="badge badge-dark">{{ tag }}</span>
-          {% empty %}
-            <span class="text-muted">{% trans 'No tags' %}</span>
-          {% endfor %}
-        </div>
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        {% trans 'File' %}
-      {% endhead %}
-        {% if permissions.download %}
-          <a href="{{ object.item_file.url }}" target="_blank">{% trans 'Download' %}</a>
-        {% else %}
-          {% trans 'Sorry. You don\'t have permissions to download the original file' %}
-        {% endif %}
-      {% enddetailitem %}
-    </div>
-  </div>
-
-  {% if object.media_info %}
-    {% detailsection %}
-      {% trans 'Media info' %}
-    {% enddetailsection %}
-
-    <div class="d-flex flex-wrap">
-      {% show_json object.media_info %}
-    </div>
-  {% endif %}
-
-  {% if object.metadata %}
-    {% detailsection %}
-      {% trans 'Metadata' %}
-    {% enddetailsection %}
-
-    <div class="d-flex flex-wrap">
-      {% show_json object.metadata %}
-    </div>
-  {% endif %}
-
 </div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Captured on' %}
+    {% endhead %}
+      {{ object.captured_on }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Licence' %}
+    {% endhead %}
+      {{ object.licence.licence_type }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Tags' %}
+    {% endhead %}
+      <div class="container-fluid">
+        {% for tag in item.tags.all %}
+          <span class="badge badge-dark">{{ tag }}</span>
+        {% empty %}
+          <span class="text-muted">{% trans 'No tags' %}</span>
+        {% endfor %}
+      </div>
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'File' %}
+    {% endhead %}
+      {% if permissions.download %}
+        <a href="{{ object.item_file.url }}" target="_blank">{% trans 'Download' %}</a>
+      {% else %}
+        {% trans 'Sorry. You don\'t have permissions to download the original file' %}
+      {% endif %}
+    {% enddetailitem %}
+  </div>
+</div>
+
+{% if object.media_info %}
+  {% detailsection %}
+    {% trans 'Media info' %}
+  {% enddetailsection %}
+
+  <div class="d-flex flex-wrap">
+    {% show_json object.media_info %}
+  </div>
+{% endif %}
+
+{% if object.metadata %}
+  {% detailsection %}
+    {% trans 'Metadata' %}
+  {% enddetailsection %}
+
+  <div class="d-flex flex-wrap">
+    {% show_json object.metadata %}
+  </div>
+{% endif %}
+
+{% detailsection %}
+  <a href="{% url 'selia:sampling_event_detail' object.sampling_event_device.sampling_event.pk %}">
+    {% trans 'Sampling Event Info' %}
+  </a>
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Started on' %}
+    {% endhead %}
+      {{ object.sampling_event_device.sampling_event.started_on | date }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Ended on' %}
+    {% endhead %}
+      {{ object.sampling_event_device.sampling_event.ended_on | date}}
+    {% detailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      <a href="{% url 'selia:collection_site_detail' object.sampling_event_device.sampling_event.collection_site.pk %}">
+        {% trans 'Site' %}
+      </a>
+    {% endhead %}
+      {{ object.sampling_event_device.sampling_event.collection_site.internal_id }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Site locality' %}
+    {% endhead %}
+      {{ object.sampling_event_device.sampling_event.collection_site.site.locality.name }}
+    {% detailitem %}
+  </div>
+</div>
+
+{% detailsection %}
+  <a href="{% url 'selia:sampling_event_device_detail' object.sampling_event_device.pk %}">
+    {% trans 'Device Info' %}
+  </a>
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Device type' %}
+    {% endhead %}
+      {{ object.sampling_event_device.collection_device.physical_device.device.device_type }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      <a href="{% url 'selia:collection_device_detail' object.sampling_event_device.collection_device.pk %}">
+        {{ object.sampling_event_device.collection_device.internal_id }}
+      </a>
+    {% detailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Brand' %}
+    {% endhead %}
+      {{ object.sampling_event_device.collection_device.physical_device.device.brand }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Model' %}
+    {% endhead %}
+      {{ object.sampling_event_device.collection_device.physical_device.device.model }}
+    {% detailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Deployed on' %}
+    {% endhead %}
+      {{ object.sampling_event_device.deployed_on | date:"DATETIME_FORMAT" }}
+    {% detailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Recovered on' %}
+    {% endhead %}
+      {{ object.sampling_event_device.recovered_on | date:"DATETIME_FORMAT" }}
+    {% detailitem %}
+  </div>
+</div>
+
+{% if object.sampling_event_device.configuration %}
+  {% detailsection %}
+    {% trans 'Device configuration' %}
+  {% enddetailsection %}
+
+  <div class="row">
+    <div class="d-flex flex-wrap">
+      {% show_json object.configuration %}
+    </div>
+  </div>
+{% endif %}

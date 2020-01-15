@@ -1,6 +1,6 @@
 from django import forms
+from django.views.generic.list import MultipleObjectMixin
 from django.utils.translation import gettext as _
-from django.core.paginator import Paginator
 
 from .search_filter import SearchFilter
 
@@ -12,17 +12,32 @@ class SearchForm(forms.Form):
         required=False)
 
 
-class SeliaList(object):
+class SeliaList(MultipleObjectMixin):
     paginate_by = 5
     prefix = ''
 
-    def get_context_data(self, request):
+    def __init__(self, request, **kwargs):
+        self.kwargs = kwargs
+        self.request = request
+
+    def get_context_data(self):
         return {
             'templates': self.get_templates(),
-            'queryset': self.get_queryset(request),
+            'list': self.get_list_context_data(),
             'forms': self.get_forms()
         }
 
+    def get_list_context_data(self):
+        queryset = self.get_queryset()
+        page_size = self.get_paginate_by(queryset)
+        paginator, page, queryset, is_paginated = self.paginate_queryset(queryset, page_size)
+
+        return {
+            'paginator': paginator,
+            'page_obj': page,
+            'is_paginated': is_paginated,
+            'object_list': queryset
+        }
 
     def get_templates(self):
         return {
@@ -70,23 +85,24 @@ class SeliaList(object):
         class OrderingForm(forms.Form):
             order = forms.ChoiceField(
                 label=_('ordering'),
-                choices=ordering_choices)
+                choices=ordering_choices,
+                initial=ordering_choices[0])
 
         return OrderingForm
 
-    def get_ordering_form(self, request):
+    def get_ordering_form(self):
         ordering_form_class = self.get_ordering_form_class()
         ordering_form_prefix = self.get_ordering_form_prefix()
 
         ordering_form = ordering_form_class(
-            request.GET,
+            self.request.GET,
             prefix=ordering_form_prefix)
 
         return ordering_form
 
-    def get_search_form(self, request):
+    def get_search_form(self):
         search_form_prefix = self.get_search_form_prefix()
-        return SearchForm(request.GET, prefix=search_form_prefix)
+        return SearchForm(self.request.GET, prefix=search_form_prefix)
 
     def get_ordering_form_prefix(self):
         return '{}_order'.format(self.prefix)
@@ -115,24 +131,18 @@ class SeliaList(object):
 
         raise NotImplementedError('No initial queryset was provided')
 
-    def paginate_queryset(self, queryset, request):
-        paginator = Paginator(queryset, self.paginate_by)
-        page = request.GET.get('page', 1)
-        page = paginator.get_page(page)
-        return page
-
-    def get_queryset(self, request):
+    def get_queryset(self):
         queryset = self.get_initial_queryset()
-        filtered_queryset = self.filter_queryset(queryset, request)
-        return self.paginate_queryset(filtered_queryset, request)
+        filtered_queryset = self.filter_queryset(queryset)
+        return filtered_queryset
 
-    def filter_queryset_with_query(self, queryset, request):
+    def filter_queryset_with_query(self, queryset):
         try:
             filter_class = self.get_filter_class()
             prefix = self.get_filter_form_prefix()
             self.filter = filter_class(
-                request.GET,
-                request=request,
+                self.request.GET,
+                request=self.request,
                 queryset=queryset,
                 prefix=prefix)
             queryset = self.filter.qs
@@ -141,18 +151,19 @@ class SeliaList(object):
 
         return queryset
 
-    def filter_queryset_with_search(self, queryset, request):
+    def filter_queryset_with_search(self, queryset):
         if hasattr(self, 'search_fields'):
-            self.search_form = self.get_search_form(request)
+            self.search_form = self.get_search_form()
 
             if self.search_form.is_valid():
-                queryset = SearchFilter().filter_queryset(request, queryset, self)
+                search_filter = SearchFilter(prefix=self.get_search_form_prefix())
+                queryset = search_filter.filter_queryset(self.request, queryset, self)
 
         return queryset
 
-    def order_queryset(self, queryset, request):
+    def order_queryset(self, queryset):
         if hasattr(self, 'ordering_fields'):
-            self.order_form = self.get_ordering_form(request)
+            self.order_form = self.get_ordering_form()
 
             if self.order_form.is_valid():
                 ordering_form_prefix = self.get_ordering_form_prefix()
@@ -162,10 +173,10 @@ class SeliaList(object):
 
         return queryset
 
-    def filter_queryset(self, queryset, request):
-        queryset = self.filter_queryset_with_query(queryset, request)
-        queryset = self.filter_queryset_with_search(queryset, request)
-        queryset = self.order_queryset(queryset, request)
+    def filter_queryset(self, queryset):
+        queryset = self.filter_queryset_with_query(queryset)
+        queryset = self.filter_queryset_with_search(queryset)
+        queryset = self.order_queryset(queryset)
         return queryset
 
     def get_list_item_template(self):
