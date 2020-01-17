@@ -23,7 +23,8 @@ class SamplingEventDeviceUpdateForm(forms.ModelForm):
             'configuration',
             'longitude',
             'altitude',
-            'latitude'
+            'latitude',
+            'geo_ref',
         ]
 
         widgets = {

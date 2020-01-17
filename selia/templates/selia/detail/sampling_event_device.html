@@ -26,8 +26,13 @@
       <div class="col-6 p-2">
         {% detail_component detail_template=detail_template object=sampling_event_device %}
       </div>
-      <div class="col-6 p-2">
-        {% summary_component summary_template=summary_template object=sampling_event_device %}
+      <div class="col-6">
+        <div class="row p-2">
+          {% viewer_component viewer_template="selia/viewers/sampling_event_device.html" object=sampling_event_device %}
+        </div>
+        <div class="row p-2">
+          {% summary_component summary_template=summary_template object=sampling_event_device %}
+        </div>
       </div>
     </div>
   </div>

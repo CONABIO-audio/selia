@@ -1,0 +1,88 @@
+{% load static %}
+
+<div class="card w-100 h-100 shadow-sm rounded">
+
+  <div id="map" class="map rounded"></div>
+
+  {% include 'selia/map_media.html' %}
+  <script type="text/javascript">
+    var overlay;
+
+    var pointCoordinates = ol.proj.fromLonLat([
+      {{ object.collection_site.site.longitude | stringformat:"2.6f" }},
+      {{ object.collection_site.site.latitude | stringformat:"2.6f" }}
+    ]);
+
+    var baseLayer = new ol.layer.Tile({source: new ol.source.OSM()})
+    var initView = new ol.View({
+      center: pointCoordinates,
+      zoom: 14
+    })
+
+    var siteLayer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [
+            new ol.Feature({
+              geometry: new ol.geom.Point(pointCoordinates),
+              labelPoint: new ol.geom.Point(pointCoordinates),
+              name: 'Site',
+            }),
+          ],
+      }),
+      style: iconStyleFunction("{{ object.sampling_event_type.icon.url }}", 0.08, 1)
+    });
+
+    var devicesSource = new ol.source.Vector({});
+    var devicesLayer = new ol.layer.Vector({
+      source: devicesSource,
+    })
+
+    var deviceFeature, deviceCoordinates;
+    {% for device in object.samplingeventdevice_set.all %}
+    deviceCoordinates = ol.proj.fromLonLat([
+      {{ device.longitude | stringformat:"2.6f" }},
+      {{ device.latitude | stringformat:"2.6f" }}
+    ]);
+    deviceFeature = new ol.Feature({
+      geometry: new ol.geom.Point(deviceCoordinates),
+      labelPoint: new ol.geom.Point(deviceCoordinates),
+      name: 'Site'
+    });
+
+    deviceFeature.setStyle(iconStyleFunction("{{ device.collection_device.physical_device.device.device_type.icon.url }}", 0.06, 1))
+    devicesSource.addFeature(deviceFeature);
+    {% endfor %}
+
+    var otherSitesSource = new ol.source.Vector({});
+    var otherSitesLayer = new ol.layer.Vector({
+      source: otherSitesSource,
+    })
+    var siteFeature, siteCoordinates;
+    {% for sampling_event in object.collection.samplingevent_set.all %}
+      {% if sampling_event != object %}
+        siteCoordinates = ol.proj.fromLonLat([
+          {{ sampling_event.collection_site.site.longitude | stringformat:"2.6f" }},
+          {{ sampling_event.collection_site.site.latitude | stringformat:"2.6f" }}
+        ]);
+        siteFeature = new ol.Feature({
+          geometry: new ol.geom.Point(siteCoordinates),
+          labelPoint: new ol.geom.Point(siteCoordinates),
+          name: 'Site'
+        });
+        siteFeature.setStyle(iconStyleFunction("{{ sampling_event.sampling_event_type.icon.url }}", 0.06, 0.5))
+        otherSitesSource.addFeature(siteFeature);
+      {% endif %}
+    {% endfor %}
+
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        baseLayer,
+        devicesLayer,
+        otherSitesLayer,
+        siteLayer,
+      ],
+      view: initView
+    });
+  </script>
+</div>
