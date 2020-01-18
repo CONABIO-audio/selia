@@ -1,15 +1,16 @@
 {% load i18n %}
 
-<div class="card w-100 h-100 shadow-sm p-1">
-	<div class="container-fluid rounded bg-light border w-100 p-1">
+<div class="w-100 h-100 pt-5 d-flex flex-column justify-content-start bg-dark inner-shadow">
+	<div class="w-100 h-100">
 		<img style="height: 500px; width: 100%; object-fit: contain;" class="mx-auto d-block" src="{% url 'selia_thumbnails:thumbnails' %}?pk={{ item.pk }}&height=x500&crop=noop&upscale=False">
+		{% if permissions.download %}
+		<div class="text-center">
+			<a id="openVisualizerButton" class="btn btn-text text-primary" data-toggle="modal" data-target="#visualizerModal">
+				{% trans 'See full item' %}
+			</a>
+		</div>
+		{% endif %}
 	</div>
-
-	{% if permissions.download %}
-		<button id="openVisualizerButton" type="button" class="btn btn-text text-primary" data-toggle="modal" data-target="#visualizerModal">
-			{% trans 'See full item' %}
-		</button>
-	{% endif %}
 </div>
 
 {% if permissions.download %}

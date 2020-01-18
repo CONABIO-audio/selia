@@ -40,18 +40,20 @@
 {% endblock toolbar-items %}
 
 {% block main-content %}
-<div class="container-fluid">
-  <div class="row p-2">
-    <div class="col-6 p-2">
+<div class="container-fluid w-100">
+  <div class="row bg-light my-4">
+    <div class="container">
       {% detail_component detail_template=detail_template object=collection_site %}
     </div>
-    <div class="col-6">
-      <div class="row p-2">
-          {% viewer_component viewer_template=viewer_template object=collection_site %}
-      </div>
-      <div class="row p-2">
-          {% summary_component summary_template=summary_template object=collection_site %}
-      </div>
+  </div>
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% viewer_component viewer_template=viewer_template object=collection_site %}
+    </div>
+  </div>
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% summary_component summary_template=summary_template object=collection_site %}
     </div>
   </div>
 </div>

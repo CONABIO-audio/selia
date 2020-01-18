@@ -43,6 +43,7 @@ class DetailSamplingEventDeviceView(SeliaDetailView):
     summary_template = 'selia/summaries/sampling_event_device.html'
     detail_template = 'selia/details/sampling_event_device.html'
     update_form_template = 'selia/update/sampling_event_device.html'
+    viewer_template="selia/viewers/sampling_event_device.html"
 
     def has_view_permission(self):
         user = self.request.user

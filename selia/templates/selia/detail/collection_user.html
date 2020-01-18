@@ -21,12 +21,16 @@
 
 
 {% block main-content %}
-<div class="row p-4">
-  <div class="col-6 p-2">
-    {% detail_component detail_template=detail_template object=object %}
+<div class="container-fluid w-100">
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% detail_component detail_template=detail_template object=object %}
+    </div>
   </div>
-  <div class="col p-2">
-    {% summary_component summary_template=summary_template object=object %}
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% summary_component summary_template=summary_template object=object %}
+    </div>
   </div>
 </div>
 {% endblock main-content %}
