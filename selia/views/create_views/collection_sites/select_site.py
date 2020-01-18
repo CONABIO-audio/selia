@@ -85,5 +85,5 @@ class SelectCollectionSiteSiteView(SeliaCreateView):
             list_item_template = 'selia/select_list_items/sites.html'
             filter_form_template = 'selia/filters/site.html'
 
-        site_list = SiteList()
-        return site_list.get_context_data(self.request)
+        site_list = SiteList(self.request)
+        return site_list.get_context_data()

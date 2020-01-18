@@ -3,6 +3,7 @@
 {% load selia_tags %}
 {% load selia_filters %}
 {% load selia_forms %}
+{% load selia_maps %}
 
 {% block toolbar-title %}
   {% trans 'Add deployed device' %}
@@ -14,13 +15,10 @@
 
 {% block head-extra %}
   {{ block.super }}
+  {% selia_map_media %}
   {% include 'selia/media/json_form_media.html' %}
 {% endblock %}
 
-{% block scripts-extra %}
-  {{ block.super }}
-  {% include 'selia/media/datetime_media.html' %}
-{% endblock scripts-extra%}
 
 {% block toolbar-steps %}
 <li>
@@ -52,31 +50,11 @@
 {% endblock %}
 
 {% block previously-selected %}
-  <div class="row w-100 my-2">
-    <div class="col">
-      <a class="w-100 text-center" href="#collapseSamplingEvent" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSamplingEvent">
-        <h4>{% trans 'Selected sampling event' %}: {{ sampling_event.pk }}</h4>
-      </a>
-      <div class="collapse w-100" id="collapseSamplingEvent">
-        <div class="d-flex justify-content-center w-100">
-          {% include 'selia/select_list_items/sampling_events.html' with item=sampling_event %}
-        </div>
-      </div>
-    </div>
-  </div>
+  {% trans 'Selected sampling event' as label %}
+  {% selected_item 'sampling_events' sampling_event label %}
 
-  <div class="row w-100 my-2">
-    <div class="col">
-      <a class="w-100 text-center" href="#collapseSiteType" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSiteType">
-        <h4>{% trans 'Selected device' %}: {{ collection_device.pk }}</h4>
-      </a>
-      <div class="collapse w-100" id="collapseSiteType">
-        <div class="d-flex justify-content-center w-100">
-          {% include 'selia/select_list_items/collection_devices.html' with item=collection_device %}
-        </div>
-      </div>
-    </div>
-  </div>
+  {% trans 'Selected device' as label %}
+  {% selected_item 'collection_devices' collection_device label %}
 {% endblock previously-selected %}
 
 {% block form-content %}
@@ -111,13 +89,18 @@
   <div class="collapse show" id="location">
     <div class="row px-5 mb-3">
       <div class="col">
-        {% bootstrap_form form.latitude %}
+        <div class="row">
+          {% bootstrap_form form.latitude %}
+        </div>
+        <div class="row">
+          {% bootstrap_form form.longitude %}
+        </div>
+        <div class="row">
+          {% bootstrap_form form.altitude %}
+        </div>
       </div>
       <div class="col">
-        {% bootstrap_form form.longitude %}
-      </div>
-      <div class="col">
-        {% bootstrap_form form.altitude %}
+        {% sampling_event_form_map form.latitude form.longitude sampling_event collection_device %}
       </div>
     </div>
   </div>
@@ -150,3 +133,8 @@
   </div>
   {% endif %}
 {% endblock form-content %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+  {% include 'selia/media/datetime_media.html' %}
+{% endblock scripts-extra%}

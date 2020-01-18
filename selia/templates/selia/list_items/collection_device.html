@@ -85,7 +85,7 @@
       {% summarycount %}
         {{ item.items.count }}
       {% summarybuttons %}
-        <a href="{% url 'selia:create_item' %}?collection={{ collection.name }}&collection_device={{ item.pk }}">
+        <a href="{% url 'selia:create_item' %}?collection={{ collection.name }}&collection_device={{ item.pk }}&sampling_event_device_filter-collection_device={{ item.pk }}">
           {% add_button %}
         </a>
         <a class="ml-2" href="{% url 'selia:collection_items' collection.name %}?sampling_event_device__collection_device={{ item.pk }}">

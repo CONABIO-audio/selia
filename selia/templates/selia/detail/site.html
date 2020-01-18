@@ -2,18 +2,34 @@
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_buttons %}
+{% load selia_maps %}
 
 {% block secondary-navbar %}
   {% include 'selia/navbars/user.html' %}
 {% endblock secondary-navbar %}
 
 {% block head-extra %}
-  {% include 'selia/media/map_media.html' %}
+  {% selia_map_media %}
 {% endblock head-extra %}
 
 {% block toolbar-title %}{% trans 'User Site Detail' %}{% endblock %}
 
 {% block toolbar-items %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'selia:create_item' %}?site={{ object.pk }}&collection_site_filter-site={{ object.pk }}&sampling_event_filter-collection_site__site={{ object.pk }}">
+    {% trans 'Add items' %} <i class="fas fa-plus"></i> <i class="far fa-file"></i>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'selia:create_collection_site' %}?site={{ object.pk }}">
+    {% trans 'Add to collection' %} <i class="fas fa-plus"></i> <i class="fas fa-archive"></i>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'selia:create_sampling_event' %}?site={{ object.pk }}&collection_site_filter-site={{ object.pk }}">
+    {% trans 'Add sampling event' %} <i class="fas fa-plus"></i> <i class="fas fa-calendar-week"></i>
+  </a>
+</li>
 <li class="navbar-item ">
   <button type="button" class="btn btn-link text-muted">{% trans "Download Summary" %} <i class="fas fa-download"></i></button>
 </li>

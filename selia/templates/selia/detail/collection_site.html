@@ -1,11 +1,12 @@
 {% extends 'selia/detail/base.html' %}
 {% load i18n %}
 {% load selia_tags %}
+{% load selia_maps %}
 {% load selia_buttons %}
 
 {% block head-extra %}
   {{ block.super }}
-  {% include 'selia/media/map_media.html' %}
+  {% selia_map_media %}
 {% endblock head-extra %}
 
 {% block secondary-navbar %}
@@ -15,6 +16,21 @@
 {% block toolbar-title %}{{ collection }}: {% trans 'Site' %} {{ collection_site.pk }}{% endblock %}
 
 {% block toolbar-items %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_sampling_event_device' %}?collection={{ collection_site.collection.name }}&collection_site={{ collection_site.pk }}&sampling_event_filter-collection_site={{ collection_site.pk }}">
+      {% trans 'Add deployment' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ collection_site.collection.name }}&collection_site={{ collection_site.pk }}&sampling_event_filter-collection_site={{ collection_site.pk }}">
+      {% trans 'Add item' %} <i class="fas fa-plus"></i> <i class="fas fa-file"></i>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_sampling_event' %}?collection={{ collection_site.collection.name }}&collection_site={{ collection_site.pk }}">
+      {% trans 'Add sampling event' %} <i class="fas fa-plus"></i> <i class="fas fa-calendar-week"></i>
+    </a>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
   </li>

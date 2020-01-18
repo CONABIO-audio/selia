@@ -1,17 +1,28 @@
 {% extends 'selia/detail/base.html' %}
 {% load i18n %}
 {% load selia_tags %}
+{% load selia_maps %}
 {% load selia_buttons %}
 
 {% block toolbar-title %}
-{{ sampling_event_device.sampling_event.collection }}: {% trans 'Sampling Event' %} {{ sampling_event_device.sampling_event.pk }}: {% trans 'Deployed device' %} {{ sampling_event_device.pk }}
+  {{ sampling_event_device.sampling_event.collection }}: {% trans 'Sampling Event' %} {{ sampling_event_device.sampling_event.pk }}: {% trans 'Deployed device' %} {{ sampling_event_device.pk }}
 {% endblock %}
+
+{% block head-extra %}
+  {{ block.super }}
+  {% selia_map_media %}
+{% endblock head-extra %}
 
 {% block secondary-navbar %}
 {% include 'selia/navbars/sampling_event_device.html' %}
 {% endblock secondary-navbar %}
 
 {% block toolbar-items %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ object.sampling_event.collection.name }}&sampling_event={{ object.sampling_event.pk }}&sampling_event_device={{ object.pk }}">
+    {% trans 'Add item' %} <i class="fas fa-plus"></i> <i class="fas fa-file"></i>
+  </a>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
 </li>

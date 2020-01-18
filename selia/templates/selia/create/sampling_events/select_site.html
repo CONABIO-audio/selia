@@ -1,10 +1,11 @@
 {% extends 'selia/create/base_select.html' %}
 {% load i18n %}
 {% load selia_tags %}
+{% load selia_maps %}
 {% load selia_filters %}
 
 {% block head-extra %}
-  {% include 'selia/media/map_media.html' %}
+  {% selia_map_media %}
 {% endblock head-extra %}
 
 {% block secondary-navbar %}

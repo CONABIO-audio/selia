@@ -1,6 +1,7 @@
 {% extends 'selia/list/base.html' %}
 {% load i18n %}
 {% load selia_buttons %}
+{% load selia_maps %}
 
 {% block toolbar-title %}
 {% trans 'User' %}: {% trans 'Sites' %}
@@ -11,7 +12,7 @@
 {% endblock secondary-navbar %}
 
 {% block head-extra %}
-  {% include 'selia/media/map_media.html' %}
+  {% selia_map_media %}
 {% endblock head-extra %}
 
 {% block toolbar-items %}

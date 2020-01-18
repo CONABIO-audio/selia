@@ -42,12 +42,10 @@ class SelectCollectionUserUserView(SeliaCreateView):
 
     def save_form(self, form):
         try:
-            return User.objects.get(
-                email=form.cleaned_data['email'])
+            return User.objects.get(email=form.cleaned_data['email'])
         except User.DoesNotExist:
             msg = _(
-                'No user with this email was found'
-            )
+                'No user with this email was found')
             raise forms.ValidationError({'email': msg})
 
     def redirect_on_success(self):

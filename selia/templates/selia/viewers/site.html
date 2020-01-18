@@ -1,5 +1,5 @@
-{% load selia_filters %}
+{% load selia_maps %}
 
 <div class="card rounded w-100 h-100 shadow-sm">
-	{{ object | site_map }}
+	{% site_map object %}
 </div>

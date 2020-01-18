@@ -2,8 +2,7 @@ from irekua_database.models import SamplingEventDevice
 from irekua_database.models import SamplingEvent
 
 from irekua_filters.sampling_events import sampling_event_devices as sampling_event_utils
-from irekua_permissions.items import (
-    items as item_permissions)
+from irekua_permissions.items import items as item_permissions
 
 from selia.views.utils import SeliaList
 from selia.views.create_views import SeliaSelectView

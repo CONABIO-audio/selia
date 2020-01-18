@@ -12,6 +12,7 @@ from selia_thumbnails.settings import *
 from selia_uploader.settings import *
 from selia_annotator.settings import *
 from selia_visualizers.settings import *
+from selia_maps.settings import *
 from selia.settings import *
 
 
@@ -22,6 +23,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
 
 INSTALLED_APPS = (
     SELIA_APPS +
+    SELIA_MAPS_APPS +
     SELIA_VISUALIZERS_APPS +
     SELIA_ANNOTATOR_APPS +
     SELIA_UPLOADER_APPS +

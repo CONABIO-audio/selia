@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
+{% load selia_maps %}
 
 {% block toolbar-title %}
   {% trans 'Create sampling event' %}
@@ -13,13 +14,19 @@
 
 {% block head-extra %}
   {{ block.super }}
-  {% include 'selia/media/map_media.html' %}
+  {% selia_map_media %}
   {% include 'selia/media/json_form_media.html' %}
 {% endblock %}
 
 {% block scripts-extra %}
   {{ block.super }}
   {% include 'selia/media/datetime_media.html' %}
+
+  <script type="text/javascript">
+    $('.map').on('shown.bs.collapse', function() {
+      console.log('')
+    })
+  </script>
 {% endblock scripts-extra%}
 
 {% block toolbar-steps %}
@@ -46,27 +53,11 @@
 {% endblock step-title %}
 
 {% block previously-selected %}
-  <div class="row w-100 my-2">
-    <div class="col">
-      <a class="w-100 text-center" href="#collapseCollectionSite" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCollectionSite"><h4>{% trans 'Selected site' %}: {{ collection_site.pk }}</h4></a>
-      <div class="collapse w-100" id="collapseCollectionSite">
-        <div class="d-flex justify-content-center w-100">
-          {% include 'selia/select_list_items/collection_sites.html' with item=collection_site %}
-        </div>
-      </div>
-    </div>
-  </div>
+  {% trans 'Selected site' as label %}
+  {% selected_item 'collection_sites' collection_site label %}
 
-  <div class="row w-100 my-2">
-    <div class="col">
-      <a class="w-100 text-center" href="#collapseSamplingEventType" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSamplingEventType"><h4>{% trans 'Selected sampling event type' %}: {{ sampling_event_type.pk }}</h4></a>
-      <div class="collapse w-100" id="collapseSamplingEventType">
-        <div class="d-flex justify-content-center w-100">
-          {% include 'selia/select_list_items/sampling_event_type.html' with item=sampling_event_type %}
-        </div>
-      </div>
-    </div>
-  </div>
+  {% trans 'Selected sampling event type' as label %}
+  {% selected_item 'sampling_event_type' sampling_event_type label %}
 {% endblock previously-selected %}
 
 {% block form-content %}

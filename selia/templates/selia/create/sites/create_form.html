@@ -1,6 +1,7 @@
 {% extends 'selia/create/base.html' %}
 {% load selia_tags %}
 {% load selia_forms %}
+{% load selia_maps %}
 {% load i18n %}
 
 {% block toolbar-title %}
@@ -9,6 +10,10 @@
 
 {% block secondary-navbar %}
 {% include 'selia/navbars/user.html' %}
+{% endblock %}
+
+{% block head-extra %}
+  {% selia_map_media %}
 {% endblock %}
 
 {% block step-title %}
@@ -22,23 +27,26 @@
 {% endblock step-description %}
 
 {% block form-content %}
-  <div class="row">
-    <div class="col">
-      {% bootstrap_form form.latitude %}
-    </div>
-    <div class="col">
-      {% bootstrap_form form.longitude %}
-    </div>
-    <div class="col">
-      {% bootstrap_form form.altitude %}
-    </div>
+  <div class="row p-2">
+    {% bootstrap_form form.name %}
   </div>
-  <div class="row">
+  <div class="row p-2">
     <div class="col">
-      {% bootstrap_form form.locality %}
+      <div class="row">
+        {% bootstrap_form form.latitude %}
+      </div>
+      <div class="row">
+        {% bootstrap_form form.longitude %}
+      </div>
+      <div class="row">
+        {% bootstrap_form form.altitude %}
+      </div>
+      <div class="row">
+        {% bootstrap_form form.locality %}
+      </div>
     </div>
     <div class="col">
-      {% bootstrap_form form.name %}
+      {% form_map form.latitude form.longitude locality %}
     </div>
   </div>
 {% endblock form-content %}

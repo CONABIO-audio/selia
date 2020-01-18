@@ -8,11 +8,34 @@
       <div class="col-3">
         {% trans 'Number' %}: {{ object.items.count }}
       </div>
-      <div class="col-7">
+      <div class="col-6">
         {% trans 'Last added on' %}: {{ object.items.first.created_on }}
       </div>
+      <div class="col-1">
+        <a href="{% url 'selia:collection_items' object.collection %}?sampling_event_device__collection_device={{ object.pk }}">{% see_button %}</a>
+      </div>
       <div class="col-2">
-        <a href="#">{% see_button %}</a>
+        <a href="{% url 'selia:create_item' %}?collection={{ object.collection.name }}&collection_device={{ object.pk }}&sampling_event_device_filter-collection_device={{ object.pk }}">{% add_button %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="media text-muted pt-3">
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <strong class="d-block text-gray-dark">{% trans 'Deployments' %}</strong>
+    <div class="row">
+      <div class="col-3">
+        {% trans 'Number' %}: {{ object.samplingeventdevice_set.count }}
+      </div>
+      <div class="col-6">
+        {% trans 'Last added on' %}: {{ object.samplingeventdevice_set.first.created_on }}
+      </div>
+      <div class="col-1">
+        <a href="{% url 'selia:collection_sampling_events' object.collection %}?">{% see_button %}</a>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'selia:create_sampling_event_device' %}?collection={{ object.collection.name }}&collection_device={{ object.pk }}">{% add_button %}</a>
       </div>
     </div>
   </div>

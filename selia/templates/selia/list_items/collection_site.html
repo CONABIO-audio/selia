@@ -1,17 +1,17 @@
 {% extends 'selia_templates/list/list_item.html' %}
 {% load static %}
 {% load selia_buttons %}
-{% load selia_filters %}
 {% load selia_tags %}
+{% load selia_maps %}
 {% load i18n %}
 
 {% block list-item-content %}
 <div class="row w-100">
   <div class="col">
     {% listtitle %}
-      <div class="mr-3" style="width: 11em; height:100%;">
-        {{ item.site | site_map:"no controls" }}
-      </div>
+    <div class="h-100" style="width: 10em;">
+      {% site_map_list item.site %}
+    </div>
     {% endlistimage %}
       {% if item.internal_id %}
         {{ item.internal_id }}
@@ -21,7 +21,7 @@
     {% endlistheader %}
       {% if item.site.locality %}
       <div>
-        {{ item.site.locality }}
+        {{ item.site.locality.name }}
       </div>
       {% endif %}
       <div>
@@ -92,7 +92,7 @@
       {% summarycount %}
         {{ item.items.count }}
       {% summarybuttons %}
-        <a href="{% url 'selia:create_item' %}?collection={{ collection.name }}&collection_site={{ item.pk }}">
+        <a href="{% url 'selia:create_item' %}?collection={{ collection.name }}&collection_site={{ item.pk }}&sampling_event_filter-collection_site={{ item.pk }}">
           {% add_button %}
         </a>
         <a class="ml-2" href="{% url 'selia:collection_items' item.collection.name %}?sampling_event_device__sampling_event__collection_site={{ item.pk }}">
@@ -106,7 +106,7 @@
       {% summarycount %}
         {{ item.samplingevent_set.count }}
       {% summarybuttons %}
-        <a href="{% url 'selia:create_sampling_event' %}?collection={{ collection.name }}&collection_site={{ item.pk }}">
+        <a href="{% url 'selia:create_sampling_event' %}?collection={{ collection.name }}&collection_site={{ item.pk }}&sampling_event_filter-collection_site={{ item.pk }}">
           {% add_button %}
         </a>
         <a class="ml-2" href="{% url 'selia:collection_sampling_events' item.collection.name %}?collection_site={{ item.pk }}">

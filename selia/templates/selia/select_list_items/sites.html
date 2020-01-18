@@ -1,15 +1,15 @@
 {% extends 'selia_templates/select/select_list_item.html' %}
 {% load static %}
 {% load selia_tags %}
-{% load selia_filters %}
+{% load selia_maps %}
 {% load i18n %}
 
 {% block list-item-content %}
 <div class="row w-100">
-  <div class="col">
+  <div class="col h-100">
     {% listtitle %}
-      <div class="pr-2">
-        {{ item | site_map:"no controls" }}
+      <div class="pr-2 h-100" style="width: 10em;">
+        {% site_map_list item %}
       </div>
     {% endlistimage %}
       {% if item.name %}
@@ -19,7 +19,7 @@
       {% endif %}
     {% endlistheader %}
       {% if item.locality%}
-        {{ item.locality }}
+        {{ item.locality.name }}
       {% endif %}
     {% endlisttitle %}
   </div>
@@ -52,7 +52,7 @@
       {% listattribute %}
         {% trans 'Locality' %}
       {% attributevalue %}
-        {{ item.locality }}
+        {{ item.locality.name }}
       {% endlistattribute %}
     </div>
     <div class="row">

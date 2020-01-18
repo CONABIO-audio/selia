@@ -1,7 +1,7 @@
 {% extends 'selia_templates/list/list_item.html' %}
 {% load selia_buttons %}
 {% load selia_tags %}
-{% load selia_filters %}
+{% load selia_maps %}
 {% load static %}
 {% load i18n %}
 
@@ -9,8 +9,8 @@
   <div class="row w-100">
     <div class="col">
       {% listtitle %}
-        <div class="pr-2" style="width: 15em;">
-          {{ item.collection_site.site | site_map:"no controls" }}
+        <div class="h-100" style="width: 10em;">
+          {% site_map_list item.collection_site.site %}
         </div>
       {% endlistimage %}
         {{ item }}

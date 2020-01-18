@@ -1,6 +1,7 @@
 {% extends 'selia/detail/base.html' %}
 {% load i18n %}
 {% load selia_tags %}
+{% load selia_maps %}
 {% load selia_buttons %}
 
 {% block secondary-navbar %}
@@ -9,7 +10,7 @@
 
 {% block head-extra %}
   {{ block.super }}
-  {% include 'selia/media/map_media.html' %}
+  {% selia_map_media %}
 {% endblock head-extra %}
 
 {% block toolbar-title %}{{ sampling_event.collection }}: {{ sampling_event }}{% endblock %}

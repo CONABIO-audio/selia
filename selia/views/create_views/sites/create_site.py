@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from irekua_autocomplete.utils import get_autocomplete_widget
 from selia.views.create_views.create_base import SeliaCreateView
 from irekua_database.models import Site
+from irekua_database.models import Locality
 from irekua_permissions import sites as site_permissions
 
 
@@ -20,6 +21,7 @@ class CreateSiteView(SeliaCreateView):
                     'altitude',
                     'name',
                     'locality',
+                    'geo_ref',
                 ]
 
                 widgets = {
@@ -27,6 +29,22 @@ class CreateSiteView(SeliaCreateView):
                 }
 
         return SiteForm
+
+    def form_invalid(self, form):
+        if 'locality' in form.data:
+            try:
+                self.locality = Locality.objects.get(pk=form.data['locality'])
+            except Locality.DoesNotExists:
+                pass
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if hasattr(self, 'locality'):
+            context['locality'] = self.locality
+
+        return context
 
     def has_view_permission(self):
         user = self.request.user

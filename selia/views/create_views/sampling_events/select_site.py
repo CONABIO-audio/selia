@@ -39,7 +39,7 @@ class SelectSamplingEventSiteView(SeliaSelectView):
                 site_type__in=sampling_event_type.site_types.all())
 
         class CollectionSiteList(SeliaList):
-            prefix = 'collection'
+            prefix = 'collection_site'
 
             filter_class = site_utils.Filter
             search_fields = site_utils.search_fields

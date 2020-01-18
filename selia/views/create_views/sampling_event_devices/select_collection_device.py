@@ -2,8 +2,7 @@ from irekua_database.models import SamplingEvent
 from irekua_database.models import CollectionDevice
 
 from irekua_filters.data_collections import collection_devices as device_utils
-from irekua_permissions.sampling_events import (
-    devices as device_permissions)
+from irekua_permissions.sampling_events import devices as device_permissions
 
 from selia.views.utils import SeliaList
 from selia.views.create_views import SeliaSelectView
@@ -17,7 +16,7 @@ class SelectSamplingEventDeviceCollectionDeviceView(SeliaSelectView):
     def get_objects(self):
         if not hasattr(self, 'sampling_event'):
             self.sampling_event = SamplingEvent.objects.get(
-                    pk=self.request.GET['sampling_event'])
+                pk=self.request.GET['sampling_event'])
 
     def has_view_permission(self):
         user = self.request.user

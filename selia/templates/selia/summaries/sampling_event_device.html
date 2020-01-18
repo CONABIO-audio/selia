@@ -8,11 +8,14 @@
       <div class="col-3">
         {% trans 'Number' %}: {{ object.item_set.count }}
       </div>
-      <div class="col-7">
+      <div class="col-6">
         {% trans 'Last added on' %}: {{ object.item_set.first.created_on }}
       </div>
+      <div class="col-1">
+        <a href="{% url 'selia:sampling_event_device_items' object.pk %}">{% see_button %}</a>
+      </div>
       <div class="col-2">
-        <a href="#">{% see_button %}</a>
+        <a href="{% url 'selia:create_item' %}?collection={{ object.sampling_event.collection.name }}&sampling_event={{ object.sampling_event.pk }}&sampling_event_device={{ object.pk }}">{% add_button %}</a>
       </div>
     </div>
   </div>
