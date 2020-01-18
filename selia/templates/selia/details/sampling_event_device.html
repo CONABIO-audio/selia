@@ -28,14 +28,14 @@
       {% trans 'Started on' %}
     {% endhead %}
       {{ object.sampling_event.started_on | date }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Ended on' %}
     {% endhead %}
       {{ object.sampling_event.ended_on | date}}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -47,14 +47,14 @@
       </a>
     {% endhead %}
       {{ object.sampling_event.collection_site.internal_id }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Site locality' %}
     {% endhead %}
       {{ object.sampling_event.collection_site.site.locality.name }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -70,14 +70,14 @@
       {% trans 'Device type' %}
     {% endhead %}
       {{ object.collection_device.physical_device.device.device_type }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Name' %}
     {% endhead %}
       {{ object.collection_device.internal_id }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -87,14 +87,14 @@
       {% trans 'Brand' %}
     {% endhead %}
       {{ object.collection_device.physical_device.device.brand }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Model' %}
     {% endhead %}
       {{ object.collection_device.physical_device.device.model }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -104,14 +104,14 @@
       {% trans 'Serial number' %}
     {% endhead %}
       {{ object.collection_device.physical_device.serial_number }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Owner' %}
     {% endhead %}
       {{ object.collection_device.physical_device.created_by }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -125,14 +125,14 @@
       {% trans 'Deployed on' %}
     {% endhead %}
       {{ object.deployed_on | date:"DATETIME_FORMAT" }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Recovered on' %}
     {% endhead %}
       {{ object.recovered_on | date:"DATETIME_FORMAT" }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -142,14 +142,14 @@
       {% trans 'Deployment latitude' %}
     {% endhead %}
       {{ object.latitude | floatformat:3 }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Deployment longitude' %}
     {% endhead %}
       {{ object.longitude | floatformat:3 }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 

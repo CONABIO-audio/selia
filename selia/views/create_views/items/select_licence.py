@@ -25,6 +25,8 @@ class SelectItemLicenceView(SeliaSelectView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['sampling_event_device'] = self.sampling_event_device
+        context['sampling_event'] = self.sampling_event_device.sampling_event
+        context['collection'] = self.sampling_event_device.sampling_event.collection
         return context
 
     def get_list_context_data(self):

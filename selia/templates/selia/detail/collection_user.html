@@ -8,7 +8,7 @@
   {% include 'selia/navbars/collection.html' %}
 {% endblock secondary-navbar %}
 
-{% block toolbar-title %}{{ object.collection }}: {% trans 'User' %} {{ object.pk }}{% endblock %}
+{% block toolbar-title %}{% trans 'Collection User' %}: {{ object }}{% endblock %}
 
 {% block toolbar-items %}
 <li class="nav-item">

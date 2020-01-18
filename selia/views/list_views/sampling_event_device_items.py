@@ -41,4 +41,6 @@ class ListSamplingEventDeviceItemsView(SeliaListView, SingleObjectMixin):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['sampling_event_device'] = self.object
+        context['sampling_event'] = self.object.sampling_event
+        context['collection'] = self.object.sampling_event.collection
         return context

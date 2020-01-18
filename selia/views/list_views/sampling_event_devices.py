@@ -1,11 +1,10 @@
 from django.views.generic.detail import SingleObjectMixin
+from django.utils.translation import gettext as _
 
 from irekua_database.models import SamplingEvent, SamplingEventDevice
-from selia.views.list_views.base import SeliaListView
 from irekua_filters.sampling_events import sampling_event_devices
-from irekua_permissions.sampling_events import (
-    devices as device_permissions)
-from django.utils.translation import gettext as _
+from irekua_permissions.sampling_events import devices as device_permissions
+from selia.views.list_views.base import SeliaListView
 
 
 class ListSamplingEventDevicesView(SeliaListView, SingleObjectMixin):
@@ -37,8 +36,7 @@ class ListSamplingEventDevicesView(SeliaListView, SingleObjectMixin):
         return SamplingEventDevice.objects.filter(sampling_event=self.object)
 
     def get_context_data(self, *args, **kwargs):
-        sampling_event = self.object
-
         context = super().get_context_data(*args, **kwargs)
-        context['sampling_event'] = sampling_event
+        context['sampling_event'] = self.object
+        context['collection'] = self.object.collection
         return context

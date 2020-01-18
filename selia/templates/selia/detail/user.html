@@ -7,7 +7,7 @@
   {% include 'selia/navbars/user.html' %}
 {% endblock secondary-navbar %}
 
-{% block toolbar-title %}{% trans 'User' %}{% endblock %}
+{% block toolbar-title %}{% trans 'Home' %}{% endblock %}
 
 {% block toolbar-items %}
   <li class="nav-item">
@@ -56,5 +56,6 @@
 {% endblock main-content %}
 
 {% block scripts-extra %}
+  {{ block.super }}
   {{ form.media }}
 {% endblock scripts-extra %}

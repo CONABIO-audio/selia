@@ -13,7 +13,7 @@
   {% include 'selia/navbars/collection.html' %}
 {% endblock secondary-navbar %}
 
-{% block toolbar-title %}{{ collection }}: {% trans 'Site' %} {{ collection_site.pk }}{% endblock %}
+{% block toolbar-title %}{% trans 'Collection Site' %}: {{ collection_site }}{% endblock %}
 
 {% block toolbar-items %}
   <li class="nav-item">

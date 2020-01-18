@@ -1,5 +1,11 @@
 {% extends 'selia_templates/base.html' %}
+{% load static %}
 
 {% block modals %}
   {% include 'selia/logout_modal.html' %}
 {% endblock modals %}
+
+{% block stylesheet %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'selia/css/main.css' %}">
+{% endblock %}

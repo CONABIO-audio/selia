@@ -5,7 +5,7 @@
 {% load selia_buttons %}
 
 {% block toolbar-title %}
-  {{ sampling_event_device.sampling_event.collection }}: {% trans 'Sampling Event' %} {{ sampling_event_device.sampling_event.pk }}: {% trans 'Deployed device' %} {{ sampling_event_device.pk }}
+  {% trans 'Deployed Device' %} {% trans 'Detail' %}
 {% endblock %}
 
 {% block head-extra %}

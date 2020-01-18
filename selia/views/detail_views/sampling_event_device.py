@@ -69,6 +69,8 @@ class DetailSamplingEventDeviceView(SeliaDetailView):
         device = collection_device.physical_device.device
 
         context['sampling_event_device'] = sampling_event_device
+        context['sampling_event'] = sampling_event
+        context['collection'] = sampling_event.collection
         context['device'] = device
 
         if sampling_event_type.restrict_device_types:

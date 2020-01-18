@@ -8,26 +8,26 @@
   {% include 'selia/navbars/collection.html' %}
 {% endblock secondary-navbar %}
 
-{% block toolbar-title %}{{ collection }}{% endblock %}
+{% block toolbar-title %}{% trans 'Collection' %} {% trans 'Detail' %}{% endblock %}
 
 {% block toolbar-items %}
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'selia:create_collection_site' %}?collection={{ object.name }}">
       {% trans 'Add site' %} <i class="fas fa-plus"></i> <i class="fas fa-map-marked-alt"></i>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'selia:create_collection_device' %}?collection={{ object.name }}">
       {% trans 'Add device' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'selia:create_sampling_event' %}?collection={{ object.name }}">
       {% trans 'Add sampling event' %} <i class="fas fa-plus"></i> <i class="fas fa-calendar-week"></i>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ object.name }}">
       {% trans 'Add item' %} <i class="fas fa-plus"></i> <i class="fas fa-file"></i>
     </a>
   </li>

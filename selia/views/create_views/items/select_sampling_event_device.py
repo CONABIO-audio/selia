@@ -25,6 +25,7 @@ class SelectItemSamplingEventDeviceView(SeliaSelectView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['sampling_event'] = self.sampling_event
+        context['collection'] = self.sampling_event.collection
         return context
 
     def get_list_class(self):

@@ -7,7 +7,7 @@
   {% include 'selia/navbars/item.html' %}
 {% endblock secondary-navbar %}
 
-{% block toolbar-title %}{{ item.collection }}{% trans ': Item ' %} {{ item.pk }}{% endblock %}
+{% block toolbar-title %}{% trans 'Item' %} {% trans 'Detail' %}{% endblock %}
 
 {% block toolbar-items %}
   <li class="nav-item">

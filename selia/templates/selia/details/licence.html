@@ -19,14 +19,14 @@
         {% trans 'Signed on'%}
       {% endhead %}
         {{ object.created_on | date }}
-      {% detailitem %}
+      {% enddetailitem %}
     </div>
     <div class="col">
       {% detailitem %}
         {% trans 'Signer'%}
       {% endhead %}
         {{ object.created_by }}
-      {% detailitem %}
+      {% enddetailitem %}
     </div>
   </div>
 
@@ -40,7 +40,7 @@
         {% else %}
           {{ object.created_on.year|add:object.licence_type.years_valid_for }}
         {% endif %}
-      {% detailitem %}
+      {% enddetailitem %}
     </div>
     <div class="col">
       {% detailitem %}
@@ -53,7 +53,7 @@
         {% else %}
           -
         {% endif %}
-      {% detailitem %}
+      {% enddetailitem %}
     </div>
   </div>
 

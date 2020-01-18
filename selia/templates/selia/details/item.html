@@ -100,14 +100,14 @@
       {% trans 'Started on' %}
     {% endhead %}
       {{ object.sampling_event_device.sampling_event.started_on | date }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Ended on' %}
     {% endhead %}
       {{ object.sampling_event_device.sampling_event.ended_on | date}}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -119,14 +119,14 @@
       </a>
     {% endhead %}
       {{ object.sampling_event_device.sampling_event.collection_site.internal_id }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Site locality' %}
     {% endhead %}
       {{ object.sampling_event_device.sampling_event.collection_site.site.locality.name }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -142,7 +142,7 @@
       {% trans 'Device type' %}
     {% endhead %}
       {{ object.sampling_event_device.collection_device.physical_device.device.device_type }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
@@ -151,7 +151,7 @@
       <a href="{% url 'selia:collection_device_detail' object.sampling_event_device.collection_device.pk %}">
         {{ object.sampling_event_device.collection_device.internal_id }}
       </a>
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -161,14 +161,14 @@
       {% trans 'Brand' %}
     {% endhead %}
       {{ object.sampling_event_device.collection_device.physical_device.device.brand }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Model' %}
     {% endhead %}
       {{ object.sampling_event_device.collection_device.physical_device.device.model }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
@@ -178,14 +178,14 @@
       {% trans 'Deployed on' %}
     {% endhead %}
       {{ object.sampling_event_device.deployed_on | date:"DATETIME_FORMAT" }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
   <div class="col">
     {% detailitem %}
       {% trans 'Recovered on' %}
     {% endhead %}
       {{ object.sampling_event_device.recovered_on | date:"DATETIME_FORMAT" }}
-    {% detailitem %}
+    {% enddetailitem %}
   </div>
 </div>
 
