@@ -1,0 +1,2099 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-21 19:52-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/selia/create/base.html:61
+msgid ""
+"\n"
+"            Please check that all provided information is correct before "
+"submitting.\n"
+"            "
+msgstr ""
+
+#: templates/selia/create/base.html:68
+#: templates/selia/create/collection_sites/select_site.html:81
+msgid "Create"
+msgstr ""
+
+#: templates/selia/create/collection_devices/create_form.html:8
+#: templates/selia/create/collection_devices/select_collection.html:6
+#: templates/selia/create/collection_devices/select_device.html:7
+#: templates/selia/create/collection_sites/select_collection.html:6
+msgid "Add device to collection"
+msgstr ""
+
+#: templates/selia/create/collection_devices/create_form.html:18
+#: templates/selia/create/collection_devices/select_collection.html:18
+#: templates/selia/create/collection_devices/select_device.html:17
+#: templates/selia/create/collection_sites/create_form.html:24
+#: templates/selia/create/collection_sites/select_collection.html:18
+#: templates/selia/create/collection_sites/select_site.html:23
+#: templates/selia/create/collection_sites/select_type.html:17
+#: templates/selia/create/collection_users/create_form.html:17
+#: templates/selia/create/collection_users/select_collection.html:14
+#: templates/selia/create/collection_users/select_role.html:17
+#: templates/selia/create/collection_users/select_user.html:22
+#: templates/selia/create/items/select_collection.html:14
+#: templates/selia/create/items/select_licence.html:17
+#: templates/selia/create/items/select_sampling_event.html:17
+#: templates/selia/create/items/select_sampling_event_device.html:17
+#: templates/selia/create/items/upload.html:50
+#: templates/selia/create/sampling_event_devices/create_form.html:26
+#: templates/selia/create/sampling_event_devices/select_collection.html:24
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:17
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:17
+#: templates/selia/create/sampling_events/create_form.html:35
+#: templates/selia/create/sampling_events/select_collection.html:13
+#: templates/selia/create/sampling_events/select_site.html:22
+#: templates/selia/create/sampling_events/select_type.html:17
+msgid "Select collection"
+msgstr ""
+
+#: templates/selia/create/collection_devices/create_form.html:23
+#: templates/selia/create/collection_devices/select_collection.html:19
+#: templates/selia/create/collection_devices/select_device.html:20
+msgid "Select user device"
+msgstr ""
+
+#: templates/selia/create/collection_devices/create_form.html:26
+#: templates/selia/create/collection_devices/create_form.html:34
+#: templates/selia/create/collection_devices/select_collection.html:20
+#: templates/selia/create/collection_devices/select_device.html:21
+#: templates/selia/create/collection_sites/create_form.html:37
+#: templates/selia/create/collection_sites/select_collection.html:21
+#: templates/selia/create/collection_sites/select_site.html:32
+#: templates/selia/create/collection_sites/select_type.html:22
+#: templates/selia/create/collection_users/create_form.html:30
+#: templates/selia/create/collection_users/create_form.html:34
+#: templates/selia/create/collection_users/select_collection.html:17
+#: templates/selia/create/collection_users/select_role.html:26
+#: templates/selia/create/collection_users/select_user.html:27
+#: templates/selia/create/licences/create_form.html:21
+#: templates/selia/create/licences/create_form.html:29
+#: templates/selia/create/licences/select_type.html:15
+#: templates/selia/create/physical_devices/create_form.html:21
+#: templates/selia/create/physical_devices/create_form.html:25
+#: templates/selia/create/physical_devices/select_device.html:20
+#: templates/selia/create/sampling_event_devices/create_form.html:39
+#: templates/selia/create/sampling_event_devices/create_form.html:43
+#: templates/selia/create/sampling_event_devices/select_collection.html:27
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:26
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:22
+#: templates/selia/create/sampling_events/create_form.html:48
+#: templates/selia/create/sampling_events/create_form.html:52
+#: templates/selia/create/sampling_events/select_collection.html:16
+#: templates/selia/create/sampling_events/select_site.html:31
+#: templates/selia/create/sampling_events/select_type.html:22
+msgid "Fill in details"
+msgstr ""
+
+#: templates/selia/create/collection_devices/create_form.html:38
+#: templates/selia/create/collection_devices/select_device.html:38
+#: templates/selia/create/collection_sites/create_form.html:45
+#: templates/selia/create/collection_sites/select_site.html:47
+#: templates/selia/create/collection_sites/select_type.html:30
+#: templates/selia/create/collection_users/create_form.html:38
+#: templates/selia/create/collection_users/select_role.html:34
+#: templates/selia/create/collection_users/select_user.html:31
+#: templates/selia/create/items/select_licence.html:45
+#: templates/selia/create/items/select_sampling_event.html:38
+#: templates/selia/create/items/select_sampling_event_device.html:44
+msgid "Selected collection"
+msgstr ""
+
+#: templates/selia/create/collection_devices/create_form.html:41
+#: templates/selia/create/sampling_event_devices/create_form.html:56
+msgid "Selected device"
+msgstr ""
+
+#: templates/selia/create/collection_devices/create_form.html:58
+#: templates/selia/create/collection_users/create_form.html:57
+#: templates/selia/create/physical_devices/create_form.html:58
+#: templates/selia/create/sampling_events/create_form.html:88
+#: templates/selia/details/collection.html:36
+#: templates/selia/details/collection_device.html:80
+#: templates/selia/details/collection_site.html:101
+#: templates/selia/details/collection_user.html:88
+#: templates/selia/details/item.html:194
+#: templates/selia/details/licence.html:68
+#: templates/selia/details/physical_device.html:53
+#: templates/selia/details/sampling_event.html:82
+#: templates/selia/update/collection_device.html:14
+#: templates/selia/update/collection_site.html:14
+#: templates/selia/update/collection_user.html:14
+#: templates/selia/update/licence.html:12
+msgid "Metadata"
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_collection.html:24
+#: templates/selia/create/collection_sites/select_collection.html:25
+#: templates/selia/create/collection_users/select_collection.html:21
+#: templates/selia/create/items/select_collection.html:22
+#: templates/selia/create/sampling_event_devices/select_collection.html:14
+#: templates/selia/create/sampling_events/select_collection.html:20
+msgid "Select one of your collections"
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_collection.html:28
+#: templates/selia/create/collection_sites/select_collection.html:29
+#: templates/selia/create/collection_users/select_collection.html:25
+#: templates/selia/create/items/select_collection.html:26
+#: templates/selia/create/sampling_event_devices/select_collection.html:18
+#: templates/selia/create/sampling_events/select_collection.html:24
+msgid ""
+"\n"
+"    Choose a collection from the list.\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_collection.html:34
+#: templates/selia/create/collection_sites/select_collection.html:35
+#: templates/selia/create/collection_users/select_collection.html:31
+msgid "No available collections"
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_device.html:25
+msgid "Select a device"
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_device.html:29
+msgid ""
+"\n"
+"    Choose one of your previously registered devices to register to the "
+"collection or\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_device.html:33
+msgid "add a new device"
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_device.html:43
+msgid "No user devices where found"
+msgstr ""
+
+#: templates/selia/create/collection_devices/select_device.html:45
+msgid "Add a new device"
+msgstr ""
+
+#: templates/selia/create/collection_sites/create_form.html:14
+#: templates/selia/create/collection_sites/create_form.html:41
+#: templates/selia/create/collection_sites/select_site.html:13
+#: templates/selia/create/collection_sites/select_site.html:36
+#: templates/selia/create/collection_sites/select_type.html:7
+msgid "Add site to collection"
+msgstr ""
+
+#: templates/selia/create/collection_sites/create_form.html:29
+#: templates/selia/create/collection_sites/select_site.html:28
+#: templates/selia/create/collection_sites/select_type.html:26
+msgid "Select site type"
+msgstr ""
+
+#: templates/selia/create/collection_sites/create_form.html:34
+#: templates/selia/create/collection_sites/select_collection.html:20
+#: templates/selia/create/collection_sites/select_site.html:31
+#: templates/selia/create/collection_sites/select_type.html:21
+msgid "Select site"
+msgstr ""
+
+#: templates/selia/create/collection_sites/create_form.html:48
+#: templates/selia/create/collection_sites/select_site.html:50
+msgid "Selected site type"
+msgstr ""
+
+#: templates/selia/create/collection_sites/create_form.html:51
+#: templates/selia/create/sampling_events/create_form.html:56
+msgid "Selected site"
+msgstr ""
+
+#: templates/selia/create/collection_sites/create_form.html:68
+#: templates/selia/details/collection_site.html:85
+msgid "Site descriptors"
+msgstr ""
+
+#: templates/selia/create/collection_sites/select_collection.html:19
+#: templates/selia/create/collection_sites/select_type.html:20
+msgid "Select site  type"
+msgstr ""
+
+#: templates/selia/create/collection_sites/select_site.html:40
+msgid ""
+"\n"
+"  Please select a site to add or\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/collection_sites/select_site.html:43
+#: templates/selia/create/items/select_sampling_event.html:34
+#: templates/selia/create/physical_devices/select_device.html:52
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:34
+#: templates/selia/update/user.html:30
+msgid "create a new one"
+msgstr ""
+
+#: templates/selia/create/collection_sites/select_site.html:60
+msgid "Create new site"
+msgstr ""
+
+#: templates/selia/create/collection_sites/select_site.html:90
+msgid "No available sites."
+msgstr ""
+
+#: templates/selia/create/collection_sites/select_site.html:93
+msgid " Please register new site"
+msgstr ""
+
+#: templates/selia/create/collection_users/create_form.html:7
+#: templates/selia/create/collection_users/select_collection.html:6
+#: templates/selia/create/collection_users/select_role.html:7
+#: templates/selia/create/collection_users/select_user.html:12
+msgid "Add user to collection"
+msgstr ""
+
+#: templates/selia/create/collection_users/create_form.html:22
+#: templates/selia/create/collection_users/select_collection.html:15
+#: templates/selia/create/collection_users/select_role.html:22
+#: templates/selia/create/collection_users/select_user.html:25
+msgid "Select user"
+msgstr ""
+
+#: templates/selia/create/collection_users/create_form.html:27
+#: templates/selia/create/collection_users/select_collection.html:16
+#: templates/selia/create/collection_users/select_role.html:25
+#: templates/selia/create/collection_users/select_role.html:30
+#: templates/selia/create/collection_users/select_user.html:26
+msgid "Select role"
+msgstr ""
+
+#: templates/selia/create/collection_users/create_form.html:41
+#: templates/selia/create/collection_users/select_role.html:37
+msgid "Selected user"
+msgstr ""
+
+#: templates/selia/create/collection_users/create_form.html:44
+msgid "Selected role"
+msgstr ""
+
+#: templates/selia/create/collection_users/create_form.html:66
+msgid "No additional information required"
+msgstr ""
+
+#: templates/selia/create/collection_users/select_role.html:51
+msgid "There are no available roles for this collection"
+msgstr ""
+
+#: templates/selia/create/collection_users/select_user.html:16
+msgid "Select a user"
+msgstr ""
+
+#: templates/selia/create/collection_users/select_user.html:36
+msgid ""
+"\n"
+"Search for a user to add to the collection, or\n"
+msgstr ""
+
+#: templates/selia/create/collection_users/select_user.html:39
+msgid "invite a user to selia"
+msgstr ""
+
+#: templates/selia/create/collection_users/select_user.html:51
+msgid ""
+"\n"
+"        No user with the given email was found. Do you wish to\n"
+"        "
+msgstr ""
+
+#: templates/selia/create/collection_users/select_user.html:54
+msgid "invite a new user"
+msgstr ""
+
+#: templates/selia/create/items/select_collection.html:10
+#: templates/selia/create/items/select_licence.html:11
+#: templates/selia/create/items/select_sampling_event.html:11
+#: templates/selia/create/items/select_sampling_event_device.html:11
+#: templates/selia/create/items/upload.html:11
+#: templates/selia/detail/collection_device.html:25
+#: templates/selia/detail/sampling_event.html:20
+#: templates/selia/detail/site.html:20 templates/selia/detail/user.html:15
+msgid "Add items"
+msgstr ""
+
+#: templates/selia/create/items/select_collection.html:15
+#: templates/selia/create/items/select_licence.html:22
+#: templates/selia/create/items/select_sampling_event.html:20
+#: templates/selia/create/items/select_sampling_event_device.html:22
+#: templates/selia/create/items/upload.html:55
+#: templates/selia/create/sampling_event_devices/create_form.html:31
+#: templates/selia/create/sampling_event_devices/select_collection.html:25
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:22
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:20
+msgid "Select sampling event"
+msgstr ""
+
+#: templates/selia/create/items/select_collection.html:16
+#: templates/selia/create/items/select_licence.html:27
+#: templates/selia/create/items/select_sampling_event.html:21
+#: templates/selia/create/items/select_sampling_event_device.html:25
+#: templates/selia/create/items/upload.html:60
+msgid "Select deployed device"
+msgstr ""
+
+#: templates/selia/create/items/select_collection.html:17
+#: templates/selia/create/items/select_licence.html:30
+#: templates/selia/create/items/select_licence.html:35
+#: templates/selia/create/items/select_sampling_event.html:22
+#: templates/selia/create/items/select_sampling_event_device.html:26
+#: templates/selia/create/items/upload.html:65
+msgid "Select licence"
+msgstr ""
+
+#: templates/selia/create/items/select_collection.html:18
+#: templates/selia/create/items/select_licence.html:31
+#: templates/selia/create/items/select_sampling_event.html:23
+#: templates/selia/create/items/select_sampling_event_device.html:27
+#: templates/selia/create/items/upload.html:68
+msgid "Upload files"
+msgstr ""
+
+#: templates/selia/create/items/select_collection.html:32
+msgid "No collections were found"
+msgstr ""
+
+#: templates/selia/create/items/select_licence.html:39
+msgid ""
+"\n"
+"    Please select a licence for the items you wish to upload.\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/items/select_licence.html:48
+#: templates/selia/create/items/select_sampling_event_device.html:47
+#: templates/selia/create/sampling_event_devices/create_form.html:53
+msgid "Selected sampling event"
+msgstr ""
+
+#: templates/selia/create/items/select_licence.html:51
+msgid "Selected deployed device"
+msgstr ""
+
+#: templates/selia/create/items/select_licence.html:67
+msgid "No available licences."
+msgstr ""
+
+#: templates/selia/create/items/select_sampling_event.html:27
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:26
+msgid "Select a sampling event"
+msgstr ""
+
+#: templates/selia/create/items/select_sampling_event.html:31
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:30
+msgid ""
+"\n"
+"    Choose a sampling event from the collection or\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/items/select_sampling_event.html:43
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:39
+msgid "No available sampling events."
+msgstr ""
+
+#: templates/selia/create/items/select_sampling_event.html:45
+msgid "Create a new one"
+msgstr ""
+
+#: templates/selia/create/items/select_sampling_event_device.html:31
+msgid "Select a deployed device"
+msgstr ""
+
+#: templates/selia/create/items/select_sampling_event_device.html:35
+msgid ""
+"\n"
+"    Choose a device that was deployed in the sampling event or\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/items/select_sampling_event_device.html:52
+msgid "No deployed devices were found"
+msgstr ""
+
+#: templates/selia/create/licences/create_form.html:8
+#: templates/selia/create/licences/select_type.html:6
+#: templates/selia/list/collection_licences.html:16
+msgid "Add licence"
+msgstr ""
+
+#: templates/selia/create/licences/create_form.html:18
+#: templates/selia/create/licences/select_type.html:14
+#: templates/selia/create/licences/select_type.html:19
+msgid "Select licence type"
+msgstr ""
+
+#: templates/selia/create/licences/create_form.html:33
+msgid ""
+"\n"
+"  Please download a copy of licence template, fill it in and upload the "
+"completed document.\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/licences/create_form.html:43
+msgid "Selected licence type"
+msgstr ""
+
+#: templates/selia/create/licences/create_form.html:63
+msgid ""
+"\n"
+"          Please download the licence document template and upload a filled "
+"in version.\n"
+"          "
+msgstr ""
+
+#: templates/selia/create/licences/create_form.html:70
+msgid "Template"
+msgstr ""
+
+#: templates/selia/create/licences/create_form.html:96
+msgid "No additional information is required"
+msgstr ""
+
+#: templates/selia/create/licences/select_type.html:32
+msgid "No licence types are valid for this collection"
+msgstr ""
+
+#: templates/selia/create/physical_devices/create_form.html:8
+#: templates/selia/create/physical_devices/select_device.html:7
+msgid "Add user device"
+msgstr ""
+
+#: templates/selia/create/physical_devices/create_form.html:18
+#: templates/selia/create/physical_devices/select_device.html:19
+#: templates/selia/create/physical_devices/select_device.html:24
+msgid "Select hardware"
+msgstr ""
+
+#: templates/selia/create/physical_devices/create_form.html:29
+msgid ""
+"\n"
+"    Register any individual traits\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/physical_devices/create_form.html:35
+msgid "Selected hardware"
+msgstr ""
+
+#: templates/selia/create/physical_devices/select_device.html:28
+msgid ""
+"\n"
+"    Select the brand, model and device type.\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/physical_devices/select_device.html:42
+#: templates/selia/detail/physical_device.html:10
+#: templates/selia/details/physical_device.html:10
+#: templates/selia/list/collection_devices.html:10
+#: templates/selia/select_list_items/items.html:42
+msgid "Device"
+msgstr ""
+
+#: templates/selia/create/physical_devices/select_device.html:48
+msgid "Select"
+msgstr ""
+
+#: templates/selia/create/physical_devices/select_device.html:52
+msgid "Please search for the device"
+msgstr ""
+
+#: templates/selia/create/physical_devices/select_device.html:52
+msgid "or"
+msgstr ""
+
+#: templates/selia/create/physical_devices/select_device.html:60
+msgid "Create new device"
+msgstr ""
+
+#: templates/selia/create/physical_devices/select_device.html:77
+msgid "Add"
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/create_form.html:9
+#: templates/selia/create/sampling_event_devices/select_collection.html:6
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:7
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:7
+msgid "Add deployed device"
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/create_form.html:36
+#: templates/selia/create/sampling_event_devices/select_collection.html:26
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:25
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:21
+msgid "Select device"
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/create_form.html:47
+msgid ""
+"\n"
+"  Please provide information about the deployment of the device in the "
+"sampling event.\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/create_form.html:66
+msgid "Use sampling event starting and ending dates as deployment dates?"
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/create_form.html:84
+msgid "Use sampling event site for deployment location?"
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/select_collection.html:31
+msgid "No available collections."
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:30
+msgid "Select device to deploy"
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:34
+msgid ""
+"\n"
+"    Choose a registered collection device to deploy or\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:38
+msgid "add a new one to the collection"
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:43
+msgid "No collection devices were found."
+msgstr ""
+
+#: templates/selia/create/sampling_event_devices/select_collection_device.html:46
+#: templates/selia/create/sampling_event_devices/select_sampling_event.html:42
+msgid "Add a new one"
+msgstr ""
+
+#: templates/selia/create/sampling_events/create_form.html:8
+#: templates/selia/create/sampling_events/select_collection.html:9
+#: templates/selia/create/sampling_events/select_site.html:16
+#: templates/selia/create/sampling_events/select_type.html:7
+msgid "Create sampling event"
+msgstr ""
+
+#: templates/selia/create/sampling_events/create_form.html:40
+#: templates/selia/create/sampling_events/select_collection.html:14
+#: templates/selia/create/sampling_events/select_site.html:27
+#: templates/selia/create/sampling_events/select_type.html:20
+#: templates/selia/create/sampling_events/select_type.html:26
+msgid "Select sampling event type"
+msgstr ""
+
+#: templates/selia/create/sampling_events/create_form.html:45
+#: templates/selia/create/sampling_events/select_collection.html:15
+#: templates/selia/create/sampling_events/select_site.html:30
+#: templates/selia/create/sampling_events/select_type.html:21
+msgid "Select collection site"
+msgstr ""
+
+#: templates/selia/create/sampling_events/create_form.html:59
+msgid "Selected sampling event type"
+msgstr ""
+
+#: templates/selia/create/sampling_events/select_collection.html:30
+msgid ""
+"\n"
+"    No collections where found.\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/sampling_events/select_site.html:35
+msgid "Select a registered site"
+msgstr ""
+
+#: templates/selia/create/sampling_events/select_site.html:39
+msgid ""
+"\n"
+"  Please select a collection site to associate or\n"
+msgstr ""
+
+#: templates/selia/create/sampling_events/select_site.html:41
+msgid "add a new one"
+msgstr ""
+
+#: templates/selia/create/sampling_events/select_site.html:45
+msgid "No collection sites found."
+msgstr ""
+
+#: templates/selia/create/sampling_events/select_site.html:48
+msgid "register new site"
+msgstr ""
+
+#: templates/selia/create/sites/create_form.html:8
+#: templates/selia/create/sites/create_form.html:20
+msgid "Create site"
+msgstr ""
+
+#: templates/selia/create/sites/create_form.html:24
+msgid ""
+"\n"
+"    Please fill in the following information\n"
+"  "
+msgstr ""
+
+#: templates/selia/create/users/create_form.html:7
+#: templates/selia/create/users/create_form.html:15
+msgid "Invite user"
+msgstr ""
+
+#: templates/selia/detail/collection.html:11
+#: templates/selia/filters/sampling_event.html:22
+#: templates/selia/list_items/collection_device.html:56
+#: templates/selia/list_items/collection_site.html:51
+#: templates/selia/list_items/licence.html:35
+#: templates/selia/list_items/sampling_event.html:32
+#: templates/selia/navbars/collection.html:11
+msgid "Collection"
+msgstr ""
+
+#: templates/selia/detail/collection.html:11
+#: templates/selia/detail/item.html:10
+#: templates/selia/detail/sampling_event.html:16
+#: templates/selia/detail/sampling_event_device.html:8
+msgid "Detail"
+msgstr ""
+
+#: templates/selia/detail/collection.html:16
+msgid "Add site"
+msgstr ""
+
+#: templates/selia/detail/collection.html:21
+msgid "Add device"
+msgstr ""
+
+#: templates/selia/detail/collection.html:26
+#: templates/selia/detail/collection_site.html:31
+#: templates/selia/detail/site.html:30
+#: templates/selia/list/sampling_events.html:22
+msgid "Add sampling event"
+msgstr ""
+
+#: templates/selia/detail/collection.html:31
+#: templates/selia/detail/collection_site.html:26
+#: templates/selia/detail/physical_device.html:25
+#: templates/selia/detail/sampling_event_device.html:23
+msgid "Add item"
+msgstr ""
+
+#: templates/selia/detail/collection.html:36
+#: templates/selia/detail/collection_device.html:29
+#: templates/selia/detail/collection_site.html:35
+#: templates/selia/detail/collection_user.html:15
+#: templates/selia/detail/item.html:14 templates/selia/detail/licence.html:14
+#: templates/selia/detail/sampling_event.html:26
+#: templates/selia/detail/sampling_event_device.html:27
+msgid "Download summary"
+msgstr ""
+
+#: templates/selia/detail/collection_device.html:15
+#: templates/selia/details/collection_device.html:8
+#: templates/selia/select_list_items/sampling_event_devices.html:16
+msgid "Collection Device"
+msgstr ""
+
+#: templates/selia/detail/collection_device.html:20
+msgid "Deploy"
+msgstr ""
+
+#: templates/selia/detail/collection_site.html:16
+#: templates/selia/details/collection_site.html:8
+#: templates/selia/list_items/sampling_event.html:40
+msgid "Collection Site"
+msgstr ""
+
+#: templates/selia/detail/collection_site.html:21
+#: templates/selia/detail/physical_device.html:15
+msgid "Add deployment"
+msgstr ""
+
+#: templates/selia/detail/collection_user.html:11
+msgid "Collection User"
+msgstr ""
+
+#: templates/selia/detail/item.html:10
+#: templates/selia/list/collection_items.html:10
+#: templates/selia/list/sampling_event_device_items.html:10
+#: templates/selia/list/sampling_event_items.html:6
+#: templates/selia/list_items/item.html:18 templates/selia/navbars/item.html:11
+msgid "Item"
+msgstr ""
+
+#: templates/selia/detail/item.html:17 templates/selia/detail/licence.html:17
+#: templates/selia/detail/sampling_event.html:29
+#: templates/selia/detail/sampling_event_device.html:30
+#: templates/selia/list/sampling_event_devices.html:20
+msgid "Help"
+msgstr ""
+
+#: templates/selia/detail/item.html:21 templates/selia/detail/item.html:27
+#: templates/selia/details/item.html:9
+msgid "Item "
+msgstr ""
+
+#: templates/selia/detail/licence.html:10 templates/selia/details/item.html:47
+#: templates/selia/list/collection_licences.html:10
+#: templates/selia/list_items/item.html:44
+#: templates/selia/list_items/licence.html:12
+#: templates/selia/select_list_items/items.html:52
+msgid "Licence"
+msgstr ""
+
+#: templates/selia/detail/physical_device.html:20
+#: templates/selia/detail/site.html:25
+msgid "Add to collection"
+msgstr ""
+
+#: templates/selia/detail/physical_device.html:30
+#: templates/selia/detail/site.html:34 templates/selia/detail/user.html:35
+msgid "Download Summary"
+msgstr ""
+
+#: templates/selia/detail/sampling_event.html:16
+#: templates/selia/list/sampling_event_items.html:6
+#: templates/selia/list/sampling_events.html:15
+msgid "Sampling Event"
+msgstr ""
+
+#: templates/selia/detail/sampling_event.html:23
+#: templates/selia/list/sampling_event_devices.html:16
+msgid "Deploy device"
+msgstr ""
+
+#: templates/selia/detail/sampling_event_device.html:8
+#: templates/selia/list/sampling_event_devices.html:10
+#: templates/selia/navbars/sampling_event_device.html:12
+msgid "Deployed Device"
+msgstr ""
+
+#: templates/selia/detail/site.html:15 templates/selia/details/item.html:118
+#: templates/selia/details/sampling_event_device.html:46
+#: templates/selia/details/site.html:11
+#: templates/selia/filters/collection_sampling_event.html:28
+#: templates/selia/list/collection_sites.html:15
+#: templates/selia/list_items/collection_site.html:19
+#: templates/selia/list_items/site.html:19
+#: templates/selia/select_list_items/collection_sites.html:18
+#: templates/selia/select_list_items/items.html:27
+#: templates/selia/select_list_items/sites.html:18
+msgid "Site"
+msgstr ""
+
+#: templates/selia/detail/user.html:10 templates/selia/navbars/user.html:10
+msgid "Home"
+msgstr ""
+
+#: templates/selia/detail/user.html:20
+msgid "Add sampling events"
+msgstr ""
+
+#: templates/selia/detail/user.html:25
+msgid "Add devices"
+msgstr ""
+
+#: templates/selia/detail/user.html:30
+msgid "Add sites"
+msgstr ""
+
+#: templates/selia/details/administrators.html:4
+msgid "Collection administrators"
+msgstr ""
+
+#: templates/selia/details/administrators.html:13
+#: templates/selia/details/collection_device.html:27
+#: templates/selia/details/collection_site.html:17
+#: templates/selia/details/item.html:149
+#: templates/selia/details/physical_device.html:44
+#: templates/selia/details/sampling_event_device.html:77
+#: templates/selia/details/site.html:23 templates/selia/details/user.html:70
+#: templates/selia/filters/annotation.html:73
+#: templates/selia/filters/collection.html:43
+#: templates/selia/filters/collection_device.html:69
+#: templates/selia/filters/collection_sampling_event.html:33
+#: templates/selia/filters/collection_sampling_event.html:89
+#: templates/selia/filters/collection_site.html:32
+#: templates/selia/filters/item.html:34 templates/selia/filters/item.html:75
+#: templates/selia/filters/licence.html:32
+#: templates/selia/filters/sampling_event_device.html:16
+#: templates/selia/filters/site.html:14
+#: templates/selia/list_items/collection_device.html:47
+#: templates/selia/list_items/collection_site.html:44
+#: templates/selia/list_items/collection_site.html:63
+#: templates/selia/list_items/physical_device.html:27
+#: templates/selia/list_items/sampling_event_device.html:49
+#: templates/selia/select_list_items/collection_devices.html:32
+#: templates/selia/select_list_items/physical_devices.html:22
+msgid "Name"
+msgstr ""
+
+#: templates/selia/details/administrators.html:22
+#: templates/selia/details/collection_user.html:57
+#: templates/selia/details/user.html:29
+#: templates/selia/list_items/collection_user.html:57
+#: templates/selia/select_list_items/user.html:33
+msgid "Email"
+msgstr ""
+
+#: templates/selia/details/collection.html:19
+#: templates/selia/filters/collection.html:16
+#: templates/selia/filters/managed_collection.html:9
+#: templates/selia/list_items/collection.html:27
+#: templates/selia/list_items/managed_collection.html:20
+#: templates/selia/select_list_items/collection.html:22
+#: templates/selia/select_list_items/user_collections.html:20
+msgid "Collection type"
+msgstr ""
+
+#: templates/selia/details/collection.html:26
+#: templates/selia/details/collection_user.html:30
+#: templates/selia/filters/collection.html:56
+#: templates/selia/filters/item.html:70
+#: templates/selia/filters/managed_collection.html:26
+#: templates/selia/list_items/collection.html:34
+#: templates/selia/list_items/collection_user.html:75
+#: templates/selia/list_items/managed_collection.html:24
+#: templates/selia/select_list_items/collection.html:29
+#: templates/selia/select_list_items/user_collections.html:24
+msgid "Institution"
+msgstr ""
+
+#: templates/selia/details/collection_device.html:20
+#: templates/selia/details/item.html:142
+#: templates/selia/details/sampling_event_device.html:70
+#: templates/selia/filters/collection_device.html:11
+#: templates/selia/filters/sampling_event_device.html:51
+#: templates/selia/list_items/collection_device.html:32
+#: templates/selia/list_items/physical_device.html:34
+#: templates/selia/list_items/sampling_event_device.html:32
+#: templates/selia/select_list_items/physical_devices.html:38
+#: templates/selia/select_list_items/sampling_event_devices.html:25
+msgid "Device type"
+msgstr ""
+
+#: templates/selia/details/collection_device.html:34
+#: templates/selia/details/collection_site.html:24
+#: templates/selia/details/sampling_event_device.html:111
+#: templates/selia/list_items/annotation.html:43
+#: templates/selia/list_items/collection_device.html:64
+#: templates/selia/list_items/collection_site.html:81
+#: templates/selia/list_items/item.html:37
+#: templates/selia/list_items/sampling_event_device.html:56
+#: templates/selia/select_list_items/collection_devices.html:41
+#: templates/selia/select_list_items/items.html:48
+#: templates/selia/select_list_items/sampling_event_devices.html:48
+msgid "Owner"
+msgstr ""
+
+#: templates/selia/details/collection_device.html:44
+#: templates/selia/details/collection_device.html:47
+#: templates/selia/details/item.html:135
+#: templates/selia/details/sampling_event_device.html:63
+msgid "Device Info"
+msgstr ""
+
+#: templates/selia/details/collection_device.html:55
+#: templates/selia/details/item.html:161
+#: templates/selia/details/physical_device.html:20
+#: templates/selia/details/sampling_event_device.html:87
+#: templates/selia/filters/collection_device.html:28
+#: templates/selia/filters/physical_device.html:57
+#: templates/selia/filters/sampling_event_device.html:70
+msgid "Brand"
+msgstr ""
+
+#: templates/selia/details/collection_device.html:62
+#: templates/selia/details/item.html:168
+#: templates/selia/details/physical_device.html:27
+#: templates/selia/details/sampling_event_device.html:94
+#: templates/selia/filters/collection_device.html:47
+#: templates/selia/filters/physical_device.html:69
+#: templates/selia/filters/sampling_event_device.html:87
+#: templates/selia/select_list_items/devices.html:14
+msgid "Model"
+msgstr ""
+
+#: templates/selia/details/collection_device.html:69
+#: templates/selia/details/physical_device.html:37
+#: templates/selia/details/sampling_event_device.html:104
+#: templates/selia/filters/physical_device.html:14
+msgid "Serial number"
+msgstr ""
+
+#: templates/selia/details/collection_site.html:34
+#: templates/selia/details/collection_site.html:37
+#: templates/selia/details/sampling_event.html:36
+msgid "Site info"
+msgstr ""
+
+#: templates/selia/details/collection_site.html:44
+#: templates/selia/details/site.html:30
+#: templates/selia/filters/collection_site.html:44
+#: templates/selia/filters/site.html:26
+#: templates/selia/list_items/collection_site.html:73
+#: templates/selia/select_list_items/collection_sites.html:57
+#: templates/selia/select_list_items/sites.html:53
+msgid "Locality"
+msgstr ""
+
+#: templates/selia/details/collection_site.html:55
+#: templates/selia/details/site.html:54
+#: templates/selia/filters/collection_site.html:92
+#: templates/selia/filters/site.html:74 templates/selia/list_items/site.html:47
+#: templates/selia/select_list_items/collection_sites.html:47
+#: templates/selia/select_list_items/sites.html:43
+msgid "Altitude"
+msgstr ""
+
+#: templates/selia/details/collection_site.html:69
+#: templates/selia/details/site.html:40
+#: templates/selia/filters/collection_site.html:64
+#: templates/selia/filters/site.html:46 templates/selia/list_items/site.html:33
+#: templates/selia/select_list_items/collection_sites.html:33
+#: templates/selia/select_list_items/sites.html:29
+msgid "Latitude"
+msgstr ""
+
+#: templates/selia/details/collection_site.html:76
+#: templates/selia/details/site.html:47
+#: templates/selia/filters/collection_site.html:78
+#: templates/selia/filters/site.html:60 templates/selia/list_items/site.html:40
+#: templates/selia/select_list_items/collection_sites.html:40
+#: templates/selia/select_list_items/sites.html:36
+msgid "Longitude"
+msgstr ""
+
+#: templates/selia/details/collection_user.html:11
+msgid "Collection user"
+msgstr ""
+
+#: templates/selia/details/collection_user.html:17
+#: templates/selia/details/user.html:15 templates/selia/update/user.html:8
+msgid "User info"
+msgstr ""
+
+#: templates/selia/details/collection_user.html:23
+#: templates/selia/details/user.html:21
+#: templates/selia/list_items/collection_user.html:50
+#: templates/selia/select_list_items/user.html:9
+msgid "Username"
+msgstr ""
+
+#: templates/selia/details/collection_user.html:40
+#: templates/selia/details/user.html:39
+#: templates/selia/filters/annotation.html:83
+#: templates/selia/filters/collection_device.html:79
+#: templates/selia/filters/collection_sampling_event.html:99
+#: templates/selia/filters/item.html:44 templates/selia/filters/licence.html:42
+#: templates/selia/filters/sampling_event_device.html:26
+#: templates/selia/list_items/collection_user.html:33
+#: templates/selia/select_list_items/user.html:20
+msgid "First name"
+msgstr ""
+
+#: templates/selia/details/collection_user.html:47
+#: templates/selia/details/user.html:47
+#: templates/selia/filters/annotation.html:93
+#: templates/selia/filters/collection_device.html:89
+#: templates/selia/filters/collection_sampling_event.html:109
+#: templates/selia/filters/item.html:54 templates/selia/filters/licence.html:52
+#: templates/selia/filters/sampling_event_device.html:36
+#: templates/selia/list_items/collection_user.html:40
+#: templates/selia/select_list_items/user.html:40
+msgid "Last name"
+msgstr ""
+
+#: templates/selia/details/collection_user.html:65
+#: templates/selia/details/collection_user.html:71
+#: templates/selia/list_items/collection_user.html:68
+msgid "Role"
+msgstr ""
+
+#: templates/selia/details/collection_user.html:79
+#: templates/selia/details/licence_type.html:24
+msgid "Description"
+msgstr ""
+
+#: templates/selia/details/item.html:17
+msgid "Item Info"
+msgstr ""
+
+#: templates/selia/details/item.html:23 templates/selia/filters/item.html:10
+msgid "Item type"
+msgstr ""
+
+#: templates/selia/details/item.html:30
+msgid "File size"
+msgstr ""
+
+#: templates/selia/details/item.html:40 templates/selia/list_items/item.html:30
+#: templates/selia/select_list_items/items.html:16
+msgid "Captured on"
+msgstr ""
+
+#: templates/selia/details/item.html:57 templates/selia/list_items/item.html:52
+msgid "Tags"
+msgstr ""
+
+#: templates/selia/details/item.html:63
+msgid "No tags"
+msgstr ""
+
+#: templates/selia/details/item.html:70
+msgid "File"
+msgstr ""
+
+#: templates/selia/details/item.html:73 templates/selia/details/licence.html:51
+msgid "Download"
+msgstr ""
+
+#: templates/selia/details/item.html:75
+msgid "Sorry. You don\\"
+msgstr ""
+
+#: templates/selia/details/item.html:83
+msgid "Media info"
+msgstr ""
+
+#: templates/selia/details/item.html:93
+#: templates/selia/details/sampling_event_device.html:21
+msgid "Sampling Event Info"
+msgstr ""
+
+#: templates/selia/details/item.html:100
+#: templates/selia/details/sampling_event.html:20
+#: templates/selia/details/sampling_event_device.html:28
+#: templates/selia/filters/collection_sampling_event.html:50
+#: templates/selia/filters/sampling_event.html:35
+#: templates/selia/list_items/sampling_event.html:86
+#: templates/selia/select_list_items/sampling_events.html:40
+msgid "Started on"
+msgstr ""
+
+#: templates/selia/details/item.html:107
+#: templates/selia/details/sampling_event.html:27
+#: templates/selia/details/sampling_event_device.html:35
+#: templates/selia/filters/collection_sampling_event.html:66
+#: templates/selia/filters/sampling_event.html:52
+#: templates/selia/list_items/sampling_event.html:93
+#: templates/selia/select_list_items/sampling_events.html:47
+msgid "Ended on"
+msgstr ""
+
+#: templates/selia/details/item.html:126
+#: templates/selia/details/sampling_event.html:50
+#: templates/selia/details/sampling_event_device.html:54
+#: templates/selia/list_items/sampling_event.html:61
+msgid "Site locality"
+msgstr ""
+
+#: templates/selia/details/item.html:178
+#: templates/selia/details/sampling_event_device.html:125
+msgid "Deployed on"
+msgstr ""
+
+#: templates/selia/details/item.html:185
+#: templates/selia/details/sampling_event_device.html:132
+msgid "Recovered on"
+msgstr ""
+
+#: templates/selia/details/item.html:204
+#: templates/selia/details/sampling_event_device.html:171
+msgid "Device configuration"
+msgstr ""
+
+#: templates/selia/details/licence.html:8
+msgid "Licence "
+msgstr ""
+
+#: templates/selia/details/licence.html:19
+msgid "Signed on"
+msgstr ""
+
+#: templates/selia/details/licence.html:26
+msgid "Signer"
+msgstr ""
+
+#: templates/selia/details/licence.html:36
+#: templates/selia/select_list_items/licences.html:27
+msgid "Valid until"
+msgstr ""
+
+#: templates/selia/details/licence.html:47
+#: templates/selia/viewers/licence.html:7
+msgid "Document"
+msgstr ""
+
+#: templates/selia/details/licence.html:61
+#: templates/selia/details/licence_type.html:7
+#: templates/selia/filters/licence.html:10
+#: templates/selia/list_items/licence.html:28
+#: templates/selia/select_list_items/licences.html:10
+msgid "Licence type"
+msgstr ""
+
+#: templates/selia/details/licence_type.html:14
+msgid "Years valid for"
+msgstr ""
+
+#: templates/selia/details/licence_type.html:35
+#: templates/selia/select_list_items/licence_type.html:23
+#: templates/selia/select_list_items/licences.html:42
+#: templates/selia/select_list_items/role.html:22
+msgid "Permissions"
+msgstr ""
+
+#: templates/selia/details/licence_type.html:40
+#: templates/selia/select_list_items/licence_type.html:28
+#: templates/selia/select_list_items/licences.html:47
+msgid "Can view items"
+msgstr ""
+
+#: templates/selia/details/licence_type.html:44
+#: templates/selia/select_list_items/licence_type.html:32
+msgid "Can download items"
+msgstr ""
+
+#: templates/selia/details/licence_type.html:48
+#: templates/selia/select_list_items/licence_type.html:36
+#: templates/selia/select_list_items/licences.html:55
+msgid "Can view annotations"
+msgstr ""
+
+#: templates/selia/details/licence_type.html:52
+#: templates/selia/select_list_items/licence_type.html:40
+#: templates/selia/select_list_items/licences.html:59
+msgid "Can annotate"
+msgstr ""
+
+#: templates/selia/details/licence_type.html:56
+#: templates/selia/select_list_items/licence_type.html:44
+#: templates/selia/select_list_items/licences.html:63
+msgid "Can vote annotations"
+msgstr ""
+
+#: templates/selia/details/sampling_event.html:9
+#: templates/selia/list_items/item.html:77
+#: templates/selia/navbars/sampling_event.html:12
+#: templates/selia/select_list_items/items.html:33
+msgid "Sampling event"
+msgstr ""
+
+#: templates/selia/details/sampling_event.html:43
+#: templates/selia/list_items/sampling_event.html:51
+msgid "Site name"
+msgstr ""
+
+#: templates/selia/details/sampling_event.html:59
+msgid "Site altitude"
+msgstr ""
+
+#: templates/selia/details/sampling_event.html:66
+#: templates/selia/list_items/sampling_event.html:69
+msgid "Site latitude"
+msgstr ""
+
+#: templates/selia/details/sampling_event.html:73
+#: templates/selia/list_items/sampling_event.html:76
+msgid "Site longitude"
+msgstr ""
+
+#: templates/selia/details/sampling_event_device.html:9
+msgid "deployed"
+msgstr ""
+
+#: templates/selia/details/sampling_event_device.html:11
+msgid "Deployed device"
+msgstr ""
+
+#: templates/selia/details/sampling_event_device.html:119
+msgid "Deployment Info"
+msgstr ""
+
+#: templates/selia/details/sampling_event_device.html:142
+msgid "Deployment latitude"
+msgstr ""
+
+#: templates/selia/details/sampling_event_device.html:149
+msgid "Deployment longitude"
+msgstr ""
+
+#: templates/selia/details/sampling_event_device.html:159
+msgid "Deployment metadata"
+msgstr ""
+
+#: templates/selia/details/user.html:7
+msgid "User Details"
+msgstr ""
+
+#: templates/selia/details/user.html:56
+msgid "Change password"
+msgstr ""
+
+#: templates/selia/details/user.html:63 templates/selia/update/user.html:25
+msgid "Institution info"
+msgstr ""
+
+#: templates/selia/details/user.html:77
+#: templates/selia/filters/collection.html:86 views/detail_views/user.py:51
+msgid "Institution code"
+msgstr ""
+
+#: templates/selia/details/user.html:86 views/detail_views/user.py:55
+msgid "Subdependency"
+msgstr ""
+
+#: templates/selia/details/user.html:93 templates/selia/filters/item.html:86
+#: views/detail_views/user.py:60
+msgid "Country"
+msgstr ""
+
+#: templates/selia/details/user.html:101
+msgid "No institution info"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:11
+#: templates/selia/list_items/annotation.html:24
+msgid "Event type"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:17
+#: templates/selia/filters/annotation.html:34
+#: templates/selia/filters/collection.html:20
+#: templates/selia/filters/collection.html:32
+#: templates/selia/filters/collection.html:90
+#: templates/selia/filters/collection_device.html:17
+#: templates/selia/filters/collection_sampling_event.html:17
+#: templates/selia/filters/collection_site.html:15
+#: templates/selia/filters/item.html:16 templates/selia/filters/item.html:101
+#: templates/selia/filters/licence.html:16
+#: templates/selia/filters/sampling_event_device.html:57
+msgid "Equals"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:28
+#: templates/selia/list_items/annotation.html:28
+msgid "Annotation type"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:47
+#: templates/selia/list_items/annotation.html:35
+msgid "Certainty"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:53
+#: templates/selia/filters/collection_site.html:68
+#: templates/selia/filters/collection_site.html:82
+#: templates/selia/filters/collection_site.html:96
+#: templates/selia/filters/site.html:50 templates/selia/filters/site.html:64
+#: templates/selia/filters/site.html:78
+msgid "Greater than"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:57
+#: templates/selia/filters/collection_site.html:72
+#: templates/selia/filters/collection_site.html:86
+#: templates/selia/filters/collection_site.html:100
+#: templates/selia/filters/site.html:54 templates/selia/filters/site.html:68
+#: templates/selia/filters/site.html:82
+msgid "Less than"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:68
+#: templates/selia/filters/collection_device.html:64
+#: templates/selia/filters/collection_sampling_event.html:84
+#: templates/selia/filters/item.html:29 templates/selia/filters/licence.html:27
+#: templates/selia/filters/sampling_event_device.html:11
+#: templates/selia/list/collection_users.html:10
+msgid "User"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:77
+#: templates/selia/filters/annotation.html:87
+#: templates/selia/filters/annotation.html:97
+#: templates/selia/filters/collection.html:47
+#: templates/selia/filters/collection.html:67
+#: templates/selia/filters/collection.html:78
+#: templates/selia/filters/collection_device.html:34
+#: templates/selia/filters/collection_device.html:53
+#: templates/selia/filters/collection_device.html:73
+#: templates/selia/filters/collection_device.html:83
+#: templates/selia/filters/collection_device.html:93
+#: templates/selia/filters/collection_sampling_event.html:37
+#: templates/selia/filters/collection_sampling_event.html:93
+#: templates/selia/filters/collection_sampling_event.html:103
+#: templates/selia/filters/collection_sampling_event.html:113
+#: templates/selia/filters/collection_site.html:36
+#: templates/selia/filters/collection_site.html:48
+#: templates/selia/filters/item.html:38 templates/selia/filters/item.html:48
+#: templates/selia/filters/item.html:58 templates/selia/filters/item.html:79
+#: templates/selia/filters/item.html:90 templates/selia/filters/licence.html:36
+#: templates/selia/filters/licence.html:46
+#: templates/selia/filters/licence.html:56
+#: templates/selia/filters/physical_device.html:18
+#: templates/selia/filters/physical_device.html:30
+#: templates/selia/filters/physical_device.html:61
+#: templates/selia/filters/physical_device.html:73
+#: templates/selia/filters/sampling_event_device.html:20
+#: templates/selia/filters/sampling_event_device.html:30
+#: templates/selia/filters/sampling_event_device.html:40
+#: templates/selia/filters/sampling_event_device.html:76
+#: templates/selia/filters/sampling_event_device.html:93
+#: templates/selia/filters/site.html:18 templates/selia/filters/site.html:30
+msgid "Contains"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:110
+#: templates/selia/filters/collection.html:103
+#: templates/selia/filters/collection_device.html:105
+#: templates/selia/filters/collection_sampling_event.html:124
+#: templates/selia/filters/collection_site.html:111
+#: templates/selia/filters/item.html:113
+#: templates/selia/filters/licence.html:68
+#: templates/selia/filters/managed_collection.html:53
+#: templates/selia/filters/physical_device.html:84
+#: templates/selia/filters/sampling_event.html:69
+#: templates/selia/filters/sampling_event_device.html:106
+#: templates/selia/filters/site.html:93
+msgid "Date of creation"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:114
+#: templates/selia/filters/collection.html:107
+#: templates/selia/filters/collection_device.html:109
+#: templates/selia/filters/collection_sampling_event.html:54
+#: templates/selia/filters/collection_sampling_event.html:70
+#: templates/selia/filters/collection_sampling_event.html:128
+#: templates/selia/filters/collection_site.html:115
+#: templates/selia/filters/item.html:117
+#: templates/selia/filters/licence.html:72
+#: templates/selia/filters/physical_device.html:88
+#: templates/selia/filters/sampling_event.html:39
+#: templates/selia/filters/sampling_event.html:56
+#: templates/selia/filters/sampling_event.html:73
+#: templates/selia/filters/sampling_event_device.html:110
+#: templates/selia/filters/site.html:97
+msgid "From"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:117
+#: templates/selia/filters/collection.html:110
+#: templates/selia/filters/collection_device.html:112
+#: templates/selia/filters/collection_sampling_event.html:57
+#: templates/selia/filters/collection_sampling_event.html:73
+#: templates/selia/filters/collection_sampling_event.html:131
+#: templates/selia/filters/collection_site.html:118
+#: templates/selia/filters/item.html:120
+#: templates/selia/filters/licence.html:75
+#: templates/selia/filters/physical_device.html:91
+#: templates/selia/filters/sampling_event.html:42
+#: templates/selia/filters/sampling_event.html:59
+#: templates/selia/filters/sampling_event.html:76
+#: templates/selia/filters/sampling_event_device.html:113
+#: templates/selia/filters/site.html:100
+msgid "To"
+msgstr ""
+
+#: templates/selia/filters/annotation.html:125
+msgid "Mine: "
+msgstr ""
+
+#: templates/selia/filters/collection.html:10
+msgid "Details"
+msgstr ""
+
+#: templates/selia/filters/collection.html:28
+msgid "Is open?"
+msgstr ""
+
+#: templates/selia/filters/collection.html:63 views/detail_views/user.py:47
+msgid "Institution name"
+msgstr ""
+
+#: templates/selia/filters/collection.html:74
+msgid "Institution country"
+msgstr ""
+
+#: templates/selia/filters/collection_sampling_event.html:11
+#: templates/selia/filters/sampling_event.html:9
+#: templates/selia/select_list_items/sampling_events.html:23
+msgid "Sampling event type"
+msgstr ""
+
+#: templates/selia/filters/collection_site.html:9
+#: templates/selia/list_items/collection_site.html:37
+msgid "Site type"
+msgstr ""
+
+#: templates/selia/filters/collection_site.html:27
+#: templates/selia/filters/site.html:9
+msgid "Names"
+msgstr ""
+
+#: templates/selia/filters/collection_site.html:59
+#: templates/selia/filters/site.html:41
+msgid "Location"
+msgstr ""
+
+#: templates/selia/filters/item.html:97
+msgid "Code"
+msgstr ""
+
+#: templates/selia/filters/physical_device.html:9
+msgid "Device details"
+msgstr ""
+
+#: templates/selia/filters/physical_device.html:26
+msgid "Custom name"
+msgstr ""
+
+#: templates/selia/filters/physical_device.html:38
+msgid "Is bundle"
+msgstr ""
+
+#: templates/selia/filters/physical_device.html:52
+msgid "Hardware details"
+msgstr ""
+
+#: templates/selia/list/collection_devices.html:10
+#: templates/selia/list/collection_items.html:10
+#: templates/selia/list/collection_licences.html:10
+#: templates/selia/list/collection_sites.html:15
+#: templates/selia/list/collection_users.html:10
+#: templates/selia/list/sampling_event_device_items.html:10
+#: templates/selia/list/sampling_event_devices.html:10
+#: templates/selia/list/sampling_event_items.html:6
+#: templates/selia/list/sampling_events.html:15
+msgid "List"
+msgstr ""
+
+#: templates/selia/list/collection_devices.html:17
+msgid "Add Device"
+msgstr ""
+
+#: templates/selia/list/collection_devices.html:28
+msgid ""
+"\n"
+"    No devices registered to the collection were found.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/collection_devices.html:34
+msgid "Add devices to the collection"
+msgstr ""
+
+#: templates/selia/list/collection_items.html:16
+#: templates/selia/list/user_items.html:15
+msgid "Create item"
+msgstr ""
+
+#: templates/selia/list/collection_items.html:26
+msgid ""
+"\n"
+"    No items were found\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/collection_licences.html:26
+msgid ""
+"\n"
+"    No signed licences for the collection were found.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/collection_licences.html:32
+msgid "Add licence to the collection"
+msgstr ""
+
+#: templates/selia/list/collection_sites.html:21
+msgid "Add Site"
+msgstr ""
+
+#: templates/selia/list/collection_sites.html:31
+msgid ""
+"\n"
+"    No sites registered to the collection were found.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/collection_sites.html:37
+msgid "Add site to the collection"
+msgstr ""
+
+#: templates/selia/list/collection_users.html:16
+msgid "Add User"
+msgstr ""
+
+#: templates/selia/list/collection_users.html:27
+msgid ""
+"\n"
+"    No collection users were found.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/collection_users.html:33
+msgid "Add user to the collection"
+msgstr ""
+
+#: templates/selia/list/sampling_event_device_items.html:10
+msgid "Sampling Event Device"
+msgstr ""
+
+#: templates/selia/list/sampling_event_device_items.html:16
+#: templates/selia/list/sampling_event_items.html:16
+msgid "Add Items"
+msgstr ""
+
+#: templates/selia/list/sampling_event_device_items.html:26
+msgid ""
+"\n"
+"    No items have been captured in this deployed device\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/sampling_event_device_items.html:32
+msgid "Add item to the deployed device"
+msgstr ""
+
+#: templates/selia/list/sampling_event_devices.html:26
+msgid ""
+"\n"
+"    No deployed device was found for this sampling event.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/sampling_event_devices.html:32
+#: templates/selia/list/sampling_event_items.html:32
+msgid "Deploy a device in this sampling event"
+msgstr ""
+
+#: templates/selia/list/sampling_event_items.html:26
+msgid ""
+"\n"
+"    No items captured in this sampling event were found.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/sampling_events.html:33
+msgid ""
+"\n"
+"    No sampling events were found in this collection.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/sampling_events.html:39
+#: templates/selia/list/user_sampling_events.html:20
+#: templates/selia/list/user_sampling_events.html:35
+msgid "Add a sampling event"
+msgstr ""
+
+#: templates/selia/list/user_items.html:10
+#: templates/selia/list/user_physical_devices.html:10
+#: templates/selia/list/user_sampling_events.html:11
+#: templates/selia/list/user_sites.html:7
+msgid "My"
+msgstr ""
+
+#: templates/selia/list/user_items.html:10
+#: templates/selia/list_items/collection.html:86
+#: templates/selia/list_items/collection_device.html:84
+#: templates/selia/list_items/collection_site.html:91
+#: templates/selia/list_items/licence.html:55
+#: templates/selia/list_items/managed_collection.html:38
+#: templates/selia/list_items/sampling_event.html:124
+#: templates/selia/list_items/sampling_event_device.html:75
+#: templates/selia/list_items/site.html:71
+#: templates/selia/navbars/collection.html:70
+#: templates/selia/navbars/sampling_event.html:34
+#: templates/selia/navbars/sampling_event_device.html:34
+#: templates/selia/select_list_items/sampling_event_devices.html:62
+#: templates/selia/summaries/collection.html:66
+#: templates/selia/summaries/collection_device.html:6
+#: templates/selia/summaries/collection_site.html:6
+#: templates/selia/summaries/physical_device.html:6
+#: templates/selia/summaries/sampling_event.html:25
+#: templates/selia/summaries/sampling_event_device.html:6
+#: templates/selia/summaries/site.html:28
+#: templates/selia/summaries/user.html:79
+msgid "Items"
+msgstr ""
+
+#: templates/selia/list/user_items.html:24
+msgid ""
+"\n"
+"    No user items were found.\n"
+"  "
+msgstr ""
+
+#: templates/selia/list/user_items.html:30
+msgid "Add a item"
+msgstr ""
+
+#: templates/selia/list/user_physical_devices.html:10
+#: templates/selia/list_items/collection.html:76
+#: templates/selia/navbars/collection.html:34
+#: templates/selia/summaries/collection.html:26
+#: templates/selia/summaries/sampling_event.html:6
+#: templates/selia/summaries/user.html:41
+msgid "Devices"
+msgstr ""
+
+#: templates/selia/list/user_physical_devices.html:16
+#: templates/selia/list/user_physical_devices.html:32
+msgid "Add a device"
+msgstr ""
+
+#: templates/selia/list/user_physical_devices.html:26
+msgid ""
+"\n"
+"      No user devices were found.\n"
+"    "
+msgstr ""
+
+#: templates/selia/list/user_sampling_events.html:11
+#: templates/selia/list_items/collection.html:66
+msgid "Sampling Events"
+msgstr ""
+
+#: templates/selia/list/user_sampling_events.html:29
+msgid ""
+"\n"
+"      No user sampling events were found.\n"
+"    "
+msgstr ""
+
+#: templates/selia/list/user_sites.html:7
+#: templates/selia/list_items/collection.html:52
+#: templates/selia/navbars/collection.html:46
+#: templates/selia/summaries/collection.html:6
+#: templates/selia/summaries/user.html:22
+msgid "Sites"
+msgstr ""
+
+#: templates/selia/list/user_sites.html:20
+#: templates/selia/list/user_sites.html:35
+msgid "Add a site"
+msgstr ""
+
+#: templates/selia/list/user_sites.html:29
+msgid ""
+"\n"
+"      No user sites were found.\n"
+"    "
+msgstr ""
+
+#: templates/selia/list_items/annotation.html:13
+msgid "Annotation "
+msgstr ""
+
+#: templates/selia/list_items/annotation.html:39
+msgid "Quality"
+msgstr ""
+
+#: templates/selia/list_items/collection.html:44
+#: templates/selia/list_items/managed_collection.html:34
+#: templates/selia/navbars/collection.html:97
+msgid "Users"
+msgstr ""
+
+#: templates/selia/list_items/collection_device.html:39
+#: templates/selia/list_items/physical_device.html:41
+#: templates/selia/list_items/sampling_event_device.html:39
+#: templates/selia/select_list_items/collection_devices.html:25
+#: templates/selia/select_list_items/physical_devices.html:29
+#: templates/selia/select_list_items/sampling_event_devices.html:32
+msgid "Serial Number"
+msgstr ""
+
+#: templates/selia/list_items/collection_device.html:73
+msgid "Personal name"
+msgstr ""
+
+#: templates/selia/list_items/collection_device.html:98
+#: templates/selia/list_items/collection_site.html:105
+#: templates/selia/list_items/site.html:85
+#: templates/selia/navbars/collection.html:58
+#: templates/selia/summaries/collection.html:46
+#: templates/selia/summaries/collection_site.html:26
+#: templates/selia/summaries/site.html:50
+#: templates/selia/summaries/user.html:60
+msgid "Sampling events"
+msgstr ""
+
+#: templates/selia/list_items/item.html:68
+msgid "Site Name"
+msgstr ""
+
+#: templates/selia/list_items/item.html:86
+#: templates/selia/select_list_items/sampling_event_devices.html:39
+msgid "Device Name"
+msgstr ""
+
+#: templates/selia/list_items/item.html:97 templates/selia/navbars/item.html:34
+#: templates/selia/summaries/item.html:6
+msgid "Annotations"
+msgstr ""
+
+#: templates/selia/list_items/licence.html:45
+#: templates/selia/select_list_items/licences.html:17
+msgid "Signed by"
+msgstr ""
+
+#: templates/selia/list_items/managed_collection.html:30
+msgid "Admins"
+msgstr ""
+
+#: templates/selia/list_items/physical_device.html:51
+#: templates/selia/list_items/site.html:57
+#: templates/selia/navbars/collections.html:10
+#: templates/selia/navbars/collections.html:12
+#: templates/selia/summaries/physical_device.html:28
+#: templates/selia/summaries/site.html:6 templates/selia/summaries/user.html:6
+#: templates/selia_templates/navbar_items.html:17
+#: templates/selia_templates/navbar_items.html:19
+msgid "Collections"
+msgstr ""
+
+#: templates/selia/list_items/physical_device.html:65
+msgid "Items captured"
+msgstr ""
+
+#: templates/selia/list_items/physical_device.html:79
+#: templates/selia/summaries/collection_device.html:26
+#: templates/selia/summaries/collection_site.html:46
+#: templates/selia/summaries/physical_device.html:50
+msgid "Deployments"
+msgstr ""
+
+#: templates/selia/list_items/sampling_event.html:100
+#: templates/selia/select_list_items/collection_sites.html:71
+msgid "Created by"
+msgstr ""
+
+#: templates/selia/list_items/sampling_event.html:110
+#: templates/selia/navbars/sampling_event.html:45
+#: templates/selia/select_list_items/sampling_events.html:54
+msgid "Deployed devices"
+msgstr ""
+
+#: templates/selia/list_items/sampling_event_device.html:64
+msgid "Personal Name"
+msgstr ""
+
+#: templates/selia/navbars/collection.html:22
+#: templates/selia/navbars/item.html:22
+#: templates/selia/navbars/sampling_event.html:23
+#: templates/selia/navbars/sampling_event_device.html:23
+#: templates/selia_templates/navbar_items.html:9
+#: templates/selia_templates/navbar_items.html:11
+msgid "About"
+msgstr ""
+
+#: templates/selia/navbars/collection.html:83
+msgid "Licences"
+msgstr ""
+
+#: templates/selia/navbars/collections.html:24
+msgid "My Collections"
+msgstr ""
+
+#: templates/selia/navbars/collections.html:37
+msgid "Open Collections"
+msgstr ""
+
+#: templates/selia/navbars/user.html:21
+msgid "Summary"
+msgstr ""
+
+#: templates/selia/navbars/user.html:33
+msgid "My Devices"
+msgstr ""
+
+#: templates/selia/navbars/user.html:45
+msgid "My Sites"
+msgstr ""
+
+#: templates/selia/navbars/user.html:57
+msgid "My Sampling events"
+msgstr ""
+
+#: templates/selia/navbars/user.html:69
+msgid "My Items"
+msgstr ""
+
+#: templates/selia/select_list_items/collection_devices.html:48
+#: templates/selia/select_list_items/physical_devices.html:45
+#: templates/selia/select_list_items/sampling_event_devices.html:55
+msgid "Added on"
+msgstr ""
+
+#: templates/selia/select_list_items/collection_sites.html:64
+#: templates/selia/select_list_items/sites.html:60
+#: templates/selia/select_list_items/user_collections.html:28
+msgid "Created on"
+msgstr ""
+
+#: templates/selia/select_list_items/items.html:20
+msgid "Type"
+msgstr ""
+
+#: templates/selia/select_list_items/licences.html:51
+msgid "Can download item.licence_types"
+msgstr ""
+
+#: templates/selia/select_list_items/sampling_event_type.html:23
+msgid "Allowed device types"
+msgstr ""
+
+#: templates/selia/select_list_items/sampling_events.html:30
+msgid "Collection site"
+msgstr ""
+
+#: templates/selia/select_list_items/user.html:14
+msgid "pending..."
+msgstr ""
+
+#: templates/selia/select_list_items/user.html:25
+#: templates/selia/select_list_items/user.html:45
+msgid "pending"
+msgstr ""
+
+#: templates/selia/summaries/collection.html:9
+#: templates/selia/summaries/collection.html:29
+#: templates/selia/summaries/collection.html:49
+#: templates/selia/summaries/collection.html:69
+#: templates/selia/summaries/collection_device.html:9
+#: templates/selia/summaries/collection_device.html:29
+#: templates/selia/summaries/collection_site.html:9
+#: templates/selia/summaries/collection_site.html:29
+#: templates/selia/summaries/collection_site.html:49
+#: templates/selia/summaries/item.html:9
+#: templates/selia/summaries/licence.html:9
+#: templates/selia/summaries/physical_device.html:9
+#: templates/selia/summaries/physical_device.html:31
+#: templates/selia/summaries/physical_device.html:53
+#: templates/selia/summaries/sampling_event.html:9
+#: templates/selia/summaries/sampling_event.html:28
+#: templates/selia/summaries/sampling_event_device.html:9
+#: templates/selia/summaries/site.html:9 templates/selia/summaries/site.html:31
+#: templates/selia/summaries/site.html:53 templates/selia/summaries/user.html:9
+#: templates/selia/summaries/user.html:25
+#: templates/selia/summaries/user.html:44
+#: templates/selia/summaries/user.html:63
+#: templates/selia/summaries/user.html:82
+msgid "Number"
+msgstr ""
+
+#: templates/selia/summaries/collection.html:12
+#: templates/selia/summaries/collection.html:32
+#: templates/selia/summaries/collection.html:52
+#: templates/selia/summaries/collection.html:72
+#: templates/selia/summaries/collection_device.html:12
+#: templates/selia/summaries/collection_device.html:32
+#: templates/selia/summaries/collection_site.html:12
+#: templates/selia/summaries/collection_site.html:32
+#: templates/selia/summaries/collection_site.html:52
+#: templates/selia/summaries/item.html:12
+#: templates/selia/summaries/licence.html:12
+#: templates/selia/summaries/physical_device.html:12
+#: templates/selia/summaries/physical_device.html:34
+#: templates/selia/summaries/physical_device.html:56
+#: templates/selia/summaries/sampling_event.html:12
+#: templates/selia/summaries/sampling_event.html:31
+#: templates/selia/summaries/sampling_event_device.html:12
+#: templates/selia/summaries/site.html:12
+#: templates/selia/summaries/site.html:34
+#: templates/selia/summaries/site.html:56
+#: templates/selia/summaries/user.html:28
+#: templates/selia/summaries/user.html:47
+#: templates/selia/summaries/user.html:66
+#: templates/selia/summaries/user.html:85
+msgid "Last added on"
+msgstr ""
+
+#: templates/selia/summaries/collection_user.html:8
+msgid "Sites added to collection"
+msgstr ""
+
+#: templates/selia/summaries/collection_user.html:20
+msgid "Devices added to collection"
+msgstr ""
+
+#: templates/selia/summaries/collection_user.html:36
+msgid "Sampling events created in collection"
+msgstr ""
+
+#: templates/selia/summaries/collection_user.html:49
+msgid "Items added to collection"
+msgstr ""
+
+#: templates/selia/summaries/collection_user.html:62
+msgid "Annotations added to collection"
+msgstr ""
+
+#: templates/selia/summaries/licence.html:6
+msgid "Items under this licence"
+msgstr ""
+
+#: templates/selia/summaries/user.html:12
+msgid "Last added"
+msgstr ""
+
+#: templates/selia/update/user.html:30
+msgid "Select an institution or"
+msgstr ""
+
+#: templates/selia/viewers/item.html:9
+msgid "See full item"
+msgstr ""
+
+#: templates/selia/viewers/item_audio.html:7
+msgid "Loading..."
+msgstr ""
+
+#: templates/selia_templates/navbar_items.html:26
+#: templates/selia_templates/navbar_items.html:28
+msgid "User Home"
+msgstr ""
+
+#: templates/selia_templates/user_menu.html:10
+msgid "Profile"
+msgstr ""
+
+#: templates/selia_templates/user_menu.html:12
+msgid "Logout"
+msgstr ""
+
+#: templates/selia_templates/user_menu.html:19
+msgid "Log in"
+msgstr ""
+
+#: views/create_views/collection_users/select_user.py:16
+msgid "User email"
+msgstr ""
+
+#: views/create_views/collection_users/select_user.py:48
+msgid "No user with this email was found"
+msgstr ""
+
+#: views/create_views/create_base.py:129
+msgid "User does not have create permissions"
+msgstr ""
+
+#: views/create_views/users/create_user.py:14
+msgid "Invitation to join Selia"
+msgstr ""
+
+#: views/create_views/users/create_user.py:18
+#, python-brace-format
+msgid ""
+"Hi!\n"
+"You have been invited to join Selia by {inviter}! A temporal password has "
+"been created for you. To access your temporal account please enter the "
+"following site {url} with the info provided.\n"
+"\n"
+"PASSWORD: {password}\n"
+"USERNAME: {username}\n"
+"\n"
+"Cheers!\n"
+"The Selia team"
+msgstr ""
+
+#: views/detail_views/user.py:56
+msgid "Subdependency at institution"
+msgstr ""
+
+#: views/detail_views/user.py:64
+msgid "Postal code"
+msgstr ""
+
+#: views/detail_views/user.py:68
+msgid "Address"
+msgstr ""
+
+#: views/detail_views/user.py:71
+msgid "Website"
+msgstr ""
+
+#: views/list_views/base.py:11 views/utils/list_component.py:10
+msgid "search"
+msgstr ""
+
+#: views/list_views/base.py:18
+msgid "Empty list"
+msgstr ""
+
+#: views/list_views/base.py:75 views/utils/list_component.py:69
+msgid "↓"
+msgstr ""
+
+#: views/list_views/base.py:83 views/utils/list_component.py:77
+msgid "↑"
+msgstr ""
+
+#: views/list_views/base.py:93 views/utils/list_component.py:87
+msgid "ordering"
+msgstr ""
+
+#: views/list_views/collection_items.py:25
+msgid "No items are registered in this collection"
+msgstr ""
+
+#: views/list_views/sampling_event_device_items.py:19
+msgid "No items are registered to this sampling event device"
+msgstr ""
+
+#: views/list_views/sampling_event_devices.py:17
+msgid "No devices are registered in this sampling event"
+msgstr ""
+
+#: views/list_views/sampling_event_items.py:20
+msgid "No items are registered in this sampling event"
+msgstr ""
+
+#: views/list_views/sampling_events.py:19
+msgid "No sampling events are registered in this sampling event"
+msgstr ""
+
+#: views/list_views/user_devices.py:16
+msgid "User has no registered devices"
+msgstr ""
+
+#: views/list_views/user_items.py:17
+msgid "User has no registered items"
+msgstr ""
+
+#: views/list_views/user_sampling_events.py:16
+msgid "User has no registered sampling events"
+msgstr ""
+
+#: views/list_views/user_sites.py:17
+msgid "User has no registered sites"
+msgstr ""

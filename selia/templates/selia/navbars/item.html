@@ -2,39 +2,49 @@
 {% load i18n %}
 
 {% block navbar %}
-{{ block.super }}
-<div class="m-0 row w-100 secondary-navbar item-bar">
-  <div class="row h-100 w-100 m-0">
-    <ul class="nav w-100 nav-tabs">
-      <li class="nav-item col-4">
-        <a class="navbar-brand" href="{% url 'selia:item_detail' item.pk %}">
-          {% trans 'Item' %}: {{ item }}
-        </a>
-      </li>
-      {% url 'selia:item_detail' item.pk as detail_url %}
-      <li class="nav-item">
-        {% if detail_url == request.path|urlencode %}
-        <a class="nav-link active" href={{ detail_url }}>
-        {% else %}
-        <a class="nav-link" href={{ detail_url }}>
-        {% endif %}
-          <i class="fas fa-info"></i>
-          {% trans 'About' %}
-        </a>
-      </li>
+<div class="collapse w-100" id="extraNavbars">
+  <div class="m-0 d-flex flex-row w-100 secondary-navbar collections-bar">
+    <div class="navbar-collapse-button">
+    </div>
+    <div class="row h-100 w-100 m-0">
+      {% include 'selia/navbars/bars/collections.html' %}
+    </div>
+  </div>
 
-      {% url 'selia_annotator:annotator_app' as detail_url %}
-      <li class="nav-item">
-        {% if detail_url in request.path|urlencode %}
-        <a class="nav-link active" href={{ detail_url }}?pk={{ item.pk }}>
-        {% else %}
-        <a class="nav-link" href={{ detail_url }}?pk={{ item.pk }}>
-        {% endif %}
-        <i class="fas fa-pencil-alt"></i>
-          {% trans 'Annotations' %}
-        </a>
-      </li>
-    </ul>
+  <div class="m-0 d-flex flex-row w-100 secondary-navbar collection-bar">
+    <div class="navbar-collapse-button">
+    </div>
+    <div class="row h-100 w-100 m-0">
+      {% include 'selia/navbars/bars/collection.html' %}
+    </div>
+  </div>
+
+  <div class="m-0 d-flex flex-row w-100 secondary-navbar sampling-event-bar">
+    <div class="navbar-collapse-button">
+    </div>
+    <div class="row h-100 w-100 m-0">
+      {% include 'selia/navbars/bars/sampling_event.html' %}
+    </div>
+  </div>
+
+  <div class="m-0 d-flex flex-row w-100 secondary-navbar sampling-event-device-bar">
+    <div class="navbar-collapse-button">
+    </div>
+    <div class="row h-100 w-100 m-0">
+      {% include 'selia/navbars/bars/sampling_event_device.html' %}
+    </div>
+  </div>
+</div>
+
+<div class="m-0 d-flex flex-row w-100 secondary-navbar item-bar">
+  <div class="navbar-collapse-button">
+    <a class="btn btn-text text-primary" data-toggle="collapse" href="#extraNavbars" role="button" aria-expanded="false" aria-controls="extraNavbars" id="navbarButton">
+      <i class="fas fa-chevron-up" id="navbarButtonIcon"></i>
+    </a>
+  </div>
+
+  <div class="row h-100 w-100 m-0">
+    {% include 'selia/navbars/bars/item.html' %}
   </div>
 </div>
 {% endblock %}

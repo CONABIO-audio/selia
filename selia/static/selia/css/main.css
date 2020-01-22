@@ -11,6 +11,14 @@
   --item-color-text: #D3D3D3;
 }
 
+.navbar-collapse-button {
+  width: 3em;
+}
+
+#navbarButtonIcon {
+  color: var(--warning);
+}
+
 .collections-bar {
   background-color: var(--collections-color-bg);
   border-width: 0;

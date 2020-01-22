@@ -1,0 +1,34 @@
+{% extends 'selia/navbars/bars/base.html' %}
+{% load i18n %}
+
+{% block navbar-brand %}
+<a class="navbar-brand" href="{% url 'selia:item_detail' item.pk %}">
+  {% trans 'Item' %}: {{ item }}
+</a>
+{% endblock %}
+
+{% block navbar-items %}
+{% url 'selia:item_detail' item.pk as detail_url %}
+<li class="nav-item">
+  {% if detail_url == request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}>
+  {% endif %}
+    <i class="fas fa-info"></i>
+    {% trans 'About' %}
+  </a>
+</li>
+
+{% url 'selia_annotator:annotator_app' as detail_url %}
+<li class="nav-item">
+  {% if detail_url in request.path|urlencode %}
+  <a class="nav-link active" href={{ detail_url }}?pk={{ item.pk }}>
+  {% else %}
+  <a class="nav-link" href={{ detail_url }}?pk={{ item.pk }}>
+  {% endif %}
+  <i class="fas fa-pencil-alt"></i>
+    {% trans 'Annotations' %}
+  </a>
+</li>
+{% endblock %}
