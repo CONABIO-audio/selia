@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block navbar-brand %}
-<a class="navbar-brand text-truncate" href="{% url 'selia:item_detail' item.pk %}">
+<a class="navbar-brand text-truncate w-100" href="{% url 'selia:item_detail' item.pk %}">
   {% trans 'Item' %}: {{ item }}
 </a>
 {% endblock %}
