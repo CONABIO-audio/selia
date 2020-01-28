@@ -9,6 +9,8 @@
   --sampling-event-device-color-text: #D0D0D0;
   --item-color-bg: #606060;
   --item-color-text: #D3D3D3;
+  --user-color-bg: #404040;
+  --user-color-text: #BEBEBE;
 }
 
 .navbar-collapse-button {
@@ -140,5 +142,30 @@
 
 .item-bar .nav-link:hover {
   border-color: var(--item-color-text);
+  border-bottom-width: 0px;
+}
+
+/* User bar */
+
+.user-bar {
+  background-color: var(--user-color-bg);
+  border-width: 0;
+  border-color: var(--user-color-bg);
+}
+
+.user-bar .nav-tabs {
+  border-color: var(--user-color-bg);
+}
+
+.user-bar .navbar-brand {
+  color: var(--user-color-text);
+}
+
+.user-bar .nav-link {
+  color: var(--user-color-text);
+}
+
+.user-bar .nav-link:hover {
+  border-color: var(--user-color-text);
   border-bottom-width: 0px;
 }

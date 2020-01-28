@@ -1,5 +1,7 @@
 import mimetypes
 from django import forms
+from django.urls import reverse
+from django.utils.http import urlencode
 
 from irekua_database.models import Item
 from irekua_database.models import Tag
@@ -78,11 +80,19 @@ class DetailItemView(SeliaDetailView):
         return [self.object.collection.name]
 
     def get_next_object(self):
-        next_object = Item.objects.filter(pk__gt=self.kwargs['pk']).order_by('pk').first()
+        next_object = (
+            Item.objects.filter(
+                pk__gt=self.kwargs['pk'],
+                sampling_event_device=self.object.sampling_event_device.pk)
+            .order_by('pk').first())
         return next_object
 
     def get_prev_object(self):
-        prev_object = Item.objects.filter(pk__lt=self.kwargs['pk']).order_by('pk').last()
+        prev_object = (
+            Item.objects.filter(
+                pk__lt=self.kwargs['pk'],
+                sampling_event_device=self.object.sampling_event_device.pk)
+            .order_by('pk').last())
         return prev_object
 
     def get_context_data(self, *args, **kwargs):
@@ -95,6 +105,10 @@ class DetailItemView(SeliaDetailView):
 
         context["next_object"] = self.get_next_object()
         context["prev_object"] = self.get_prev_object()
+
+        context["annotation_app_url"] = '{}?{}'.format(
+            reverse('selia_annotator:annotator_app'),
+            urlencode({'pk': self.object.pk}))
 
         if context['permissions']['download']:
             context['visualizer_url'] = self.get_visualizer()

@@ -1,5 +1,6 @@
-{% extends 'selia/navbars/bars/base.html' %}
+{% extends 'selia_templates/navbar_base.html' %}
 {% load i18n %}
+{% load selia_tags %}
 
 {% block navbar-brand %}
 <a class="navbar-brand text-truncate w-100" href="{% url 'selia:sampling_event_device_detail' sampling_event_device.pk %}">
@@ -9,25 +10,14 @@
 
 {% block navbar-items %}
 {% url 'selia:sampling_event_device_detail' sampling_event_device.pk as detail_url %}
-<li class="nav-item">
-  {% if detail_url == request.path|urlencode %}
-  <a class="nav-link active" href={{ detail_url }}>
-  {% else %}
-  <a class="nav-link" href={{ detail_url }}>
-  {% endif %}
-    <i class="fas fa-info"></i>
-    {% trans 'About' %}
-  </a>
-</li>
+{% tab detail_url %}
+  <i class="fas fa-info"></i>
+  {% trans 'About' %}
+{% endtab %}
+
 {% url 'selia:sampling_event_device_items' sampling_event_device.pk as detail_url %}
-<li class="nav-item">
-  {% if detail_url in request.path|urlencode %}
-  <a class="nav-link active" href={{ detail_url }}>
-  {% else %}
-  <a class="nav-link" href={{ detail_url }}>
-  {% endif %}
+{% tab detail_url %}
   <i class="far fa-file"></i>
-    {% trans 'Items' %}
-  </a>
-</li>
+  {% trans 'Items' %}
+{% endtab %}
 {% endblock %}

@@ -51,7 +51,7 @@ class CreateSamplingEventDeviceView(SeliaCreateView):
     def get_additional_query_on_sucess(self):
         sampling_event = self.object.sampling_event
         return {
-            'collection': sampling_event.collection.pk,
+            'collection': sampling_event.collection.name,
             'sampling_event': sampling_event.pk,
             'sampling_event_device': self.object.pk
         }

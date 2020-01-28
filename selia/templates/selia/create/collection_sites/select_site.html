@@ -58,23 +58,26 @@
     <div class="collapse" id="collapseSite">
       <div class="card card-body">
         <h5 class="w-100 text-center">{% trans 'Create new site' %}</h5>
-        <div class="row">
+        <div class="row p-4">
           <div class="col">
-            {% bootstrap_form form.latitude %}
+            <div class="row">
+              {% bootstrap_form form.name %}
+            </div>
+            <div class="row">
+              {% bootstrap_form form.latitude %}
+            </div>
+            <div class="row">
+              {% bootstrap_form form.longitude %}
+            </div>
+            <div class="row">
+              {% bootstrap_form form.altitude %}
+            </div>
+            <div class="row">
+              {% bootstrap_form form.locality %}
+            </div>
           </div>
           <div class="col">
-            {% bootstrap_form form.longitude %}
-          </div>
-          <div class="col">
-            {% bootstrap_form form.altitude %}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            {% bootstrap_form form.locality %}
-          </div>
-          <div class="col">
-            {% bootstrap_form form.name %}
+            {% form_map form.latitude form.longitude locality %}
           </div>
         </div>
         <div class="row justify-content-center">
@@ -98,4 +101,10 @@
 {% block scripts-extra %}
   {{ block.super }}
   {% autocomplete_media %}
+
+  <script type="text/javascript">
+    $('#collapseSite').on('shown.bs.collapse', function () {
+      window.dispatchEvent(new Event('resize'));
+    })
+  </script>
 {% endblock scripts-extra %}

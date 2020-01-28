@@ -11,23 +11,37 @@
 
 {% block toolbar-items %}
   <li class="nav-item">
-    <a class="nav-link" href="#">{% trans 'Download summary' %} <i class="fas fa-download"></i></a>
+    <a class="nav-link {% if not prev_object %}disabled{% endif %}" href="{% if prev_object %}{% url 'selia:item_detail' prev_object.pk %}{% endif %}?">
+      <i class="fas fa-chevron-left"></i> {% trans 'Previous' %}
+    </a>
   </li>
+
   <li class="nav-item">
-    <a class="nav-link" href="#">{% trans 'Help' %} <i class="fas fa-question"></i></a>
+    <a class="nav-link {% if not next_object %}disabled{% endif %}" href="{% if next_object %}{% url 'selia:item_detail' next_object.pk %}{% endif %}?">
+      {% trans 'Next' %} <i class="fas fa-chevron-right"></i>
+    </a>
   </li>
-  {% if prev_object %}
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'selia:item_detail' prev_object.pk %}?"><i class="fas fa-chevron-left"></i>{% trans 'Item ' %}{{ prev_object.pk }}</a>
-    </li>
-  {% endif %}
-  {% if next_object %}
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'selia:item_detail' next_object.pk %}?">
-        {% trans 'Item ' %}{{ next_object.pk }}<i class="fas fa-chevron-right"></i>
-      </a>
-    </li>
-  {% endif %}
+
+  <li class="nav-item" style="width: 15vw;">
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia_annotator:annotator_app' %}?pk={{ item.pk }}">
+      {% trans 'Add annotation' %} <i class="fas fa-plus"></i> <i class="fas fa-target"></i>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      {% trans 'Download summary' %} <i class="fas fa-download"></i>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      {% trans 'Help' %} <i class="fas fa-question"></i>
+    </a>
+  </li>
 {% endblock toolbar-items %}
 
 

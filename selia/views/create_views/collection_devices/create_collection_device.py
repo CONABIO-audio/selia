@@ -44,7 +44,7 @@ class CreateCollectionDeviceView(SeliaCreateView):
 
     def get_additional_query_on_sucess(self):
         return {
-            'collection': self.object.collection.pk,
+            'collection': self.object.collection.name,
             'collection_device': self.object.pk
         }
 

@@ -61,14 +61,16 @@
   <input type="hidden" id="collection_device_field" name="collection_device" value="{{ collection_device.pk }}">
   <input type="hidden" id="sampling_event_field" name="sampling_event" value="{{ sampling_event.pk }}">
 
-  <div class="row px-5 mb-3 form-check form-check-inline">
+  <div class="row px-5 mb-3 form-check">
     <label class="form-check-label mr-2" for="useSamplingEventDates">
-      {% trans 'Use sampling event starting and ending dates as deployment dates?' %}
+      <h5>
+        {% trans 'Use sampling event starting and ending dates as deployment dates?' %}
+      </h5>
     </label>
-    <input class="form-check-input" type="checkbox" id="useSamplingEventDates" data-toggle="collapse" data-target="#dates" checked>
+    <input class="form-check-input ml-1" type="checkbox" id="useSamplingEventDates" data-toggle="collapse" data-target="#dates">
   </div>
 
-  <div class="collapse" id="dates">
+  <div class="collapse show" id="dates">
     <div class="row px-5 mb-3">
       <div class="col">
           {% bootstrap_form form.deployed_on %}
@@ -79,11 +81,13 @@
     </div>
   </div>
 
-  <div class="row px-5 mb-3 form-check form-check-inline">
+  <div class="row px-5 mb-3 form-check">
     <label class="form-check-label mr-2" for="useSamplingEventLocation">
-      {% trans 'Use sampling event site for deployment location?' %}
+      <h5>
+        {% trans 'Use sampling event site for deployment location?' %}
+      </h5>
     </label>
-    <input class="form-check-input" type="checkbox" id="useSamplingEventLocation" data-toggle="collapse" data-target="#location">
+    <input class="form-check-input ml-1" type="checkbox" id="useSamplingEventLocation" data-toggle="collapse" data-target="#location">
   </div>
 
   <div class="collapse show" id="location">
