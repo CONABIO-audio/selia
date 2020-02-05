@@ -4,23 +4,31 @@
 {% load i18n %}
 
 {% block list-item-content %}
+<div class="col w-100">
+  {% if item.items.last %}
+  <div class="row" style="height: 300px">
+    <img style="height: 300px; width: 100%; object-fit: contain;" class="mx-auto" src="{% url 'selia_thumbnails:thumbnails' %}?pk={{ item.items.last }}&height=x300&crop=center">
+  </div>
+  {% endif %}
+
+  <div class="row">
+    {% listtitle %}
+      {% list_icon item.logo size="7em" %}
+    {% endlistimage %}
+      {{ item.name }}
+    {% endlistheader %}
+      <p class="mb-2 d-block text-overflow" style="max-height: 300px;">
+        {{ item.description }}
+      </p>
+      <p>
+        <a href="{% url 'selia:collection_detail' item.name %}">
+          {% enter_button %}
+        </a>
+      </p>
+    {% endlisttitle %}
+  </div>
+
   <div class="row w-100">
-    <div class="col">
-      {% listtitle %}
-        {% list_icon item.logo size="7em" %}
-      {% endlistimage %}
-        {{ item.name }}
-      {% endlistheader %}
-        <p class="mb-0 text-justify">
-          {{ item.description }}
-        </p>
-        <p>
-          <a href="{% url 'selia:collection_detail' item.name %}">
-            {% enter_button %}
-          </a>
-        </p>
-      {% endlisttitle %}
-    </div>
     <div class="col">
       <div class="row">
         {% listattribute %}
@@ -93,4 +101,5 @@
       </div>
     </div>
   </div>
+</div>
 {% endblock list-item-content %}

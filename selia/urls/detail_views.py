@@ -28,7 +28,7 @@ urlpatterns = [
         detail_views.DetailLicenceView.as_view(),
         name='licence_detail'),
     path(
-        'physical_devices/detail/<pk>/',
+        'user/physical_devices/detail/<pk>/',
         detail_views.DetailPhysicalDeviceView.as_view(),
         name='physical_device_detail'),
     path(
@@ -40,7 +40,7 @@ urlpatterns = [
         detail_views.DetailSamplingEventView.as_view(),
         name='sampling_event_detail'),
     path(
-        'sites/detail/<pk>/',
+        'user/sites/detail/<pk>/',
         detail_views.DetailUserSiteView.as_view(),
         name='site_detail'),
     path(

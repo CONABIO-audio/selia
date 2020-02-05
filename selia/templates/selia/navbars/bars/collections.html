@@ -1,12 +1,14 @@
-{% extends 'selia_templates/navbar_base.html' %}
+{% extends 'selia_templates/navbars/navbar_base.html' %}
 {% load selia_tags %}
 {% load i18n %}
 
+{% block class-name %}collections{% endblock %}
+
 {% block navbar-brand %}
 {% if user.is_authenticated %}
-<a class="navbar-brand text-truncate w-100" href="{% url 'selia:user_collections' %}">{% trans 'Collections' %}</a>
+<a class="navbar-brand text-truncate" href="{% url 'selia:user_collections' %}">{% trans 'Collections' %}</a>
 {% else %}
-<a class="navbar-brand text-truncate w-100" href="{% url 'selia:open_collections' %}">{% trans 'Collections' %}</a>
+<a class="navbar-brand text-truncate" href="{% url 'selia:open_collections' %}">{% trans 'Collections' %}</a>
 {% endif %}
 {% endblock %}
 

@@ -4,47 +4,39 @@
 {% load selia_tags %}
 
 {% block main-content %}
-  <div class="container-fluid w-100 p-0">
+  <div class="container-fluid p-0">
     {% block filter-component %}
       {% filter_component templates.filter_form forms %}
     {% endblock filter-component %}
   </div>
 
   {% block list-component %}
-  <div class="px-4">
-    <div class="w-100 bg-light p-4 list-group rounded my-4">
-      {% for item in object_list.object_list %}
+  <div class="container bg-light p-5 mt-2 list-group">
+    {% for item in object_list.object_list %}
+      {% include templates.list_item with item=item %}
+    {% empty %}
+    <div class="container text-center mt-4 p-4 empty-list-message rounded">
+      {% block empty-message %}
+        <h4>{{ empty_message }}</h4>
+      {% endblock empty-message %}
 
-        {% include templates.list_item with item=item %}
+      {% include 'selia_templates/list/empty_list_message.html' %}
+    </div>
+    {% endfor %}
 
-      {% empty %}
-
-        <div class="container-fluid bg-light text-center">
-          <div class="container p-4 empty-list-message rounded">
-            {% block empty-message %}
-              <h4>{{ empty_message }}</h4>
-            {% endblock empty-message %}
-
-            {% include 'selia_templates/list/empty_list_message.html' %}
-          </div>
-        </div>
-
-      {% endfor %}
-
-      <div class="container center w-100 p-4">
-        {% include 'selia_templates/list/pagination.html' with list=object_list %}
-      </div>
+    <div class="container w-100 p-4">
+      {% include 'selia_templates/list/pagination.html' with list=object_list %}
     </div>
   </div>
   {% endblock list-component %}
 {% endblock main-content %}
 
-{% block modals-extra %}
+{% block modals %}
+  {{ block.super }}
   {% help_component help_template=templates.help %}
-{% endblock modals-extra %}
+{% endblock modals %}
 
 {% block scripts-extra %}
   {{ block.super }}
-
   <script type="text/javascript" src="{% static 'selia/js/list.js' %}"></script>
 {% endblock scripts-extra %}

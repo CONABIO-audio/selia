@@ -31,7 +31,7 @@ class ListUserCollectionsView(SeliaListView):
         queryset = queryset.filter(
             collection_user_query |
             collection_admin_query |
-            collection_type_admin)
+            collection_type_admin).distinct()
 
         return queryset
 

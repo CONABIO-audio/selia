@@ -1,9 +1,11 @@
-{% extends 'selia_templates/navbar_base.html' %}
+{% extends 'selia_templates/navbars/navbar_base.html' %}
 {% load i18n %}
 {% load selia_tags %}
 
+{% block class-name %}item{% endblock %}
+
 {% block navbar-brand %}
-<a class="navbar-brand text-truncate w-100" href="{% url 'selia:item_detail' item.pk %}">
+<a class="navbar-brand text-truncate" href="{% url 'selia:item_detail' item.pk %}">
   {% trans 'Item' %}: {{ item }}
 </a>
 {% endblock %}

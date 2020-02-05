@@ -1,50 +1,7 @@
-{% extends 'selia_templates/secondary_navbar.html' %}
-{% load i18n %}
-
-{% block navbar %}
 <div class="collapse w-100" id="extraNavbars">
-  <div class="m-0 d-flex flex-row w-100 secondary-navbar collections-bar">
-    <div class="navbar-collapse-button">
-    </div>
-    <div class="row h-100 w-100 m-0">
-      {% include 'selia/navbars/bars/collections.html' %}
-    </div>
-  </div>
-
-  <div class="m-0 d-flex flex-row w-100 secondary-navbar collection-bar">
-    <div class="navbar-collapse-button">
-    </div>
-    <div class="row h-100 w-100 m-0">
-      {% include 'selia/navbars/bars/collection.html' %}
-    </div>
-  </div>
-
-  <div class="m-0 d-flex flex-row w-100 secondary-navbar sampling-event-bar">
-    <div class="navbar-collapse-button">
-    </div>
-    <div class="row h-100 w-100 m-0">
-      {% include 'selia/navbars/bars/sampling_event.html' %}
-    </div>
-  </div>
-
-  <div class="m-0 d-flex flex-row w-100 secondary-navbar sampling-event-device-bar">
-    <div class="navbar-collapse-button">
-    </div>
-    <div class="row h-100 w-100 m-0">
-      {% include 'selia/navbars/bars/sampling_event_device.html' %}
-    </div>
-  </div>
+  {% include 'selia/navbars/bars/collections.html' with collapse=True id='collections' %}
+  {% include 'selia/navbars/bars/collection.html' with collapse=True id='collection' %}
+  {% include 'selia/navbars/bars/sampling_event.html' with collapse=True id='sampling_event' %}
+  {% include 'selia/navbars/bars/sampling_event_device.html' with collapse=True id='sampling_event_device' %}
 </div>
-
-<div class="m-0 d-flex flex-row w-100 secondary-navbar item-bar">
-  <div class="navbar-collapse-button">
-    <a class="btn btn-text text-primary" data-toggle="collapse" href="#extraNavbars" role="button" aria-expanded="false" aria-controls="extraNavbars" id="navbarButton">
-      <i class="fas fa-chevron-down" id="navbarButtonIcon"></i>
-    </a>
-  </div>
-
-  <div class="row h-100 w-100 m-0">
-    {% include 'selia/navbars/bars/item.html' %}
-  </div>
-</div>
-{% endblock %}
+{% include 'selia/navbars/bars/item.html' with collapse=False id='item' %}

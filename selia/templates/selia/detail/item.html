@@ -9,41 +9,37 @@
 
 {% block toolbar-title %}{% trans 'Item' %} {% trans 'Detail' %}{% endblock %}
 
+{% block toolbar-center %}
+<li class="nav-item">
+  <a class="nav-link {% if not prev_object %}disabled{% endif %}" href="{% if prev_object %}{% url 'selia:item_detail' prev_object.pk %}{% endif %}?">
+    <i class="fas fa-chevron-left"></i> {% trans 'Previous' %}
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link {% if not next_object %}disabled{% endif %}" href="{% if next_object %}{% url 'selia:item_detail' next_object.pk %}{% endif %}?">
+    {% trans 'Next' %} <i class="fas fa-chevron-right"></i>
+  </a>
+</li>
+{% endblock %}
+
 {% block toolbar-items %}
-  <li class="nav-item">
-    <a class="nav-link {% if not prev_object %}disabled{% endif %}" href="{% if prev_object %}{% url 'selia:item_detail' prev_object.pk %}{% endif %}?">
-      <i class="fas fa-chevron-left"></i> {% trans 'Previous' %}
-    </a>
-  </li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'selia_annotator:annotator_app' %}?pk={{ item.pk }}">
+    {% trans 'Add annotation' %} <i class="fas fa-plus"></i> <i class="fas fa-target"></i>
+  </a>
+</li>
 
-  <li class="nav-item">
-    <a class="nav-link {% if not next_object %}disabled{% endif %}" href="{% if next_object %}{% url 'selia:item_detail' next_object.pk %}{% endif %}?">
-      {% trans 'Next' %} <i class="fas fa-chevron-right"></i>
-    </a>
-  </li>
+<li class="nav-item">
+  <a class="nav-link" href="#">
+    {% trans 'Download summary' %} <i class="fas fa-download"></i>
+  </a>
+</li>
 
-  <li class="nav-item" style="width: 15vw;">
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'selia_annotator:annotator_app' %}?pk={{ item.pk }}">
-      {% trans 'Add annotation' %} <i class="fas fa-plus"></i> <i class="fas fa-target"></i>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link" href="#">
-      {% trans 'Download summary' %} <i class="fas fa-download"></i>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link" href="#">
-      {% trans 'Help' %} <i class="fas fa-question"></i>
-    </a>
-  </li>
+<li class="nav-item">
+  {% help_button %}
+</li>
 {% endblock toolbar-items %}
-
 
 {% block main-content %}
 <div class="container-fluid w-100">

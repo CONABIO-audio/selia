@@ -1,9 +1,11 @@
-{% extends 'selia_templates/navbar_base.html' %}
+{% extends 'selia_templates/navbars/navbar_base.html' %}
 {% load i18n %}
 {% load selia_tags %}
 
+{% block class-name %}user{% endblock %}
+
 {% block navbar-brand%}
-<a class="navbar-brand text-truncate w-100" href="{% url 'selia:user_home' %}">
+<a class="navbar-brand text-truncate" href="{% url 'selia:user_home' %}">
   {% trans 'Home' %}
 </a>
 {% endblock %}

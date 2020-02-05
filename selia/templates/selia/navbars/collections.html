@@ -1,14 +1,1 @@
-{% extends 'selia_templates/secondary_navbar.html' %}
-{% load i18n %}
-
-{% block navbar %}
-
-<div class="m-0 d-flex flex-row w-100 secondary-navbar collections-bar">
-  <div class="navbar-collapse-button">
-  </div>
-  <div class="row h-100 w-100 m-0">
-    {% include 'selia/navbars/bars/collections.html' %}
-  </div>
-</div>
-
-{% endblock %}
+{% include 'selia/navbars/bars/collections.html' with collapse=True id='collections' %}

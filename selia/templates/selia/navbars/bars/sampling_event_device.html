@@ -1,9 +1,11 @@
-{% extends 'selia_templates/navbar_base.html' %}
+{% extends 'selia_templates/navbars/navbar_base.html' %}
 {% load i18n %}
 {% load selia_tags %}
 
+{% block class-name %}sampling-event-device{% endblock %}
+
 {% block navbar-brand %}
-<a class="navbar-brand text-truncate w-100" href="{% url 'selia:sampling_event_device_detail' sampling_event_device.pk %}">
+<a class="navbar-brand text-truncate" href="{% url 'selia:sampling_event_device_detail' sampling_event_device.pk %}">
   {% trans 'Deployed Device' %}: {{ sampling_event_device }}
 </a>
 {% endblock %}
