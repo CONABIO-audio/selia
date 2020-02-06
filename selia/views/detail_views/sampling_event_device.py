@@ -6,7 +6,7 @@ from irekua_permissions.sampling_events import devices as device_permissions
 
 from selia.views.detail_views.base import SeliaDetailView
 from selia.forms.json_field import JsonField
-from selia_forms.widgets import BootstrapDateTimePickerInput
+from selia_templates.widgets import BootstrapDateTimePickerInput
 
 
 class SamplingEventDeviceUpdateForm(forms.ModelForm):

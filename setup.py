@@ -26,7 +26,6 @@ setup(
         'irekua-autocomplete',
         'irekua-rest-api',
         'selia-templates',
-        'selia-forms',
         'selia-about',
         'selia-thumbnails',
         'selia-registration',

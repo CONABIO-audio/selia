@@ -7,7 +7,7 @@ from irekua_database.models import CollectionDevice
 from irekua_database.models import SamplingEventTypeDeviceType
 from irekua_permissions.sampling_events import devices as device_permissions
 
-from selia_forms.widgets import BootstrapDateTimePickerInput
+from selia_templates.widgets import BootstrapDateTimePickerInput
 from selia.forms.json_field import JsonField
 
 

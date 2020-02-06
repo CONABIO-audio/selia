@@ -12,6 +12,10 @@
 
   {% block list-component %}
   <div class="container bg-light p-5 mt-2 list-group">
+    <div class="container w-100 p-4">
+      {% include 'selia_templates/list/pagination.html' with list=object_list %}
+    </div>
+
     {% for item in object_list.object_list %}
       {% include templates.list_item with item=item %}
     {% empty %}

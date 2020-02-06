@@ -6,7 +6,7 @@ from django.utils.http import urlencode
 from irekua_database.models import Item
 from irekua_database.models import Tag
 from irekua_permissions.items import items as item_permissions
-from selia_forms.widgets import BootstrapDateTimePickerInput
+from selia_templates.widgets import BootstrapDateTimePickerInput
 from selia_visualizers.utils import get_visualizer
 from irekua_autocomplete.utils import get_autocomplete_widget
 
@@ -52,12 +52,10 @@ class DetailItemView(SeliaDetailView):
         return item_permissions.view(user, item=self.object)
 
     def has_change_permission(self):
-        user = self.request.user
-        return item_permissions.change(user, item=self.object)
+        return False
 
     def has_delete_permission(self):
-        user = self.request.user
-        return item_permissions.delete(user, item=self.object)
+        return False
 
     def has_download_permission(self):
         user = self.request.user
