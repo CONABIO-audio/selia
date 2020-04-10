@@ -52,7 +52,7 @@
     </div>
 
     <div class="row py-4">
-      <a href="{% url 'selia_registration:password_reset' %}" class="btn btn-link text-primary">
+      <a href="{% url 'selia_registration:password_change' %}?back={{ request.get_full_path }}" class="btn btn-link text-primary">
         {% trans 'Change password' %}
       </a>
     </div>
