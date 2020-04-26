@@ -23,6 +23,7 @@ setup(
         'irekua-database',
         'irekua-filters',
         'irekua-permissions',
+        'irekua-models',
         'irekua-autocomplete',
         'irekua-rest-api',
         'selia-templates',
