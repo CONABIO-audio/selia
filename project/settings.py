@@ -1,4 +1,5 @@
 import os
+from collections import OrderedDict
 
 from irekua_dev_settings.settings import *
 from irekua_database.settings import *
@@ -22,7 +23,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
 
 
-INSTALLED_APPS = (
+INSTALLED_APPS = list(OrderedDict.fromkeys(
     SELIA_APPS +
     SELIA_MAPS_APPS +
     SELIA_VISUALIZERS_APPS +
@@ -37,4 +38,4 @@ INSTALLED_APPS = (
     IREKUA_MODELS_APPS +
     IREKUA_DATABASE_APPS +
     IREKUA_BASE_APPS
-)
+))
