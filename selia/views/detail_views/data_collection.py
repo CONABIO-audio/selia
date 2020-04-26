@@ -52,7 +52,7 @@ class DetailCollectionView(SeliaDetailView):
 
     def has_delete_permission(self):
         user = self.request.user
-        return collection_permissions.change(user, collection=self.object)
+        return collection_permissions.delete(user, collection=self.object)
 
     def get_permissions(self):
         permissions = super().get_permissions()
