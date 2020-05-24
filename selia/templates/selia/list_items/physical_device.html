@@ -8,7 +8,11 @@
 <div class="row w-100">
   <div class="col">
     {% listtitle %}
-      {% list_icon item.device.device_type.icon %}
+      {% if item.device.device.device_type.icon %}
+        {% list_icon item.device.device_type.icon %}
+      {% else %}
+        {{ item.device.device_type.name }}
+      {% endif %}
     {% endlistimage %}
       {{ item.identifier }}
     {% endlistheader %}

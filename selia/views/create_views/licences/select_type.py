@@ -34,7 +34,7 @@ class SelectLicenceTypeView(SeliaSelectView):
         url = reverse('selia:create_licence')
 
         query = self.request.GET.copy()
-        query['licence_type'] = self.licence_types.first().pk
+        query['licence_type'] = self.licence_types.first().name
         full_url = '{url}?{query}'.format(
             url=url,
             query=query.urlencode())
