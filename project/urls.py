@@ -16,7 +16,7 @@ urlpatterns = [
         include('irekua_rest_api.urls')),
     url(
         r'^registration/',
-        include(('selia_registration.urls', 'selia_registration'))),
+        include('selia_registration.urls')),
     url(
         r'^about/',
         include(('selia_about.urls', 'selia_about'))),

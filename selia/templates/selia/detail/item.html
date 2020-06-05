@@ -65,8 +65,10 @@
 {% endblock main-content %}
 
 {% block scripts-extra %}
-{% autocomplete_media %}
-{{ block.super }}
+  {{ block.super }}
+
+  {% autocomplete_media %}
+
   <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="{{ visualizer_url }}" type="text/javascript"></script>
@@ -79,12 +81,21 @@
       }
     }
 
+    console.log({
+      config,
+    });
+
     var isLoaded = false;
     var visualizer;
 
     $('#visualizerModal').on('shown.bs.modal', function (e) {
+
       if (!(isLoaded)) {
         visualizer = new Visualizer.default(config)
+
+        console.log({
+          visualizer,
+        });
 
         visualizer.init();
 
