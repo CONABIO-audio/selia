@@ -11,7 +11,7 @@ from irekua_permissions.data_collections import users as user_permissions
 from irekua_permissions import licences as licence_permissions
 
 from selia.views.detail_views.base import SeliaDetailView
-from selia.forms.json_field import JsonField
+from selia_templates.forms.json_field import JsonField
 
 
 class CollectionUserUpdateForm(forms.ModelForm):

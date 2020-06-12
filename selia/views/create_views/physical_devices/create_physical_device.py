@@ -3,7 +3,7 @@ from django import forms
 from irekua_database.models import Device
 from irekua_database.models import PhysicalDevice
 
-from selia.forms.json_field import JsonField
+from selia_templates.forms.json_field import JsonField
 from selia.views.create_views.create_base import SeliaCreateView
 from irekua_permissions.devices import (
     physical_devices as device_permissions)

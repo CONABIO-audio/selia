@@ -1,1 +1,0 @@
-from .json_schema_form_widget import JsonSchemaFormWidget

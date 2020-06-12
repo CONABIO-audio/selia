@@ -8,7 +8,7 @@ from irekua_database.models import SiteDescriptor
 from irekua_autocomplete.utils import get_autocomplete_widget
 from irekua_permissions.data_collections import sites as site_permissions
 
-from selia.forms.json_field import JsonField
+from selia_templates.forms.json_field import JsonField
 from selia.views.create_views.create_base import SeliaCreateView
 
 

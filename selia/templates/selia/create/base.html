@@ -8,7 +8,8 @@
 {% endblock stylesheet %}
 
 {% block head-extra %}
-  {% include 'selia/media/json_form_media.html' %}
+  {{ block.super }}
+  {{ form.media }}
 {% endblock %}
 
 {% block toolbar-items%}

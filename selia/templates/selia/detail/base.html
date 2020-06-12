@@ -3,7 +3,7 @@
 
 {% block head-extra %}
   {{ block.super }}
-  {% include 'selia/media/json_form_media.html' %}
+  {{ form.media }}
 {% endblock head-extra %}
 
 {% block modals %}
@@ -16,3 +16,12 @@
     {% delete_component object=collection_device %}
   {% endif %}
 {% endblock modals %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+  <script type="text/javascript">
+    {% if form.errors %}
+    $("#changeModal").modal('show');
+    {% endif %}
+  </script>
+{% endblock scripts-extra %}

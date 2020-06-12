@@ -10,7 +10,7 @@ from selia_templates.widgets import BootstrapDateTimePickerInput
 from selia_visualizers.utils import get_visualizer
 from irekua_autocomplete.utils import get_autocomplete_widget
 
-from selia.forms.json_field import JsonField
+from selia_templates.forms.json_field import JsonField
 from selia.views.detail_views.base import SeliaDetailView
 
 

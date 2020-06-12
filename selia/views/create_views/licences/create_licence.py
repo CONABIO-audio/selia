@@ -6,7 +6,7 @@ from irekua_database.models import LicenceType
 
 from irekua_permissions import licences as licence_permissions
 from selia.views.create_views.create_base import SeliaCreateView
-from selia.forms.json_field import JsonField
+from selia_templates.forms.json_field import JsonField
 
 
 class CreateLicenceForm(forms.ModelForm):

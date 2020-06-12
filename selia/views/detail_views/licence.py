@@ -9,7 +9,7 @@ from irekua_permissions import (
     licences as licence_permissions)
 
 from selia.views.detail_views.base import SeliaDetailView
-from selia.forms.json_field import JsonField
+from selia_templates.forms.json_field import JsonField
 
 
 class LicenceUpdateForm(forms.ModelForm):

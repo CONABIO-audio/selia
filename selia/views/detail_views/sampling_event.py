@@ -1,10 +1,11 @@
+import json
 from django import forms
 
-from selia.views.detail_views.base import SeliaDetailView
-from selia.forms.json_field import JsonField
-from selia_templates.widgets import BootstrapDateTimePickerInput
-from irekua_permissions.sampling_events import sampling_events as sampling_event_permissions
 from irekua_database.models import SamplingEvent
+import irekua_permissions.sampling_events.sampling_events as sampling_event_permissions
+from selia_templates.forms.json_field import JsonField
+from selia_templates.widgets import BootstrapDateTimePickerInput
+from selia.views.detail_views.base import SeliaDetailView
 
 
 class SamplingEventUpdateForm(forms.ModelForm):
@@ -55,12 +56,13 @@ class DetailSamplingEventView(SeliaDetailView):
 
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)
-        schema = self.object.sampling_event_type.metadata_schema
-        form.fields['metadata'].update_schema(schema)
+        self.schema = self.object.sampling_event_type.metadata_schema
+        form.fields['metadata'].update_schema(self.schema)
         return form
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['collection'] = self.object.collection
         context['sampling_event'] = self.object
+        context['schema'] = json.dumps(self.schema)
         return context

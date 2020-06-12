@@ -10,7 +10,7 @@ from irekua_database.models import DeviceBrand
 from irekua_database.models import DeviceType
 
 from selia.views.create_views.create_base import SeliaCreateView
-from selia.forms.type_field import TypeSelectField
+from selia_templates.forms.type_field import TypeSelectField
 from irekua_permissions.devices import (
     physical_devices as device_permissions)
 

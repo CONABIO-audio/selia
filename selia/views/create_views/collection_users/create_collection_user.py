@@ -7,7 +7,7 @@ from irekua_database.models import CollectionUser
 from irekua_database.models import Role
 from irekua_database.models import User
 
-from selia.forms.json_field import JsonField
+from selia_templates.forms.json_field import JsonField
 
 
 class CreateCollectionUserForm(forms.ModelForm):
