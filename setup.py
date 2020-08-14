@@ -31,6 +31,7 @@ setup(
         'selia-thumbnails',
         'selia-registration',
         'selia-visualizers',
+        'selia-managers',
         'selia-annotator',
         'timezonefinder',
     ],

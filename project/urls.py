@@ -32,4 +32,7 @@ urlpatterns = [
     url(
         r'^visualizers/',
         include(('selia_visualizers.urls', 'selia_visualizers'))),
+    url(
+        r'^managers/',
+        include(('selia_managers.urls', 'selia_managers'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

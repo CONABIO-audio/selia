@@ -36,7 +36,9 @@
 {% blocktrans %}
 Search for a user to add to the collection, or
 {% endblocktrans %}
-<a href="{% url 'selia:create_user' %}?{{ request.GET.urlencode }}">{% trans 'invite a user to selia' %}.</a>
+<a href="{% url 'invite' %}?next={% url 'selia:create_collection_user' %}?{{ request.GET.urlencode }}">
+  {% trans 'invite a user to selia' %}.
+</a>
 {% endblock %}
 
 {% block form-content %}
@@ -51,7 +53,9 @@ Search for a user to add to the collection, or
         {% blocktrans %}
         No user with the given email was found. Do you wish to
         {% endblocktrans %}
-        <a href="{% url 'selia:create_user' %}?{{ request.GET.urlencode }}">{% trans 'invite a new user' %}</a>?
+        <a href="{% url 'invite' %}?next={% url 'selia:create_collection_user' %}?{{ request.GET.urlencode }}">
+          {% trans 'invite a new user' %}?
+        </a>
       </h5>
     </div>
     {% endif %}

@@ -3,6 +3,7 @@
 {% url 'selia_about:selia' as selia_about %}
 {% url 'selia:user_collections' as selia_collections %}
 {% url 'selia:user_home' as user_home %}
+{% url 'selia_managers:management' as manager_home %}
 
 <li class="nav-item">
   {% if selia_about in request.path %}
@@ -13,7 +14,7 @@
 </li>
 
 <li class="nav-item">
-  {% if selia_about not in request.path and user_home not in request.path and request.path != '/' %}
+  {% if selia_collections in request.path %}
   <a class="nav-link active" href={{ selia_collections|urlencode }}>{% trans "Collections" %}</a>
   {% else %}
   <a class="nav-link" href={{ selia_collections|urlencode }}>{% trans "Collections" %}</a>
@@ -26,6 +27,16 @@
   <a class="nav-link active" href={{ user_home|urlencode }}>{% trans "User Home" %}</a>
   {% else %}
   <a class="nav-link" href={{ user_home|urlencode }}>{% trans "User Home" %}</a>
+  {% endif %}
+</li>
+{% endif %}
+
+{% if user.is_collection_type_admin %}
+<li class="nav-item">
+  {% if manager_home in request.path %}
+  <a class="nav-link active" href={{ manager_home|urlencode }}>{% trans "Management" %}</a>
+  {% else %}
+  <a class="nav-link" href={{ manager_home|urlencode }}>{% trans "Management" %}</a>
   {% endif %}
 </li>
 {% endif %}
