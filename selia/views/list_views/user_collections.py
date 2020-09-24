@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.db.models import Count
 from irekua_database.models import Collection
 
 from selia.views.list_views.base import SeliaListView
@@ -19,7 +20,12 @@ class ListUserCollectionsView(SeliaListView):
     def get_initial_queryset(self):
         user = self.request.user
 
-        queryset = Collection.objects.all()
+        queryset = (
+            Collection.objects
+            .all()
+            .annotate(
+                item_count=Count('samplingevent__samplingeventdevice__item')
+            ))
 
         if user.is_special:
             return queryset
@@ -31,9 +37,9 @@ class ListUserCollectionsView(SeliaListView):
         queryset = queryset.filter(
             collection_user_query |
             collection_admin_query |
-            collection_type_admin).distinct()
+            collection_type_admin)
 
-        return queryset
+        return queryset.distinct()
 
     def has_view_permission(self):
         return self.request.user.is_authenticated

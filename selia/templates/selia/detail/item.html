@@ -7,26 +7,36 @@
   {% include 'selia/navbars/item.html' %}
 {% endblock secondary-navbar %}
 
-{% block toolbar-title %}{% trans 'Item' %} {% trans 'Detail' %}{% endblock %}
+{% block toolbar-title %}
+  {% trans 'Item' %} {% trans 'Detail' %}
+{% endblock %}
 
 {% block toolbar-center %}
 <li class="nav-item">
-  <a class="nav-link {% if not prev_object %}disabled{% endif %}" href="{% if prev_object %}{% url 'selia:item_detail' prev_object.pk %}{% endif %}?">
+  <a
+    class="nav-link {% if not prev_object %}disabled{% endif %}"
+    href="{% if prev_object %}{% url 'selia:item_detail' prev_object.pk %}{% endif %}?"
+  >
     <i class="fas fa-chevron-left"></i> {% trans 'Previous' %}
   </a>
 </li>
 
 <li class="nav-item">
-  <a class="nav-link {% if not next_object %}disabled{% endif %}" href="{% if next_object %}{% url 'selia:item_detail' next_object.pk %}{% endif %}?">
+  <a
+    class="nav-link {% if not next_object %}disabled{% endif %}"
+    href="{% if next_object %}{% url 'selia:item_detail' next_object.pk %}{% endif %}?"
+  >
     {% trans 'Next' %} <i class="fas fa-chevron-right"></i>
   </a>
 </li>
-{% endblock %}
-
-{% block toolbar-items %}
+{% endblock %} {% block toolbar-items %}
 <li class="nav-item">
-  <a class="nav-link" href="{% url 'selia_annotator:annotator_app' %}?pk={{ item.pk }}">
-    {% trans 'Add annotation' %} <i class="fas fa-plus"></i> <i class="fas fa-target"></i>
+  <a
+    class="nav-link"
+    href="{% url 'selia_annotator:annotator_app' %}?pk={{ item.pk }}"
+  >
+    {% trans 'Add annotation' %} <i class="fas fa-plus"></i>
+    <i class="fas fa-target"></i>
   </a>
 </li>
 
@@ -39,9 +49,7 @@
 <li class="nav-item">
   {% help_button %}
 </li>
-{% endblock toolbar-items %}
-
-{% block main-content %}
+{% endblock toolbar-items %} {% block main-content %}
 <div class="container-fluid w-100">
   <div class="row bg-light my-4">
     <div class="container">
@@ -53,7 +61,6 @@
           {% viewer_component viewer_template=viewer_template object=item %}
         </div>
       </div>
-
     </div>
   </div>
   <div class="row bg-light my-4">
@@ -65,53 +72,35 @@
 {% endblock main-content %}
 
 {% block scripts-extra %}
-  {{ block.super }}
+{{ block.super }}
+{% autocomplete_media %}
 
-  {% autocomplete_media %}
+<script
+  crossorigin
+  src="https://unpkg.com/react@16/umd/react.production.min.js"
+></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
+></script>
+<script src="{{ visualizer_url }}" type="text/javascript"></script>
+<script type="text/javascript">
+  var config = {
+    canvas: document.getElementById("visualizerCanvas"),
+    toolbar: document.getElementById("visualizerToolbar"),
+    active: true,
+    itemInfo: {
+      url: "{% url 'irekua_rest_api:item-detail' item.pk %}download",
+    },
+  };
 
-  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-  <script src="{{ visualizer_url }}" type="text/javascript"></script>
-  <script type="text/javascript">
-    var config = {
-      canvas: document.getElementById('visualizerCanvas'),
-      active: true,
-      itemInfo: {
-        url: "{% url 'irekua_rest_api:item-detail' item.pk %}download",
-      }
+  var isLoaded = false;
+  var visualizer;
+
+  $("#visualizerModal").on("shown.bs.modal", function (e) {
+    if (!(isLoaded)) {
+      visualizer = new Visualizer.default(config);
     }
-
-    console.log({
-      config,
-    });
-
-    var isLoaded = false;
-    var visualizer;
-
-    $('#visualizerModal').on('shown.bs.modal', function (e) {
-
-      if (!(isLoaded)) {
-        visualizer = new Visualizer.default(config)
-
-        console.log({
-          visualizer,
-        });
-
-        visualizer.init();
-
-        ReactDOM.render(
-            visualizer.renderToolbar(),
-            document.getElementById('visualizerToolbar'),
-            () => {
-              visualizer.adjustSize();
-              visualizer.draw();
-            });
-          return;
-      }
-
-      visualizer.init();
-      visualizer.adjustSize();
-      visualizer.draw();
-    });
-  </script>
+  });
+</script>
 {% endblock %}
