@@ -25,6 +25,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
 
 
 INSTALLED_APPS = list(OrderedDict.fromkeys(
+    IREKUA_DATABASE_APPS +
     SELIA_APPS +
     SELIA_MANAGERS_APPS +
     SELIA_MAPS_APPS +
@@ -38,6 +39,5 @@ INSTALLED_APPS = list(OrderedDict.fromkeys(
     IREKUA_AUTOCOMPLETE_APPS +
     IREKUA_REST_API_APPS +
     IREKUA_MODELS_APPS +
-    IREKUA_DATABASE_APPS +
     IREKUA_BASE_APPS
 ))

@@ -6,11 +6,10 @@ from django.utils.http import urlencode
 from irekua_database.models import Item
 from irekua_database.models import Tag
 from irekua_permissions.items import items as item_permissions
-from selia_templates.widgets import BootstrapDateTimePickerInput
-from selia_visualizers.utils import get_visualizer
 from irekua_autocomplete.utils import get_autocomplete_widget
-
+from selia_templates.widgets import BootstrapDateTimePickerInput
 from selia_templates.forms.json_field import JsonField
+from selia_visualizers.utils import get_visualizer_module
 from selia.views.detail_views.base import SeliaDetailView
 
 
@@ -69,8 +68,8 @@ class DetailItemView(SeliaDetailView):
     def get_visualizer(self):
         item_type = self.object.item_type
         try:
-            visualizer = get_visualizer(item_type)
-            return visualizer.visualizer_component.javascript_file.url
+            visualizer = get_visualizer_module(item_type)
+            return visualizer.javascript_file.url
         except:
             return None
 
