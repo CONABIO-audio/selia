@@ -1,0 +1,22 @@
+{% if widget.attrs.schema %}
+<input type="hidden" name="{{ widget.name }}" value="" id="metadata_input_{{ widget.name }}">
+<div class="container-fluid h-100 w-100" id="metadata_container_{{ widget.name }}"></div>
+
+{% with widget.name|add:'_json_script' as value_script_id %}
+{{ widget.value|json_script:value_script_id }}
+{% endwith %}
+
+{% with widget.name|add:'_schema_script' as schema_script_id %}
+{{ widget.attrs.schema.schema|json_script:schema_script_id }}
+{% endwith %}
+
+<script type="text/javascript">
+  SeliaJSONForm.default({
+    value: JSON.parse(document.getElementById('{{widget.name}}_json_script').textContent),
+    schema: JSON.parse(document.getElementById('{{widget.name}}_schema_script').textContent),
+    inputId: 'metadata_input_{{ widget.name }}',
+    containerId: 'metadata_container_{{ widget.name }}',
+    submitId: 'formSubmit',
+  });
+</script>
+{% endif %}

@@ -1,0 +1,78 @@
+{% extends 'selia_templates/base_with_toolbar.html' %}
+{% load i18n %}
+{% load static %}
+{% load selia_tags %}
+
+{% block stylesheet %}
+{{ block.super }}
+
+<link rel="stylesheet" type="text/css" href="{% static 'selia_managers/css/step-progress.css'%}">
+{% endblock stylesheet %}
+
+{% block toolbar-items%}
+<li>
+  <div class="container-fluid">
+    <ul class="list-unstyled multi-steps">
+      {% block toolbar-steps %}
+      {% endblock toolbar-steps %}
+    </ul>
+  </div>
+</li>
+{% endblock toolbar-items%}
+
+{% block main-content %}
+<div class="container">
+  <div class="jumbotron m-3">
+    <h1 class="display-6">
+      {% block step-title %}
+      {% endblock %}
+    </h1>
+    <p class="lead">
+      {% block step-description %}
+      {% endblock %}
+    </p>
+  </div>
+
+  {% block extra-forms %}
+  {% endblock %}
+
+  {% block previously-selected %}
+  {% endblock previously-selected %}
+
+  {% block list-container %}
+    <div class="container-fluid w-100 p-0 mb-4 rounded">
+
+      <div class="container-fluid px-1 w-100 bg-dark rounded">
+        {% filter_component list.templates.filter_form list.forms %}
+      </div>
+
+      <div class="w-100 bg-light p-4 list-group">
+        {% for item in list.list.page_obj %}
+          <a href="{% url create_url %}?{% remove_form_fields request.GET list.forms %}&{{ prefix }}={{ item.pk }}">
+            {% include list.templates.list_item with item=item %}
+          </a>
+          {% empty %}
+          <div class="container-fluid bg-light text-center">
+            <div class="container p-4 empty-list-message rounded">
+              {% block empty-message %}
+              {% endblock %}
+
+              {% include 'selia_templates/list/empty_list_message.html' with forms=list.forms %}
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="container center w-100 p-4">
+          {% include 'selia_templates/list/pagination.html' with list=list.list %}
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+</div>
+{% endblock main-content %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+
+  <script type="text/javascript" src="{% static 'selia_managers/js/list.js' %}"></script>
+{% endblock scripts-extra %}

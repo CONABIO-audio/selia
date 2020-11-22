@@ -1,0 +1,30 @@
+{% extends 'selia_registration/base.html' %}
+{% load selia_forms %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}SELIA - Invitar usuario{% endblock %}
+
+{% block content %}
+{# Display a form #}
+<h5 class="card-title text-center">{% trans 'Invite new user' %}</h5>
+<p>
+  {% blocktrans %}
+    Send an email invitation to join Selia.
+  {% endblocktrans %}
+</p>
+<form method="post">
+<div class="col">
+  {% csrf_token %}
+  <div class="row">
+      {% bootstrap_form form.email %}
+  </div>
+  <div class="row">
+      {% bootstrap_form form.message %}
+  </div>
+  <button type="submit" class="btn btn-text text-primary card-link">
+    {% trans 'Invite' %}
+  </button>
+</div>
+</form>
+{% endblock %}

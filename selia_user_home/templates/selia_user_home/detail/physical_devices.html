@@ -1,0 +1,42 @@
+{% extends 'selia_templates/detail/base.html' %}
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia_user_home/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}{% trans 'Device' %}: {{ object }}{% endblock %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    {% include 'selia_user_home/links/create_deployment.html' with physical_device=object %}
+  </li>
+  <li class="nav-item">
+    {% include 'selia_user_home/links/create_item.html' with physical_device=object %}
+  </li>
+  <li class="navbar-item ">
+    <button type="button" class="btn btn-link">
+      {% trans "Download Summary" %} <i class="fas fa-file-download"></i>
+    </button>
+  </li>
+  <li class="navbar-item ">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block main-content %}
+<div class="container-fluid w-100">
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% detail_component detail_template=detail_template object=object %}
+    </div>
+  </div>
+  <div class="row bg-light my-4">
+    <div class="container">
+      {% summary_component summary_template=summary_template object=object %}
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

@@ -1,17 +1,18 @@
 from django.db.models import Q
 from django.db.models import Count
-from irekua_database.models import Collection
+
+from irekua_collections.models import Collection
+from irekua_collections.filters import data_collections
 
 from selia.views.list_views.base import SeliaListView
-from irekua_filters.data_collections import data_collections
 
 
 class ListUserCollectionsView(SeliaListView):
-    template_name = 'selia/list/user_collections.html'
+    template_name = "selia/list/user_collections.html"
 
-    list_item_template = 'selia/list_items/collection.html'
-    help_template = 'selia/help/user_collections.html'
-    filter_form_template = 'selia/filters/collection.html'
+    list_item_template = "selia/list_items/collection.html"
+    help_template = "selia/help/user_collections.html"
+    filter_form_template = "selia/filters/collection.html"
 
     filter_class = data_collections.Filter
     search_fields = data_collections.search_fields
@@ -20,12 +21,9 @@ class ListUserCollectionsView(SeliaListView):
     def get_initial_queryset(self):
         user = self.request.user
 
-        queryset = (
-            Collection.objects
-            .all()
-            .annotate(
-                item_count=Count('samplingevent__samplingeventdevice__item')
-            ))
+        queryset = Collection.objects.all().annotate(
+            item_count=Count("samplingevent__samplingeventdevice__item")
+        )
 
         if user.is_special:
             return queryset
@@ -35,9 +33,8 @@ class ListUserCollectionsView(SeliaListView):
         collection_type_admin = Q(collection_type__administrators=user)
 
         queryset = queryset.filter(
-            collection_user_query |
-            collection_admin_query |
-            collection_type_admin)
+            collection_user_query | collection_admin_query | collection_type_admin
+        )
 
         return queryset.distinct()
 

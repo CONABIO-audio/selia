@@ -1,0 +1,56 @@
+{% extends 'selia_templates/list/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load static %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="row w-100">
+  {% block list-item-columns %}
+  <div class="col">
+    {% listtitle %}
+      {% if item.device.device_type.icon %}
+        {% list_icon item.device.device_type.icon %}
+      {% else %}
+      <div class="d-inline-block h-100 mr-3" style="width: 5em; text-align: center;">
+          {{ item.device.device_type.name }}
+      </div>
+      {% endif %}
+    {% endlistimage %}
+      {{ item.name }}
+    {% endlistheader %}
+      <div><b>{{ item.device.brand }}</b> {{ item.device.model }}</div>
+      <div>
+        <a href="{% url 'selia_user_home:physical_device_detail' item.pk %}">
+          {% enter_button %}
+        </a>
+      </div>
+    {% endlisttitle%}
+  </div>
+
+  <div class="col">
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Name' %}
+        {% attributevalue %}
+          {{ item.name }}
+        {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Device type' %}
+      {% attributevalue %}
+        {{ item.device.device_type }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Serial Number' %}
+      {% attributevalue %}
+        {{ item.serial_number }}
+      {% endlistattribute %}
+    </div>
+  </div>
+  {% endblock list-item-columns %}
+</div>
+{% endblock %}

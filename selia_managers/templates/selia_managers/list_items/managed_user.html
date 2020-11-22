@@ -1,0 +1,91 @@
+{% extends 'selia_templates/list/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="col">
+    {% listtitle %}
+    {% endlistimage %}
+      {% if item.last_name %}
+        {{ item.last_name }}, {{ item.first_name }}
+      {% else %}
+        {{ item.username }}
+      {% endif %}
+    {% endlistheader %}
+      {% if item.last_name %}
+        {{ item.username }}
+      {% endif %}
+    {% endlisttitle %}
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Email' %}
+      {% attributevalue %}
+        {{ item.email }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Institution' %}
+      {% attributevalue %}
+        {{ item.institution }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Collections' %}
+      {% attributevalue %}
+        {{ item.collection_users_count }}
+        {% if item.collection_users_count %}
+          <a class="float-right" href="{% url 'selia_managers:collections' %}?users={{ item.pk }}">
+            {% see_button %}
+          </a>
+        {% endif %}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Is admin?' %}
+      {% attributevalue %}
+        {{ item.collection_administrators_count|yesno }}
+        {% if item.collection_administrators_count %}
+          <a class="float-right" href="{% url 'selia_managers:collections' %}?administrators={{ item.pk }}">
+            {% see_button %}
+          </a>
+        {% endif %}
+      {% endlistattribute %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Items' %}
+      {% attributevalue %}
+        {{ item.items }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+      {% trans 'Annotations' %}
+      {% attributevalue %}
+      {{ item.annotations }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Last upload' %}
+      {% attributevalue %}
+        {{ item.last_item|date:"DATE_FORMAT" }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Last annotation' %}
+      {% attributevalue %}
+        {{ item.last_annotation|date:"DATE_FORMAT" }}
+      {% endlistattribute %}
+    </div>
+  </div>
+{% endblock list-item-content %}

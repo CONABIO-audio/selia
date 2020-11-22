@@ -5,9 +5,9 @@ from django.shortcuts import reverse
 from django.contrib.auth.models import Permission
 from dal import autocomplete
 
-from irekua_database.models import Device
-from irekua_database.models import DeviceBrand
-from irekua_database.models import DeviceType
+from irekua_devices.models import Device
+from irekua_devices.models import DeviceBrand
+from irekua_devices.models import DeviceType
 
 from selia.views.create_views.create_base import SeliaCreateView
 from selia_templates.forms.type_field import TypeSelectField

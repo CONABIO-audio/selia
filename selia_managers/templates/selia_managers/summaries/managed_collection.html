@@ -1,0 +1,114 @@
+{% load i18n %}
+{% load selia_buttons %}
+{% load selia_tags %}
+
+{% detailsection %}
+  {% trans 'Administrators' %}
+{% enddetailsection %}
+
+<div class="row">
+  {% detaildescription %}
+  {% blocktrans %}
+    These are the collection administrators. The administrators allow new
+    users into the collection and sign the collection's licences. You can add or remove
+    an administrator to/from this collection or send an email to the administrators.
+  {% endblocktrans %}
+  {% enddetaildescription %}
+</div>
+
+{% for admin in object.all_admin %}
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      {{ admin.first_name }} {{ admin.last_name }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Email' %}
+    {% endhead %}
+      {{ admin.email }}
+    {% enddetailitem %}
+  </div>
+  <div class="col-2">
+    <a class="btn btn-text text-primary" href="{% url 'email_user' %}?id={{ admin.id }}&next={{ request.get_full_path }}">
+      {% email_button %} {% trans 'Send email' %}
+    </a>
+  </div>
+  <div class="col-3">
+    <a class="btn btn-text text-danger" href="{% url 'selia_managers:remove_administrator' object.pk %}?administrator={{ admin.pk }}">
+      {% remove_user_button %} {% trans 'Remove admin' %}
+    </a>
+  </div>
+</div>
+{% empty %}
+<div class="row">
+  <div class="col">
+    {% trans 'No administrators in this collection' %}
+    <a class="btn btn-text text-primary" href="{% url 'selia_managers:create_administrator' %}?collection={{ object.name }}">
+      {% add_user_button %} {% trans 'Add admin' %}
+    </a>
+  </div>
+</div>
+{% endfor %}
+
+
+{% detailsection %}
+  {% trans 'Statistics' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Users' %}
+    {% endhead %}
+      {{ object.user_count }}
+      <a class="ml-3 text-primary" href="{% url 'selia_managers:collection_users' object.id %}">
+        {% see_button %}
+      </a>
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Most active collection user' %}
+    {% endhead %}
+
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Items' %}
+    {% endhead %}
+      {{ object.item_count }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Last item' %}
+    {% endhead %}
+      {{ object.last_item|date:"DATE_FORMAT" }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Annotations' %}
+    {% endhead %}
+      {{ object.annotation_count }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Last annotation' %}
+    {% endhead %}
+      {{ object.last_annotation|date:"DATE_FORMAT" }}
+    {% enddetailitem %}
+  </div>
+</div>

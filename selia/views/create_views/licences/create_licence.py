@@ -1,8 +1,8 @@
 from django import forms
 
-from irekua_database.models import Collection
-from irekua_database.models import Licence
-from irekua_database.models import LicenceType
+from irekua_collections.models import Collection
+from irekua_items.models import Licence
+from irekua_items.models import LicenceType
 
 from irekua_permissions import licences as licence_permissions
 from selia.views.create_views.create_base import SeliaCreateView
@@ -18,7 +18,6 @@ class CreateLicenceForm(forms.ModelForm):
             'licence_type',
             'document',
             'metadata',
-            'collection',
         ]
 
 

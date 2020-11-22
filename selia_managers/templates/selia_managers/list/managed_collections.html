@@ -1,0 +1,35 @@
+{% extends 'selia_managers/list/base.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/home.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+{% trans 'Managed Collections' %} {% trans 'List' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia_managers:create_collection' %}">{% trans 'Add collection' %} <i class="fas fa-plus"></i></a>
+  </li>
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block description %}
+{% detailtitle %}
+{% enddetailimage %}
+  {% trans 'Managed collections' %}
+{% enddetailheader %}
+<p>
+  {% blocktrans %}
+    Below you can see a list of all collections you manage. Select a collection to see
+    a complete summary of activity or to manage its users and administrators.
+  {% endblocktrans %}
+</p>
+{% enddetailtitle %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'selia_managers/list/base.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/home.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+{% trans 'Managed Users' %} {% trans 'List' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block description %}
+{% detailtitle %}
+{% enddetailimage %}
+  {% trans 'Managed Users' %}
+{% enddetailheader %}
+<p>
+  {% blocktrans %}
+    Below you can see a list of all users that participate in a collection you manage.
+    Send an email to the user of your choice.
+  {% endblocktrans %}
+</p>
+{% enddetailtitle %}
+{% endblock %}

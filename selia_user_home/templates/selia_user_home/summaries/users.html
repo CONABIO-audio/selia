@@ -1,0 +1,45 @@
+{% load i18n %}
+{% load selia_buttons %}
+
+
+{% block summary %}
+<div class="media text-muted pt-3">
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <strong class="d-block text-gray-dark">{% trans 'Sites' %}</strong>
+    <div class="row">
+      <div class="col-3">
+        {% trans 'Number' %}: {{ object.site_created_by.count }}
+      </div>
+      <div class="col-6">
+        {% trans 'Last added on' %}: {{ object.site_created_by.first.created_on }}
+      </div>
+      <div class="col-1">
+        <a href="{% url 'selia_user_home:sites' %}">{% see_button %}</a>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'selia_user_home:create_site' %}">{% add_button %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="media text-muted pt-3">
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <strong class="d-block text-gray-dark">{% trans 'Devices' %}</strong>
+    <div class="row">
+      <div class="col-3">
+        {% trans 'Number' %}: {{ object.physicaldevice_created_by.count }}
+      </div>
+      <div class="col-6">
+        {% trans 'Last added on' %}: {{ object.physicaldevice_created_by.first.created_on }}
+      </div>
+      <div class="col-1">
+        <a href="{% url 'selia_user_home:physical_devices' %}">{% see_button %}</a>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'selia_user_home:create_physical_device' %}">{% add_button %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock summary %}

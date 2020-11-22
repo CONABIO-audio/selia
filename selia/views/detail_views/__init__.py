@@ -5,22 +5,22 @@ from .data_collection import DetailCollectionView
 from .item import DetailItemView
 from .licence import DetailLicenceView
 from .physical_device import DetailPhysicalDeviceView
-from .sampling_event_device import DetailSamplingEventDeviceView
+from .deployment import DetailDeploymentView
 from .sampling_event import DetailSamplingEventView
 from .user_site import DetailUserSiteView
 from .user import DetailUserView
 
 
 __all__ = [
-    'DetailCollectionDeviceView',
-    'DetailCollectionSiteView',
-    'DetailCollectionUserView',
-    'DetailCollectionView',
-    'DetailItemView',
-    'DetailLicenceView',
-    'DetailPhysicalDeviceView',
-    'DetailSamplingEventDeviceView',
-    'DetailSamplingEventView',
-    'DetailUserSiteView',
-    'DetailUserView',
+    "DetailCollectionDeviceView",
+    "DetailCollectionSiteView",
+    "DetailCollectionUserView",
+    "DetailCollectionView",
+    "DetailItemView",
+    "DetailLicenceView",
+    "DetailPhysicalDeviceView",
+    "DetailDeploymentView",
+    "DetailSamplingEventView",
+    "DetailUserSiteView",
+    "DetailUserView",
 ]

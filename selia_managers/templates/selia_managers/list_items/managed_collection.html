@@ -1,0 +1,79 @@
+{% extends 'selia_templates/list/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="col">
+    {% listtitle %}
+    {% endlistimage %}
+      {{ item.name }}
+    {% endlistheader %}
+      <p>
+        <a href="{% url 'selia_managers:collection_detail' item.id %}">
+          {% trans 'Manage' %}
+        </a>
+      </p>
+    {% endlisttitle %}
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Collection type' %}
+      {% attributevalue %}
+        {{ item.collection_type }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Institution' %}
+      {% attributevalue %}
+        {{ item.institution }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Administrators' %}
+      {% attributevalue %}
+        {{ item.admin_count }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Users' %}
+      {% attributevalue %}
+        {{ item.user_count }}
+      {% endlistattribute %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Items' %}
+      {% attributevalue %}
+        {{ item.item_count }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+      {% trans 'Annotations' %}
+      {% attributevalue %}
+      {{ item.annotation_count }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Last upload' %}
+      {% attributevalue %}
+        {{ item.last_item|date:"DATE_FORMAT" }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Last annotation' %}
+      {% attributevalue %}
+        {{ item.last_annotation|date:"DATE_FORMAT" }}
+      {% endlistattribute %}
+    </div>
+  </div>
+{% endblock list-item-content %}

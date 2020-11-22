@@ -1,0 +1,55 @@
+{% load i18n %}
+{% load selia_filters %}
+{% load selia_tags %}
+{% load static %}
+
+
+{% detailtitle %}
+
+{% enddetailimage %}
+{% trans 'Collection detail'%}
+{% enddetailheader %}
+
+{% enddetailtitle %}
+
+{% detailsection %}
+{% trans 'Collection info' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      {{ object.name }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Institution' %}
+    {% endhead %}
+      {{ object.institution.institution_name }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Description' %}
+    {% endhead %}
+      {{ object.description }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+
+{% if object.metadata %}
+  {% detailsection %}
+    {% trans 'Additional Metadata' %}
+  {% enddetailsection %}
+
+  <div class="row">
+    {% show_json object.metadata %}
+  </div>
+{% endif %}

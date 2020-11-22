@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<div>
+  <h4>{% trans 'Hello' %},</h4>
+  <p>
+    {% blocktrans %}The user {{ sender }} has invited you to join Selia!{% endblocktrans %}
+  </p>
+  {% if message != '' %}
+  <p>
+    {% blocktrans %}He's attached the following message:{% endblocktrans %}
+  </p>
+  <p>"{{ message }}"</p>
+  {% endif %}
+  <br/>
+  <p>
+    {% blocktrans %}Here are your temporal access credentials. Don't forget to change your password once logged in.{% endblocktrans %}
+  </p>
+  <ul>
+      <li>{% trans 'Username' %}: <b>{{ username }}</b></li>
+      <li>{% trans 'Password' %}: <b>{{password}}</b></li>
+  </ul>
+  <p>
+    <a href="{% url 'login' %}">{% trans 'Login' %}</a> {% blocktrans %}to access your account.{% endblocktrans %}
+  </p>
+</div>

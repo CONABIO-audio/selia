@@ -1,8 +1,8 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 
-from irekua_database.models import Collection
-from irekua_database.models import LicenceType
+from irekua_collections.models import Collection
+from irekua_items.models import LicenceType
 
 from selia.views.create_views.select_base import SeliaSelectView
 from irekua_permissions import licences as licence_permissions

@@ -1,19 +1,19 @@
 from django.utils.translation import gettext as _
 
-from irekua_database.models import PhysicalDevice
+from irekua_devices.filters import physical_devices
+from irekua_devices.models import PhysicalDevice
 
-from irekua_filters.devices import physical_devices
 from selia.views.list_views.base import SeliaListView
 
 
 class ListUserPhysicalDeviceView(SeliaListView):
-    template_name = 'selia/list/user_physical_devices.html'
+    template_name = "selia/list/user_physical_devices.html"
 
-    list_item_template = 'selia/list_items/physical_device.html'
-    help_template = 'selia/help/user_devices.html'
-    filter_form_template = 'selia/filters/physical_device.html'
+    list_item_template = "selia/list_items/physical_device.html"
+    help_template = "selia/help/user_devices.html"
+    filter_form_template = "selia/filters/physical_device.html"
 
-    empty_message = _('User has no registered devices')
+    empty_message = _("User has no registered devices")
 
     filter_class = physical_devices.Filter
     search_fields = physical_devices.search_fields

@@ -17,7 +17,7 @@ urlpatterns = [
         name='create_item_select_sampling_event'),
     path(
         'items/create/3/',
-        items.SelectItemSamplingEventDeviceView.as_view(),
+        items.SelectItemDeploymentView.as_view(),
         name='create_item_select_sampling_event_device'),
     path(
         'items/create/4/',

@@ -1,0 +1,18 @@
+{% extends 'selia_managers/base.html' %}
+{% load selia_tags %}
+
+{% block head-extra %}
+  {{ block.super }}
+  {% include 'selia_managers/media/json_form_media.html' %}
+{% endblock head-extra %}
+
+{% block modals %}
+  {{ block.super }}
+  {% help_component help_template=help_template %}
+  {% if permissions.change %}
+    {% update_component update_template=update_form_template form=form %}
+  {% endif %}
+  {% if permissions.delete %}
+    {% delete_component object=collection_device %}
+  {% endif %}
+{% endblock modals %}

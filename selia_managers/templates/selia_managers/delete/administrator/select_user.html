@@ -1,0 +1,59 @@
+{% extends 'selia_managers/create/base.html' %}
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_filters %}
+{% load selia_forms %}
+
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/user.html' %}
+{% endblock %}
+
+{% block toolbar-title %}
+  {% trans 'Add user to collection' %}
+{% endblock toolbar-title %}
+
+{% block step-title %}
+{% trans 'Select a user' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia_managers:delete_collection'%}?{{ request.GET | remove_fields:'collection'}}">
+    {% trans 'Select collection' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Select user' %}</li>
+<li>{% trans 'Remove administrator' %}</li>
+{% endblock %}
+
+{% comment %}
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' collection label %}
+{% endblock previously-selected %}
+{% endcomment %}
+
+{% block step-description %}
+{% blocktrans %}
+Search for a user to add as administrator collection, or invite a user
+{% endblocktrans %}
+{% endblock %}
+
+{% block form-content %}
+<div class="container">
+  <div class="col">
+    <div class="row">
+      {% bootstrap_form form.email %}
+    </div>
+    {% if form.email.errors %}
+    <div class="row p-4">
+      <h5 class="w-100 text-center">
+        {% blocktrans %}
+        No user with the given email was found. Do you wish to
+        {% endblocktrans %}
+      </h5>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock form-content %}

@@ -1,0 +1,32 @@
+{% extends 'selia_registration/base.html' %}
+{% load selia_forms %}
+{% load i18n %}
+
+{% block title %}SELIA - Login{% endblock %}
+
+{% block content %}
+<h5 class="card-title text-center">{% trans 'Login' %}</h5>
+
+<form method="post">
+  {% csrf_token %}
+
+  <div class="container-fluid">
+    {% bootstrap_form form.username %}
+    {% bootstrap_form form.password %}
+  </div>
+  {% if form.errors %}
+  <div class="container-fluid">
+    {% for error in form.non_field_errors %}
+    <p>
+      <span class="row text-danger text-center">{{ error }}</span>
+    </p>
+    {% endfor %}
+  </div>
+  <a class="btn btn-text text-primary btn-block" href="{% url 'password_reset' %}">
+    {% trans 'Recover you password' %}
+  </a>
+  {% endif %}
+  <br />
+  <button type="submit" class="btn btn-text text-primary btn-block">{% trans 'Enter' %}</button>
+</form>
+{% endblock %}

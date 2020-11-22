@@ -1,0 +1,31 @@
+{% extends 'selia_templates/navbars/navbar_base.html' %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block class-name %}home{% endblock %}
+
+{% block navbar-brand %}
+<a class="navbar-brand" id="dropdownMenuButton" href={% url 'selia_managers:management' %}>{% trans 'Managers' %}</a>
+{% endblock navbar-brand %}
+
+{% block navbar-items %}
+
+{% url 'selia_managers:management' as management_url %}
+{% tab management_url %}
+  <i class="fas fa-home"></i>
+  {% trans 'Home' %}
+{% endtab %}
+
+{% url 'selia_managers:collections' as collections_url %}
+{% tab collections_url %}
+  <i class="fas fa-archive"></i>
+  {% trans 'Managed Collections' %}
+{% endtab %}
+
+{% url 'selia_managers:users' as users_url %}
+{% tab users_url %}
+  <i class="fas fa-user"></i>
+  {% trans 'Managed Users' %}
+{% endtab %}
+
+{% endblock navbar-items %}

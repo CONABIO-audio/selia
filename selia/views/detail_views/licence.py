@@ -1,7 +1,7 @@
 from django.views.generic.detail import SingleObjectMixin
 from django import forms
 
-from irekua_database.models import Licence
+from irekua_items.models import Licence
 from irekua_permissions import licences as licence_permissions
 from irekua_permissions.data_collections import (
     users as user_permissions)

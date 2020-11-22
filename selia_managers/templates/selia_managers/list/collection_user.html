@@ -1,0 +1,37 @@
+{% extends 'selia_managers/list/base.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+{% trans 'Collection Users' %} {% trans 'List' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  <li class="navbar-item ">
+    <a class="btn btn-link" href="{% url 'email_user' %}?collection_users={{ collection.id }}&next={{ request.get_full_path }}">
+      {% email_button %}{% trans 'Email all users' %}
+    </a>
+  </li>
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block description %}
+{% detailtitle %}
+{% enddetailimage %}
+  {% trans 'Collection Users' %}
+{% enddetailheader %}
+<p>
+  {% blocktrans %}
+    Below you can see a list of all users registered in this collection.
+    Send an email to the user of your choice or give them admin status.
+  {% endblocktrans %}
+</p>
+{% enddetailtitle %}
+{% endblock %}

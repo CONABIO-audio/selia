@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.shortcuts import reverse
 from django.utils.translation import gettext as _
 
-from irekua_database.models import Collection
+from irekua_collections.models import Collection
 from irekua_database.models import User
 
 from selia.views.create_views.create_base import SeliaCreateView

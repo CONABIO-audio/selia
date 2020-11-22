@@ -4,47 +4,41 @@ from selia.views import detail_views
 
 urlpatterns = [
     path(
-        'collection_devices/detail/<pk>/',
+        "collection_devices/detail/<pk>/",
         detail_views.DetailCollectionDeviceView.as_view(),
-        name='collection_device_detail'),
+        name="collection_device_detail",
+    ),
     path(
-        'collection_sites/detail/<pk>/',
+        "collection_sites/detail/<pk>/",
         detail_views.DetailCollectionSiteView.as_view(),
-        name='collection_site_detail'),
+        name="collection_site_detail",
+    ),
     path(
-        'collection_users/detail/<pk>/',
+        "collection_users/detail/<pk>/",
         detail_views.DetailCollectionUserView.as_view(),
-        name='collection_user_detail'),
+        name="collection_user_detail",
+    ),
     path(
-        'collections/detail/<name>/',
+        "collections/detail/<name>/",
         detail_views.DetailCollectionView.as_view(),
-        name='collection_detail'),
+        name="collection_detail",
+    ),
     path(
-        'items/detail/<pk>/',
-        detail_views.DetailItemView.as_view(),
-        name='item_detail'),
+        "items/detail/<pk>/", detail_views.DetailItemView.as_view(), name="item_detail"
+    ),
     path(
-        'licences/detail/<pk>/',
+        "licences/detail/<pk>/",
         detail_views.DetailLicenceView.as_view(),
-        name='licence_detail'),
+        name="licence_detail",
+    ),
     path(
-        'user/physical_devices/detail/<pk>/',
-        detail_views.DetailPhysicalDeviceView.as_view(),
-        name='physical_device_detail'),
+        "deployments/detail/<pk>/",
+        detail_views.DetailDeploymentView.as_view(),
+        name="deployment_detail",
+    ),
     path(
-        'sampling_event_devices/detail/<pk>/',
-        detail_views.DetailSamplingEventDeviceView.as_view(),
-        name='sampling_event_device_detail'),
-    path(
-        'sampling_events/detail/<pk>/',
+        "sampling_events/detail/<pk>/",
         detail_views.DetailSamplingEventView.as_view(),
-        name='sampling_event_detail'),
-    path(
-        'user/sites/detail/<pk>/',
-        detail_views.DetailUserSiteView.as_view(),
-        name='site_detail'),
-    path(
-        'user/',
-        detail_views.DetailUserView.as_view(),
-        name='user_home'),
+        name="sampling_event_detail",
+    ),
 ]

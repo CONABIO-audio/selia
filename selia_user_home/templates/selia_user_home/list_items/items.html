@@ -1,0 +1,62 @@
+{% extends 'selia_templates/list/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load static %}
+{% load i18n %}
+
+
+{% block list-item-content %}
+<div class="row w-100">
+    <div class="col">
+      {% listtitle %}
+      <div class="mr-2 bg-dark rounded border" style="height: 100px; width: 100px;">
+        <img style="height: 100%; width: 100%; object-fit: contain;" class="mx-auto d-block" src="{% url 'irekua_thumbnails:thumbnails' %}?pk={{ item.pk }}&height=x100&crop=center">
+      </div>
+      {% endlistimage %}
+        {% trans 'Item' %} {{ item.pk }}
+      {% endlistheader %}
+        <div>
+          {{ item.item_type }}
+        </div>
+        {% include 'selia_user_home/links/detail_item.html' with item=item %}
+      {% endlisttitle %}
+    </div>
+
+    <div class="col">
+       <div class="row">
+         {% listattribute %}
+          {% trans 'Captured on' %}
+         {% attributevalue %}
+           {{ item.captured_on | date:'SHORT_DATETIME_FORMAT' }}
+         {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Owner' %}
+        {% attributevalue %}
+          {{ item.created_by }}
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Licence' %}
+        {% attributevalue %}
+          {{ item.licence.licence_type }}
+        {% endlistattribute %}
+      </div>
+      {% if item.tags.count != 0 %}
+      <div class="row d-flex flex-row">
+        {% listattribute %}
+          {% trans 'Tags' %}
+        {% attributevalue %}
+          <div class="d-inline mx-2">
+            {% for tag in item.tags.all %}
+              <span class="badge badge-dark">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endlistattribute %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock list-item-content %}

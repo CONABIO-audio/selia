@@ -1,0 +1,48 @@
+{% load selia_tags %}
+{% load selia_buttons %}
+{% load i18n %}
+
+<div class="w-100 bg-light p-4 list-group mb-4">
+  {% detailtitle %}
+  {% enddetailimage %}
+    {% trans 'Collection Types'%}
+  {% enddetailheader %}
+    {% blocktrans %}
+      Below you can see a brief summary of the collections you manage grouped by
+      collection type. Click on a collection type to see a list of its collections.
+    {% endblocktrans %}
+  {% enddetailtitle %}
+
+  <div class="container my-4">
+    <table class="table selia-table">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">{% trans 'Collection Type' %}</th>
+          <th scope="col">{% trans 'Collections' %}</th>
+          <th scope="col">{% trans 'Users' %}</th>
+          <th scope="col">{% trans 'Items' %}</th>
+          <th scope="col">{% trans 'Annotations' %}</th>
+          <th scope="col">{% trans 'Last upload' %}</th>
+          <th scope="col">{% trans 'Last annotation' %}</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in list %}
+        <tr>
+          <td class="text-center font-weight-bold">{{ item.name }}</td>
+          <td class="text-center">{{ item.collections.count }} <a class="ml-3" href="{% url 'selia_managers:collections' %}?collection_type={{ item.pk }}">{% see_button %}</a></td>
+          <td class="text-center">{{ item.users.count }}</td>
+          <td class="text-center">{{ item.items.count }}</td>
+          <td class="text-center">{{ item.annotations.count }}</td>
+          <td class="text-center">{{ item.last_item.created_on|date:"DATE_FORMAT" }}</td>
+          <td class="text-center">{{ item.last_annotation.created_on|date:"DATE_FORMAT" }}</td>
+          <td><a href="{% url 'selia_managers:create_collection'%}?collection_type={{ item.name }}" class="btn btn-text text-primary">{% add_button %} {% trans 'Collection' %}</a></td>
+          <td><a href="{% url 'email_user' %}?collectiontype={{ item.id }}&next={{ request.get_full_path }}" class="btn btn-text text-info">{% email_button %} {% trans 'Email admins' %}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

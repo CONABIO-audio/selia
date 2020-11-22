@@ -1,0 +1,20 @@
+{% extends 'selia_templates/select/select_list_item.html' %}
+{% load static %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="row w-100">
+  <div class="col">
+    {% listtitle %}
+      {% list_icon item.logo %}
+    {% endlistimage %}
+      {{ item.name }}
+    {% endlistheader %}
+      <p>
+        {{ item.description }}
+      </p>
+    {% endlisttitle %}
+  </div>
+</div>
+{% endblock %}

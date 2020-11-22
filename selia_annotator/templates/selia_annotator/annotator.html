@@ -1,0 +1,54 @@
+{% extends 'selia_templates/base_with_toolbar.html' %}
+
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_buttons %}
+{% load static %}
+
+{% block secondary-navbar %}
+  {% include 'selia_annotator/navbar.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+  {{ item.collection }}: {% trans 'Annotations: Add' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% include 'selia_annotator/toolbar.html' %}
+{% endblock toolbar-items %}
+
+{% block main-content %}
+	<div id="annotator">
+  </div>
+{% endblock main-content %}
+
+{% block scripts-extra %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'selia_annotator/getCSRFToken.js' %}"></script>
+<script type="text/javascript" src="{% static 'selia_annotator/annotator.js' %}"></script>
+<script type="text/javascript">
+  const startApp = annotator.default;
+
+  const urls = {{% for key, url in urls.items %}
+    {{ key }}: '{{ url }}',{% endfor %}
+  }
+  const items = [{% for pk in items %}'{{ pk }}',{%endfor%}];
+  const item = '{{ item.pk }}';
+  const annotators = JSON.parse('{{ annotators | safe }}');
+  const visualizers = JSON.parse('{{ visualizers | safe }}');
+  const itemTypes = JSON.parse('{{ item_types | safe }}');
+  const annotationTypes = JSON.parse('{{ annotation_types | safe }}');
+
+  const props = {
+    urls,
+    items,
+    item,
+    itemTypes,
+    annotationTypes,
+    annotators,
+    visualizers,
+  };
+
+  startApp('annotator', props);
+</script>
+{% endblock scripts-extra %}

@@ -1,0 +1,92 @@
+{% extends 'selia_templates/list/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load selia_maps %}
+{% load static %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="row w-100 h-100">
+  <div class="col h-100">
+    {% listtitle %}
+      <div class="h-100" style="width: 10em; min-height: 100px;">
+        {% site_map_list item %}
+      </div>
+    {% endlistimage %}
+      {% if item.name %}
+        {{ item.name }}
+      {% else %}
+        {% trans 'Site' %} {{item.pk }}
+      {% endif %}
+    {% endlistheader %}
+      {% if item.locality %}
+        <div>{{ item.locality.name }}</div>
+      {% endif %}
+      <a href="{% url 'selia_user_home:site_detail' item.pk %}">
+        {% enter_button %}
+      </a>
+    {% endlisttitle %}
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Geometry Type' %}
+      {% attributevalue %}
+        {{ item.geometry_type }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Latitude' %}
+      {% attributevalue %}
+        {{ item.geom.centroid.x|floatformat:'3' }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Longitude' %}
+      {% attributevalue %}
+        {{ item.geom.centroid.y|floatformat:'3' }}
+      {% endlistattribute %}
+    </div>
+    {# Check if site is a point site and show altitude if any #}
+    {% if item.pointsite and item.pointsite.altitude %}
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Altitude' %}
+      {% attributevalue %}
+        {{ item.pointsite.altitude|floatformat:'1' }}
+      {% endlistattribute %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="col">
+    {% block site-summary %}
+    <div class="row">
+      {% listsummary %}
+        {% trans 'Items' %}
+      {% summarycount %}
+        {{ item.items.count }}
+      {% summarybuttons %}
+        <a href="{% url 'selia_user_home:items' %}?sampling_event_device__sampling_event__collection_site__site={{ item.pk }}">
+          {% see_button %}
+        </a>
+        {% include 'selia_user_home/links/create_item.html' with site=item %}
+      {% endlistsummary %}
+    </div>
+    <div class="row">
+      {% listsummary %}
+        {% trans 'Sampling events' %}
+      {% summarycount %}
+        {{ item.sampling_events.count }}
+      {% summarybuttons %}
+        <a href="{% url 'selia_user_home:sampling_events' %}?collection_site__site={{ item.pk }}">
+          {% see_button %}
+        </a>
+        {% include 'selia_user_home/links/create_sampling_event.html' with site=item %}
+      {% endlistsummary %}
+    </div>
+    {% endblock site-summary %}
+  </div>
+</div>
+{% endblock list-item-content %}

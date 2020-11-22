@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
 
-from irekua_database.models import Collection
-from irekua_database.models import SamplingEventType
+from irekua_collections.models import Collection
+from irekua_collections.models import SamplingEventType
 from irekua_permissions.sampling_events import (
     sampling_events as sampling_event_permissions)
 

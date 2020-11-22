@@ -1,0 +1,25 @@
+{% extends 'selia_templates/navbars/navbar_base.html' %}
+{% load i18n %}
+{% load selia_tags %}
+
+{% block class-name %}deployment{% endblock %}
+
+{% block navbar-brand %}
+<a class="navbar-brand text-truncate" href="{% url 'selia:deployment_detail' deployment.pk %}">
+  {% trans 'Deployed Device' %}: {{ deployment }}
+</a>
+{% endblock %}
+
+{% block navbar-items %}
+{% url 'selia:deployment_detail' deployment.pk as detail_url %}
+{% tab detail_url %}
+  <i class="fas fa-info"></i>
+  {% trans 'About' %}
+{% endtab %}
+
+{% url 'selia:deployment_items' deployment.pk as detail_url %}
+{% tab detail_url %}
+  <i class="far fa-file"></i>
+  {% trans 'Items' %}
+{% endtab %}
+{% endblock %}

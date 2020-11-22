@@ -35,7 +35,7 @@
             <div class="row">
               <div class="col">
                 {% trans 'Contains' as label %}
-                {{ filter.form.collection_site__internal_id__icontains | selia_filter:label }}
+                {{ filter.form.collection_site__collection_name__icontains | selia_filter:label }}
               </div>
             </div>
           </div>

@@ -1,0 +1,29 @@
+{% extends 'selia_user_home/summaries/physical_devices.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+
+{% block summary %}
+{{ block.super }}
+<div class="media text-muted pt-3">
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <strong class="d-block text-gray-dark">{% trans 'Collections' %}</strong>
+    <div class="row">
+      <div class="col-3">
+        {% trans 'Number' %}: {{ object.collectiondevice_set.count }}
+      </div>
+      <div class="col-6">
+        {% trans 'Last added on' %}: {{ object.collectiondevice_set.first.created_on }}
+      </div>
+      <div class="col-1">
+        <a href="{% url 'selia:user_collections' %}?collectiondevice__physical_device={{ object.pk }}">
+          {% see_button %}
+        </a>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'selia:create_collection_device' %}?physical_device={{ object.pk }}">{% add_button %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock summary %}

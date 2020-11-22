@@ -1,20 +1,19 @@
 from django.utils.translation import gettext as _
 
-from irekua_database.models import Site
-
-from irekua_filters import sites
-from irekua_permissions import sites as site_permissions
+from irekua_geo.models import Site
+from irekua_geo.filters import sites
 from selia.views.list_views.base import SeliaListView
+from irekua_permissions import sites as site_permissions
 
 
 class ListUserSitesView(SeliaListView):
-    template_name = 'selia/list/user_sites.html'
+    template_name = "selia/list/user_sites.html"
 
-    list_item_template = 'selia/list_items/site.html'
-    help_template = 'selia/help/user_sites.html'
-    filter_form_template = 'selia/filters/site.html'
+    list_item_template = "selia/list_items/site.html"
+    help_template = "selia/help/user_sites.html"
+    filter_form_template = "selia/filters/site.html"
 
-    empty_message = _('User has no registered sites')
+    empty_message = _("User has no registered sites")
 
     filter_class = sites.Filter
     search_fields = sites.search_fields

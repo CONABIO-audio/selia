@@ -1,0 +1,78 @@
+{% extends 'selia_templates/create/base.html' %}
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_filters %}
+{% load selia_forms %}
+
+{% block toolbar-title %}
+  {% trans 'Add user device' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia_user_home/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia_user_home:create_physical_device' %}?{{ request.GET|remove_fields:'device&device_type'}}">
+    {% trans 'Select Device Type' %}
+  </a>
+</li>
+<li>
+  <a href="{% url 'selia_user_home:create_physical_device' %}?{{ request.GET|remove_fields:'device'}}">
+    {% trans 'Select hardware' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Fill in details' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Register any individual traits
+  {% endblocktrans %}
+{% endblock %}
+
+{% block previously-selected %}
+{% trans 'Selected Device Type' as label %}
+{% selected_item 'device_types' device_type label app='selia_user_home' %}
+
+{% trans 'Selected hardware' as label %}
+{% selected_item 'devices' device label app='selia_user_home' %}
+{% endblock previously-selected %}
+
+{% block form-content %}
+  <input type="hidden" id="device_field" name="device" value="{{ device.pk }}">
+
+  <div class="form-row">
+    <div class="form-group col">
+      {% bootstrap_form form.serial_number %}
+    </div>
+    <div class="form-group col">
+      {% bootstrap_form form.name %}
+    </div>
+  </div>
+  {% if device.device_type.metadata_schema %}
+    {% detailsection %}
+      {% trans 'Additional Device Type Metadata' %}
+    {% enddetailsection %}
+    <div class="form-row">
+      <div class="form-group col">
+        {{ form.device_type_metadata }}
+      </div>
+    </div>
+  {% endif %}
+  {% if device.metadata_schema %}
+    {% detailsection %}
+      {% trans 'Additional Device Metadata' %}
+    {% enddetailsection %}
+    <div class="form-row">
+      <div class="form-group col">
+        {{ form.device_metadata }}
+      </div>
+    </div>
+  {% endif %}
+{% endblock form-content %}

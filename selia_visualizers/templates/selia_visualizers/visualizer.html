@@ -1,0 +1,50 @@
+{% extends 'selia_templates/base_with_toolbar.html' %}
+
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_buttons %}
+{% load static %}
+
+{% block secondary-navbar %}
+  {% include 'selia_visualizers/navbar.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+  {{ item.collection }}: {% trans 'Visualizer' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% include 'selia_visualizers/toolbar.html' %}
+{% endblock toolbar-items %}
+
+{% block main-content %}
+	<div class="container-fluid py-2">
+    <div class="col">
+      <div id="visualizer-toolbar" class="row visualizer-toolbar">
+
+      </div>
+      <div id="visualizer-container" class="row visualizer-container" style="height: 70vh;">
+        <canvas id="visualizer-canvas" class="visualizer-canvas"></canvas>
+      </div>
+      <div class="row">
+        <small class="text-muted m-2">{{ module.visualizer.name }}</small>
+        <small class="text-muted m-2">{{ module.version }}</small>
+      </div>
+    </div>
+  </div>
+{% endblock main-content %}
+
+{% block scripts-extra %}
+{{ block.super }}
+<script type="text/javascript" src="{{ module.javascript_file.url }}"></script>
+<script type="text/javascript">
+  const visualizer = new Visualizer.default({
+    canvas: document.getElementById('visualizer-canvas'),
+    toolbar: document.getElementById('visualizer-toolbar'),
+    active: true,
+    itemInfo: {
+      url: '{{ object.item_file.url }}',
+    },
+  })
+</script>
+{% endblock scripts-extra %}

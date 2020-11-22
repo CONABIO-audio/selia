@@ -1,7 +1,7 @@
 from django.views.generic.detail import SingleObjectMixin
 from django import forms
 
-from irekua_database.models import CollectionSite
+from irekua_collections.models import CollectionSite
 from irekua_permissions.data_collections import (
     sites as site_permissions)
 from irekua_permissions.data_collections import (
@@ -18,7 +18,7 @@ class CollectionSiteUpdateForm(forms.ModelForm):
     class Meta:
         model = CollectionSite
         fields = [
-            'internal_id',
+            'collection_name',
             'metadata',
         ]
 

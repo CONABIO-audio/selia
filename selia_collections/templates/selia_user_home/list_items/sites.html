@@ -1,0 +1,23 @@
+{% extends 'selia_user_home/list_item/sites.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load static %}
+{% load i18n %}
+
+{% block site-summary %}
+{{ block.super }}
+<div class="row">
+  {% listsummary %}
+    {% trans 'Collections' %}
+  {% summarycount %}
+    {{ item.collectionsite_set.count }}
+  {% summarybuttons %}
+    <a href="{% url 'selia:user_collections' %}?collectionsite__site={{ item.pk }}">
+      {% see_button %}
+    </a>
+    <a class="ml-2" href="{% url 'selia:create_collection_site' %}?site={{ item.pk }}">
+      {% add_button %}
+    </a>
+  {% endlistsummary %}
+</div>
+{% endblock site-summary %}

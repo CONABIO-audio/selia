@@ -1,0 +1,54 @@
+{% extends 'selia_registration/base.html' %}
+{% load selia_forms %}
+{% load selia_tags %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}SELIA - {% trans 'Send email' %}{% endblock %}
+
+{% block content %}
+{# Display a form #}
+<h5 class="card-title text-center">{% trans 'Send an email to Selia users' %}</h5>
+
+<form method="post">
+  {% csrf_token %}
+<div class="col">
+  <div class="row">
+    <p class="text-small mb-0">{% trans 'To' %}: </p>
+    {% if userset.count > 2 %}
+    <div class="d-flex flex-row flex-wrap p-1">
+      {% for user in userset %}
+      {% if forloop.first %}
+        <span class="badge badge-secondary m-1">{{ user.email }}</span>
+        <div class="collapse" id="recipientList">
+      {% elif forloop.last %}
+          <span class="badge badge-secondary m-1">{{ user.email }}</span>
+        </div>
+      {% else %}
+          <span class="badge badge-secondary m-1">{{ user.email }}</span>
+      {% endif %}
+      {% endfor %}
+      <a type="button" data-toggle="collapse" href="#recipientList" role="button" aria-expanded="false" aria-controls="recipientList">
+        <span class="badge badge-secondary m-1">...</span>
+      </a>
+    </div>
+    {% else %}
+    <div class="d-flex flex-row flex-wrap p-1">
+      {% for user in userset %}
+      <span class="badge badge-secondary m-1">{{ user.email }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="row">
+      {% bootstrap_form form.subject %}
+  </div>
+  <div class="row">
+      {% bootstrap_form form.message %}
+  </div>
+  <button type="submit" class="btn btn-text text-primary card-link">
+    {% trans 'Send' %}
+  </button>
+</div>
+</form>
+{% endblock %}

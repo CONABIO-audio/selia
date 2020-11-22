@@ -12,8 +12,8 @@
         {% site_map_list item.site %}
       </div>
     {% endlistimage %}
-      {% if item.internal_id %}
-        {{ item.internal_id }}
+      {% if item.collection_name %}
+        {{ item.collection_name }}
       {% else %}
         {% trans 'Site' %} {{ item.pk }}
       {% endif %}

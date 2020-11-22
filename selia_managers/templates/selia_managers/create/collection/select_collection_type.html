@@ -1,0 +1,30 @@
+{% extends 'selia_managers/create/base_select_name.html' %}
+{% load i18n %}
+{% load selia_tags %}
+
+{% block toolbar-title %}
+  {% trans 'Create a collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/home.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li class="is-active">{% trans 'Select collection type' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select a collection types' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose a type collection from the list.
+  {% endblocktrans %}
+{% endblock %}
+
+{% block empty-message %}
+  <h4>{% trans 'No available type collections' %}.</h4>
+{% endblock %}

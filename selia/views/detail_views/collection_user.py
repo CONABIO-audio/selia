@@ -1,12 +1,12 @@
 from django.views.generic.detail import SingleObjectMixin
 from django import forms
 
-from irekua_database.models import CollectionUser
-from irekua_database.models import SamplingEvent
-from irekua_database.models import CollectionSite
-from irekua_database.models import CollectionDevice
-from irekua_database.models import Item
-from irekua_database.models import Annotation
+from irekua_collections.models import CollectionUser
+from irekua_collections.models import SamplingEvent
+from irekua_collections.models import CollectionSite
+from irekua_collections.models import CollectionDevice
+from irekua_collections.models import DeploymentItem
+from irekua_collections.models import CollectionAnnotation
 from irekua_permissions.data_collections import users as user_permissions
 from irekua_permissions import licences as licence_permissions
 

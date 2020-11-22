@@ -1,8 +1,8 @@
 from django.views.generic.detail import SingleObjectMixin
 from django import forms
 
-from irekua_database.models import CollectionDevice
-from irekua_database.models import CollectionDeviceType
+from irekua_collections.models import CollectionDevice
+from irekua_collections.models import CollectionTypeDeviceType
 from irekua_permissions.data_collections import devices as devices_permissions
 from irekua_permissions.data_collections import users as user_permissions
 from irekua_permissions import licences as licence_permissions
@@ -16,7 +16,7 @@ class CollectionDeviceUpdateForm(forms.ModelForm):
     class Meta:
         model = CollectionDevice
         fields = [
-            'internal_id',
+            'collection_name',
             'metadata',
         ]
 

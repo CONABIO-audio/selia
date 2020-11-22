@@ -1,6 +1,6 @@
-from irekua_database.models import Licence
-from irekua_database.models import Collection
-from irekua_database.models import SamplingEventDevice
+from irekua_items.models import Licence
+from irekua_collections.models import Collection
+from irekua_collections.models import Deployment
 
 from selia.views.create_views import SeliaSelectView
 from irekua_permissions.items import (
@@ -19,7 +19,7 @@ class SelectItemLicenceView(SeliaSelectView):
 
     def get_objects(self):
         if not hasattr(self, 'sampling_event_device'):
-            self.sampling_event_device = SamplingEventDevice.objects.get(
+            self.sampling_event_device = Deployment.objects.get(
                 pk=self.request.GET['sampling_event_device'])
 
     def get_context_data(self, *args, **kwargs):

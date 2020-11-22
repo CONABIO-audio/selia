@@ -1,9 +1,9 @@
 from django import forms
 
-from irekua_database.models import SamplingEvent
-from irekua_database.models import SamplingEventType
-from irekua_database.models import Collection
-from irekua_database.models import CollectionSite
+from irekua_collections.models import SamplingEvent
+from irekua_collections.models import SamplingEventType
+from irekua_collections.models import Collection
+from irekua_collections.models import CollectionSite
 
 from selia_templates.widgets import BootstrapDateTimePickerInput
 from selia_templates.forms.json_field import JsonField

@@ -1,0 +1,43 @@
+{% extends 'selia_templates/navbars/navbar_base.html' %}
+{% load i18n %}
+{% load selia_tags %}
+
+{% block class-name %}user{% endblock %}
+
+{% block navbar-brand%}
+<a class="navbar-brand text-truncate" href="{% url 'selia_user_home:home' %}">
+  {% trans 'Home' %}
+</a>
+{% endblock %}
+
+{% block navbar-items %}
+{% url 'selia_user_home:home' as home_url %}
+{% tab home_url %}
+  <i class="fas fa-home"></i>
+  {% trans 'Summary' %}
+{% endtab %}
+
+{% url 'selia_user_home:physical_devices' as devices_url %}
+{% tab devices_url %}
+  <i class="fas fa-tools"></i>
+  {% trans 'My Devices' %}
+{% endtab %}
+
+{% url 'selia_user_home:sites' as sites_url %}
+{% tab sites_url %}
+  <i class="fas fa-map-marked-alt"></i>
+  {% trans 'My Sites' %}
+{% endtab %}
+
+{% url 'selia_user_home:sampling_events' as sampling_events_url %}
+{% tab sampling_events_url %}
+  <i class="fas fa-calendar-week"></i>
+  {% trans 'My Sampling events' %}
+{% endtab %}
+
+{% url 'selia_user_home:items' as items_url %}
+{% tab items_url %}
+  <i class="far fa-file"></i>
+  {% trans 'My Items' %}
+{% endtab %}
+{% endblock %}

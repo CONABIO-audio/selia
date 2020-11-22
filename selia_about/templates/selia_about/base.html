@@ -1,0 +1,11 @@
+{% extends 'selia_templates/base_with_toolbar.html' %}
+{% load static %}
+
+{% block stylesheet %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'selia_about/css/main.css' %}">
+{% endblock %}
+
+{% block secondary-navbar %}
+{% include 'selia_about/navbar.html' %}
+{% endblock secondary-navbar %}

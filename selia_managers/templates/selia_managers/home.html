@@ -1,0 +1,45 @@
+{% extends 'selia_managers/base.html' %}
+{% load i18n %}
+{% load selia_filters %}
+{% load selia_tags %}
+{% load static %}
+
+{% block toolbar-items %}
+<li class="navbar-item ">
+  <a class="btn btn-link" href="{% url 'selia_managers:create_collection' %}"><i class="fas fa-plus"></i> {% trans 'Add collection' %}</a>
+</li>
+<li class="navbar-item ">
+  <a class="btn btn-link" href="{% url 'selia_managers:create_administrator' %}"><i class="fas fa-user-plus"></i> {% trans 'Asociate administrator' %}</a>
+</li>
+<li class="navbar-item ">
+  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question"></i> {% trans "Help" %}</button>
+</li>
+{% endblock toolbar-items %}
+
+{% block main-content %}
+  <div class="container-fluid w-100">
+    <div class="row bg-light my-4">
+      <div class="container">
+        <div class="container-fluid mt-4">
+          {% detailtitle %}
+            <img class="m-2" src="{% static 'selia_managers/img/management.png' %}" height="100" alt="Management" />
+          {% enddetailimage %}
+            {% trans 'Collection Management'%}
+          {% enddetailheader %}
+            {% blocktrans %}
+              Welcome to Selia collection management section.
+            {% endblocktrans %}
+          {% enddetailtitle %}
+        </div>
+
+        {% detail_component detail_template="selia_managers/details/user.html" object=request.user %}
+      </div>
+    </div>
+
+    <div class="row bg-light my-4">
+      <div class="container">
+        {% include 'selia_managers/list/collection_type_brief.html' with list=object_list.object_list list_item_template=templates.list_item %}
+      </div>
+    </div>
+  </div>
+{% endblock main-content %}

@@ -1,0 +1,28 @@
+{% load i18n %}
+{% load selia_forms %}
+{% load selia_tags %}
+
+<div class="col">
+  <div class="row">
+    {% bootstrap_form form.name %}
+  </div>
+  <div class="row">
+    {% bootstrap_form form.serial_number %}
+  </div>
+  {% if object.device.device_type.metadata_schema %}
+  {% detailsection %}
+  {% trans 'Additional device type metadata' %}
+  {% enddetailsection %}
+  <div class="row">
+    {{ form.device_type_metadata }}
+  </div>
+  {% endif %}
+  {% if object.device.metadata_schema %}
+  {% detailsection %}
+  {% trans 'Additional device metadata' %}
+  {% enddetailsection %}
+  <div class="row">
+    {{ form.device_metadata }}
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,53 @@
+{% extends 'selia_templates/create/base.html' %}
+{% load selia_tags %}
+{% load selia_filters %}
+{% load selia_forms %}
+{% load selia_maps %}
+{% load i18n %}
+
+{% block toolbar-title %}
+  {% trans 'Create site' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+{% include 'selia_user_home/navbars/user.html' %}
+{% endblock %}
+
+{% block head-extra %}
+  {{ form.media }}
+{% endblock %}
+
+{% block scripts-extra %}
+ {% autocomplete_media %}
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Create site' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia_user_home:create_site' %}?{{ request.GET|remove_fields:'geometry_type'}}">
+    {% trans 'Select geometry type' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Please fill in the following information
+  {% endblocktrans %}
+{% endblock step-description %}
+
+{% block form-content %}
+<div class="form-row p-2">
+  <div class="from-group col">
+    {% bootstrap_form form.name %}
+  </div>
+</div>
+
+<div class="row p-2">
+  {{ form.geometry }}
+</div>
+{% endblock form-content %}

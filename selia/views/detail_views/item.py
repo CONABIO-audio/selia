@@ -3,10 +3,10 @@ from django import forms
 from django.urls import reverse
 from django.utils.http import urlencode
 
-from irekua_database.models import Item
-from irekua_database.models import Tag
+from irekua_database.autocomplete import get_autocomplete_widget
+from irekua_collections.models import DeploymentItem
+from irekua_items.models import Tag
 from irekua_permissions.items import items as item_permissions
-from irekua_autocomplete.utils import get_autocomplete_widget
 from selia_templates.widgets import BootstrapDateTimePickerInput
 from selia_templates.forms.json_field import JsonField
 from selia_visualizers.utils import get_visualizer_module
@@ -17,31 +17,27 @@ mimetypes.init()
 
 
 class DetailItemView(SeliaDetailView):
-    model = Item
-    delete_redirect_url = 'selia:collection_items'
+    model = DeploymentItem
+    delete_redirect_url = "selia:collection_items"
 
-    template_name = 'selia/detail/item.html'
-    help_template = 'selia/help/collection_item_detail.html'
-    detail_template = 'selia/details/item.html'
-    summary_template = 'selia/summaries/item.html'
-    update_form_template = 'selia/update/item.html'
-    viewer_template = 'selia/viewers/item.html'
+    template_name = "selia/detail/item.html"
+    help_template = "selia/help/collection_item_detail.html"
+    detail_template = "selia/details/item.html"
+    summary_template = "selia/summaries/item.html"
+    update_form_template = "selia/update/item.html"
+    viewer_template = "selia/viewers/item.html"
 
     def get_form_class(self):
         class Form(forms.ModelForm):
             metadata = JsonField()
 
             class Meta:
-                model = Item
-                fields = [
-                    'captured_on',
-                    'tags',
-                    'metadata'
-                ]
+                model = DeploymentItem
+                fields = ["captured_on", "tags", "metadata"]
 
                 widgets = {
-                    'tags': get_autocomplete_widget(Tag, multiple=True),
-                    'captured_on': BootstrapDateTimePickerInput(),
+                    "tags": get_autocomplete_widget(model=Tag, multiple=True),
+                    "captured_on": BootstrapDateTimePickerInput(),
                 }
 
         return Form
@@ -62,7 +58,7 @@ class DetailItemView(SeliaDetailView):
 
     def get_permissions(self):
         permissions = super().get_permissions()
-        permissions['download'] = self.has_download_permission()
+        permissions["download"] = self.has_download_permission()
         return permissions
 
     def get_visualizer(self):
@@ -78,35 +74,43 @@ class DetailItemView(SeliaDetailView):
 
     def get_next_object(self):
         next_object = (
-            Item.objects.filter(
-                pk__gt=self.kwargs['pk'],
-                sampling_event_device=self.object.sampling_event_device.pk)
-            .order_by('pk').first())
+            DeploymentItem.objects.filter(
+                pk__gt=self.kwargs["pk"],
+                sampling_event_device=self.object.sampling_event_device.pk,
+            )
+            .order_by("pk")
+            .first()
+        )
         return next_object
 
     def get_prev_object(self):
         prev_object = (
-            Item.objects.filter(
-                pk__lt=self.kwargs['pk'],
-                sampling_event_device=self.object.sampling_event_device.pk)
-            .order_by('pk').last())
+            DeploymentItem.objects.filter(
+                pk__lt=self.kwargs["pk"],
+                sampling_event_device=self.object.sampling_event_device.pk,
+            )
+            .order_by("pk")
+            .last()
+        )
         return prev_object
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        context['item'] = self.object
-        context['sampling_event_device'] = self.object.sampling_event_device
-        context['sampling_event'] = self.object.sampling_event_device.sampling_event
-        context['collection'] = self.object.sampling_event_device.sampling_event.collection
+        context["item"] = self.object
+        context["sampling_event_device"] = self.object.sampling_event_device
+        context["sampling_event"] = self.object.sampling_event_device.sampling_event
+        context[
+            "collection"
+        ] = self.object.sampling_event_device.sampling_event.collection
 
         context["next_object"] = self.get_next_object()
         context["prev_object"] = self.get_prev_object()
 
-        context["annotation_app_url"] = '{}?{}'.format(
-            reverse('selia_annotator:annotator_app'),
-            urlencode({'pk': self.object.pk}))
+        context["annotation_app_url"] = "{}?{}".format(
+            reverse("selia_annotator:annotator_app"), urlencode({"pk": self.object.pk})
+        )
 
-        if context['permissions']['download']:
-            context['visualizer_url'] = self.get_visualizer()
+        if context["permissions"]["download"]:
+            context["visualizer_url"] = self.get_visualizer()
         return context

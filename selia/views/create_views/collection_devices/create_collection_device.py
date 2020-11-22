@@ -1,8 +1,8 @@
 from django import forms
 
-from irekua_database.models import CollectionDevice
-from irekua_database.models import Collection
-from irekua_database.models import PhysicalDevice
+from irekua_collections.models import CollectionDevice
+from irekua_collections.models import Collection
+from irekua_devices.models import PhysicalDevice
 
 from selia_templates.forms.json_field import JsonField
 from selia.views.create_views.create_base import SeliaCreateView
@@ -16,7 +16,7 @@ class CollectionDeviceCreateForm(forms.ModelForm):
         fields = [
             'physical_device',
             'collection',
-            'internal_id',
+            'collection_name',
             'metadata'
         ]
 

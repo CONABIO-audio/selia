@@ -1,9 +1,9 @@
 from django import forms
 
 from selia.views.create_views.create_base import SeliaCreateView
-from irekua_database.models import Collection
-from irekua_database.models import CollectionRole
-from irekua_database.models import CollectionUser
+from irekua_collections.models import Collection
+from irekua_collections.models import CollectionTypeRole
+from irekua_collections.models import CollectionUser
 from irekua_database.models import Role
 from irekua_database.models import User
 

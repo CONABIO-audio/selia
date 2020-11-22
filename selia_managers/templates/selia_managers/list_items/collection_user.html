@@ -1,0 +1,88 @@
+{% extends 'selia_templates/list/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="col">
+    {% listtitle %}
+    {% endlistimage %}
+      {% if item.user.last_name %}
+        {{ item.user.last_name }}, {{ item.user.first_name }}
+      {% else %}
+        {{ item.user.username }}
+      {% endif %}
+    {% endlistheader %}
+      {% if item.last_name %}
+        {{ item.user.username }}
+      {% endif %}
+    {% endlisttitle %}
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Email' %}
+      {% attributevalue %}
+        {{ item.user.email }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Institution' %}
+      {% attributevalue %}
+        {{ item.user.institution }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Items' %}
+      {% attributevalue %}
+        {{ item.items }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+      {% trans 'Annotations' %}
+      {% attributevalue %}
+      {{ item.annotations }}
+      {% endlistattribute %}
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+      {% trans 'Is admin' %}?
+      {% attributevalue %}
+      {{ item.is_admin|yesno }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+      {% trans 'Actions' %}
+      {% attributevalue %}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+      {% attributevalue %}
+      <a class="btn btn-text text-primary" href="{% url 'email_user' %}?id={{ item.id }}&next={{ request.get_full_path }}">
+        {% email_button %} {% trans 'Send email' %}
+      </a>
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+      {% attributevalue %}
+      {% if item.is_admin %}
+      <a class="btn btn-text text-danger" href="{% url 'selia_managers:remove_administrator' collection.id %}?administrator={{ item.id }}">
+        {% remove_user_button %} {% trans 'Remove admin' %}
+      </a>
+      {% else %}
+      <a class="btn btn-text text-primary" href="{% url 'selia_managers:create_administrator' %}?collection={{ collection.name }}&user={{ item.id }}">
+        {% add_user_button %} {% trans 'Make admin' %}
+      </a>
+      {% endif %}
+      {% endlistattribute %}
+    </div>
+  </div>
+{% endblock list-item-content %}

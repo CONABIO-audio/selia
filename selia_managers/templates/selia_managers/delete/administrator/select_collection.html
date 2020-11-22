@@ -1,0 +1,31 @@
+{% extends 'selia_managers/create/base_select_name.html' %}
+{% load i18n %}
+{% load selia_tags %}
+
+{% block toolbar-title %}
+  {% trans 'Remove administrator from collection' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li class="is-active">{% trans 'Select collection' %}</li>
+<li>{% trans 'Select user' %}</li>
+<li>{% trans 'Remove administrator' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select one of your collections' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose a collection from the list.
+  {% endblocktrans %}
+{% endblock %}
+
+{% block empty-message %}
+  <h4>{% trans 'No available collections' %}.</h4>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'selia_maps/base_with_layer_controls.html' %}
+
+{% block map-setup %}
+layers.push(new ol.layer.Vector({
+  source: new ol.source.Vector({
+    features: geometryFeatures,
+  }),
+  style: getStyle(geometryFeature)
+}));
+{% endblock %}

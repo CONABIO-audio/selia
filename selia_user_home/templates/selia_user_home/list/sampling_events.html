@@ -1,0 +1,34 @@
+{% extends 'selia_templates/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+{% load selia_maps %}
+
+{% block secondary-navbar %}
+  {% include 'selia_user_home/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+{% trans 'My' %} {% trans 'Sampling Events' %}
+{% endblock %}
+
+{% block head-extra %}
+  {% selia_map_media %}
+{% endblock head-extra %}
+
+{% block toolbar-items %}
+  {% include 'selia_user_home/links/create_sampling_event.html' %}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+  <h4>
+    {% blocktrans %}
+      No user sampling events were found.
+    {% endblocktrans%}
+  </h4>
+  <p>
+    {% include 'selia_user_home/links/create_sampling_event.html' %}
+  </p>
+{% endblock %}

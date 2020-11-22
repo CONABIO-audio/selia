@@ -1,0 +1,20 @@
+{% load static %}
+
+var pointSiteStyle = new ol.style.Style({
+  image: new ol.style.Icon({
+    anchor: [0.5, 1],
+    size: [512, 512],
+    scale: 0.07,
+    color: '#900C3F',
+    src: "{% static 'selia_maps/site.png' %}"
+  })
+})
+
+
+var polygonSiteStyle;
+
+
+var STYLES = {
+  Point: pointSiteStyle,
+  Polygon: polygonSiteStyle,
+}

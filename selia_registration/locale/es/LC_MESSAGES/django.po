@@ -1,0 +1,250 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-24 00:08-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: forms.py:8
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: forms.py:11
+msgid "Write a message"
+msgstr "Escribe un mensaje"
+
+#: forms.py:23
+msgid "A user with this email is already registered in Selia."
+msgstr "Ya existe un usuario con este correo en Selia."
+
+#: templates/selia_registration/invitation_email.html:4
+msgid "Hello"
+msgstr "Hola"
+
+#: templates/selia_registration/invitation_email.html:6
+#, python-format
+msgid "The user %(sender)s has invited you to join Selia!"
+msgstr "El usuario %(sender)s te ha invitado a Selia!"
+
+#: templates/selia_registration/invitation_email.html:10
+msgid "He's attached the following message:"
+msgstr "Te anexo el siguiente mensaje:"
+
+#: templates/selia_registration/invitation_email.html:16
+msgid ""
+"Here are your temporal access credentials. Don't forget to change your "
+"password once logged in."
+msgstr "Aqui están tus credenciales de acceso temporales. No olvides cambiar tu contraseña una vez que accedas."
+
+#: templates/selia_registration/invitation_email.html:19
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: templates/selia_registration/invitation_email.html:20
+#, fuzzy
+#| msgid "Change password"
+msgid "Password"
+msgstr "Cambia tu contraseña"
+
+#: templates/selia_registration/invitation_email.html:23
+msgid "Login"
+msgstr "Ingresa"
+
+#: templates/selia_registration/invitation_email.html:23
+msgid "to access your account."
+msgstr "para acceder a tu cuenta"
+
+#: templates/selia_registration/invite_user.html:10
+msgid "Invite new user"
+msgstr "Invita a un nuevo usuario"
+
+#: templates/selia_registration/invite_user.html:12
+msgid ""
+"\n"
+"    Send an email invitation to join Selia.\n"
+"  "
+msgstr ""
+"\n"
+"    Envía una invitación a Selia por correo.\n"
+"  "
+
+#: templates/selia_registration/invite_user.html:26
+msgid "Invite"
+msgstr "Enviar"
+
+#: templates/selia_registration/invite_user_done.html:4
+msgid "User invited"
+msgstr "Usuario invitado"
+
+#: templates/selia_registration/invite_user_done.html:11
+msgid ""
+"\n"
+"    The invitation was succesfully sent!\n"
+"  "
+msgstr ""
+"\n"
+"La invitación ha sido exitosa!\n"
+"  "
+
+#: templates/selia_registration/invite_user_done.html:17
+#: templates/selia_registration/invite_user_done.html:21
+#: templates/selia_registration/password_change_done.html:17
+msgid "Done"
+msgstr "Listo"
+
+#: templates/selia_registration/login.html:25
+#: templates/selia_registration/password_reset_form.html:23
+msgid "Recover you password"
+msgstr "Recupera tu contraseña"
+
+#: templates/selia_registration/login.html:29
+msgid "Enter"
+msgstr "Ingresar"
+
+#: templates/selia_registration/password_change_done.html:4
+#, fuzzy
+#| msgid "Your password has been changed"
+msgid "Password changed"
+msgstr "Tu contraseña ha sido actualizada"
+
+#: templates/selia_registration/password_change_done.html:12
+#, fuzzy
+#| msgid "Your password has been changed"
+msgid ""
+"\n"
+"      Your password was successfully changed\n"
+"    "
+msgstr "Tu contraseña ha sido actualizada"
+
+#: templates/selia_registration/password_change_form.html:5
+#: templates/selia_registration/password_change_form.html:8
+#: templates/selia_registration/password_reset_confirm.html:16
+msgid "Change password"
+msgstr "Cambia tu contraseña"
+
+#: templates/selia_registration/password_change_form.html:16
+msgid "Accept"
+msgstr "Aceptar"
+
+#: templates/selia_registration/password_reset_complete.html:10
+msgid "Your password has been changed"
+msgstr "Tu contraseña ha sido actualizada"
+
+#: templates/selia_registration/password_reset_complete.html:14
+msgid "Log in"
+msgstr "Ingresar"
+
+#: templates/selia_registration/password_reset_confirm.html:8
+msgid "Change your password"
+msgstr "Cambia tu contraseña"
+
+#: templates/selia_registration/password_reset_confirm.html:26
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                This link is invalid. Please restart the password "
+#| "recovery process.\n"
+#| "                "
+msgid ""
+"\n"
+"      This link is invalid. Please restart the password recovery process.\n"
+"      "
+msgstr ""
+"\n"
+"                Esta liga es inválida. Por favor reinicia el proceso de "
+"recuperación de contraseña.\n"
+"                "
+
+#: templates/selia_registration/password_reset_confirm.html:32
+#: templates/selia_registration/password_reset_done.html:21
+#: templates/selia_registration/password_reset_form.html:20
+msgid "Back"
+msgstr "Atrás"
+
+#: templates/selia_registration/password_reset_done.html:5
+msgid "Check your email"
+msgstr "Revisa tu correo"
+
+#: templates/selia_registration/password_reset_done.html:10
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "            We have sent the instructions to reset your password by "
+#| "email.\n"
+#| "            "
+msgid ""
+"\n"
+"  We have sent an email with instructions on how to reset your password.\n"
+"  "
+msgstr ""
+"\n"
+"            Te hemos enviado las instrucciones para actualizar tu "
+"constraseña por correo electrónico.\n"
+"            "
+
+#: templates/selia_registration/password_reset_done.html:15
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "            It should arrive shortly. If not, please make sure that you "
+#| "have input the correct address or check your spam directory.\n"
+#| "            "
+msgid ""
+"\n"
+"  It should arrive shortly. If not, please make sure that you have input\n"
+"  the correct address or check your spam directory.\n"
+"  "
+msgstr ""
+"\n"
+"            Debe de llegarte pronto. En caso de que no lo recibas, por favor "
+"asegurate de que hayas ingresado el correo adecuadamente o revisa tu carpeta "
+"de correo no deseado.\n"
+"            "
+
+#: templates/selia_registration/password_reset_email.html:2
+msgid "Dear"
+msgstr "Estimado"
+
+#: templates/selia_registration/password_reset_email.html:4
+msgid "To reset your password please enter the following link"
+msgstr "Para actualizar tu contraseña favor de ingresar en la siguiente liga"
+
+#: templates/selia_registration/password_reset_email.html:7
+#: templates/selia_registration/password_reset_subject.txt:2
+msgid "Recover your password"
+msgstr "Recupera tu contraseña"
+
+#: templates/selia_registration/password_reset_email.html:10
+msgid "Kindly"
+msgstr "Atentamente"
+
+#: templates/selia_registration/password_reset_form.html:9
+msgid "Forgot your password?"
+msgstr "¿Olvidaste tu contraseña?"
+
+#: templates/selia_registration/password_reset_form.html:11
+msgid "You can recover it here"
+msgstr "Puedes recuperarla aquí"
+
+#: utils.py:31
+msgid "Invitation to join selia"
+msgstr "Invitación a Selia"
+
+#~ msgid "You can now enter"
+#~ msgstr "Ya puedes ingresar"
+
+#~ msgid "back"
+#~ msgstr "atrás"

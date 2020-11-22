@@ -1,0 +1,29 @@
+:root {
+  --about-color-bg: #404040;
+  --about-color-text: #BEBEBE;
+}
+
+/* User bar */
+
+.about-bar {
+  background-color: var(--about-color-bg);
+  border-width: 0;
+  border-color: var(--about-color-bg);
+}
+
+.about-bar .nav-tabs {
+  border-color: var(--about-color-bg);
+}
+
+.about-bar .navbar-brand {
+  color: var(--about-color-text);
+}
+
+.about-bar .nav-link {
+  color: var(--about-color-text);
+}
+
+.about-bar .nav-link:hover {
+  border-color: var(--about-color-text);
+  border-bottom-width: 0px;
+}

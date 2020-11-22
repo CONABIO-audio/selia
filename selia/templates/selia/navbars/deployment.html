@@ -1,0 +1,6 @@
+<div class="collapse w-100" id="extraNavbars">
+  {% include 'selia/navbars/bars/collections.html' with collapse=True id='collections' %}
+  {% include 'selia/navbars/bars/collection.html' with collapse=True id='collection' %}
+  {% include 'selia/navbars/bars/sampling_event.html' with collapse=True id='sampling_event' %}
+</div>
+{% include 'selia/navbars/bars/deployment.html' with collapse=False id='deployment' %}

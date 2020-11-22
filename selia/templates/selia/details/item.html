@@ -118,7 +118,7 @@
         {% trans 'Site' %}
       </a>
     {% endhead %}
-      {{ object.sampling_event_device.sampling_event.collection_site.internal_id }}
+      {{ object.sampling_event_device.sampling_event.collection_site.collection_name }}
     {% enddetailitem %}
   </div>
   <div class="col">
@@ -149,7 +149,7 @@
       {% trans 'Name' %}
     {% endhead %}
       <a href="{% url 'selia:collection_device_detail' object.sampling_event_device.collection_device.pk %}">
-        {{ object.sampling_event_device.collection_device.internal_id }}
+        {{ object.sampling_event_device.collection_device.collection_name }}
       </a>
     {% enddetailitem %}
   </div>

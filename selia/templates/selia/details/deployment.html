@@ -1,0 +1,180 @@
+{% load selia_tags %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% detailtitle %}
+  {% detail_icon object.collection_device.physical_device.device.device_type.icon %}
+{% enddetailimage %}
+  {% if object.collection_device.collection_name %}
+    {{ object.collection_device.collection_name }} ({% trans 'deployed' %})
+  {% else %}
+    {% trans 'Deployed device' %}
+  {% endif %}
+{% enddetailheader %}
+  <div>
+    {{ object.collection_device.physical_device.device.device_type }}
+  </div>
+{% enddetailtitle %}
+
+{% detailsection %}
+  <a href="{% url 'selia:sampling_event_detail' object.sampling_event.pk %}">
+    {% trans 'Sampling Event Info' %}
+  </a>
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Started on' %}
+    {% endhead %}
+      {{ object.sampling_event.started_on | date }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Ended on' %}
+    {% endhead %}
+      {{ object.sampling_event.ended_on | date}}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      <a href="{% url 'selia:collection_site_detail' object.sampling_event.collection_site.pk %}">
+        {% trans 'Site' %}
+      </a>
+    {% endhead %}
+      {{ object.sampling_event.collection_site.collection_name }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Site locality' %}
+    {% endhead %}
+      {{ object.sampling_event.collection_site.site.locality.name }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+{% detailsection %}
+    <a href="{% url 'selia:collection_device_detail' object.collection_device.pk %}">
+      {% trans 'Device Info' %}
+    </a>
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Device type' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.device.device_type }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Name' %}
+    {% endhead %}
+      {{ object.collection_device.collection_name }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Brand' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.device.brand }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Model' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.device.model }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Serial number' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.serial_number }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Owner' %}
+    {% endhead %}
+      {{ object.collection_device.physical_device.created_by }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+{% detailsection %}
+  {% trans 'Deployment Info' %}
+{% enddetailsection %}
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Deployed on' %}
+    {% endhead %}
+      {{ object.deployed_on | date:"DATETIME_FORMAT" }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Recovered on' %}
+    {% endhead %}
+      {{ object.recovered_on | date:"DATETIME_FORMAT" }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Deployment latitude' %}
+    {% endhead %}
+      {{ object.latitude | floatformat:3 }}
+    {% enddetailitem %}
+  </div>
+  <div class="col">
+    {% detailitem %}
+      {% trans 'Deployment longitude' %}
+    {% endhead %}
+      {{ object.longitude | floatformat:3 }}
+    {% enddetailitem %}
+  </div>
+</div>
+
+{% if object.metadata or object.configuration %}
+  {% if object.metadata %}
+    {% detailsection %}
+      {% trans 'Deployment metadata' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="d-flex flex-wrap">
+        {% show_json object.metadata %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if object.configuration %}
+    {% detailsection %}
+      {% trans 'Device configuration' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="d-flex flex-wrap">
+        {% show_json object.configuration %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

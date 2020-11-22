@@ -1,0 +1,70 @@
+{% extends 'selia_managers/create/base.html' %}
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_filters %}
+
+{% block toolbar-title %}
+  {% trans 'Remove collection' %}
+{% endblock toolbar-title %}
+
+{% comment %}
+{% block secondary-navbar %}
+  {% include 'selia_managers/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+{% endcomment %}
+
+{% block toolbar-steps %}
+<li>
+  <a href="{% url 'selia_managers:delete_collection'%}?{{ request.GET | remove_fields:'collection_type'}}">
+    {% trans 'Select collection type' %}
+  </a>
+</li>
+<li class="is-active">{% trans 'Fill in details' %}</li>
+<li>{% trans 'Remove administrator' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {%trans 'Fill in details' %}
+{% endblock step-title %}
+
+{% block previously-selected %}
+  {% trans 'Selected type collection' as label %}
+  {% comment %}
+  {% selected_item 'collection_type' collection_type label %}
+  {% endcomment %}
+{% endblock previously-selected %}
+
+{% block form-content %}
+  <input type="hidden" id="collection_type_field" name="collection_type" value="{{ collection_type.pk }}">
+
+
+  <div class="row d-flex justify-content-center w-100">
+    <div class="col">
+      <div class="row">
+        <h4 class="w-100 text-center">{% trans 'Name' %}</h4>
+      </div>
+      <div class="row px-5">
+        {{ form.name }}
+      </div>
+      <div class="row">
+        <h4 class="w-100 text-center">{% trans 'Description' %}</h4>
+      </div>
+      <div class="row px-5">
+        {{ form.description }}
+      </div>
+      <div class="row">
+        <h4 class="w-100 text-center">{% trans 'Metadata' %}</h4>
+      </div>
+      <div class="row px-5">
+        {{ form.metadata }}
+      </div>
+    </div>
+  </div>
+
+  {% comment %}
+  <div class="row p-4">
+    <h4 class="w-100 text-center">{% trans 'No additional information required' %}</h4>
+  </div>
+  {% endcomment %}
+
+{% endblock %}

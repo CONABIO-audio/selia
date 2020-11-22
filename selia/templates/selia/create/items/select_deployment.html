@@ -1,0 +1,58 @@
+{% extends 'selia/create/base_select.html' %}
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_filters %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/sampling_event.html' %}
+{% endblock %}
+
+{% block toolbar-title %}
+  {% trans 'Add items' %}
+{% endblock toolbar-title %}
+
+{% block toolbar-steps %}
+  <li>
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'collection&sampling_event'}}">
+      {% trans 'Select collection' %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'sampling_event'}}">
+      {% trans 'Select sampling event' %}
+    </a>
+  </li>
+  <li class="is-active">{% trans 'Select deployed device' %}</li>
+  <li>{% trans 'Select licence' %}</li>
+  <li>{% trans 'Upload files' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select a deployed device' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Choose a device that was deployed in the sampling event or
+  {% endblocktrans %}
+  <a href="{% url 'selia:create_deployment' %}?{{ request.GET.urlencode }}">
+    deploy a new one.
+  </a>
+{% endblock %}
+
+{% block previously-selected %}
+  {% trans 'Selected collection' as label %}
+  {% selected_item 'collection' sampling_event.collection label %}
+
+  {% trans 'Selected sampling event' as label %}
+  {% selected_item 'sampling_events' sampling_event label %}
+{% endblock previously-selected %}
+
+{% block empty-message %}
+  <h4>{% trans 'No deployed devices were found' %}.</h4>
+  <p>
+    <a href="{% url 'selia:create_deployment' %}?{{ request.GET.urlencode }}">
+      Deploy a new device.
+    </a>
+  </p>
+{% endblock %}

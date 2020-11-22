@@ -1,0 +1,33 @@
+{% extends 'selia_templates/navbars/navbar_base.html' %}
+{% load selia_tags %}
+{% load i18n %}
+
+{% block class-name %}about{% endblock %}
+
+{% block navbar-brand %}
+  <a class="navbar-brand text-truncate w-100" href={% url 'selia_about:selia' %}>{% trans 'About' %}</a>
+{% endblock navbar-brand %}
+
+{% block navbar-items %}
+{% url 'selia_about:selia' as selia_about_url %}
+{% tab selia_about_url %}
+  Selia
+{% endtab %}
+
+{% url 'selia_about:irekua' as irekua_about_url %}
+{% tab irekua_about_url %}
+  Irekua
+{% endtab %}
+
+{% url 'selia_about:contact' as contact_url %}
+{% tab contact_url %}
+  <i class="fas fa-address-book"></i>
+  {% trans 'Contact' %}
+{% endtab %}
+
+{% url 'selia_about:collections' as collections_url %}
+{% tab collections_url %}
+  <i class="fas fa-archive"></i>
+  {% trans 'Collections' %}
+{% endtab %}
+{% endblock navbar-items %}

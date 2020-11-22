@@ -1,0 +1,38 @@
+{% extends 'selia_templates/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+{% load selia_maps %}
+
+{% block toolbar-title %}
+{% trans 'My' %} {% trans 'Sites' %}
+{% endblock %}
+
+{% block secondary-navbar %}
+  {% include 'selia_user_home/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block head-extra %}
+  {% selia_map_media %}
+{% endblock head-extra %}
+
+{% block toolbar-items %}
+  <a class="nav-link" href="{% url 'selia_user_home:create_site' %}?">
+    {% trans 'Add a site' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
+  </a>
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+  <h4>
+    {% blocktrans %}
+      No user sites were found.
+    {% endblocktrans%}
+  </h4>
+  <p>
+    <a href="{% url 'selia_user_home:create_site' %}?">
+      {% trans 'Add a site' %}
+    </a>
+  </p>
+{% endblock %}

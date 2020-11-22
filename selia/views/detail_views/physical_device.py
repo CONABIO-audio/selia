@@ -1,6 +1,6 @@
 from django import forms
 
-from irekua_database.models import PhysicalDevice
+from irekua_devices.models import PhysicalDevice
 from selia.views.detail_views.base import SeliaDetailView
 from selia_templates.forms.json_field import JsonField
 from irekua_permissions.devices import (
@@ -13,7 +13,7 @@ class PhysicalDeviceUpdateForm(forms.ModelForm):
     class Meta:
         model = PhysicalDevice
         fields = [
-            'identifier',
+            'name',
             'serial_number',
         ]
 

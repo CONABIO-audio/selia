@@ -1,0 +1,29 @@
+{% extends 'selia_templates/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia_user_home/navbars/user.html' %}
+{% endblock secondary-navbar %}s
+
+{% block toolbar-title %}
+{% trans 'My' %} {% trans 'Items' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% include 'selia_user_home/links/create_item.html'%}
+  <li class="nav-item">
+    {% help_button %}
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No user items were found.
+  {% endblocktrans%}
+</h4>
+<p>
+  {% include 'selia_user_home/links/create_item.html'%}
+</p>
+{% endblock %}

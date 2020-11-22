@@ -1,0 +1,10 @@
+{% load static %}
+
+<label>
+  <div class="card p-1 mx-2" style="width: 8rem;">
+    <img src="{% static widget.image %}" class="card-img-top p-2" alt="">
+    <div class="d-flex justify-content-center">
+      {% include "django/forms/widgets/input_option.html" %}
+    </div>
+  </div>
+</label>

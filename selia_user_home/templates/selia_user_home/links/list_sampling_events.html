@@ -1,0 +1,5 @@
+{% load selia_buttons %}
+
+<a href="{% url 'selia_user_home:sampling_events' %}?collection_site__site={{ object.pk }}">
+  {% see_button %}
+</a>

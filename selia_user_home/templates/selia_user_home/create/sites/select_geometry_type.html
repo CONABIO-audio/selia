@@ -1,0 +1,45 @@
+{% extends 'selia_templates/create/base.html' %}
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_forms %}
+
+{% block toolbar-title %}
+  {% trans 'Add user site' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia_user_home/navbars/user.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-steps %}
+<li class="is-active">{% trans 'Select geometry type' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select geometry type' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Select the correct geometry type for your site
+  {% endblocktrans %}
+{% endblock %}
+
+{% block form %}
+<form action="?{{ request.GET.urlencode }}" method="post">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {% bootstrap_form form.geometry_type %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <input type="submit" class="btn btn-primary" value="{% trans 'Select' %}">
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

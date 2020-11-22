@@ -1,0 +1,107 @@
+{% extends 'selia_templates/list/list_item.html' %}
+{% load selia_buttons %}
+{% load selia_tags %}
+{% load selia_maps %}
+{% load static %}
+{% load i18n %}
+
+{% block list-item-content %}
+  <div class="row w-100">
+    <div class="col">
+      {% listtitle %}
+        <div class="h-100" style="width: 10em;">
+          {% site_map_list item.collection_site.site %}
+        </div>
+      {% endlistimage %}
+        {{ item }}
+      {% endlistheader %}
+        <div>
+          {{ item.sampling_event_type }}
+        </div>
+        <div>
+          {% include 'selia_user_home/links/detail_sampling_event.html' with sampling_event=item %}
+        </div>
+      {% endlisttitle %}
+    </div>
+    <div class="col">
+      {% if not collection %}
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Collection' %}
+        {% attributevalue %}
+          {{ item.collection }}
+        {% endlistattribute %}
+      </div>
+      {% endif %}
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Collection Site' %}
+        {% attributevalue %}
+          {% include 'selia_user_home/links/detail_collection_site.html' with collection_site=item.collection_site %}
+        {% endlistattribute %}
+      </div>
+      {% if item.collection_site.site.created_by == request.user %}
+        {% if item.collection_site.site.name %}
+        <div class="row">
+          {% listattribute %}
+            {% trans 'Site name' %}
+          {% attributevalue %}
+            {{ item.collection_site.site.name }}
+          {% endlistattribute %}
+        </div>
+        {% endif %}
+      {% endif %}
+      {% if item.collection_site.site.locality %}
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Site locality' %}
+        {% attributevalue %}
+          {{ item.collection_site.site.locality.name }}
+        {% endlistattribute %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="col">
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Started on' %}
+        {% attributevalue %}
+          {{ item.started_on | date }}
+        {% endlistattribute %}
+      </div>
+      <div class="row">
+        {% listattribute %}
+          {% trans 'Ended on' %}
+        {% attributevalue %}
+          {{ item.ended_on | date }}
+        {% endlistattribute %}
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Deployed devices' %}
+        {% summarycount %}
+          {{ item.samplingeventdevice_set.count }}
+        {% summarybuttons %}
+          {% include 'selia_user_home/links/list_deployments.html' with sampling_event=item %}
+
+          {% include 'selia_user_home/links/create_deployment.html' with sampling_event=item %}
+        {% endlistsummary %}
+      </div>
+      <div class="row">
+        {% listsummary %}
+          {% trans 'Items' %}
+        {% summarycount %}
+          {{ item.items.count }}
+        {% summarybuttons %}
+          {% include 'selia_user_home/links/list_items.html' with sampling_event=item %}
+
+          {% include 'selia_user_home/links/create_item.html' with sampling_event=item %}
+        {% endlistsummary %}
+      </div>
+    </div>
+  </div>
+{% endblock list-item-content %}

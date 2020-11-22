@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
 
-from irekua_database.models import Collection
-from irekua_database.models import SiteType
+from irekua_collections.models import Collection
+from irekua_geo.models import SiteType
 from irekua_permissions.data_collections import (
     sites as site_permissions)
 

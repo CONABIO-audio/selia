@@ -68,7 +68,7 @@
             {% trans 'Site Name' %}
           </a>
         {% attributevalue %}
-            {{ item.sampling_event_device.sampling_event.collection_site.internal_id }}
+            {{ item.sampling_event_device.sampling_event.collection_site.collection_name }}
         {% endlistattribute %}
       </div>
       <div class="row">
@@ -86,7 +86,7 @@
             {% trans 'Device Name' %}
           </a>
         {% attributevalue %}
-            {{ item.sampling_event_device.collection_device.internal_id }}
+            {{ item.sampling_event_device.collection_device.collection_name }}
         {% endlistattribute %}
       </div>
     </div>

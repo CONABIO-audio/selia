@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 
-from irekua_database.models import Collection
+from irekua_collections.models import Collection
 
 from selia.views.create_views.select_base import SeliaSelectView
 from irekua_permissions.data_collections import (

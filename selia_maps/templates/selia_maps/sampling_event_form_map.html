@@ -1,0 +1,10 @@
+{% extends 'selia_maps/form_map.html' %}
+
+
+{% block locality %}
+var layerInfoList = JSON.parse('{{ layer_list | safe }}');
+
+for (var i = 0; i < layerInfoList.length; i++) {
+  layers.push(createLayerFromInfo(layerInfoList[i]))
+}
+{% endblock %}

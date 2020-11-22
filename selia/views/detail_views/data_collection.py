@@ -1,7 +1,7 @@
 from django import forms
 from dal import autocomplete
 
-from irekua_database.models import Collection
+from irekua_collections.models import Collection
 from irekua_permissions.data_collections import data_collections as collection_permissions
 from irekua_permissions.data_collections import users as user_permissions
 from irekua_permissions import licences as licence_permissions

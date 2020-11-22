@@ -1,0 +1,44 @@
+{% load selia_tags %}
+{% load static %}
+{% load i18n %}
+
+<div class="row my-2">
+  <div class="col">
+    {% detailsection %}
+    {% trans 'Manager Information' %}
+    {% enddetailsection %}
+
+    <div class="row">
+      <div class="col">
+        {% detailitem %}
+        {% trans 'Username' %}
+        {% endhead %}
+        {{user.email}}
+        {% enddetailitem %}
+      </div>
+      <div class="col">
+        {% detailitem %}
+        {% trans 'Email' %}
+        {% endhead %}
+        {{user.email}}
+        {% enddetailitem %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {% detailitem %}
+        {% trans 'Collections managed' %}
+        {% endhead %}
+        {{ user.managed_collections.count }}
+        {% enddetailitem %}
+      </div>
+      <div class="col">
+        {% detailitem %}
+        {% trans 'Users managed' %}
+        {% endhead %}
+        {{ user.managed_collections.count }}
+        {% enddetailitem %}
+      </div>
+    </div>
+  </div>
+</div>

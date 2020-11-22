@@ -1,0 +1,27 @@
+{% extends 'selia_user_home/summaries/sites.html' %}
+
+
+{% block summary %}
+{{ block.super }}
+<div class="media text-muted pt-3">
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <strong class="d-block text-gray-dark">{% trans 'Collections' %}</strong>
+    <div class="row">
+      <div class="col-3">
+        {% trans 'Number' %}: {{ object.collectionsite_set.count }}
+      </div>
+      <div class="col-6">
+        {% trans 'Last added on' %}: {{ object.collectionsite_set.first.created_on }}
+      </div>
+      <div class="col-1">
+        <a href="{% url 'selia:user_collections' %}?collectionsite__site={{ object.pk }}">
+          {% see_button %}
+        </a>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'selia:create_collection_site' %}?site={{ object.pk }}">{% add_button %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock summary %}
