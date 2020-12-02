@@ -5,16 +5,10 @@ from irekua_dev_settings.settings import *
 from selia_templates.settings import *
 from selia_registration.settings import *
 from selia_about.settings import *
-
-# from selia_thumbnails.settings import *
-# from selia_uploader.settings import *
-# from selia_annotator.settings import *
-# from selia_visualizers.settings import *
 from selia_maps.settings import *
-
-# from selia_managers.settings import *
 from selia.settings import *
 from selia_user_home.settings import *
+from selia_uploader.settings import *
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,15 +45,13 @@ INSTALLED_APPS = list(
     OrderedDict.fromkeys(
         IREKUA_BASE_APPS
         + SELIA_MAPS_APPS
+        + SELIA_UPLOADER_APPS
         + SELIA_APPS
-        # + SELIA_MANAGERS_APPS
-        # + SELIA_VISUALIZERS_APPS
-        # + SELIA_ANNOTATOR_APPS
-        # + SELIA_UPLOADER_APPS
-        # + SELIA_THUMBNAILS_APPS
         + SELIA_USER_HOME_APPS
         + SELIA_ABOUT_APPS
         + SELIA_REGISTRATION_APPS
         + SELIA_TEMPLATES_APPS
     )
 )
+
+ROOT_URLCONF = "selia_project.urls"
