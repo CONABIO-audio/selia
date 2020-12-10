@@ -10,9 +10,6 @@ function TopInfo() {
                 <input placeholder="Tipo de artículo" />
                 <input placeholder="Nivel de registro" />
             </div>
-            <div id="rightInfo">
-                Información contextual
-            </div>
         </div>
     )
 }
