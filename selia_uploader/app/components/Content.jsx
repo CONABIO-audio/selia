@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import exifr from 'exifr';
 
 function Items({ idDiv, listElements, position }) {
     return (
@@ -9,7 +10,15 @@ function Items({ idDiv, listElements, position }) {
             )}>
             {listElements.map((el, index) => (
                 <li key={index}>
-                    <p>{el.name}</p>
+                    <p>{el.file.name}</p>
+                    <p>Undefined</p>
+                    <p>{el.metadata.Make}</p>
+                    <p>Undefined</p>
+                    <p>Undefined</p>
+                    <p>{el.metadata.CreateDate.toLocaleDateString()}</p>
+                    <p>Undefined</p>
+                    <p>Undefined</p>
+                    <p>Undefined</p>
                 </li>
             ))}
         </ul>
@@ -72,9 +81,15 @@ class Content extends React.Component {
     }
 
 
-    scanFiles = (item, file) => {
+    scanFiles = async (item, file) => {
         if (item.isFile) {
-            this.setState({ files: [...this.state.files, file.getAsFile()] });
+            let tmpFile = file.getAsFile();
+            if (tmpFile.type.includes('image')) {
+                let exif = await exifr.parse(file.getAsFile())
+                this.setState({ files: [...this.state.files, {file: tmpFile, metadata: exif}] });
+            } else {
+                this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
+            }
         } else if (item.isDirectory) {
             let _this = this;
             let directoryReader = item.createReader();
@@ -101,6 +116,7 @@ class Content extends React.Component {
             document.getElementById("contentBox").removeAttribute("drop-hidden");
             document.getElementById("elementsList").style.display = "none";
         }
+        console.log(this.state.files)
     }
 
     render() {    
@@ -111,15 +127,15 @@ class Content extends React.Component {
             },
             {   
                 name: 'uploading',
-                elements: ['item1']
+                elements: []
             },
             {
                 name: 'completed',
-                elements: ['item2']
+                elements: []
             },
             {
                 name: 'error',
-                elements: ['item3']
+                elements: []
             }];
         return (
             <div id="content" className="inputBox">

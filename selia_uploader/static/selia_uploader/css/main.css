@@ -286,8 +286,10 @@ border-bottom-left-radius: 8px;
   padding: 0;
 }
 .statusDiv li {
-  padding: 5px 0px 5px 10px!important;
+  padding: 5px 0px 5px 0px!important;
   border-bottom: 1px solid #ffffff26;
+  display: flex;
+  justify-content: space-between;
 }
 #headerList {
   padding: 0;
@@ -351,7 +353,7 @@ border-bottom-left-radius: 8px;
   cursor: pointer; /* "hand" cursor */
 }
 #contentBox::after {
-  content: "Choose or drag a file";
+  content: "Escoge o arrastra uno o varios archivos";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -362,14 +364,14 @@ border-bottom-left-radius: 8px;
 }
 
 #innerBox[drop-active="true"] > #contentBox {
-  border: 9px dashed #389393;
+  border: 9px dashed #f8f9fa;
   border-radius: 6px;
   height: 85%;
   width: 85%;
 }
 
 #innerBox[drop-active="true"] > #contentBox::after {
-  content: "Drop files here";
+  content: "Suelta los archivos aquí";
   position: absolute;
   top: 50%;
   left: 50%;
