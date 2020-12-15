@@ -275,7 +275,7 @@ border-bottom-left-radius: 8px;
   padding: 30px 40px;
   color: #ffffff;
   line-height: 26px;
-  font-size: 15px;
+  font-size: 12px;
   margin: 0;
 }
 .hidden {
@@ -294,6 +294,7 @@ border-bottom-left-radius: 8px;
 #headerList {
   padding: 0;
   list-style: none;
+  border-bottom: 1px solid white;
 }
 #headerList li {
   display: flex;
@@ -303,6 +304,20 @@ border-bottom-left-radius: 8px;
 }
 #content ul li p {
   margin: 0;
+  width: 7%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#content ul li input {
+  background: transparent;
+  color: white;
+  border: none;
+  text-align: center;
+  width: 7%;
+}
+#content ul li input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
 }
 /* LEFT INFO */
 .top-info {
@@ -347,6 +362,7 @@ border-bottom-left-radius: 8px;
 }
 #contentBox {
   z-index: 99;
+  pointer-events: none;
 }
 #file + label {
   z-index: 101;
@@ -363,19 +379,29 @@ border-bottom-left-radius: 8px;
   content: "";
 }
 
-#innerBox[drop-active="true"] > #contentBox {
-  border: 9px dashed #f8f9fa;
-  border-radius: 6px;
-  height: 85%;
-  width: 85%;
-}
-
 #innerBox[drop-active="true"] > #contentBox::after {
   content: "Suelta los archivos aquí";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+#innerBox[drop-active="true"] > #contentBox::before {
+  content: '';
+  border: 9px dashed #f8f9fa;
+  border-radius: 6px;
+  height: 85%;
+  width: 85%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#innerBox[drop-active="true"] > #contentBox {
+  background-color: #343a40bd;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
 }
 
 #innerBox[drop-active="true"] {

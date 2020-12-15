@@ -12,10 +12,10 @@ function Items({ idDiv, listElements, position }) {
                 <li key={index}>
                     <p>{el.file.name}</p>
                     <p>Undefined</p>
-                    <p>{el.metadata.Make}</p>
+                    <input tipe="text" placeholder={el.metadata.Make}/>
                     <p>Undefined</p>
                     <p>Undefined</p>
-                    <p>{el.metadata.CreateDate.toLocaleDateString()}</p>
+                    <input tipe="text" placeholder={el.metadata.CreateDate.toLocaleDateString()}/>
                     <p>Undefined</p>
                     <p>Undefined</p>
                     <p>Undefined</p>
@@ -30,30 +30,42 @@ class Content extends React.Component {
         this.state = {
             files: []
         }
+        this.showDropZone = false;
+
     }
 
     handleFileUpload = e => {
-        if (e.target.files[0]) this.setState({ files: [...this.state.files, e.target.files[0]] });
+        this.filterFilesAndDirs(e.target.files)
     }
 
     allowDrop = (e) => {
-        e.target.parentElement.setAttribute("drop-active", true);
+        document.getElementById('innerBox').setAttribute("drop-active", true);
+        document.querySelector('#file + label').style.display = 'none';
         e.stopPropagation();
         e.preventDefault();
+        this.showDropZone = true;
     }
     
     leaveDropZone = (e) => {
-        e.target.parentElement.removeAttribute("drop-active");
+        this.showDropZone = false;
+        setTimeout(() => { 
+            if(!this.showDropZone) {
+                document.getElementById('innerBox').removeAttribute("drop-active"); 
+                document.querySelector('#file + label').style.display = 'block';
+            }
+        }, 200);
+        
     }
     
     drop = (e) => {
         e.preventDefault();
-        e.target.parentElement.removeAttribute("drop-active");
+        document.getElementById('innerBox').removeAttribute("drop-active");
+        document.querySelector('#file + label').style.display = 'block';
         this.filterFilesAndDirs(e.dataTransfer.items)
     }
 
 
-    filterFilesAndDirs = (files) => {
+    filterFilesAndDirs = async (files) => {
         try {
             for (let i = 0; i < files.length; i++) {
                 let file = files[i].webkitGetAsEntry();
@@ -64,22 +76,17 @@ class Content extends React.Component {
             }
         } catch {
             for (let i = 0; i < files.length; i++) {
-                if (files[i].type) { // if it has mimetype, is a file
-                    this.setState({ files: [...this.state.files, files[i]] });
+                if (files[i].type.includes('image')) {
+                    let exif = await exifr.parse(files[i])
+                    this.setState({ files: [...this.state.files, {file: files[i], metadata: exif}] });
                 } else {
-                    // if not, maybe a unknown file or dir
-                    try { // check first bytes of file, if error then is a directory 
-                        new FileReader().readAsBinaryString(files[i].slice(0, 5));
-                    
-                        this.setState({ files: [...this.state.files, files[i]] });// if no exception is definitely a file
-                    } catch ( e ) {
-                    
-                    }
+                    //let exif = await mm.parseFile(file.getAsFile());
+                    //console.log(exif)
+                    //this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
                 }
             }
         }
     }
-
 
     scanFiles = async (item, file) => {
         if (item.isFile) {
@@ -88,7 +95,9 @@ class Content extends React.Component {
                 let exif = await exifr.parse(file.getAsFile())
                 this.setState({ files: [...this.state.files, {file: tmpFile, metadata: exif}] });
             } else {
-                this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
+                //let exif = await mm.parseFile(file.getAsFile());
+                //console.log(exif)
+                //this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
             }
         } else if (item.isDirectory) {
             let _this = this;
@@ -116,10 +125,11 @@ class Content extends React.Component {
             document.getElementById("contentBox").removeAttribute("drop-hidden");
             document.getElementById("elementsList").style.display = "none";
         }
-        console.log(this.state.files)
     }
 
-    render() {    
+
+    render() {   
+
         let itemStatus = [
             {
                 name: 'preview',
@@ -139,9 +149,9 @@ class Content extends React.Component {
             }];
         return (
             <div id="content" className="inputBox">
-                <div id="innerBox">
-                    <div id="contentBox" onDragOver={this.allowDrop} onDragLeave={this.leaveDropZone}
-                    onDrop={this.drop}></div>
+                <div id="innerBox" onDragOver={this.allowDrop} onDragLeave={this.leaveDropZone}
+                    onDrop={this.drop}>
+                    <div id="contentBox" ></div>
                     <div id="elementsList">
                         <ul id="headerList">
                             <li>
@@ -161,9 +171,8 @@ class Content extends React.Component {
                                     listElements={item.elements}/>
                         ))}
                     </div>
-                    <input className="inputFile" id="file" type="file"/>
-                    <label className="inputFile" htmlFor="file" onDragOver={this.allowDrop} onDragLeave={this.leaveDropZone}
-                        onDrop={this.drop}></label>
+                    <input className="inputFile" id="file" type="file" onInput={this.handleFileUpload}/>
+                    <label className="inputFile" htmlFor="file"></label>
                 </div>
             </div>
         )
