@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
+import setSeconds from "date-fns/setSeconds";
 import DatePicker from 'react-datepicker';
 import classNames from 'classnames';
 import exifr from 'exifr';
 
 function Items({ idDiv, listElements, position }) {
-    const [startDate, setStartDate] = useState(
-        setHours(setMinutes(new Date(), 30), 17)
-    );
     return (
         <ul id={idDiv} className={classNames(
                 'statusDiv',
@@ -17,17 +15,16 @@ function Items({ idDiv, listElements, position }) {
             {listElements.map((el, index) => (
                 <li key={index}>
                     <p>{el.file.name}</p>
-                    <input tipe="text" placeholder={el.metadata.Make}/>
+                    <input tipe="text" placeholder={el.device}/>
                     <DatePicker
-                      selected={startDate}
+                      selected={new Date(el.date)}
                       onChange={date => setStartDate(date)}
                       showTimeSelect
-                      minTime={setHours(setMinutes(new Date(), 0), 17)}
-                      maxTime={setHours(setMinutes(new Date(), 30), 20)}
-                      dateFormat="MMMM d, yyyy h:mm aa"
+                      minTime={setHours(setMinutes(setSeconds(new Date(), 0), 0), 17)}
+                      maxTime={setHours(setMinutes(setSeconds(new Date(), 5), 5), 20)}
+                      dateFormat="dd/MM/yy h:mm:ss"
                     />
-                    <input tipe="text" placeholder={el.metadata.CreateDate.toLocaleTimeString()}/>
-                    <p>Undefined</p>
+                    <p>{el.status}</p>
                 </li>
             ))}
         </ul>
@@ -85,39 +82,40 @@ class Content extends React.Component {
             }
         } catch {
             for (let i = 0; i < files.length; i++) {
-                if (files[i].type.includes('image')) {
-                    let exif = await exifr.parse(files[i])
-                    this.setState({ files: [...this.state.files, {file: files[i], metadata: exif}] });
-                } else {
-                    //let exif = await mm.parseFile(file.getAsFile());
-                    //console.log(exif)
-                    //this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
-                }
+                this.extractData(files[i])
             }
         }
     }
 
-    scanFiles = async (item, file) => {
+    scanFiles = (item, file) => {
         if (item.isFile) {
-            let tmpFile = file.getAsFile();
-            if (tmpFile.type.includes('image')) {
-                let exif = await exifr.parse(file.getAsFile())
-                this.setState({ files: [...this.state.files, {file: tmpFile, metadata: exif}] });
-            } else {
-                //let exif = await mm.parseFile(file.getAsFile());
-                //console.log(exif)
-                //this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
-            }
+            this.extractData(file.getAsFile())
         } else if (item.isDirectory) {
             let _this = this;
             let directoryReader = item.createReader();
             directoryReader.readEntries(entries => {
                 entries.forEach(entry => {
                     entry.file(function(file) {
-                        _this.setState({ files: [..._this.state.files, file] });
+                        _this.extractData(file)
         			})
                 });
             })
+        }
+    }
+
+    extractData = async (file) => {
+        if(file.type.includes('image')) {
+            let exif = await exifr.parse(file)
+            this.setState({ files: [...this.state.files, {
+                file: file,
+                device: exif.Make,
+                date: exif.CreateDate.toISOString(),
+                status: 'Por Validar'
+            }] });
+        } else {
+            //let exif = await mm.parseFile(file.getAsFile());
+            //console.log(exif)
+            //this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
         }
     }
 
