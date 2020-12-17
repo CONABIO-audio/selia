@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
+import DatePicker from 'react-datepicker';
 import classNames from 'classnames';
 import exifr from 'exifr';
 
 function Items({ idDiv, listElements, position }) {
+    const [startDate, setStartDate] = useState(
+        setHours(setMinutes(new Date(), 30), 17)
+    );
     return (
         <ul id={idDiv} className={classNames(
                 'statusDiv',
@@ -11,13 +17,16 @@ function Items({ idDiv, listElements, position }) {
             {listElements.map((el, index) => (
                 <li key={index}>
                     <p>{el.file.name}</p>
-                    <p>Undefined</p>
                     <input tipe="text" placeholder={el.metadata.Make}/>
-                    <p>Undefined</p>
-                    <p>Undefined</p>
-                    <input tipe="text" placeholder={el.metadata.CreateDate.toLocaleDateString()}/>
-                    <p>Undefined</p>
-                    <p>Undefined</p>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={date => setStartDate(date)}
+                      showTimeSelect
+                      minTime={setHours(setMinutes(new Date(), 0), 17)}
+                      maxTime={setHours(setMinutes(new Date(), 30), 20)}
+                      dateFormat="MMMM d, yyyy h:mm aa"
+                    />
+                    <input tipe="text" placeholder={el.metadata.CreateDate.toLocaleTimeString()}/>
                     <p>Undefined</p>
                 </li>
             ))}
@@ -125,6 +134,7 @@ class Content extends React.Component {
             document.getElementById("contentBox").removeAttribute("drop-hidden");
             document.getElementById("elementsList").style.display = "none";
         }
+        console.log(this.state)
     }
 
 
@@ -156,13 +166,8 @@ class Content extends React.Component {
                         <ul id="headerList">
                             <li>
                                 <p>Nombre</p>
-                                <p>Sitio</p>
                                 <p>Dispositivo</p>
-                                <p>Evento de muestreo</p>
-                                <p>Despliegue</p>
                                 <p>Fecha de captura</p>
-                                <p>MediaInfo</p>
-                                <p>Metadatos adicionales</p>
                                 <p>Estado</p>
                             </li>
                         </ul>
