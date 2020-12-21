@@ -1,12 +1,17 @@
 
-import React, { Component } from 'react'; //Importamos react
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Uploader from './components/Uploader';
+
+import store from './store';
+import { Provider } from 'react-redux';
 
 class Root extends Component {
    render() {
      return(
-       <Uploader />
+      <Provider store={store}>
+        <Uploader />
+      </Provider>
      )
    }
 }

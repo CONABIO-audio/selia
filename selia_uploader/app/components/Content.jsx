@@ -1,43 +1,23 @@
-import React, { useState } from 'react';
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
-import setSeconds from "date-fns/setSeconds";
-import DatePicker from 'react-datepicker';
-import classNames from 'classnames';
+/** @jsx jsx */
+import React from 'react';
 import exifr from 'exifr';
+import { css, jsx } from '@emotion/react';
+import Items from './Items';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function Items({ idDiv, listElements, position }) {
-    return (
-        <ul id={idDiv} className={classNames(
-                'statusDiv',
-                { hidden: position >= 1 ? true : false }
-            )}>
-            {listElements.map((el, index) => (
-                <li key={index}>
-                    <p>{el.file.name}</p>
-                    <input tipe="text" placeholder={el.device}/>
-                    <DatePicker
-                      selected={new Date(el.date)}
-                      onChange={date => setStartDate(date)}
-                      showTimeSelect
-                      minTime={setHours(setMinutes(setSeconds(new Date(), 0), 0), 17)}
-                      maxTime={setHours(setMinutes(setSeconds(new Date(), 5), 5), 20)}
-                      dateFormat="dd/MM/yy h:mm:ss"
-                    />
-                    <p>{el.status}</p>
-                </li>
-            ))}
-        </ul>
-    )
-}
+import { connect } from 'react-redux';
+import { addItem, deleteItem } from '../features/actions';
+
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+
 class Content extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            files: []
+            files: [],
+            selected: []
         }
         this.showDropZone = false;
-
     }
 
     handleFileUpload = e => {
@@ -106,19 +86,35 @@ class Content extends React.Component {
     extractData = async (file) => {
         if(file.type.includes('image')) {
             let exif = await exifr.parse(file)
-            this.setState({ files: [...this.state.files, {
-                file: file,
-                device: exif.Make,
-                date: exif.CreateDate.toISOString(),
-                status: 'Por Validar'
-            }] });
+            this.setState({ files: [...this.state.files, file] });
+            this.props.addItem(
+                {
+                    file: file.name,
+                    device: exif.Make,
+                    date: exif.CreateDate.toISOString(),
+                    status: {
+                        value: 'preview',
+                        name: 'Por Validar'
+                    },
+                    selected: false
+                }
+            )
         } else {
-            //let exif = await mm.parseFile(file.getAsFile());
-            //console.log(exif)
-            //this.setState({ files: [...this.state.files, {file: file.getAsFile(), metadata: ''}] });
+            this.setState({ files: [...this.state.files, file] });
+            this.props.addItem(
+                {
+                    file: file.name,
+                    device: 'No especificado',
+                    date: new Date().toLocaleDateString(),
+                    status: {
+                        value: 'preview',
+                        name: 'Por Validar'
+                    },
+                    selected: false
+                }
+            )
         }
     }
-
 
     componentDidUpdate() {
         if (this.state.files.length) {
@@ -132,29 +128,19 @@ class Content extends React.Component {
             document.getElementById("contentBox").removeAttribute("drop-hidden");
             document.getElementById("elementsList").style.display = "none";
         }
-        console.log(this.state)
     }
 
+    delete = () => {
+        for(let i=0;i<this.props.items.length;i++) {
+            if (this.props.items[i].selected) {
+                this.props.deleteItem(this.props.items[i]);
+                this.setState({ files: this.state.files.filter(file => file.name !== this.props.items[i].file) });
+            };
+        }
+    }
 
-    render() {   
-
-        let itemStatus = [
-            {
-                name: 'preview',
-                elements: this.state.files
-            },
-            {   
-                name: 'uploading',
-                elements: []
-            },
-            {
-                name: 'completed',
-                elements: []
-            },
-            {
-                name: 'error',
-                elements: []
-            }];
+    render() {
+        let itemStatus = ['preview','uploading','completed','error'];
         return (
             <div id="content" className="inputBox">
                 <div id="innerBox" onDragOver={this.allowDrop} onDragLeave={this.leaveDropZone}
@@ -163,6 +149,7 @@ class Content extends React.Component {
                     <div id="elementsList">
                         <ul id="headerList">
                             <li>
+                                <p css={css`width: 15px!important;`}></p>
                                 <p>Nombre</p>
                                 <p>Dispositivo</p>
                                 <p>Fecha de captura</p>
@@ -170,12 +157,22 @@ class Content extends React.Component {
                             </li>
                         </ul>
                         {itemStatus.map((item, index) => (
-                            <Items key={index} idDiv={item.name} position={index}
-                                    listElements={item.elements}/>
+                            <Items key={index} idDiv={item} position={index} />
                         ))}
                     </div>
                     <input className="inputFile" id="file" type="file" onInput={this.handleFileUpload}/>
                     <label className="inputFile" htmlFor="file"></label>
+                    {this.props.items.filter( item => item.selected).length ? 
+                            <FontAwesomeIcon 
+                                css={css`
+                                    color: white;
+                                    z-index: 9999;
+                                    position: absolute;
+                                    cursor: pointer;
+                                    top: 3px;
+                                `}
+                                icon={faTrashAlt} onClick={() => this.delete()}/> 
+                    : null}
                 </div>
             </div>
         )
@@ -183,4 +180,15 @@ class Content extends React.Component {
 
 }
 
-export default Content;
+const mapStateToProps = state => {
+    return { items: state.items.items };
+}
+
+const mapDispatchToProps = dispatch => {
+    return { 
+        addItem: item => dispatch(addItem(item)),
+        deleteItem: item => dispatch(deleteItem(item))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content)
