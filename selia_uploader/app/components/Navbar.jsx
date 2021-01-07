@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 function NavElement({ pos, navId, navName, isActive, click}) {
@@ -14,43 +14,35 @@ function NavElement({ pos, navId, navName, isActive, click}) {
     )
 }
 
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            0: true
-        }
+function Navbar() {
+    const [items, setItems] = useState([true]);
 
-        this.handleNavClick = this
-        .handleNavClick
-        .bind(this);
-    }
-
-
-    handleNavClick = (e) => {
+    const handleNavClick = (e) => {
         let getId = e.target.id.split('-')[1]
         let getPos = e.target.id.split('-')[2]
         let contentDivs = document.getElementsByClassName('statusDiv')
+        let toSetItems = [];
         for(let i=0;i<contentDivs.length;i++){
             contentDivs[i].style.display = 'none';
-            this.setState({ [i]: false })
+            if (i != getPos) 
+                toSetItems.push(false)
+            else
+                toSetItems.push(true)
         }
         document.getElementById(getId).style.display = 'block';
-        this.setState({ [getPos]: true })
+        setItems(toSetItems)
     }
-    render() {
-        let tabNames = [
-            {id: 'preview', name: 'Antesala'}, {id: 'uploading', name: 'Por subir'},
-            {id: 'completed', name: 'Subidos'}, {id: 'error', name: 'Errores'}];
-        return (
-            <ul className="navbar-tabs group">
-                {tabNames.map((el, index) => (
-                    <NavElement pos={index} key={index} navId={el.id} click={this.handleNavClick.bind(this)}
-                        navName={el.name} isActive={this.state[index]} />
-                ))}
-            </ul>
-        )
-    }
+    let tabNames = [
+        {id: 'preview', name: 'Antesala'}, {id: 'uploading', name: 'Por subir'},
+        {id: 'completed', name: 'Subidos'}, {id: 'error', name: 'Errores'}];
+    return (
+        <ul className="navbar-tabs group">
+            {tabNames.map((el, index) => (
+                <NavElement pos={index} key={index} navId={el.id} click={handleNavClick}
+                    navName={el.name} isActive={items[index]} />
+            ))}
+        </ul>
+    )
 }
 
 export default Navbar;
