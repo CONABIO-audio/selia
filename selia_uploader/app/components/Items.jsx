@@ -9,19 +9,23 @@ import classNames from 'classnames';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
-import { connect } from 'react-redux';
-import { changeItem } from '../features/actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Items(props) {
+    const items = useSelector(state => state.items.items);
+    const dispatch = useDispatch();
     const onClick = (file) => {
-        props.changeItem(file)
+        dispatch({
+            type: 'CHANGE_ITEM',
+            payload: file
+        })
     }
     return (
         <ul id={props.idDiv} className={classNames(
                 'statusDiv',
                 { hidden: props.position >= 1 ? true : false }
             )}>
-            {props.items.map((item, index) => {
+            {items.map((item, index) => {
                 if(item.status.value == props.idDiv) {
                     return (
                         <li key={index}>
@@ -47,12 +51,4 @@ function Items(props) {
     )
 }
 
-const mapStateToProps = state => {
-    return { items: state.items.items };
-}
-
-const mapDispatchToProps = dispatch => {
-    return { changeItem: item => dispatch(changeItem(item))};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Items);
+export default Items;

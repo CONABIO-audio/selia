@@ -22,6 +22,12 @@ const itemsReducer = (state = initialState, action) => {
                     item 
                 )
             }
+        case "CHANGE_STATUS":
+            return {
+                items: state.items.map(item => item.file === action.payload.item.file ?
+                    { ...item, status: {value: action.payload.newStatus.value, name: action.payload.newStatus.name}} : 
+                    item)
+            }
         default:
             return state;
     }

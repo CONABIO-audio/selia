@@ -12,3 +12,8 @@ export const changeItem = item => ({
     type: "CHANGE_ITEM",
     payload: item
 })
+
+export const changeStatus = item => ({
+    type: "CHANGE_STATUS",
+    payload: item
+})

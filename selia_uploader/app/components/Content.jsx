@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react';
 import exifr from 'exifr';
 import { css, jsx } from '@emotion/react';
 import Items from './Items';
+import ActionButton from './ActionButtons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { useSelector, useDispatch } from 'react-redux';
 
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faClipboardCheck, faCoins } from '@fortawesome/free-solid-svg-icons';
+import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Content(){
     const [files, setFiles] = useState([])
@@ -136,12 +139,21 @@ function Content(){
         }
     }
 
+    const validateFiles = () => {
+        for(let i=0;i<items.length;i++) {
+            dispatch({type: 'CHANGE_STATUS',
+                payload:{item: items[i],
+                        newStatus: {value: 'preview', name: 'Validado'}}
+            });
+        }
+    }
+
     let itemStatus = ['preview','uploading','completed','error'];
     return (
-        <div id="content" className="inputBox">
+        <div id="content" className="inputBox" css={css`position: relative`}>
             <div id="innerBox" onDragOver={allowDrop} onDragLeave={leaveDropZone}
                 onDrop={drop}>
-                <div id="contentBox" ></div>
+                <div id="contentBox"></div>
                 <div id="elementsList">
                     <ul id="headerList">
                         <li>
@@ -170,6 +182,13 @@ function Content(){
                             icon={faTrashAlt} onClick={() => deleteFile()}/> 
                 : null}
             </div>
+            {items.length ? 
+            (<>
+                <ActionButton name='Validar archivos' icon={faClipboardCheck} 
+                    action={() => validateFiles()} statusType='Por Validar' align='210px' />
+                <ActionButton name='Subir archivos' icon={faCloudUploadAlt} 
+                    action={() => validateFiles()} statusType='Validado' align='45px' />
+            </>) : null}
         </div>
     )
 
