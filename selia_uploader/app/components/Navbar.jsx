@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
 
-function NavElement({ pos, navId, navName, isActive, click}) {
+function NavElement(props) {
     return (
         <li>
-            <a id={'nav-' + navId + '-' + pos} onClick={(e) => click(e)}
+            <a id={'nav-' + props.navId + '-' + props.pos} onClick={(e) => props.click(e)}
                 className={classNames(
-                    {active: isActive}
+                    {active: props.isActive}
                 )}>
-                {navName}
+                {props.navName}{props.activeFiles ? ' ('+ props.activeFiles +')': ''}
             </a>
         </li>
     )
@@ -16,6 +17,7 @@ function NavElement({ pos, navId, navName, isActive, click}) {
 
 function Navbar() {
     const [items, setItems] = useState([true]);
+    const files = useSelector(state => state.items.items);
 
     const handleNavClick = (e) => {
         let getId = e.target.id.split('-')[1]
@@ -35,11 +37,12 @@ function Navbar() {
     let tabNames = [
         {id: 'preview', name: 'Antesala'}, {id: 'uploading', name: 'Por subir'},
         {id: 'completed', name: 'Subidos'}, {id: 'error', name: 'Errores'}];
+
     return (
         <ul className="navbar-tabs group">
             {tabNames.map((el, index) => (
                 <NavElement pos={index} key={index} navId={el.id} click={handleNavClick}
-                    navName={el.name} isActive={items[index]} />
+                    navName={el.name} isActive={items[index]} activeFiles={files.filter(item => item.status.value == el.id).length} />
             ))}
         </ul>
     )

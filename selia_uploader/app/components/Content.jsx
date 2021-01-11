@@ -5,6 +5,7 @@ import { css, jsx } from '@emotion/react';
 import Items from './Items';
 import ActionButton from './ActionButtons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import api from '../services/api';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -141,10 +142,40 @@ function Content(){
 
     const validateFiles = () => {
         for(let i=0;i<items.length;i++) {
-            dispatch({type: 'CHANGE_STATUS',
-                payload:{item: items[i],
-                        newStatus: {value: 'preview', name: 'Validado'}}
-            });
+            let date = new Date(items[i].date)
+            let data = {
+                "item_type": null,
+                "licence": null,
+                "captured_on": items[i].date,
+                "captured_on_year": date.getFullYear(),
+                "captured_on_month": date.getMonth(),
+                "captured_on_day": date.getDay(),
+                "captured_on_hour": date.getHours(),
+                "captured_on_minute": date.getMinutes(),
+                "captured_on_second": date.getSeconds(),
+                "captured_on_timezone": "",
+                "media_info": null,
+                "collection": null,
+                "sampling_event": null,
+                "collection_device": items[i].device,
+                "collection_site": null,
+                "deployment": null,
+                "collection_metadata": null,
+                "mime_type": null
+            }
+            api.validate(data).then((resp) => {
+                dispatch({type: 'CHANGE_STATUS',
+                    payload:{item: items[i],
+                            newStatus: {value: 'preview', name: 'Validado'}}
+                });
+            })
+            .catch(err => {
+                console.log(err)
+                dispatch({type: 'CHANGE_STATUS',
+                    payload:{item: items[i],
+                            newStatus: {value: 'error', name: 'Error en validacion'}}
+                });
+            })
         }
     }
 
