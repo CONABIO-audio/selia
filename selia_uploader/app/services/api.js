@@ -7,6 +7,7 @@ export default {
         return axios({
             method: 'post',
             url: 'http://irekuaapi-env.eba-gj4jy7ue.us-west-2.elasticbeanstalk.com/api/collections/v1/collection_items/validate/',
+            withCredentials: true,
             headers: {
                 'X-CSRFToken': csrftoken
             },
