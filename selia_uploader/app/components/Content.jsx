@@ -90,7 +90,7 @@ function Content(){
                 payload: {
                     file: file.name,
                     device: exif.Make,
-                    date: exif.CreateDate.toISOString(),
+                    date: exif.CreateDate ? exif.CreateDate.toISOString() : new Date().toISOString(),
                     status: {
                         value: 'preview',
                         name: 'Por Validar'
@@ -144,9 +144,9 @@ function Content(){
         for(let i=0;i<items.length;i++) {
             let date = new Date(items[i].date)
             let data = {
-                "item_type": null,
-                "licence": null,
-                "captured_on": items[i].date,
+                "item_type": 146,
+                "licence": 1,
+                "captured_on": date.toISOString(),
                 "captured_on_year": date.getFullYear(),
                 "captured_on_month": date.getMonth(),
                 "captured_on_day": date.getDay(),
@@ -154,14 +154,14 @@ function Content(){
                 "captured_on_minute": date.getMinutes(),
                 "captured_on_second": date.getSeconds(),
                 "captured_on_timezone": "",
-                "media_info": null,
-                "collection": null,
-                "sampling_event": null,
-                "collection_device": items[i].device,
-                "collection_site": null,
-                "deployment": null,
-                "collection_metadata": null,
-                "mime_type": null
+                "media_info": { "image_width": 200, "image_length": 200, "datetime_original": date.toISOString() },
+                "collection": 2,
+                "sampling_event": 1135,
+                "collection_device": 15,
+                "collection_site": 989,
+                "deployment": 595,
+                "collection_metadata": '',
+                "mime_type": 50
             }
             api.validate(data).then((resp) => {
                 dispatch({type: 'CHANGE_STATUS',
