@@ -13,9 +13,14 @@ class BaseSiteForm(forms.ModelForm):
         model = Site
         fields = [
             "name",
-            "locality",
+            "localities",
         ]
-        widgets = {"locality": get_autocomplete_widget(model=Locality)}
+        widgets = {
+            "localities": get_autocomplete_widget(
+                model=Locality,
+                multiple=True,
+            ),
+        }
 
     def save(self, commit=True):
         # Get geometry from form
@@ -62,24 +67,6 @@ class CreateSiteView(SeliaCreateView):
             return forms.MultiPolygonField()
 
         raise Http404("Geometry type does not exist")
-
-    def form_invalid(self, form):
-        if "locality" in form.data:
-            try:
-                self.locality = Locality.objects.get(pk=form.data["locality"])
-
-            except Locality.DoesNotExists:
-                pass
-
-        return super().form_invalid(form)
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-
-        if hasattr(self, "locality"):
-            context["locality"] = self.locality
-
-        return context
 
     def get_additional_query_on_sucess(self):
         return {
