@@ -1,7 +1,6 @@
 from django import forms
 
 from irekua_database.autocomplete import get_autocomplete_widget
-from irekua_permissions import sites as site_permissions
 from irekua_geo.models import Site
 from irekua_geo.models import Locality
 from selia_templates.views import SeliaDetailView
@@ -10,8 +9,16 @@ from selia_templates.views import SeliaDetailView
 class SiteUpdateForm(forms.ModelForm):
     class Meta:
         model = Site
-        fields = ["name", "locality"]
-        widgets = {"locality": get_autocomplete_widget(model=Locality)}
+        fields = [
+            "name",
+            "localities",
+        ]
+        widgets = {
+            "localities": get_autocomplete_widget(
+                model=Locality,
+                multiple=True,
+            ),
+        }
 
 
 class DetailSiteView(SeliaDetailView):
@@ -27,12 +34,12 @@ class DetailSiteView(SeliaDetailView):
 
     def has_view_permission(self):
         user = self.request.user
-        return site_permissions.view(user, site=self.object)
+        return self.object.created_by == user
 
     def has_delete_permission(self):
         user = self.request.user
-        return site_permissions.delete(user, site=self.object)
+        return self.object.created_by == user
 
     def has_change_permission(self):
         user = self.request.user
-        return site_permissions.change(user, site=self.object)
+        return self.object.created_by == user
