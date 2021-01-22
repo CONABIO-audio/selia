@@ -168,3 +168,402 @@
 .dragover {
   background-color: var(--lavander-dark) !important;
 }
+/* Navbar */
+ul.navbar-tabs {
+	width: 90%;
+	margin: 0 auto;
+	list-style: none;
+	overflow: hidden;
+  padding: 0;
+}
+ul.navbar-tabs li {	
+	float: left;
+	width: 25%;
+}
+ul.navbar-tabs li a {
+	position: relative;
+	display: block;
+	margin-top: 40px;
+	padding: 10px 0 0 0;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	text-align: center;	
+	text-decoration: none;
+  color: #646464!important;
+  cursor: pointer;
+	background: #f8f9fa;
+	-webkit-box-shadow: 8px 12px 25px 2px rgba(0,0,0,0.4);
+	   -moz-box-shadow: 8px 12px 25px 2px rgba(0,0,0,0.4);
+	        box-shadow: 8px 12px 25px 2px rgba(0,0,0,0.4);
+	        	border: 0px solid #000000;
+	-webkit-transition: padding 0.2s ease, margin 0.2s ease;
+       -moz-transition: padding 0.2s ease, margin 0.2s ease;
+         -o-transition: padding 0.2s ease, margin 0.2s ease;
+        -ms-transition: padding 0.2s ease, margin 0.2s ease;
+            transition: padding 0.2s ease, margin 0.2s ease;
+}
+.navbar-tabs li:first-child a {
+	z-index: 3;
+  -webkit-border-top-left-radius: 8px;
+-moz-border-radius-topleft: 8px;
+border-top-left-radius: 8px;
+}
+.navbar-tabs li:nth-child(2) a {
+	z-index: 2;
+}
+.navbar-tabs li:last-child a {
+	z-index: 1;
+  -webkit-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
+	   -moz-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
+	        box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
+  -webkit-border-top-right-radius: 8px;
+-moz-border-radius-topright: 8px;
+border-top-right-radius: 8px;
+}
+ul.navbar-tabs li a:hover {
+	margin: 35px 0 0 0;
+	padding: 10px 0 5px 0;
+}
+ul.navbar-tabs li a.active {
+	margin: 30px 0 0 0;
+	padding: 10px 0 10px 0;
+	background: #343a40;
+	color: #dfdfdf!important;
+	z-index: 4;
+	outline: none;
+}
+ul.navbar-tabs li a.active:hover {
+  color: #dfdfdf;
+}
+.group:before,
+.group:after {
+    content: " ";
+    display: table;
+}
+.group:after {
+    clear: both;
+}
+/* content */
+#content {
+	width: 90%;
+  height: 40vh;
+  max-height: 50vh;
+  padding: 1em;
+  overflow: auto;
+  margin: 0 auto 3em auto;
+  background: #343a40;
+-webkit-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
+   	   -moz-box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
+   	        box-shadow: 2px 8px 25px -2px rgba(0,0,0,0.3);
+  -webkit-border-bottom-right-radius: 8px;
+-webkit-border-bottom-left-radius: 8px;
+-moz-border-radius-bottomright: 8px;
+-moz-border-radius-bottomleft: 8px;
+border-bottom-right-radius: 8px;
+border-bottom-left-radius: 8px;
+}
+#content ul li{
+  font-family: 'Open Sans', sans-serif;
+  padding: 30px 40px;
+  color: #ffffff;
+  line-height: 26px;
+  font-size: 12px;
+  margin: 0;
+}
+.hidden {
+  display: none;
+}
+.statusDiv {
+  list-style-type: none;
+  padding: 0;
+}
+.statusDiv li {
+  padding: 5px 0px 5px 0px!important;
+  border-bottom: 1px solid #ffffff26;
+  display: flex;
+  justify-content: space-between;
+}
+#headerList {
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid white;
+}
+#headerList li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 30px 0px 0px!important;
+  font-size: 15px!important;
+}
+#content ul li p {
+  margin: 0;
+  width: 20%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#content ul li input {
+  background: transparent;
+  color: white;
+  border: none;
+  width: 20%;
+}
+#content ul li input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+/* LEFT INFO */
+.top-info {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  width: 20%;
+  background: #f8f9fa;
+  padding: 1em;
+  border-radius: 6px;
+}
+#leftInfo input {
+  display: block;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+/* DROPZONE */
+#innerBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+#contentBox,
+#file + label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.15em;
+  font-weight: 500;
+  color: white;
+  background-color: transparent;
+  height: 95%;
+  width: 95%;
+  display: inline-block;
+}
+#contentBox {
+  z-index: 99;
+  pointer-events: none;
+}
+#file + label {
+  z-index: 101;
+  cursor: pointer; /* "hand" cursor */
+}
+#contentBox::after {
+  content: "Escoge o arrastra uno o varios archivos";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#contentBox[drop-hidden="true"]::after {
+  content: "";
+}
+
+#innerBox[drop-active="true"] > #contentBox::after {
+  content: "Suelta los archivos aquí";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#innerBox[drop-active="true"] > #contentBox::before {
+  content: '';
+  border: 9px dashed #f8f9fa;
+  border-radius: 6px;
+  height: 85%;
+  width: 85%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#innerBox[drop-active="true"] > #contentBox {
+  background-color: #343a40bd;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+}
+
+#innerBox[drop-active="true"] {
+  background-color: #ffffff0d;
+  border-radius: 6px;
+}
+
+#elementsList {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#list {
+  list-style: none;
+  padding: 0px;
+  margin: 1em;
+  max-height: 175px;
+  overflow: auto;
+}
+#list::-webkit-scrollbar {
+    background: black;
+}
+#list li {
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+}
+
+#file + label[enable-button="true"] {
+  width: fit-content;
+  height: 2em;
+  background: #dfecec00;
+  z-index: 101;
+  color: #f8f8f3;
+  bottom: -25px;
+  left: 110px;
+  top: unset;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#file + label[enable-button="true"]:hover {
+  border-bottom: 2px solid #f8f8f3;
+}
+#file + label[enable-button="true"]::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1.4em;
+  content: '\f65e';
+  width: fit-content;
+  margin: auto;
+  vertical-align: -18%;
+}
+#file + label[enable-button="true"]::after {
+  font-weight: 900;
+  font-size: 14px;
+  content: 'Agregar archivos';
+  width: fit-content;
+  padding: 0 0px 0 10px;
+  margin: auto;
+  vertical-align: -18%;
+}
+#header {
+  list-style: none;
+  padding: 1em;
+  padding-bottom: 0;
+  margin: 0;
+}
+#header li {
+  display: flex;
+  justify-content: space-between;
+}
+#preview, #uploading, #completed, #error {
+  height: calc(100% - 6em);
+  overflow: auto;
+  padding-right: 10px;
+} 
+#preview::-webkit-scrollbar, #uploading::-webkit-scrollbar, #completed::-webkit-scrollbar, #error::-webkit-scrollbar {
+  width: 10px;
+}
+
+#preview::-webkit-scrollbar-track, #uploading::-webkit-scrollbar-track, #completed::-webkit-scrollbar-track, #error::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+}
+
+#preview::-webkit-scrollbar-thumb, #uploading::-webkit-scrollbar-thumb, #completed::-webkit-scrollbar-thumb, #error::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  background: #dfecec;
+}
+/*styled datetime picker */
+.react-datepicker__header {
+  background-color: #343a40!important;
+  border-bottom: 1px solid #52575d!important;
+}
+.react-datepicker-popper {
+  z-index: 99999!important;
+}
+.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+  color: #e5eced!important;
+}
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  color: #fff!important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+  background: #343a40;
+}
+.react-datepicker {
+  background-color: #343a40!important;
+}
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::after {
+  border-bottom-color: #343a40!important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  height: 30px!important;
+  padding: 5px 10px!important;
+  white-space: nowrap!important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+  cursor: pointer;
+  background-color: #47535f!important;
+}
+.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover {
+  border-radius: .3rem;
+  background-color: #525563!important;
+}
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range {
+  border-radius: .3rem;
+  background-color: #dfecec!important;
+  color: #646982!important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background-color: #dfecec!important;
+  color: #676d85!important;
+  font-weight: bold;
+}
+ul.react-datepicker__time-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+ul.react-datepicker__time-list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+  border-top-right-radius: 0px;
+  border-right: 1px solid #aeaeae;
+}
+
+ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  background: #dfecec;
+}
+.react-datepicker-wrapper input {
+  width: 100%!important;
+}
+#elementsList svg {
+  font-size: 16px;
+  margin-top: 4px;
+}
+.checkFile {
+  display: flex;
+  color: white;
+}
+.actionButton {
+  position: absolute;
+  bottom: 18px;
+  cursor: pointer;
+}
