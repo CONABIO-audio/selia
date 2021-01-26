@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from './elements/Navbar';
 import Content from './Content';
 import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';

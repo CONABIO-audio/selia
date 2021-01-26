@@ -1,20 +1,20 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import exifr from 'exifr';
 import { css, jsx } from '@emotion/react';
-import Items from './Items';
-import ActionButton from './ActionButtons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import api from '../services/api';
+import Items from './elements/Items';
+import ActionButton from './elements/ActionButtons';
+import Validate from './actions/Validate';
+import DeleteFiles from './actions/DeleteFile';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { useAtom } from 'jotai';
+import { fileAtom } from '../services/state';
 
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { faClipboardCheck, faCoins } from '@fortawesome/free-solid-svg-icons';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Content(){
-    const [files, setFiles] = useState([])
+    const [files, setFiles] = useAtom(fileAtom)
     let showDropZone = false;
 
     const items = useSelector(state => state.items.items);
@@ -50,7 +50,6 @@ function Content(){
         filterFilesAndDirs(e.dataTransfer.items)
     }
 
-
     const filterFilesAndDirs = async (files) => {
         try {
             for (let i = 0; i < files.length; i++) {
@@ -66,17 +65,16 @@ function Content(){
             }
         }
     }
-
     const scanFiles = (item, file) => {
         if (item.isFile) {
-            extractData(file.getAsFile())
+            ExtractFileData.extractData(file.getAsFile())
         } else if (item.isDirectory) {
             let directoryReader = item.createReader();
             directoryReader.readEntries(entries => {
                 entries.forEach(entry => {
                     entry.file(function(file) {
                         extractData(file)
-        			})
+                    })
                 });
             })
         }
@@ -129,56 +127,6 @@ function Content(){
         }
     })
 
-    const deleteFile = () => {
-        for(let i=0;i<items.length;i++) {
-            if (items[i].selected) {
-                dispatch({type: 'DELETE_ITEM',
-                    payload:items[i]
-                });
-                setFiles( files.filter(file => file.name !== items[i].file) );
-            };
-        }
-    }
-
-    const validateFiles = () => {
-        for(let i=0;i<items.length;i++) {
-            let date = new Date(items[i].date)
-            let data = {
-                "item_type": 146,
-                "licence": 1,
-                "captured_on": date.toISOString(),
-                "captured_on_year": date.getFullYear(),
-                "captured_on_month": date.getMonth(),
-                "captured_on_day": date.getDay(),
-                "captured_on_hour": date.getHours(),
-                "captured_on_minute": date.getMinutes(),
-                "captured_on_second": date.getSeconds(),
-                "captured_on_timezone": "America/Mexico_City",
-                "media_info": { "image_width": 200, "image_length": 200, "datetime_original": date.toISOString() },
-                "collection": 2,
-                "sampling_event": null,
-                "collection_device": 15,
-                "collection_site": 989,
-                "deployment": 595,
-                "collection_metadata": '',
-                "mime_type": 50
-            }
-            api.validate(data).then((resp) => {
-                dispatch({type: 'CHANGE_STATUS',
-                    payload:{item: items[i],
-                            newStatus: {value: 'preview', name: 'Validado'}}
-                });
-            })
-            .catch(err => {
-                console.log(err)
-                dispatch({type: 'CHANGE_STATUS',
-                    payload:{item: items[i],
-                            newStatus: {value: 'error', name: 'Error en validacion'}}
-                });
-            })
-        }
-    }
-
     let itemStatus = ['preview','uploading','completed','error'];
     return (
         <div id="content" className="inputBox" css={css`position: relative`}>
@@ -201,22 +149,11 @@ function Content(){
                 </div>
                 <input className="inputFile" id="file" type="file" onInput={handleFileUpload}/>
                 <label className="inputFile" htmlFor="file"></label>
-                {items.filter( item => item.selected).length ? 
-                        <FontAwesomeIcon 
-                            css={css`
-                                color: white;
-                                z-index: 9999;
-                                position: absolute;
-                                cursor: pointer;
-                                top: 3px;
-                            `}
-                            icon={faTrashAlt} onClick={() => deleteFile()}/> 
-                : null}
+                <DeleteFiles items={items} files={files} setFiles={setFiles} />
             </div>
             {items.length ? 
             (<>
-                <ActionButton name='Validar archivos' icon={faClipboardCheck} 
-                    action={() => validateFiles()} statusType='Por Validar' align='210px' />
+                <Validate items={items}/>
                 <ActionButton name='Subir archivos' icon={faCloudUploadAlt} 
                     action={() => validateFiles()} statusType='Validado' align='45px' />
             </>) : null}
