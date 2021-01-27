@@ -38,6 +38,7 @@
     "exifr": "^6.0.0",
     "jotai": "^0.12.7",
     "js-cookie": "^2.2.1",
+    "moment-timezone": "^0.5.32",
     "path": "^0.12.7",
     "react": "^17.0.1",
     "react-datepicker": "^3.3.0",

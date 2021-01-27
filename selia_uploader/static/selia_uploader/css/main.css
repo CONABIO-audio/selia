@@ -470,11 +470,19 @@ border-bottom-left-radius: 8px;
   display: flex;
   justify-content: space-between;
 }
+#content ul li select {
+  width: calc(20% - 20px);
+  margin-right: 20px;
+}
 #preview, #uploading, #completed, #error {
   height: calc(100% - 6em);
   overflow: auto;
   padding-right: 10px;
-} 
+  width: calc(100% - 20px);
+}
+.react-datepicker-wrapper {
+  width: 20%!important;
+}
 #preview::-webkit-scrollbar, #uploading::-webkit-scrollbar, #completed::-webkit-scrollbar, #error::-webkit-scrollbar {
   width: 10px;
 }

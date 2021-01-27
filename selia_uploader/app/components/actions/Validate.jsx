@@ -20,7 +20,7 @@ export default function Validate(props) {
                 "captured_on_hour": date.getHours(),
                 "captured_on_minute": date.getMinutes(),
                 "captured_on_second": date.getSeconds(),
-                "captured_on_timezone": "America/Mexico_City",
+                "captured_on_timezone": props.items[i].timezoneValue,
                 "media_info": { "image_width": 200, "image_length": 200, "datetime_original": date.toISOString() },
                 "collection": 2,
                 "sampling_event": null,

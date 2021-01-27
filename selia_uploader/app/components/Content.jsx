@@ -6,6 +6,7 @@ import Items from './elements/Items';
 import ActionButton from './elements/ActionButtons';
 import Validate from './actions/Validate';
 import DeleteFiles from './actions/DeleteFile';
+import timezones from '../services/timezones';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useAtom } from 'jotai';
@@ -83,12 +84,16 @@ function Content(){
     const extractData = async (file) => {
         if(file.type.includes('image')) {
             let exif = await exifr.parse(file)
+            let date = exif.CreateDate ? exif.CreateDate.toISOString() : new Date().toISOString()
+            let timezone = timezones.getTimeZones(date)
             setFiles( [...files, file] );
             dispatch({type: 'ADD_ITEM',
                 payload: {
                     file: file.name,
                     device: exif.Make,
-                    date: exif.CreateDate ? exif.CreateDate.toISOString() : new Date().toISOString(),
+                    date: date,
+                    timezones: timezone,
+                    timezoneValue: timezone[0],
                     status: {
                         value: 'preview',
                         name: 'Por Validar'
@@ -140,6 +145,7 @@ function Content(){
                             <p>Nombre</p>
                             <p>Dispositivo</p>
                             <p>Fecha de captura</p>
+                            <p>Zona horaria</p>
                             <p>Estado</p>
                         </li>
                     </ul>
