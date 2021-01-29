@@ -142,7 +142,10 @@ function Content(){
                     <ul id="headerList">
                         <li>
                             <p css={css`width: 15px!important;`}></p>
-                            <p>Nombre</p>
+                            <p css={css`
+                                    padding-left: 10px;
+                                    width: calc(20% - 10px);
+                                `}>Nombre</p>
                             <p>Dispositivo</p>
                             <p>Fecha de captura</p>
                             <p>Zona horaria</p>

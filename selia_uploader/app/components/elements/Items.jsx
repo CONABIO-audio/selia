@@ -1,4 +1,6 @@
+/** @jsx jsx */
 import React from 'react';
+import { css, jsx } from '@emotion/react';
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import setSeconds from "date-fns/setSeconds";
@@ -42,7 +44,10 @@ function Items(props) {
                                 {item.selected ? 
                                         <FontAwesomeIcon icon={faCheckCircle} onClick={() => onClick(item)}/> : 
                                         <FontAwesomeIcon icon={faCircle} onClick={() => onClick(item)}/>}
-                                <p>{item.file}</p>
+                                <p css={css`
+                                    padding-left: 10px;
+                                    width: calc(20% - 10px);
+                                `}>{item.file}</p>
                                 <input tipe="text" placeholder={item.device} value={item.device} onChange={(e) => onChangeValue(e.target.value,item,'device')}/>
                                 <DatePicker
                                   selected={new Date(item.date)}

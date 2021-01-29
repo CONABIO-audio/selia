@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path, re_path
 from selia_uploader.views import UploadAppView
 
 
 urlpatterns = [
-    path("", UploadAppView.as_view(), name="upload_app"),
+    re_path(r"^$", UploadAppView.as_view(), name="upload_app"),
 ]
