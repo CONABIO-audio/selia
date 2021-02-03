@@ -37,26 +37,31 @@ export default {
                                 this.getObjects(result.data.sampling_event.url),
                                 this.getObjects(result.data.collection_device.url)
                             ])
-                            elements['deployment'] = deployment.data.name;
+                            elements['deployment'] = [deployment.data.id,deployment.data.name];
 
                             const [sampling_event_type,collection_site] = await Promise.all([
                                 this.getObjects(sampling.data.sampling_event_type.url),
                                 this.getObjects(sampling.data.collection_site.url)
                             ]) 
-                            elements['sampling_event'] = sampling_event_type.data.name;
-                            elements['collection_site'] = collection_site.data.collection_name;
-                            elements['collection_device'] = device.data.collection_metadata["Nombres originales"];
+                            elements['sampling_event'] = [sampling_event_type.data.id,sampling_event_type.data.name];
+                            elements['collection_site'] = [collection_site.data.id,collection_site.data.collection_name];
+                            elements['collection_device'] = [device.data.id,device.data.collection_metadata["Nombres originales"]];
                         } else if (key == 'collection') {
-                            elements['collection'] = result.data.name;
+                            elements['collection'] = [result.data.id,result.data.name];
+                        } else if (key == 'item_type') {
+                            elements['item_type'] = [result.data.id,result.data.name];
+                            elements['mime_type'] = [result.data.mime_types[0].id,result.data.mime_types[0].mime_type]
+                        } else if (key == 'licence') {
+                            elements['licence'] = [result.data.id,result.data.licence_type.name];
                         }
-                        if(index === array.length -1) resolve(elements)
+                        if(Object.entries(elements).length == 9) resolve(elements)
                 })
             });
     },
     getObjects(model,id) {
         let url = id ? 
-                'http://irekuaapi-env.eba-gj4jy7ue.us-west-2.elasticbeanstalk.com' + models[model] + id + '/':
-                //'http://localhost:8000' + models[model] + id + '/':
+                //'http://irekuaapi-env.eba-gj4jy7ue.us-west-2.elasticbeanstalk.com' + models[model] + id + '/':
+                'http://localhost:8000' + models[model] + id + '/':
                 model;
         const csrftoken = Cookies.get('csrftoken');
         return axios({

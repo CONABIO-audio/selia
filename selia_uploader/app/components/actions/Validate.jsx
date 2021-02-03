@@ -3,16 +3,19 @@ import ActionButton from '../elements/ActionButtons';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import api from '../../services/api';
+import { argsAtom } from '../../services/state';
+import { useAtom } from 'jotai';
 
 export default function Validate(props) {
     const dispatch = useDispatch();
+    const [args, setArgs] = useAtom(argsAtom)
 
     const validateFiles = () => {
         for(let i=0;i<props.items.length;i++) {
             let date = new Date(props.items[i].date)
             let data = {
-                "item_type": 146,
-                "licence": 1,
+                "item_type": args.item_type,
+                "licence": args.licence,
                 "captured_on": date.toISOString(),
                 "captured_on_year": date.getFullYear(),
                 "captured_on_month": date.getMonth(),
@@ -21,14 +24,21 @@ export default function Validate(props) {
                 "captured_on_minute": date.getMinutes(),
                 "captured_on_second": date.getSeconds(),
                 "captured_on_timezone": props.items[i].timezoneValue,
-                "media_info": { "image_width": 200, "image_length": 200, "datetime_original": date.toISOString() },
-                "collection": 2,
-                "sampling_event": null,
-                "collection_device": null,
-                "collection_site": null,
-                "deployment": null,
-                "collection_metadata": '',
-                "mime_type": 50
+                "media_info":  {WAMD: {prefix: "CONAFOR-A-U",firmware: "1.0.7",microphone: "U1",sensitivity: 0.1},
+                "frames": 1536000,
+                "channels": 1,
+                "compname": "not compressed",
+                "comptype": "NONE",
+                "duration": 4.0,
+                "sampwidth": 2,
+                "sampling_rate": 384000},//{ "image_width": 200, "image_length": 200, "datetime_original": date.toISOString() },
+                "collection": args.collection,
+                "sampling_event": args.sampling_event,
+                "collection_device": args.collection_device,
+                "collection_site": args.site,
+                "deployment": args.deployment,
+                "collection_metadata": args.collection_metadata,
+                "mime_type": args.mime_type[0]
             }
             api.validate(data).then((resp) => {
                 dispatch({type: 'CHANGE_STATUS',

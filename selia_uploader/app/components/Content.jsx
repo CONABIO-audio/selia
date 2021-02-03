@@ -11,11 +11,13 @@ import timezones from '../services/timezones';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAtom } from 'jotai';
 import { fileAtom } from '../services/state';
+import { argsAtom } from '../services/state';
 
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Content(){
     const [files, setFiles] = useAtom(fileAtom)
+    const [args, setArgs] = useAtom(argsAtom)
     let showDropZone = false;
 
     const items = useSelector(state => state.items.items);
@@ -62,19 +64,22 @@ function Content(){
             }
         } catch {
             for (let i = 0; i < files.length; i++) {
-                extractData(files[i])
+                if(args.mime_type[1] == files[i].type)
+                    extractData(files[i])
             }
         }
     }
     const scanFiles = (item, file) => {
         if (item.isFile) {
-            ExtractFileData.extractData(file.getAsFile())
+            if(args.mime_type[1] == file.getAsFile().type)
+                extractData(file.getAsFile())
         } else if (item.isDirectory) {
             let directoryReader = item.createReader();
             directoryReader.readEntries(entries => {
                 entries.forEach(entry => {
                     entry.file(function(file) {
-                        extractData(file)
+                        if(args.mime_type[1] == file.type)
+                            extractData(file)
                     })
                 });
             })
@@ -102,12 +107,16 @@ function Content(){
                 }
             })
         } else {
+            let date = new Date().toISOString()
+            let timezone = timezones.getTimeZones(date)
             setFiles( [...files, file] );
             dispatch({type: 'ADD_ITEM',
                 payload:{
                     file: file.name,
                     device: 'No especificado',
-                    date: new Date().toLocaleDateString(),
+                    date: date,
+                    timezones: timezone,
+                    timezoneValue: timezone[0],
                     status: {
                         value: 'preview',
                         name: 'Por Validar'
