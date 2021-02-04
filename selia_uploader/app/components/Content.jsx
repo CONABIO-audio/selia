@@ -64,21 +64,21 @@ function Content(){
             }
         } catch {
             for (let i = 0; i < files.length; i++) {
-                if(args.mime_type[1] == files[i].type)
+                if(args.mime_type[1] == files[i].type.replace("audio/wav","audio/x-wav"))
                     extractData(files[i])
             }
         }
     }
     const scanFiles = (item, file) => {
         if (item.isFile) {
-            if(args.mime_type[1] == file.getAsFile().type)
+            if(args.mime_type[1] == file.getAsFile().type.replace("audio/wav","audio/x-wav"))
                 extractData(file.getAsFile())
         } else if (item.isDirectory) {
             let directoryReader = item.createReader();
             directoryReader.readEntries(entries => {
                 entries.forEach(entry => {
                     entry.file(function(file) {
-                        if(args.mime_type[1] == file.type)
+                        if(args.mime_type[1] == file.type.replace("audio/wav","audio/x-wav"))
                             extractData(file)
                     })
                 });
