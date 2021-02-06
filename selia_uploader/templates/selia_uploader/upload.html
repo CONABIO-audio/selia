@@ -21,7 +21,7 @@
 {% block scripts-extra %}
 {{ block.super }}
 <script>
-  const args = {{ args | safe }};
+  const dataFromParams = {{ args | safe }};
 </script>
 <script src="{% static 'selia_uploader/js/upload_app.js' %}"></script>
 {% endblock %}

@@ -7,6 +7,7 @@ import ActionButton from './elements/ActionButtons';
 import Validate from './actions/Validate';
 import DeleteFiles from './actions/DeleteFile';
 import timezones from '../services/timezones';
+import mediaInfo from '../services/mediaInfo';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useAtom } from 'jotai';
@@ -87,6 +88,9 @@ function Content(){
     }
 
     const extractData = async (file) => {
+        if(typeof args.media_info == 'undefined') {
+            mediaInfo.getMediaInfo(file)
+        }
         if(file.type.includes('image')) {
             let exif = await exifr.parse(file)
             let date = exif.CreateDate ? exif.CreateDate.toISOString() : new Date().toISOString()

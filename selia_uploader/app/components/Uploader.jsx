@@ -11,18 +11,16 @@ import { useAtom } from 'jotai';
 function TopInfo() {
     const [values, setValues] = useState({})
     const [args, setArgs] = useAtom(argsAtom)
-    useEffect(async () => {
-        api.getItems().then(resp=> {
-            setValues(resp);
-            let temp = {};
-            Object.entries(resp).forEach(([key,value]) => {
-                if(key != 'collection_metadata' && key != 'mime_type') 
-                    temp[key] = value[0];
-                else
-                    temp[key] = value;
-            })
-            setArgs(temp);
+    useEffect(() => {
+        setValues(dataFromParams);
+        let temp = {};
+        Object.entries(dataFromParams).forEach(([key,value]) => {
+            if(key != 'collection_metadata' && key != 'mime_type') 
+                temp[key] = value[0];
+            else
+                temp[key] = value;
         })
+        setArgs(temp);
     },[])
     const StyledDiv = styled.div`
         color: #484848;

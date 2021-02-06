@@ -3,6 +3,7 @@ import ActionButton from '../elements/ActionButtons';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import api from '../../services/api';
+import mediaInfo from '../../services/mediaInfo';
 import { argsAtom } from '../../services/state';
 import { useAtom } from 'jotai';
 
@@ -24,14 +25,7 @@ export default function Validate(props) {
                 "captured_on_minute": date.getMinutes(),
                 "captured_on_second": date.getSeconds(),
                 "captured_on_timezone": props.items[i].timezoneValue,
-                "media_info":  {WAMD: {prefix: "CONAFOR-A-U",firmware: "1.0.7",microphone: "U1",sensitivity: 0.1},
-                "frames": 1536000,
-                "channels": 1,
-                "compname": "not compressed",
-                "comptype": "NONE",
-                "duration": 4.0,
-                "sampwidth": 2,
-                "sampling_rate": 384000},//{ "image_width": 200, "image_length": 200, "datetime_original": date.toISOString() },
+                "media_info": mediaInfo.getMediaInfo(args.mime_type[1]),//{ "image_width": 200, "image_length": 200, "datetime_original": date.toISOString() },
                 "collection": args.collection,
                 "sampling_event": args.sampling_event,
                 "collection_device": args.collection_device,
@@ -40,6 +34,7 @@ export default function Validate(props) {
                 "collection_metadata": args.collection_metadata,
                 "mime_type": args.mime_type[0]
             }
+            console.log(data)
             api.validate(data).then((resp) => {
                 dispatch({type: 'CHANGE_STATUS',
                     payload:{item: props.items[i],
