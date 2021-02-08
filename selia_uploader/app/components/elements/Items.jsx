@@ -57,7 +57,7 @@ function Items(props) {
                                   maxTime={setHours(setMinutes(setSeconds(new Date(), 5), 5), 20)}
                                   dateFormat="dd/MM/yy h:mm:ss"
                                 />
-                                <select onChange={(e) => onChangeValue(e.target.value,item,'timezoneValue')} value={item.timezoneValue}>
+                                <select className={"selectTimezone"} onChange={(e) => onChangeValue(e.target.value,item,'timezoneValue')} value={item.timezoneValue}>
                                     {item.timezones.map((zone, index) => (
                                         <option key={index} value={zone}>{zone}</option>
                                     ))}

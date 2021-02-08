@@ -246,7 +246,7 @@ ul.navbar-tabs li a.active:hover {
 /* content */
 #content {
 	width: 90%;
-  height: 40vh;
+  height: 55vh;
   max-height: 50vh;
   padding: 1em;
   overflow: auto;
@@ -451,6 +451,15 @@ border-bottom-left-radius: 8px;
   margin: auto;
   vertical-align: -18%;
 }
+.selectTimezone {
+  color: #f2f2f3;
+  background: #343a40;
+  border-radius: 3px;
+  border: none;
+}
+.selectTimezone option {
+  color: #f2f2f3;
+}
 #file + label[enable-button="true"]::after {
   font-weight: 900;
   font-size: 14px;
@@ -474,10 +483,20 @@ border-bottom-left-radius: 8px;
   width: calc(20% - 20px);
   margin-right: 20px;
 }
+.loadingFiles::after {
+  content: "Cargando archivos...";
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 25px;
+  transform: translate(-50%,-50%);
+}
 #preview, #uploading, #completed, #error {
   height: calc(100% - 6em);
   overflow: auto;
   padding-right: 10px;
+  padding-bottom: 3em;
   width: calc(100% - 20px);
 }
 .react-datepicker-wrapper {

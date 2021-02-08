@@ -30,7 +30,7 @@ export default function DeleteFile(props) {
                             cursor: pointer;
                             top: 3px;
                         `}
-                        icon={faTrashAlt} onClick={() => deleteFile()}/> 
+                        icon={faTrashAlt} onClick={deleteFile}/> 
             : null}
         </>
     )
