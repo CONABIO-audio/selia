@@ -39,7 +39,7 @@ export default function Validate(props) {
                     "media_info": props.items[i].metadata,
                     "collection": args.collection,
                     "sampling_event": args.sampling_event,
-                    "collection_device": 29,//args.collection_device,
+                    "collection_device": args.collection_device,
                     "collection_site": args.collection_site,
                     "deployment": args.deployment,
                     "collection_metadata": args.collection_metadata,
