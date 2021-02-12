@@ -1,9 +1,6 @@
-import React from 'react';
-import ActionButton from '../elements/ActionButtons';
-import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import api from '../../services/api';
-import mediaInfo from '../../services/mediaInfo';
 import { argsAtom } from '../../services/state';
 import { useAtom } from 'jotai';
 
@@ -12,9 +9,10 @@ export default function Validate(props) {
     const [args, setArgs] = useAtom(argsAtom)
 
     const changeStatus = () => {
-        for(let i=0;i<props.items.length;i++) {
+        let unvalidated = props.items.filter(item => item.status.name == "Por Validar");
+        for(let i=0;i<unvalidated.length;i++) {
             dispatch({type: 'CHANGE_STATUS',
-                payload:{item: props.items[i],
+                payload:{item: unvalidated[i],
                         newStatus: {value: 'preview', name: 'Validando...'}}
             });
         }
@@ -22,9 +20,10 @@ export default function Validate(props) {
 
     const validateFiles = () => {
         changeStatus();
-        for(let i=0;i<props.items.length;i++) {
-            let date = new Date(props.items[i].date)
-            if(Object.keys(props.items[i].metadata).length) {
+        let unvalidated = props.items.filter(item => item.status.name == "Por Validar");
+        for(let i=0;i<unvalidated.length;i++) {
+            let date = new Date(unvalidated[i].date)
+            if(Object.keys(unvalidated[i].metadata).length) {
                 let data = {
                     "item_type": args.item_type,
                     "licence": args.licence,
@@ -35,8 +34,8 @@ export default function Validate(props) {
                     "captured_on_hour": date.getHours(),
                     "captured_on_minute": date.getMinutes(),
                     "captured_on_second": date.getSeconds(),
-                    "captured_on_timezone": props.items[i].timezoneValue,
-                    "media_info": props.items[i].metadata,
+                    "captured_on_timezone": unvalidated[i].timezoneValue,
+                    "media_info": unvalidated[i].metadata,
                     "collection": args.collection,
                     "sampling_event": args.sampling_event,
                     "collection_device": args.collection_device,
@@ -47,28 +46,31 @@ export default function Validate(props) {
                 }
                 api.validate(data).then((resp) => {
                     dispatch({type: 'CHANGE_STATUS',
-                        payload:{item: props.items[i],
+                        payload:{item: unvalidated[i],
                                 newStatus: {value: 'preview', name: 'Validado'}}
                     });
                 })
                 .catch(err => {
                     console.log(err)
                     dispatch({type: 'CHANGE_STATUS',
-                        payload:{item: props.items[i],
+                        payload:{item: unvalidated[i],
                                 newStatus: {value: 'error', name: 'Error en validacion'}}
                     });
                 })
             } else {
                 dispatch({type: 'CHANGE_STATUS',
-                    payload:{item: props.items[i],
+                    payload:{item: unvalidated[i],
                             newStatus: {value: 'error', name: 'Error en metadata de archivo'}}
                 });
             }
         }
     }
 
-    return (
-        <ActionButton name='Validar archivos' icon={faClipboardCheck} 
-        action={() => validateFiles()} statusType='Por Validar' align='210px' />
-    )
+    useEffect(() => {
+        if(props.items.filter(item => item.status.name == "Por Validar").length) {
+            validateFiles()
+        }
+    });
+
+    return null;
 }

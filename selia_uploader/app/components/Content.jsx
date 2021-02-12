@@ -113,7 +113,6 @@ function Content(){
                 dispatch({type: 'ADD_ITEM',
                     payload: {
                         file: file.name,
-                        device: metadata[2],
                         date: metadata[1],
                         timezones: timezone,
                         timezoneValue: timezone[0],
@@ -131,7 +130,6 @@ function Content(){
                 dispatch({type: 'ADD_ITEM',
                     payload:{
                         file: file.name,
-                        device: 'No especificado',
                         date: date,
                         timezones: timezone,
                         timezoneValue: timezone[0],
@@ -188,7 +186,6 @@ function Content(){
                                     padding-left: 10px;
                                     width: calc(20% - 10px);
                                 `}>Nombre</p>
-                            <p>Dispositivo</p>
                             <p>Fecha de captura</p>
                             <p>Zona horaria</p>
                             <p>Estado</p>

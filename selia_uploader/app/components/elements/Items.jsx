@@ -48,7 +48,6 @@ function Items(props) {
                                     padding-left: 10px;
                                     width: calc(20% - 10px);
                                 `}>{item.file}</p>
-                                <input tipe="text" placeholder={item.device} value={item.device} onChange={(e) => onChangeValue(e.target.value,item,'device')}/>
                                 <DatePicker
                                   selected={new Date(item.date)}
                                   onChange={date => {setStartDate(date); onChangeValue(date, item, 'date')}}

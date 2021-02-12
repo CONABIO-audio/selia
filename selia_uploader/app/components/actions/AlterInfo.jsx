@@ -8,7 +8,6 @@ import DatePicker from 'react-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function AlterInfo(props) {
-    const [device,setDevice] = useState('');
     const [date,setDate] = useState(new Date());
     const [timezone,setTimezone] = useState(props.items[0].timezone);
     const [changes,setChanges] = useState({});
@@ -57,10 +56,10 @@ export default function AlterInfo(props) {
                     padding: 5px 0px 5px 0px!important;
                     display: flex;
                     width: calc(100% - 20px);
+                    justify-content: space-between;
                 `}>
                     <p css={css`width: 15px!important;`}></p>
                     <p></p>
-                    <input tipe="text" placeholder="Ingresa un valor" value={device} onChange={(e) => {setDevice(e.target.value);valueChanges(e.target.value,'device')}}/>
                     <DatePicker
                                   selected={date}
                                   onChange={value => {setDate(value);valueChanges(value,'date')}}
