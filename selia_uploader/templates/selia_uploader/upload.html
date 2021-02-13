@@ -4,25 +4,36 @@
 {% load selia_tags %}
 
 {% block secondary-navbar %}
-  {% include 'selia_uploader/secondary_navbar.html' %}
+{% include 'selia_uploader/secondary_navbar.html' %}
 {% endblock %}
 
 {% block toolbar-title %}
-  {% trans 'Add items' %}
+{% trans 'Add items' %}
 {% endblock toolbar-title %}
 
 {% block stylesheet %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'selia_uploader/css/main.css' %}">
-<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.14.1/react-datepicker.min.css" />
+<link
+  rel="stylesheet"
+  href="{% static 'selia_uploader/css/main.css' %}"
+>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.14.1/react-datepicker.min.css"
+/>
 
 {% endblock %}
 
 {% block scripts-extra %}
 {{ block.super }}
+
+{{ args|json_script:"app-arguments"}}
+
 <script>
-  const dataFromParams = {{ args | safe }};
+  const dataFromParams = JSON.parse(document.getElementById('app-arguments').textContent);
+
 </script>
+
 <script src="{% static 'selia_uploader/js/upload_app.js' %}"></script>
 {% endblock %}
 
@@ -31,8 +42,10 @@
 
 {% block main-content %}
 <div class="upload-container">
-  <div class="app-container" id="upload-app">
-    AQUI VA LA APP
+  <div
+    class="app-container"
+    id="upload-app"
+  >
   </div>
 </div>
 {% endblock main-content %}
