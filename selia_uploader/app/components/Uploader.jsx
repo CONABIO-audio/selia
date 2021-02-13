@@ -1,11 +1,28 @@
 /** @jsx jsx */
-import React from 'react';
-import Navbar from './Navbar';
+import React, { useEffect, useState } from 'react';
+import Navbar from './elements/Navbar';
 import Content from './Content';
 import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
+import api from '../services/api';
+import { argsAtom } from '../services/state';
+import { useAtom } from 'jotai';
+import ErrorMessage from './elements/ErrorMessage';
 
 function TopInfo() {
+    const [values, setValues] = useState({})
+    const [args, setArgs] = useAtom(argsAtom)
+    useEffect(() => {
+        setValues(dataFromParams);
+        let temp = {};
+        Object.entries(dataFromParams).forEach(([key,value]) => {
+            if(key != 'collection_metadata' && key != 'mime_type') 
+                temp[key] = value[0];
+            else
+                temp[key] = value;
+        })
+        setArgs(temp);
+    },[])
     const StyledDiv = styled.div`
         color: #484848;
         font-weight: bold;
@@ -24,9 +41,8 @@ function TopInfo() {
                 border-bottom: 4px double #b5b5b5;
               `}
             >
-                <StyledDiv>Colección: <Paragraph id="collection">Collection example</Paragraph></StyledDiv>
-                <StyledDiv>Tipo de artículo: <Paragraph id="articleType">Article type example</Paragraph></StyledDiv>
-                <StyledDiv>Nivel de registro: <Paragraph id="registerLevel">Register level example</Paragraph></StyledDiv>
+                <StyledDiv>Colección: <Paragraph id="collection">{values.collection ? values.collection[1] : 'Sin colección'}</Paragraph></StyledDiv>
+                <StyledDiv>Tipo de artículo: <Paragraph id="articleType">{values.item_type ? values.item_type[1] : 'Sin tipo de artículo'}</Paragraph></StyledDiv>
             </div>
             <div
                 css={css`
@@ -34,11 +50,9 @@ function TopInfo() {
                     margin-top: 1.3em;
                 `}
             >
-                <StyledDiv>Sitio: <Paragraph id="site">Site example</Paragraph></StyledDiv>
-                <StyledDiv>Evento de muestro: <Paragraph id="event">Event example</Paragraph></StyledDiv>
-                <StyledDiv>Despliegue: <Paragraph id="deploy">Deploy example</Paragraph></StyledDiv>
-                <StyledDiv>MediaInfo: <Paragraph id="media">MediaInfo example</Paragraph></StyledDiv>
-                <StyledDiv>Metadatos adicionales: <Paragraph id="metadata">Metadata example</Paragraph></StyledDiv>
+                <StyledDiv>Sitio: <Paragraph id="site">{values.collection_site ? values.collection_site[1] : 'Sin sitio'}</Paragraph></StyledDiv>
+                <StyledDiv>Evento de muestro: <Paragraph id="event">{values.sampling_event ? values.sampling_event[1] : 'Sin evento'}</Paragraph></StyledDiv>
+                <StyledDiv>Despliegue: <Paragraph id="deploy">{values.deployment ? values.deployment[1] : 'Sin despliegue'}</Paragraph></StyledDiv>
             </div>
         </div>
     )
@@ -60,6 +74,7 @@ export default function Uploader(){
                 <Navbar />
                 <Content />
             </div>
+            <ErrorMessage />
         </div>
     )
 }

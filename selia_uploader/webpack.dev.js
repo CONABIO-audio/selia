@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const TARGET_DIR = path.join(
     __dirname,
@@ -43,6 +44,14 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        alias: {
+            buffer: 'buffer'
+        }
     },
+    plugins: [
+        new webpack.ProvidePlugin({	      
+          Buffer: ['buffer', 'Buffer'],
+        })
+    ],
     watch: true,
 };
