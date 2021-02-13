@@ -1,0 +1,7 @@
+{
+  "indent_size": 2,
+  "html": {
+    "end_with_newline": true,
+    "wrap_attributes": "force-expand-multiline"
+  }
+}
