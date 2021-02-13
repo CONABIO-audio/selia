@@ -594,3 +594,8 @@ ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
   bottom: 18px;
   cursor: pointer;
 }
+.upload-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -51,16 +51,44 @@ export default function Validate(props) {
                     });
                 })
                 .catch(err => {
-                    console.log(err)
+                    let errorText = "";
+                    Object.entries(err.response.data).forEach(([key,value]) => {
+                        errorText = errorText + key + ": "
+                        errorText = errorText + value + " "
+                    })
                     dispatch({type: 'CHANGE_STATUS',
                         payload:{item: unvalidated[i],
                                 newStatus: {value: 'error', name: 'Error en validacion'}}
+                    });
+                    dispatch({type: 'CHANGE_VALUE',
+                        payload:{item: unvalidated[i],
+                                field: 'error',
+                                value: true
+                            }
+                    });
+                    dispatch({type: 'CHANGE_VALUE',
+                        payload:{item: unvalidated[i],
+                                field: 'errorMeaning',
+                                value: errorText
+                            }
                     });
                 })
             } else {
                 dispatch({type: 'CHANGE_STATUS',
                     payload:{item: unvalidated[i],
                             newStatus: {value: 'error', name: 'Error en metadata de archivo'}}
+                });
+                dispatch({type: 'CHANGE_VALUE',
+                    payload:{item: unvalidated[i],
+                            field: 'error',
+                            value: true
+                        }
+                });
+                dispatch({type: 'CHANGE_VALUE',
+                    payload:{item: unvalidated[i],
+                            field: 'errorMeaning',
+                            value: "No se pudo extraer el metadata del archivo. El archivo puede estar corrupto o dañado."
+                        }
                 });
             }
         }

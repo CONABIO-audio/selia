@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 import api from '../services/api';
 import { argsAtom } from '../services/state';
 import { useAtom } from 'jotai';
+import ErrorMessage from './elements/ErrorMessage';
 
 function TopInfo() {
     const [values, setValues] = useState({})
@@ -73,6 +74,7 @@ export default function Uploader(){
                 <Navbar />
                 <Content />
             </div>
+            <ErrorMessage />
         </div>
     )
 }
