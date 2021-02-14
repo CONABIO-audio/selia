@@ -42,7 +42,7 @@ export default function Validate(props) {
                     "collection_site": args.collection_site,
                     "deployment": args.deployment,
                     "collection_metadata": args.collection_metadata,
-                    "mime_type": args.mime_type[0]
+                    "mime_type": args.mime_types.find(type => type[1] == unvalidated[i].type.replace("audio/wav","audio/x-wav"))[0]
                 }
                 api.validate(data).then((resp) => {
                     dispatch({type: 'CHANGE_STATUS',

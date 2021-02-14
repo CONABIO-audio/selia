@@ -76,7 +76,7 @@ function Content(){
         } catch {
             let filesArray = [];
             for (let i = 0; i < items.length; i++) {
-                if(args.mime_type[1] == items[i].type.replace("audio/wav","audio/x-wav"))
+                if(args.mime_types.find(type => type[1] == items[i].type.replace("audio/wav","audio/x-wav")))
                     extractData(items[i])
                     filesArray.push(items[i])
             }
@@ -85,7 +85,7 @@ function Content(){
     }
     const scanFiles = (item, file) => {
         if (item.isFile) {
-            if(args.mime_type[1] == file.getAsFile().type.replace("audio/wav","audio/x-wav")) {
+            if(args.mime_types.find(type => type[1] == file.type.replace("audio/wav","audio/x-wav"))) {
                 extractData(file.getAsFile())
                 return file.getAsFile()
             }
@@ -95,7 +95,7 @@ function Content(){
             directoryReader.readEntries(entries => {
                 entries.forEach(entry => {
                     entry.file(function(file) {
-                        if(args.mime_type[1] == file.type.replace("audio/wav","audio/x-wav")){
+                        if(args.mime_types.find(type => type[1] == file.type.replace("audio/wav","audio/x-wav"))){
                             extractData(file);
                             fileArray.push(file);
                         }
@@ -113,6 +113,7 @@ function Content(){
                 dispatch({type: 'ADD_ITEM',
                     payload: {
                         file: file.name,
+                        type: file.type,
                         date: metadata[1],
                         timezones: timezone,
                         timezoneValue: timezone[0],
@@ -131,6 +132,7 @@ function Content(){
                     payload:{
                         file: file.name,
                         date: date,
+                        type: file.type,
                         timezones: timezone,
                         timezoneValue: timezone[0],
                         metadata: metadata,

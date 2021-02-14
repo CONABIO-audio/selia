@@ -16,7 +16,7 @@ function TopInfo() {
         setValues(dataFromParams);
         let temp = {};
         Object.entries(dataFromParams).forEach(([key,value]) => {
-            if(key != 'collection_metadata' && key != 'mime_type') 
+            if(key != 'collection_metadata' && key != 'mime_types') 
                 temp[key] = value[0];
             else
                 temp[key] = value;

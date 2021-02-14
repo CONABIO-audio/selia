@@ -81,7 +81,8 @@ class UploadAppView(SeliaPermissionsMixin, TemplateView):
         if not user.is_authenticated:
             return False
 
-        return self.collection.can_add_items(user)
+        #return self.collection.can_add_items(user)
+        return self.collection.has_permission(user,'add_collection_item')
 
     def get_context_data(self, **kwargs):
         items = {
