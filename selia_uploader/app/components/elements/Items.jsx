@@ -54,7 +54,7 @@ function Items(props) {
                                 `}>{item.file}</p>
                                 <DatePicker
                                   selected={new Date(item.date)}
-                                  onChange={date => {setStartDate(date); onChangeValue(date, item, 'date')}}
+                                  onChange={date => {onChangeValue(date.toISOString(), item, 'date')}}
                                   showTimeSelect
                                   minTime={setHours(setMinutes(setSeconds(new Date(), 0), 0), 17)}
                                   maxTime={setHours(setMinutes(setSeconds(new Date(), 5), 5), 20)}
@@ -68,6 +68,7 @@ function Items(props) {
                                 {item.error ? (
                                     <div css={css`
                                         display: flex;
+                                        width: 20%
                                     `}>
                                         <p css={css`
                                             width: 90%!important;

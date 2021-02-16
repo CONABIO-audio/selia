@@ -11,13 +11,14 @@ import mediaInfo from '../services/mediaInfo';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useAtom } from 'jotai';
-import { argsAtom } from '../services/state';
+import { argsAtom, currentDivAtom } from '../services/state';
 
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Content(){
     const [files, setFiles] = useState([])
     const [args, setArgs] = useAtom(argsAtom)
+    const [current] = useAtom(currentDivAtom)
     const [showLoading,setLoading] = useState('none');
     let showDropZone = false;
 
@@ -205,12 +206,16 @@ function Content(){
             (<> 
                 <AlterInfo items={items} />
                 <Validate items={items}/>
-                <ActionButton name='Subir archivos' icon={faCloudUploadAlt} 
-                    action={() => validateFiles()} statusType='Validado' align='45px' />
+                {current == 'preview' && <ActionButton name='Subir archivos' icon={faCloudUploadAlt} 
+                    action={() => validateFiles()} statusType='preview' align='45px' />}
             </>) : null}
         </div>
     )
 
+}
+
+export const hasClass = (idOrClass,className) => {
+    return document.querySelector(idOrClass).classList.contains(className);
 }
 
 export default Content;

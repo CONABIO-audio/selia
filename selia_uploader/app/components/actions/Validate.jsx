@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import api from '../../services/api';
-import { argsAtom } from '../../services/state';
+import ActionButton from '../elements/ActionButtons';
+import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import { hasClass } from '../Content';
+import { argsAtom, currentDivAtom } from '../../services/state';
 import { useAtom } from 'jotai';
 
 export default function Validate(props) {
     const dispatch = useDispatch();
     const [args, setArgs] = useAtom(argsAtom)
+    const [current] = useAtom(currentDivAtom)
 
-    const changeStatus = () => {
-        let unvalidated = props.items.filter(item => item.status.name == "Por Validar");
+    const changeStatus = (status,type) => {
+        let unvalidated = props.items.filter(item => item.status[type] == status);
         for(let i=0;i<unvalidated.length;i++) {
             dispatch({type: 'CHANGE_STATUS',
                 payload:{item: unvalidated[i],
@@ -18,9 +22,10 @@ export default function Validate(props) {
         }
     }
 
-    const validateFiles = () => {
-        changeStatus();
-        let unvalidated = props.items.filter(item => item.status.name == "Por Validar");
+    const validateFiles = (status,type) => {
+        changeStatus(status,type);
+        let unvalidated = props.items.filter(item => item.status[type] == status);
+        console.log(unvalidated)
         for(let i=0;i<unvalidated.length;i++) {
             let date = new Date(unvalidated[i].date)
             if(Object.keys(unvalidated[i].metadata).length) {
@@ -96,9 +101,14 @@ export default function Validate(props) {
 
     useEffect(() => {
         if(props.items.filter(item => item.status.name == "Por Validar").length) {
-            validateFiles()
+            validateFiles("Por Validar",'name')
         }
     });
 
-    return null;
+    return (
+        <>
+        {current == 'error' && <ActionButton name='Validar archivos' icon={faClipboardCheck}
+            action={() => validateFiles("error",'value')} statusType='error' align='45px' />}
+        </>
+    );
 }
