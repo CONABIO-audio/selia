@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import Items from './elements/Items';
-import ActionButton from './elements/ActionButtons';
 import Validate from './actions/Validate';
+import Upload from './actions/Upload';
 import AlterInfo from './actions/AlterInfo';
 import DeleteFiles from './actions/DeleteFile';
 import timezones from '../services/timezones';
@@ -12,8 +12,6 @@ import mediaInfo from '../services/mediaInfo';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAtom } from 'jotai';
 import { argsAtom, currentDivAtom } from '../services/state';
-
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Content(){
     const [files, setFiles] = useState([])
@@ -204,10 +202,9 @@ function Content(){
             </div>
             {items.length ? 
             (<> 
-                <AlterInfo items={items} />
+                {current == 'error' && <AlterInfo items={items} />}
                 <Validate items={items}/>
-                {current == 'preview' && <ActionButton name='Subir archivos' icon={faCloudUploadAlt} 
-                    action={() => validateFiles()} statusType='preview' align='45px' />}
+                {current == 'preview' && <Upload items={items} />}
             </>) : null}
         </div>
     )

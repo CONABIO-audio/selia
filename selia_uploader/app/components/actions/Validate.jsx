@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import api from '../../services/api';
 import ActionButton from '../elements/ActionButtons';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
-import { hasClass } from '../Content';
 import { argsAtom, currentDivAtom } from '../../services/state';
 import { useAtom } from 'jotai';
 
@@ -25,7 +24,6 @@ export default function Validate(props) {
     const validateFiles = (status,type) => {
         changeStatus(status,type);
         let unvalidated = props.items.filter(item => item.status[type] == status);
-        console.log(unvalidated)
         for(let i=0;i<unvalidated.length;i++) {
             let date = new Date(unvalidated[i].date)
             if(Object.keys(unvalidated[i].metadata).length) {
@@ -34,8 +32,8 @@ export default function Validate(props) {
                     "licence": args.licence,
                     "captured_on": date.toISOString(),
                     "captured_on_year": date.getFullYear(),
-                    "captured_on_month": date.getMonth(),
-                    "captured_on_day": date.getDay(),
+                    "captured_on_month": date.getMonth()+1,
+                    "captured_on_day": date.getDate(),
                     "captured_on_hour": date.getHours(),
                     "captured_on_minute": date.getMinutes(),
                     "captured_on_second": date.getSeconds(),
@@ -53,6 +51,18 @@ export default function Validate(props) {
                     dispatch({type: 'CHANGE_STATUS',
                         payload:{item: unvalidated[i],
                                 newStatus: {value: 'preview', name: 'Validado'}}
+                    });
+                    dispatch({type: 'CHANGE_VALUE',
+                        payload:{item: unvalidated[i],
+                                field: 'error',
+                                value: false
+                            }
+                    });
+                    dispatch({type: 'CHANGE_VALUE',
+                        payload:{item: unvalidated[i],
+                                field: 'errorMeaning',
+                                value: ''
+                            }
                     });
                 })
                 .catch(err => {

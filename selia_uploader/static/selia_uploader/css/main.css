@@ -312,12 +312,14 @@ border-bottom-left-radius: 8px;
 }
 /* LEFT INFO */
 .top-info {
-  margin-top: 15px;
+  margin-top: 1.5em;
   margin-bottom: 20px;
+  margin-left: 1em;
   width: 20%;
   background: #f8f9fa;
   padding: 1em;
   border-radius: 6px;
+  box-shadow: 3px 3px 6px 1px #343a409c;
 }
 #leftInfo input {
   display: block;

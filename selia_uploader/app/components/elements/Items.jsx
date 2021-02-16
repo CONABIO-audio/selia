@@ -56,8 +56,6 @@ function Items(props) {
                                   selected={new Date(item.date)}
                                   onChange={date => {onChangeValue(date.toISOString(), item, 'date')}}
                                   showTimeSelect
-                                  minTime={setHours(setMinutes(setSeconds(new Date(), 0), 0), 17)}
-                                  maxTime={setHours(setMinutes(setSeconds(new Date(), 5), 5), 20)}
                                   dateFormat="dd/MM/yy h:mm:ss"
                                 />
                                 <select className={"selectTimezone"} onChange={(e) => onChangeValue(e.target.value,item,'timezoneValue')} value={item.timezoneValue}>
