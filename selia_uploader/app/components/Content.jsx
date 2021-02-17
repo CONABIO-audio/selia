@@ -13,8 +13,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useAtom } from 'jotai';
 import { argsAtom, currentDivAtom } from '../services/state';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+
 function Content(){
     const [files, setFiles] = useState([])
+    const [badFileType, setWarningFileType] = useState([false,''])
     const [args, setArgs] = useAtom(argsAtom)
     const [current] = useAtom(currentDivAtom)
     const [showLoading,setLoading] = useState('none');
@@ -75,9 +79,14 @@ function Content(){
         } catch {
             let filesArray = [];
             for (let i = 0; i < items.length; i++) {
-                if(args.mime_types.find(type => type[1] == items[i].type.replace("audio/wav","audio/x-wav")))
+                if(args.mime_types.find(type => type[1] == items[i].type.replace("audio/wav","audio/x-wav"))) {
                     extractData(items[i])
                     filesArray.push(items[i])
+                    setWarningFileType([false,''])
+                } else {
+                    let types = args.mime_types.map(type => type[1])
+                    setWarningFileType([true,'Se esparaba un archivo de tipo ' + types + ' y se obtuvo un archivo de tipo ' + items[i].type])
+                }
             }
             setFiles(files.concat(filesArray));
         }
@@ -86,7 +95,11 @@ function Content(){
         if (item.isFile) {
             if(args.mime_types.find(type => type[1] == file.type.replace("audio/wav","audio/x-wav"))) {
                 extractData(file.getAsFile())
+                setWarningFileType([false,''])
                 return file.getAsFile()
+            } else {
+                let types = args.mime_types.map(type => type[1])
+                setWarningFileType([true,'Se esparaba un archivo de tipo ' + types + ' y se obtuvo un archivo de tipo ' + file.type])
             }
         } else if (item.isDirectory) {
             let directoryReader = item.createReader();
@@ -199,6 +212,23 @@ function Content(){
                 <input className="inputFile" id="file" type="file" onInput={handleFileUpload}/>
                 <label className="inputFile" htmlFor="file"></label>
                 <DeleteFiles items={items} files={files} setFiles={setFiles} />
+            </div>
+            <div css={css`
+                display: ${badFileType[0] ? 'block' : 'none'};
+                position: absolute;
+                bottom: 0.7em;
+                left: 50%;
+                transform: translateX(-50%);
+                color: white;
+                text-align: center;
+            `}>
+                <FontAwesomeIcon icon={faExclamationTriangle}/> Tipo de archivo incompatible
+                <p css={css`    
+                    margin: 0;
+                    font-size: 14px;
+                    margin-top: 5px;
+                `}
+                >{badFileType[1]}</p>
             </div>
             {items.length ? 
             (<> 
