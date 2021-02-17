@@ -11,16 +11,21 @@ export default function Upload(props) {
     const uploadFiles = () => {
         let toUpload = props.items.filter(item => item.status.name == 'Validado')
         for(let i=0;i<toUpload.length;i++) {
-            dispatch({type: 'CHANGE_STATUS',
-                payload:{item: toUpload[i],
-                        newStatus: {value: 'uploading', name: 'Subiendo'}}
-            });
-            setTimeout(function(){ 
+            let percent = 0;
+            let timerId = setInterval((params) => {
+                percent += Math.floor(Math.random() * (20 - 1)) + 1;
                 dispatch({type: 'CHANGE_STATUS',
                     payload:{item: toUpload[i],
-                            newStatus: {value: 'completed', name: 'Subido'}}
+                            newStatus: {value: 'uploading', name: percent + '%'}}
                 });
-            }, 4000);
+                if(percent >= 100){
+                    dispatch({type: 'CHANGE_STATUS',
+                        payload:{item: toUpload[i],
+                                newStatus: {value: 'completed', name: 'Subido'}}
+                    });
+                    clearInterval(timerId);
+                }
+            },500)
         }
     }
 

@@ -45,9 +45,12 @@ function Items(props) {
                 if(item.status.value == props.idDiv) {
                     return (
                         <li key={index}>
-                                {item.selected ? 
-                                        <FontAwesomeIcon icon={faCheckCircle} onClick={() => onClick(item)}/> : 
-                                        <FontAwesomeIcon icon={faCircle} onClick={() => onClick(item)}/>}
+                                {(item.status.value == 'error' || item.status.value == 'preview')
+                                    && <div>
+                                        {item.selected ? 
+                                                <FontAwesomeIcon icon={faCheckCircle} onClick={() => onClick(item)}/> : 
+                                                <FontAwesomeIcon icon={faCircle} onClick={() => onClick(item)}/>}
+                                    </div>}
                                 <p css={css`
                                     padding-left: 10px;
                                     width: calc(20% - 10px);
