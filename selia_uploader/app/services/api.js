@@ -15,4 +15,17 @@ export default {
             data: data
         })
     },
+    upload(data,onUpload) {
+        const csrftoken = Cookies.get('csrftoken');
+        return axios({
+            method: 'post',
+            url: 'http://localhost:8000/api/collections/v1/collection_items/',
+            withCredentials: true,
+            headers: {
+                'X-CSRFToken': csrftoken,
+            },
+            data: data,
+            onUploadProgress: onUpload
+        })
+    }
 }

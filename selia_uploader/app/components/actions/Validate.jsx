@@ -6,6 +6,29 @@ import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { argsAtom, currentDivAtom } from '../../services/state';
 import { useAtom } from 'jotai';
 
+export const dataJson = (args,date,file) => {
+    return {
+        "item_type": args.item_type,
+        "licence": args.licence,
+        "captured_on": date.toISOString(),
+        "captured_on_year": date.getFullYear(),
+        "captured_on_month": date.getMonth()+1,
+        "captured_on_day": date.getDate(),
+        "captured_on_hour": date.getHours(),
+        "captured_on_minute": date.getMinutes(),
+        "captured_on_second": date.getSeconds(),
+        "captured_on_timezone": file.timezoneValue,
+        "media_info": file.metadata,
+        "collection": args.collection,
+        "sampling_event": args.sampling_event,
+        "collection_device": args.collection_device,
+        "collection_site": args.collection_site,
+        "deployment": args.deployment,
+        "collection_metadata": args.collection_metadata,
+        "mime_type": args.mime_types.find(type => type[1] == file.type.replace("audio/wav","audio/x-wav"))[0]
+    }
+}
+
 export default function Validate(props) {
     const dispatch = useDispatch();
     const [args, setArgs] = useAtom(argsAtom)
@@ -27,26 +50,7 @@ export default function Validate(props) {
         for(let i=0;i<unvalidated.length;i++) {
             let date = new Date(unvalidated[i].date)
             if(Object.keys(unvalidated[i].metadata).length) {
-                let data = {
-                    "item_type": args.item_type,
-                    "licence": args.licence,
-                    "captured_on": date.toISOString(),
-                    "captured_on_year": date.getFullYear(),
-                    "captured_on_month": date.getMonth()+1,
-                    "captured_on_day": date.getDate(),
-                    "captured_on_hour": date.getHours(),
-                    "captured_on_minute": date.getMinutes(),
-                    "captured_on_second": date.getSeconds(),
-                    "captured_on_timezone": unvalidated[i].timezoneValue,
-                    "media_info": unvalidated[i].metadata,
-                    "collection": args.collection,
-                    "sampling_event": args.sampling_event,
-                    "collection_device": args.collection_device,
-                    "collection_site": args.collection_site,
-                    "deployment": args.deployment,
-                    "collection_metadata": args.collection_metadata,
-                    "mime_type": args.mime_types.find(type => type[1] == unvalidated[i].type.replace("audio/wav","audio/x-wav"))[0]
-                }
+                let data = dataJson(args,date,unvalidated[i]);
                 api.validate(data).then((resp) => {
                     dispatch({type: 'CHANGE_STATUS',
                         payload:{item: unvalidated[i],

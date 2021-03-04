@@ -234,7 +234,7 @@ function Content(){
             (<> 
                 {current == 'error' && <AlterInfo items={items} />}
                 <Validate items={items}/>
-                {current == 'preview' && <Upload items={items} />}
+                {current == 'preview' && <Upload items={items} files={files} />}
             </>) : null}
         </div>
     )
