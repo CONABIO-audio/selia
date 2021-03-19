@@ -14,7 +14,7 @@ django-autocomplete-light==3.7.0.dev0
 django-crispy-forms==1.9.2
 django-filter==2.3.0
 django-widget-tweaks==1.4.8
-djangorestframework==3.11.1
+djangorestframework==3.11.2
 idna==2.10
 irekua-autocomplete==0.1.2
 irekua-database==0.1.2
