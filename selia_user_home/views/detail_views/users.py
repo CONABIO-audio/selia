@@ -52,10 +52,10 @@ class DetailUserView(SeliaDetailView):
     def get_institution_formset(self, kwargs):
         return None
 
-    def get_context_data(self, kwargs):
+    def get_context_data(self, *args, **kwargs):
         return {
-            "institution_formset": self.get_institution_formset(kwargs)
-            ** super().get_context_data(kwargs)
+            "institution_formset": self.get_institution_formset(kwargs),
+            **super().get_context_data(*args, **kwargs),
         }
 
     def get_object(self, *args, **kwargs):

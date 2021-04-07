@@ -61,7 +61,11 @@ a {
 /* Footers */
 
 footer {
-  height: var(--footer-height);
+  /*height: var(--footer-height);*/
+  height: fit-content;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .partner-logos img {
@@ -170,6 +174,10 @@ footer .navbar-brand img {
 
 #view_content {
   background-color: var(--light-green)!important;
+  position: relative;
+  min-height: 100%;
+  height: fit-content!important;
+  padding-bottom: 255px;
 }
 
 /* List */

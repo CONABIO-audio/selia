@@ -72,9 +72,11 @@
     </div>
     <div class="row">
       {% listattribute %}
-        {% trans 'Institution' %}
+        {% trans 'Institutions' %}
       {% attributevalue %}
-        {{ item.user.institution }}
+        {% for institution in item.user.institutions.all %}
+          {{ institution }}
+        {% endfor %}
       {% endlistattribute %}
     </div>
   </div>

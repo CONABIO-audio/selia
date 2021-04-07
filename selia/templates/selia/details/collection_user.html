@@ -27,9 +27,11 @@
   </div>
   <div class="col">
     {% detailitem %}
-      {% trans 'Institution' %}
+      {% trans 'Institutions' %}
     {% endhead %}
-      {{ object.user.institution }}
+      {% for institution in object.user.institutions.all %}
+        {{ institution }}
+      {% endfor %}
     {% enddetailitem %}
   </div>
 </div>
