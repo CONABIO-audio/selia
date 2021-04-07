@@ -22,7 +22,7 @@ class ListUserCollectionsView(SeliaListView):
         user = self.request.user
 
         queryset = Collection.objects.all().annotate(
-            item_count=Count("samplingevent__samplingeventdevice__item")
+            item_count=Count("collectionitem")
         )
 
         if user.is_special:

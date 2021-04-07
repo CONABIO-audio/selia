@@ -61,12 +61,12 @@ class SeliaListView(ListView):
 
     def get_ordering_choices(self):
         orderings = []
-        for field, label in self.ordering_fields:
+        for field in self.ordering_fields:
             orderings.append(
                 (
                     '-{field}'.format(field=field),
                     '{order} {label}'.format(
-                        label=label, order=_('↓'))
+                        label=field, order=_('↓'))
                 )
             )
 
@@ -74,7 +74,7 @@ class SeliaListView(ListView):
                 (
                     field,
                     '{order} {label}'.format(
-                        label=label, order=_('↑'))
+                        label=field, order=_('↑'))
                 )
             )
         return orderings

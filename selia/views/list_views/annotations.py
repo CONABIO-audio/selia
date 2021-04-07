@@ -1,7 +1,7 @@
 from django.views.generic.detail import SingleObjectMixin
 
 from irekua_collections.models import CollectionAnnotation
-from irekua_collections.models import DeploymentItem
+from irekua_items.models import Item
 from irekua_collections.filters import collection_annotations
 
 from selia.views.list_views.base import SeliaListView
@@ -20,7 +20,7 @@ class ListAnnotationView(SeliaListView, SingleObjectMixin):
     ordering_fields = collection_annotations.ordering_fields
 
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object(queryset=DeploymentItem.objects.all())
+        self.object = self.get_object(queryset=Item.objects.all())
         return super().get(request, *args, **kwargs)
 
     def get_initial_queryset(self):
@@ -36,7 +36,7 @@ class ListAnnotationView(SeliaListView, SingleObjectMixin):
 
     def get_prev_object(self):
         prev_object = (
-            DeploymentItem.objects.filter(pk__lt=self.kwargs["pk"])
+            Item.objects.filter(pk__lt=self.kwargs["pk"])
             .order_by("pk")
             .last()
         )

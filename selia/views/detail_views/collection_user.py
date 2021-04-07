@@ -5,7 +5,6 @@ from irekua_collections.models import CollectionUser
 from irekua_collections.models import SamplingEvent
 from irekua_collections.models import CollectionSite
 from irekua_collections.models import CollectionDevice
-from irekua_collections.models import DeploymentItem
 from irekua_collections.models import CollectionAnnotation
 from irekua_permissions.data_collections import users as user_permissions
 from irekua_permissions import licences as licence_permissions

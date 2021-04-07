@@ -4,9 +4,7 @@ from .collection_sites import ListCollectionSitesView
 from .collection_users import ListCollectionUserView
 from .licences import ListCollectionLicencesView
 from .open_collections import ListOpenCollectionsView
-from .deployment_items import ListDeploymentItemsView
 from .deployments import ListDeploymentsView
-from .sampling_event_items import ListSamplingEventItemsView
 from .sampling_events import ListCollectionSamplingEventView
 from .user_collections import ListUserCollectionsView
 from .user_devices import ListUserPhysicalDeviceView
@@ -23,9 +21,7 @@ __all__ = [
     "ListCollectionUserView",
     "ListCollectionLicencesView",
     "ListOpenCollectionsView",
-    "ListDeploymentItemsView",
     "ListDeploymentsView",
-    "ListSamplingEventItemsView",
     "ListCollectionSamplingEventView",
     "ListUserCollectionsView",
     "ListUserPhysicalDeviceView",

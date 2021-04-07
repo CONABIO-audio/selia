@@ -33,21 +33,21 @@ urlpatterns = [
         list_views.ListOpenCollectionsView.as_view(),
         name="open_collections",
     ),
-    path(
-        "deployments/detail/<pk>/items/",
-        list_views.ListDeploymentItemsView.as_view(),
-        name="deployent_items",
-    ),
+    #path(
+    #    "deployments/detail/<pk>/items/",
+    #    list_views.ListDeploymentItemsView.as_view(),
+    #    name="deployent_items",
+    #),
     path(
         "sampling_events/detail/<pk>/devices/",
         list_views.ListDeploymentsView.as_view(),
         name="sampling_event_devices",
     ),
-    path(
-        "sampling_events/detail/<pk>/items/",
-        list_views.ListSamplingEventItemsView.as_view(),
-        name="sampling_event_items",
-    ),
+    #path(
+    #    "sampling_events/detail/<pk>/items/",
+    #    list_views.ListSamplingEventItemsView.as_view(),
+    #    name="sampling_event_items",
+    #),
     path(
         "collections/detail/<name>/sampling_events/",
         list_views.ListCollectionSamplingEventView.as_view(),

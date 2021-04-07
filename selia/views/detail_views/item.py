@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.http import urlencode
 
 from irekua_database.autocomplete import get_autocomplete_widget
-from irekua_collections.models import DeploymentItem
+from irekua_items.models import Item
 from irekua_items.models import Tag
 from irekua_permissions.items import items as item_permissions
 from selia_templates.widgets import BootstrapDateTimePickerInput
@@ -17,7 +17,7 @@ mimetypes.init()
 
 
 class DetailItemView(SeliaDetailView):
-    model = DeploymentItem
+    model = Item
     delete_redirect_url = "selia:collection_items"
 
     template_name = "selia/detail/item.html"
@@ -32,7 +32,7 @@ class DetailItemView(SeliaDetailView):
             metadata = JsonField()
 
             class Meta:
-                model = DeploymentItem
+                model = Item
                 fields = ["captured_on", "tags", "metadata"]
 
                 widgets = {
@@ -74,7 +74,7 @@ class DetailItemView(SeliaDetailView):
 
     def get_next_object(self):
         next_object = (
-            DeploymentItem.objects.filter(
+            Item.objects.filter(
                 pk__gt=self.kwargs["pk"],
                 sampling_event_device=self.object.sampling_event_device.pk,
             )
@@ -85,7 +85,7 @@ class DetailItemView(SeliaDetailView):
 
     def get_prev_object(self):
         prev_object = (
-            DeploymentItem.objects.filter(
+            Item.objects.filter(
                 pk__lt=self.kwargs["pk"],
                 sampling_event_device=self.object.sampling_event_device.pk,
             )

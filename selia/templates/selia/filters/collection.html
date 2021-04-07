@@ -65,7 +65,9 @@
           <div class="row">
             <div class="col">
               {% trans 'Contains' as label %}
-              {{ filter.form.institution__institution_name__icontains | selia_filter:label }}
+              {% for institution in filter.form.institutions.all %}
+                {{ institution__institution_name__icontains | selia_filter:label }}
+              {% endfor %}
             </div>
           </div>
           <div class="dropdown-divider"></div>
@@ -76,7 +78,9 @@
           <div class="row">
             <div class="col">
               {% trans 'Contains' as label %}
-              {{ filter.form.institution__country__icontains | selia_filter:label }}
+              {% for institution in filter.form.institutions.all %}
+                {{ institution__country__icontains | selia_filter:label }}
+              {% endfor %}
             </div>
           </div>
 
@@ -88,7 +92,9 @@
           <div class="row">
             <div class="col">
               {% trans 'Equals' as label %}
-              {{ filter.form.institution__institution_code | selia_filter:label }}
+              {% for institution in filter.form.institutions.all %}
+                {{ institution__institution_code | selia_filter:label }}
+              {% endfor %}
             </div>
           </div>
 

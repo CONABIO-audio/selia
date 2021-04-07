@@ -16,14 +16,14 @@ class CollectionUpdateForm(forms.ModelForm):
         model = Collection
         fields = [
             'name',
-            'institution',
+            'institutions',
             'description',
             'metadata',
             'logo'
         ]
 
         widgets = {
-            'institution': autocomplete.ModelSelect2(
+            'institutions': autocomplete.ModelSelect2(
                 url='irekua_autocomplete:institutions_autocomplete'
             )
         }
