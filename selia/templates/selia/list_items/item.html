@@ -11,7 +11,7 @@
       {% listtitle %}
       <div class="mr-2 bg-dark rounded border" style="height: 100px; width: 100px;">
         <a href="{% url 'selia:item_detail' item.pk %}" class="w-100 h-100">
-          <img style="height: 100%; width: 100%; object-fit: contain;" class="mx-auto d-block" src="{% url 'selia_thumbnails:thumbnails' %}?pk={{ item.pk }}&height=x100&crop=center">
+          <img style="height: 100%; width: 100%; object-fit: contain;" class="mx-auto d-block" src="{% url 'irekua_thumbnails:thumbnails' %}?pk={{ item.pk }}&height=x100&crop=center">
         </a>
       </div>
       {% endlistimage %}

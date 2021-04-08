@@ -28,17 +28,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div class="container p-3">
-            <div class="row w-100">
-              <h6 class="dropdown-header w-100 text-center">{% trans 'Name' %}</h6>
-            </div>
-            <div class="row">
-              <div class="col">
-                {% trans "Contains" as label %}
-                {{ filter.form.site__name__icontains | selia_filter:label }}
-              </div>
-            </div>
-
-            <div class="dropdown-divider"></div>
 
             <div class="row w-100">
               <h6 class="dropdown-header w-100 text-center">{% trans 'Locality' %}</h6>
@@ -46,59 +35,9 @@
             <div class="row">
               <div class="col">
                 {% trans "Contains" as label %}
-                {{ filter.form.site__locality__name__icontains | selia_filter:label }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-  <div class="col">
-      <div class="dropdown">
-        <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseLatitude">
-          {% trans 'Location' %}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div class="container p-3">
-            <div class="row w-100">
-              <h6 class="dropdown-header w-100 text-center">{% trans 'Latitude' %}</h6>
-            </div>
-            <div class="row">
-              <div class="col">
-                {% trans 'Greater than' as label %}
-                {{ filter.form.site__latitude__gt | selia_filter:label }}
-              </div>
-              <div class="col">
-                {% trans 'Less than' as label %}
-                {{ filter.form.site__latitude__lt | selia_filter:label }}
-              </div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="row w-100">
-              <h6 class="dropdown-header w-100 text-center">{% trans 'Longitude' %}</h6>
-            </div>
-            <div class="row">
-              <div class="col">
-                {% trans 'Greater than' as label %}
-                {{ filter.form.site__longitude__gt | selia_filter:label }}
-              </div>
-              <div class="col">
-                {% trans 'Less than' as label %}
-                {{ filter.form.site__longitude__lt | selia_filter:label }}
-              </div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="row w-100">
-              <h6 class="dropdown-header w-100 text-center">{% trans 'Altitude' %}</h6>
-            </div>
-            <div class="row">
-              <div class="col">
-                {% trans 'Greater than' as label %}
-                {{ filter.form.site__altitude__gt | selia_filter:label }}
-              </div>
-              <div class="col">
-                {% trans 'Less than' as label %}
-                {{ filter.form.site__altitude__lt | selia_filter:label }}
+                {% for locality in filter.form.site__localities %}
+                  {{ locality__name__icontains | selia_filter:label }}
+                {% endfor %}
               </div>
             </div>
           </div>
