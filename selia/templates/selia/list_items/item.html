@@ -60,37 +60,7 @@
       </div>
       {% endif %}
     </div>
-
-    <div class="col">
-      <div class="row">
-        {% listattribute %}
-          <a href="{% url 'selia:collection_site_detail' item.sampling_event_device.sampling_event.collection_site.pk %}">
-            {% trans 'Site Name' %}
-          </a>
-        {% attributevalue %}
-            {{ item.sampling_event_device.sampling_event.collection_site.collection_name }}
-        {% endlistattribute %}
-      </div>
-      <div class="row">
-        {% listattribute %}
-          <a href="{% url 'selia:sampling_event_detail' item.sampling_event_device.sampling_event.pk %}">
-            {% trans 'Sampling event' %}
-          </a>
-        {% attributevalue %}
-            {{ item.sampling_event_device.sampling_event.started_on | date:"SHORT_DATE_FORMAT" }} - {{ item.sampling_event_device.sampling_event.ended_on | date:"SHORT_DATE_FORMAT" }}
-        {% endlistattribute %}
-      </div>
-      <div class="row">
-        {% listattribute %}
-          <a href="{% url 'selia:sampling_event_device_detail' item.sampling_event_device.collection_device.pk %}">
-            {% trans 'Device Name' %}
-          </a>
-        {% attributevalue %}
-            {{ item.sampling_event_device.collection_device.collection_name }}
-        {% endlistattribute %}
-      </div>
-    </div>
-
+    {% comment %}
     <div class="col">
       <div class="row">
         {% listsummary %}
@@ -107,5 +77,6 @@
         {% endlistsummary %}
       </div>
     </div>
+    {% endcomment %}
   </div>
 {% endblock list-item-content %}
