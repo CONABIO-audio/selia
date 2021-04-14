@@ -83,7 +83,7 @@
       {% listsummary %}
         {% trans 'Items' %}
       {% summarycount %}
-        {{ item.deployments.items.count }}
+        {{ item.items.count }}
       {% summarybuttons %}
         <a href="{% url 'selia:create_item' %}?collection={{ collection.name }}&collection_device={{ item.pk }}&sampling_event_device_filter-collection_device={{ item.pk }}">
           {% add_button %}
@@ -97,7 +97,7 @@
       {% listsummary %}
         {% trans 'Sampling events' %}
       {% summarycount %}
-        {{ item.samplingevents_set.count }}
+        {{ item.collection.samplingevent_set.all.count }}
         {% summarybuttons %}
         <a href="{% url 'selia:create_collection_device_create_form' %}?collection={{ collection.name }}&collection_device={{ item.pk }}">
           {% add_button %}

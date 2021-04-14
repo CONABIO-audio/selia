@@ -12,6 +12,8 @@ def point_features_from_sampling_event(sampling_event, **kwargs):
     else:
         icon = static('selia_maps/site.png')
 
+    features = site.geom().geojson
+    '''
     features = {
         "type": "point",
         "coordinates": [
@@ -29,6 +31,7 @@ def point_features_from_sampling_event(sampling_event, **kwargs):
 
     for key, value in kwargs.items():
         features["style"]["image"][key] = value
+    '''
 
     return features
 
@@ -66,22 +69,10 @@ def point_features_from_sampling_event_device(sampling_event_device, **kwargs):
 
 
 def point_features_from_site(site, **kwargs):
-    features = {
-        "type": "point",
-        "coordinates": [
-            site.longitude,
-            site.latitude
-        ],
-        "style": {
-            "image": {
-                "url": static('selia_maps/site.png'),
-                "scale": "0.06"
-            }
-        },
-        "name": _('Site {}').format(site.pk)
-    }
-
+    features = site.geom().geojson
+    '''
     for key, value in kwargs.items():
         features["style"]["image"][key] = value
+    '''
 
     return features

@@ -55,8 +55,7 @@ def collection_site_map(collection_site):
     ]
 
     return {
-        "latitude": collection_site.site.latitude,
-        "longitude": collection_site.site.longitude,
+        "geom": collection_site.site.geom().geojson,
         "zoom": 14,
         "map_id": "map_{}_{}".format(collection_site.pk, str(uuid4())[:5]),
         "layer_list": json.dumps(layer_list),
@@ -97,9 +96,9 @@ def sampling_event_map(sampling_event):
         },
     ]
 
+
     return {
-        "latitude": sampling_event.collection_site.site.latitude,
-        "longitude": sampling_event.collection_site.site.longitude,
+        "geom": sampling_event.collection_site.site.geom().geojson,
         "zoom": 14,
         "map_id": "map_{}_{}".format(sampling_event.pk, str(uuid4())[:5]),
         "layer_list": json.dumps(layer_list),

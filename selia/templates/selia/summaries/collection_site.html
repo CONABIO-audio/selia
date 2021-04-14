@@ -54,7 +54,7 @@
       <div class="col-1">
       </div>
       <div class="col-2">
-        <a href="{% url 'selia:create_sampling_event_device' %}?collection={{ collection_site.collection.name }}&collection_site={{ collection_site.pk }}&sampling_event_filter-collection_site={{ collection_site.pk }}">{% add_button %}</a>
+        <a href="{% url 'selia:create_collection_device' %}?collection={{ collection_site.collection.name }}">{% add_button %}</a>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-{% extends 'selia/detail/base.html' %}
+{% extends 'selia_templates/detail/base.html' %}
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_buttons %}
@@ -16,7 +16,7 @@
 
 {% block toolbar-items %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'selia:create_sampling_event_device' %}?collection={{ collection.name }}&collection_device={{ collection_device.pk }}">
+    <a class="nav-link" href="{% url 'selia:create_collection_device' %}?collection={{ collection.name }}&collection_device={{ collection_device.pk }}">
       {% trans 'Deploy' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
     </a>
   </li>

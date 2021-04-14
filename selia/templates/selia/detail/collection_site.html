@@ -1,4 +1,4 @@
-{% extends 'selia/detail/base.html' %}
+{% extends 'selia_templates/detail/base.html' %}
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_maps %}
@@ -17,7 +17,7 @@
 
 {% block toolbar-items %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'selia:create_sampling_event_device' %}?collection={{ collection_site.collection.name }}&collection_site={{ collection_site.pk }}&sampling_event_filter-collection_site={{ collection_site.pk }}">
+    <a class="nav-link" href="{% url 'selia:create_collection_device' %}?collection={{ collection_site.collection.pk }}">
       {% trans 'Add deployment' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i>
     </a>
   </li>
