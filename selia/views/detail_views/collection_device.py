@@ -62,7 +62,7 @@ class DetailCollectionDeviceView(SeliaDetailView, SingleObjectMixin):
         context['collection_device'] = self.object
         context['collection'] = self.object.collection
 
-        collection_device_type = CollectionDeviceType.objects.get(
+        collection_device_type = CollectionTypeDeviceType.objects.get(
             collection_type=self.object.collection.collection_type,
             device_type=self.object.physical_device.device.device_type)
         context['collection_device_type'] = collection_device_type

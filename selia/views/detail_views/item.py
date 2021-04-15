@@ -76,7 +76,6 @@ class DetailItemView(SeliaDetailView):
         next_object = (
             Item.objects.filter(
                 pk__gt=self.kwargs["pk"],
-                sampling_event_device=self.object.sampling_event_device.pk,
             )
             .order_by("pk")
             .first()
@@ -87,7 +86,6 @@ class DetailItemView(SeliaDetailView):
         prev_object = (
             Item.objects.filter(
                 pk__lt=self.kwargs["pk"],
-                sampling_event_device=self.object.sampling_event_device.pk,
             )
             .order_by("pk")
             .last()
@@ -98,18 +96,15 @@ class DetailItemView(SeliaDetailView):
         context = super().get_context_data(*args, **kwargs)
 
         context["item"] = self.object
-        context["sampling_event_device"] = self.object.sampling_event_device
-        context["sampling_event"] = self.object.sampling_event_device.sampling_event
-        context[
-            "collection"
-        ] = self.object.sampling_event_device.sampling_event.collection
 
         context["next_object"] = self.get_next_object()
         context["prev_object"] = self.get_prev_object()
 
+        '''
         context["annotation_app_url"] = "{}?{}".format(
             reverse("selia_annotator:annotator_app"), urlencode({"pk": self.object.pk})
         )
+        '''
 
         if context["permissions"]["download"]:
             context["visualizer_url"] = self.get_visualizer()

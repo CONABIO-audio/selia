@@ -35,7 +35,7 @@
         <a href="{% url 'selia:collection_sampling_events' object.collection %}?">{% see_button %}</a>
       </div>
       <div class="col-2">
-        <a href="{% url 'selia:create_sampling_event_device' %}?collection={{ object.collection.name }}&collection_device={{ object.pk }}">{% add_button %}</a>
+        <a href="{% url 'selia:create_collection_device' %}?collection={{ object.collection.name }}">{% add_button %}</a>
       </div>
     </div>
   </div>
