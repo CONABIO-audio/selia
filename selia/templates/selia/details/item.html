@@ -88,6 +88,7 @@
   </div>
 {% endif %}
 
+{% comment %}
 {% detailsection %}
   <a href="{% url 'selia:sampling_event_detail' object.sampling_event_device.sampling_event.pk %}">
     {% trans 'Sampling Event Info' %}
@@ -210,3 +211,4 @@
     </div>
   </div>
 {% endif %}
+{% endcomment %}
