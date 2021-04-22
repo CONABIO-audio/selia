@@ -1,4 +1,4 @@
-{% extends 'selia/create/base_select.html' %}
+{% extends 'selia_templates/create/base_select.html' %}
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
@@ -64,20 +64,11 @@
               {% bootstrap_form form.name %}
             </div>
             <div class="row">
-              {% bootstrap_form form.latitude %}
-            </div>
-            <div class="row">
-              {% bootstrap_form form.longitude %}
-            </div>
-            <div class="row">
-              {% bootstrap_form form.altitude %}
+              {% bootstrap_form form.geometry_type %}
             </div>
             <div class="row">
               {% bootstrap_form form.locality %}
             </div>
-          </div>
-          <div class="col">
-            {% form_map form.latitude form.longitude locality %}
           </div>
         </div>
         <div class="row justify-content-center">

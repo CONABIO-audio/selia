@@ -25,14 +25,12 @@ class SelectCollectionSiteSiteView(SeliaCreateView):
             class Meta:
                 model = Site
                 fields = [
-                    "latitude",
-                    "longitude",
-                    "altitude",
+                    "geometry_type",
                     "name",
-                    "locality",
+                    "localities",
                 ]
 
-                widgets = {"locality": get_autocomplete_widget(model=Locality)}
+                widgets = {"localities": get_autocomplete_widget(model=Locality)}
 
         return SiteCreateForm
 
@@ -82,7 +80,7 @@ class SelectCollectionSiteSiteView(SeliaCreateView):
             queryset = sites
 
             list_item_template = "selia/select_list_items/sites.html"
-            filter_form_template = "selia/filters/site.html"
+            filter_form_template = "selia/filters/collection_site.html"
 
         site_list = SiteList(self.request)
         return site_list.get_context_data()

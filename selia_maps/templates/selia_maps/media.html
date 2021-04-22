@@ -111,7 +111,7 @@
   }
 
   function createVectorFeatureFromInfo(featureInfo) {
-    let type = featureInfo['features'] || POINT_FEATURE;
+    let type = featureInfo['type'].toLowerCase() || POINT_FEATURE;
 
     if (type == CIRCLE_FEATURE) {
       return createCircleFeatureFromInfo(featureInfo);

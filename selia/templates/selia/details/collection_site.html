@@ -44,38 +44,12 @@
         {% trans 'Locality' %}
       {% endhead %}
         {% if object.site.locality %}
-        {{ object.site.locality }}
+          {% for locality in object.site.locality.all %}
+            {{ locality }}
+          {% endfor %}
         {% else %}
         ---
         {% endif %}
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Altitude' %}
-      {% endhead %}
-        {% if object.site.altitude %}
-        {{ object.site.altitude | floatformat | default_if_none:'---' }}
-        {% else %}
-        ---
-        {% endif %}
-      {% enddetailitem %}
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Latitude' %}
-      {% endhead %}
-        {{ object.site.latitude | floatformat:3 | default_if_none:'---' }}
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Longitude' %}
-      {% endhead %}
-        {{ object.site.longitude | floatformat:3 | default_if_none:'---' }}
       {% enddetailitem %}
     </div>
   </div>
