@@ -1,0 +1,26 @@
+{% load i18n %}
+{% load selia_forms %}
+{% load selia_tags %}
+
+<div class="row w-100 p-2">
+  <div class="col">
+    <div class="dropdown">
+      <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseSerialNumber">
+        {% trans 'Device details' %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="container p-3">
+          <div class="row w-100">
+            <h6 class="dropdown-header w-100 text-center">{% trans 'Model' %}</h6>
+          </div>
+          <div class="row">
+            <div class="col">
+              {% trans "Contains" as label %}
+              {{ filter.form.model__icontains | selia_filter:label }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

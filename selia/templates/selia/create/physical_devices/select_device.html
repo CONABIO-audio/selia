@@ -1,0 +1,79 @@
+{% extends 'selia_templates/create/base_select.html' %}
+{% load i18n %}
+{% load selia_tags %}
+{% load selia_filters %}
+{% load selia_forms %}
+{% load selia_maps %}
+
+{% block toolbar-title %}
+  {% trans 'Add user device' %}
+{% endblock toolbar-title %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/user.html' %}
+{% endblock %}
+
+{% block toolbar-steps %}
+<li class="is-active">{% trans 'Select hardware' %}</li>
+<li>{% trans 'Fill in details' %}</li>
+{% endblock %}
+
+{% block step-title %}
+  {% trans 'Select hardware' %}
+{% endblock %}
+
+{% block step-description %}
+  {% blocktrans %}
+    Select one the previously created devices or
+    {% endblocktrans %}
+    <a href="#collapseDevice" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseDevice">{% trans 'create a new one.' %}</a>
+{% endblock %}
+
+{% block extra-forms %}
+<form action="?{{ request.GET.urlencode }}" method="post">
+  {% csrf_token %}
+  <div class="container-fluid px-4 pb-4">
+    <div class="collapse" id="collapseDevice">
+      <div class="card card-body">
+        <h5 class="w-100 text-center">{% trans 'Create new device' %}</h5>
+        <div class="row p-4">
+          <div class="col">
+            <div class="row">
+              {% bootstrap_form form.device_type %}
+            </div>
+            <div class="row">
+              {% bootstrap_form form.brand %}
+            </div>
+            <div class="row">
+              {% bootstrap_form form.model %}
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <input type="submit" class="btn btn-primary" value="{% trans 'Create' %}">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
+{% block empty-message %}
+<h4>{% trans 'No available devices.' %}</h4>
+<p>
+  <a href="#collapseDevice" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseDevice">
+    <i class="fas fa-plus"></i> {% trans ' Please register new device' %}
+  </a>
+</p>
+{% endblock %}
+
+{% block scripts-extra %}
+  {{ block.super }}
+  {% autocomplete_media %}
+
+  <script type="text/javascript">
+    $('#collapseDevice').on('shown.bs.collapse', function () {
+      window.dispatchEvent(new Event('resize'));
+    })
+  </script>
+{% endblock scripts-extra %}

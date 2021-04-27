@@ -1,0 +1,36 @@
+{% extends 'selia_templates/select/select_list_item.html' %}
+{% load selia_tags %}
+{% load static %}
+{% load i18n %}
+
+{% block list-item-content %}
+<div class="row w-100">
+  <div class="col">
+    {% listtitle %}
+      {% list_icon item.device_type.icon %}
+    {% endlistimage %}
+      {{ item.brand }}
+    {% endlistheader %}
+      <div class="text-muted">
+        {{ item.model }}
+      </div>
+    {% endlisttitle %}
+  </div>
+  <div class="col">
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Device type' %}
+      {% attributevalue %}
+        {{ item.device_type }}
+      {% endlistattribute %}
+    </div>
+    <div class="row">
+      {% listattribute %}
+        {% trans 'Added on' %}
+      {% attributevalue %}
+        {{ item.created_on | date }}
+      {% endlistattribute %}
+    </div>
+  </div>
+</div>
+{% endblock list-item-content %}
