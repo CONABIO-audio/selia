@@ -1,0 +1,40 @@
+{% extends 'selia_templates/select/select_list_item.html' %}
+{% load i18n %}
+{% load selia_tags %}
+
+{% block list-item-content %}
+<div class="col">
+  <div class="row">
+    <div class="col">
+        {{ item.icon }}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Item type' %}
+      {% endhead %}
+        {{ item.name }}
+      {% enddetailitem %}
+    </div>
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Description' %}
+      {% endhead %}
+        {{ item.description }}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      {% detailitem %}
+        {% trans 'Mime types' %}
+      {% endhead %}
+        {% for mime in item.mime_types.all %}
+            {{ mime }}
+        {% endfor %}
+      {% enddetailitem %}
+    </div>
+  </div>
+
+</div>
+{% endblock list-item-content %}

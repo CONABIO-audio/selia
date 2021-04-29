@@ -20,7 +20,7 @@ class SelectItemSamplingEventView(SeliaSelectView):
     def get_objects(self):
         if not hasattr(self, "collection"):
             self.collection = Collection.objects.get(
-                name=self.request.GET["collection"]
+                pk=self.request.GET["collection"]
             )
 
     def get_context_data(self, *args, **kwargs):
@@ -30,7 +30,7 @@ class SelectItemSamplingEventView(SeliaSelectView):
 
     def get_queryset(self):
         queryset = SamplingEvent.objects.filter(
-            collection__name=self.request.GET["collection"]
+            collection__pk=self.request.GET["collection"]
         )
 
         if "collection_device" in self.request.GET:

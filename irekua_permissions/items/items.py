@@ -28,15 +28,11 @@ def list(user, collection=None, sampling_event=None,
     return collection.is_user(user)
 
 
-def create(user, collection=None, sampling_event=None,
-        sampling_event_device=None, **kwargs):
+def create(user, collection=None, sampling_event=None, **kwargs):
 
     if collection is None:
         if sampling_event is not None:
             collection = sampling_event.collection
-
-        if sampling_event_device is not None:
-            collection = sampling_event_device.sampling_event.collection
 
     if collection is None:
         return False

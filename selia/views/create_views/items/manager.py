@@ -12,10 +12,10 @@ class CreateItemManager(CreateManagerBase):
         if "sampling_event" not in self.request.GET:
             return "selia:create_item_select_sampling_event"
 
-        if "sampling_event_device" not in self.request.GET:
-            return "selia:create_item_select_deployment"
-
         if "licence" not in self.request.GET:
             return "selia:create_item_select_licence"
+
+        if "item_type" not in self.request.GET:
+            return "selia:create_item_select_item_type"
 
         return "selia_uploader:upload_app"

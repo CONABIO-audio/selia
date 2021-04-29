@@ -1,4 +1,4 @@
-{% extends 'selia/create/base_select.html' %}
+{% extends 'selia_templates/create/base_select.html' %}
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
@@ -18,8 +18,8 @@
     </a>
   </li>
   <li class="is-active">{% trans 'Select sampling event' %}</li>
-  <li>{% trans 'Select deployed device' %}</li>
   <li>{% trans 'Select licence' %}</li>
+  <li>{% trans 'Select item type' %}</li>
   <li>{% trans 'Upload files' %}</li>
 {% endblock %}
 

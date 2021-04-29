@@ -17,10 +17,10 @@ urlpatterns = [
         name='create_item_select_sampling_event'),
     path(
         'items/create/3/',
-        items.SelectItemDeploymentView.as_view(),
-        name='create_item_select_sampling_event_device'),
+        items.SelectItemLicenceView.as_view(),
+        name='create_item_select_licence'),
     path(
         'items/create/4/',
-        items.SelectItemLicenceView.as_view(),
-        name='create_item_select_licence')
+        items.SelectItemTypeView.as_view(),
+        name='create_item_select_item_type')
 ]

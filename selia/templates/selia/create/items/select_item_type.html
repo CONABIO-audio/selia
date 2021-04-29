@@ -13,27 +13,31 @@
 
 {% block toolbar-steps %}
   <li>
-    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'collection&sampling_event' }}">
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'collection&sampling_event&licence' }}">
       {% trans 'Select collection' %}
     </a>
   </li>
   <li>
-    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'sampling_event' }}">
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'sampling_event&licence' }}">
       {% trans 'Select sampling event' %}
     </a>
   </li>
-  <li class="is-active">{% trans 'Select licence' %}</li>
-  <li>{% trans 'Select item type' %}</li>
+  <li>
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'licence' }}">
+      {% trans 'Select license' %}
+    </a>
+  </li>
+  <li class="is-active">{% trans 'Select item type' %}</li>
   <li>{% trans 'Upload files' %}</li>
 {% endblock %}
 
 {% block step-title %}
-  {% trans 'Select licence' %}
+  {% trans 'Select item type' %}
 {% endblock %}
 
 {% block step-description %}
   {% blocktrans %}
-    Please select a licence for the items you wish to upload.
+  Please select an item type for the items you wish to upload.
   {% endblocktrans %}
 {% endblock %}
 
@@ -43,6 +47,9 @@
 
   {% trans 'Selected sampling event' as label %}
   {% selected_item 'sampling_events' sampling_event label %}
+  
+  {% trans 'Selected licence' as label %}
+  {% selected_item 'licences' licence label %}
 
 {% endblock previously-selected %}
 
@@ -51,14 +58,14 @@
       <div class="row d-flex justify-content-center flex-wrap">
         {% for item in list %}
           <div class="p-2" style="width: 20em;">
-            <a href="{% url 'selia:create_item' %}?{{ request.GET.urlencode }}&licence={{ item.pk }}">
-              {% include 'selia/select_list_items/licences.html' with item=item %}
+            <a href="{% url 'selia:create_item' %}?{{ request.GET.urlencode }}&item_type={{ item.pk }}">
+              {% include 'selia/select_list_items/item_type.html' with item=item %}
             </a>
           </div>
         {% empty %}
 
         <div class="container-fluid bg-light text-center">
-            <h4>{% trans 'No available licences.' %}</h4>
+            <h4>{% trans 'No available item types.' %}</h4>
         </div>
 
         {% endfor %}
