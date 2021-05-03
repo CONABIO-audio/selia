@@ -6,13 +6,13 @@ import { useSelector } from 'react-redux';
 
 function ActionButton(props) {
     const items = useSelector(state => state.items.items);
-
+    
     return (
         <div className="checkFile actionButton" css={css`
         pointer-events: ${items.filter(item => 
-            item.status.name == props.statusType).length ? 'initial' : 'none'};
+            item.status.value == props.statusType).length ? 'initial' : 'none'};
         color: ${items.filter(item => 
-                item.status.name == props.statusType).length ? '#f8f8f3;' : '#828282;'}
+                item.status.value == props.statusType).length ? '#f8f8f3;' : '#828282;'}
         right: ${props.align};`} onClick={props.action}>
             <div css={css`
                 font-size: 1.4em;`}>

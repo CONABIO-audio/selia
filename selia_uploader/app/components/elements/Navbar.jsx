@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
+import { currentDivAtom } from '../../services/state';
+import { useAtom } from 'jotai';
 
 function NavElement(props) {
     return (
@@ -17,6 +19,7 @@ function NavElement(props) {
 
 function Navbar() {
     const [items, setItems] = useState([true]);
+    const [currentDiv,setCurrent] = useAtom(currentDivAtom);
     const files = useSelector(state => state.items.items);
 
     const handleNavClick = (e) => {
@@ -33,6 +36,7 @@ function Navbar() {
         }
         document.getElementById(getId).style.display = 'block';
         setItems(toSetItems)
+        setCurrent(getId);
     }
     let tabNames = [
         {id: 'preview', name: 'Antesala'}, {id: 'uploading', name: 'Por subir'},

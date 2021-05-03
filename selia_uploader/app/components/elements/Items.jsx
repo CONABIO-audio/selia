@@ -45,19 +45,20 @@ function Items(props) {
                 if(item.status.value == props.idDiv) {
                     return (
                         <li key={index}>
-                                {item.selected ? 
-                                        <FontAwesomeIcon icon={faCheckCircle} onClick={() => onClick(item)}/> : 
-                                        <FontAwesomeIcon icon={faCircle} onClick={() => onClick(item)}/>}
+                                {(item.status.value == 'error' || item.status.value == 'preview')
+                                    && <div>
+                                        {item.selected ? 
+                                                <FontAwesomeIcon icon={faCheckCircle} onClick={() => onClick(item)}/> : 
+                                                <FontAwesomeIcon icon={faCircle} onClick={() => onClick(item)}/>}
+                                    </div>}
                                 <p css={css`
                                     padding-left: 10px;
                                     width: calc(20% - 10px);
                                 `}>{item.file}</p>
                                 <DatePicker
                                   selected={new Date(item.date)}
-                                  onChange={date => {setStartDate(date); onChangeValue(date, item, 'date')}}
+                                  onChange={date => {onChangeValue(date.toISOString(), item, 'date')}}
                                   showTimeSelect
-                                  minTime={setHours(setMinutes(setSeconds(new Date(), 0), 0), 17)}
-                                  maxTime={setHours(setMinutes(setSeconds(new Date(), 5), 5), 20)}
                                   dateFormat="dd/MM/yy h:mm:ss"
                                 />
                                 <select className={"selectTimezone"} onChange={(e) => onChangeValue(e.target.value,item,'timezoneValue')} value={item.timezoneValue}>
@@ -68,6 +69,7 @@ function Items(props) {
                                 {item.error ? (
                                     <div css={css`
                                         display: flex;
+                                        width: 20%
                                     `}>
                                         <p css={css`
                                             width: 90%!important;

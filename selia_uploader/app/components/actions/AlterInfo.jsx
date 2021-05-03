@@ -18,10 +18,11 @@ export default function AlterInfo(props) {
     }
 
     const applyToAll = () => {
+        let unvalidated = props.items.filter(item => item.status.value == 'error');
         if(Object.keys(changes).length) {
             Object.entries(changes).forEach(([key,value]) => {
-                for(let i=0;i<props.items.length;i++) {
-                    changeFile(props.items[i],key,value)
+                for(let i=0;i<unvalidated.length;i++) {
+                    changeFile(unvalidated[i],key,value)
                 }
             })
         }
@@ -62,10 +63,8 @@ export default function AlterInfo(props) {
                     <p></p>
                     <DatePicker
                                   selected={date}
-                                  onChange={value => {setDate(value);valueChanges(value,'date')}}
+                                  onChange={value => {setDate(value);valueChanges(value.toISOString(),'date')}}
                                   showTimeSelect
-                                  minTime={setHours(setMinutes(setSeconds(new Date(), 0), 0), 17)}
-                                  maxTime={setHours(setMinutes(setSeconds(new Date(), 5), 5), 20)}
                                   dateFormat="dd/MM/yy h:mm:ss"
                                   popperPlacement="top-start"
                                 />
