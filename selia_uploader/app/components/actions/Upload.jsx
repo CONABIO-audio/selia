@@ -28,7 +28,7 @@ export default function Upload(props) {
             let date = new Date(toUpload[i].date)
             let validatedData = dataJson(args,date,toUpload[i]);
             let data = new FormData();
-            
+
             data.append('item_file',file)
             Object.entries(validatedData).forEach(([key,value]) => {
                 if(value)
@@ -37,8 +37,7 @@ export default function Upload(props) {
                     else
                         data.append(key,value)
             })
-            validatedData['item_file'] = file
-            api.upload(validatedData,onUpload).then(() => {
+            api.upload(data,onUpload).then(() => {
                 dispatch({type: 'CHANGE_STATUS',
                     payload:{item: toUpload[i],
                             newStatus: {value: 'completed', name: 'Subido'}}

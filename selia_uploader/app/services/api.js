@@ -23,6 +23,7 @@ export default {
             withCredentials: true,
             headers: {
                 'X-CSRFToken': csrftoken,
+                'Content-Type': "multipart/form-data"
             },
             data: data,
             onUploadProgress: onUpload
