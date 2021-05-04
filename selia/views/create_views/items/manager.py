@@ -9,8 +9,8 @@ class CreateItemManager(CreateManagerBase):
         if "collection" not in self.request.GET:
             return "selia:create_item_select_collection"
 
-        if "sampling_event" not in self.request.GET:
-            return "selia:create_item_select_sampling_event"
+        #if "sampling_event" not in self.request.GET:
+        #    return "selia:create_item_select_sampling_event"
 
         if "licence" not in self.request.GET:
             return "selia:create_item_select_licence"

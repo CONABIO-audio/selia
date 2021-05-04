@@ -37,7 +37,8 @@ export default function Upload(props) {
                     else
                         data.append(key,value)
             })
-            api.upload(data,onUpload).then(() => {
+            validatedData['item_file'] = file
+            api.upload(validatedData,onUpload).then(() => {
                 dispatch({type: 'CHANGE_STATUS',
                     payload:{item: toUpload[i],
                             newStatus: {value: 'completed', name: 'Subido'}}

@@ -17,12 +17,9 @@ class SelectItemTypeView(SeliaSelectView):
     def has_view_permission(self):
         user = self.request.user
         return item_permissions.create(user,
-                collection=self.sampling_event.collection)
+                collection=self.collection)
 
     def get_objects(self):
-        if not hasattr(self, 'sampling_event'):
-            self.sampling_event = SamplingEvent.objects.get(
-                pk=self.request.GET['sampling_event'])
         if not hasattr(self, "collection"):
             self.collection = Collection.objects.get(
                 pk=self.request.GET["collection"]
@@ -34,8 +31,7 @@ class SelectItemTypeView(SeliaSelectView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['sampling_event'] = self.sampling_event
-        context['collection'] = self.sampling_event.collection
+        context['collection'] = self.collection
         context['licence'] = self.licence
         return context
 

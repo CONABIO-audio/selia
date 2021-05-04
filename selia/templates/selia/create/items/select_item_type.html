@@ -4,7 +4,7 @@
 {% load selia_filters %}
 
 {% block secondary-navbar %}
-  {% include 'selia/navbars/sampling_event.html' %}
+  {% include 'selia/navbars/collection.html' %}
 {% endblock %}
 
 {% block toolbar-title %}
@@ -13,13 +13,8 @@
 
 {% block toolbar-steps %}
   <li>
-    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'collection&sampling_event&licence' }}">
+    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'collection&licence' }}">
       {% trans 'Select collection' %}
-    </a>
-  </li>
-  <li>
-    <a href="{% url 'selia:create_item' %}?{{ request.GET|remove_fields:'sampling_event&licence' }}">
-      {% trans 'Select sampling event' %}
     </a>
   </li>
   <li>
@@ -44,9 +39,6 @@
 {% block previously-selected %}
   {% trans 'Selected collection' as label %}
   {% selected_item 'collection' collection label %}
-
-  {% trans 'Selected sampling event' as label %}
-  {% selected_item 'sampling_events' sampling_event label %}
   
   {% trans 'Selected licence' as label %}
   {% selected_item 'licences' licence label %}

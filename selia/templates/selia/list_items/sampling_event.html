@@ -114,7 +114,7 @@
           <a href="{% url 'selia:collection_items' item.collection.pk %}">
             {% see_button %}
           </a>
-          <a class="ml-2" href="{% url 'selia:create_item' %}?sampling_event={{ item.pk }}&collection={{ item.collection.name }}">
+          <a class="ml-2" href="{% url 'selia:create_item' %}?sampling_event={{ item.pk }}&collection={{ item.collection.pk }}">
             {% add_button %}
           </a>
         {% endlistsummary %}
