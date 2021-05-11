@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { currentDivAtom } from '../../services/state';
+import { currentDivAtom, currentItems } from '../../services/state';
 import { useAtom } from 'jotai';
 
 function NavElement(props) {
@@ -18,7 +18,7 @@ function NavElement(props) {
 }
 
 function Navbar() {
-    const [items, setItems] = useState([true]);
+    const [items, setItems] = useAtom(currentItems);
     const [currentDiv,setCurrent] = useAtom(currentDivAtom);
     const files = useSelector(state => state.items.items);
 

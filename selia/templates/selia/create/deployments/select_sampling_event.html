@@ -1,4 +1,4 @@
-{% extends 'selia/create/base_select.html' %}
+{% extends 'selia_templates/create/base_select.html' %}
 {% load i18n %}
 {% load selia_tags %}
 {% load selia_filters %}
@@ -13,7 +13,7 @@
 
 {% block toolbar-steps %}
   <li>
-    <a href="{% url 'selia:create_sampling_event_device' %}?{{ request.GET|remove_fields:'collection' }}">
+    <a href="{% url 'selia:create_collection_device' %}?{{ request.GET|remove_fields:'collection' }}">
       {% trans 'Select collection' %}
     </a>
   </li>

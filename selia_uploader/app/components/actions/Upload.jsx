@@ -43,6 +43,29 @@ export default function Upload(props) {
                             newStatus: {value: 'completed', name: 'Subido'}}
                 });
             })
+            .catch((err) => {
+                let errorText = "";
+                Object.entries(err.response.data).forEach(([key,value]) => {
+                    errorText = errorText + key + ": "
+                    errorText = errorText + value + " "
+                })
+                dispatch({type: 'CHANGE_STATUS',
+                    payload:{item: toUpload[i],
+                            newStatus: {value: 'error', name: 'Error en la subida del archivo'}}
+                });
+                dispatch({type: 'CHANGE_VALUE',
+                    payload:{item: toUpload[i],
+                            field: 'error',
+                            value: true
+                        }
+                });
+                dispatch({type: 'CHANGE_VALUE',
+                    payload:{item: toUpload[i],
+                            field: 'errorMeaning',
+                            value: errorText
+                        }
+                });
+            })
         }
     }
 

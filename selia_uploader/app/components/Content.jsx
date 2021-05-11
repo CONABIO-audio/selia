@@ -11,7 +11,7 @@ import mediaInfo from '../services/mediaInfo';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useAtom } from 'jotai';
-import { argsAtom, currentDivAtom } from '../services/state';
+import { argsAtom, currentDivAtom, currentItems } from '../services/state';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
@@ -20,15 +20,37 @@ function Content(){
     const [files, setFiles] = useState([])
     const [badFileType, setWarningFileType] = useState([false,''])
     const [args, setArgs] = useAtom(argsAtom)
-    const [current] = useAtom(currentDivAtom)
+    const [current,setCurrent] = useAtom(currentDivAtom)
+    const [navItems, setNavItems]  = useAtom(currentItems)
     const [showLoading,setLoading] = useState('none');
     let showDropZone = false;
 
     const items = useSelector(state => state.items.items);
     const dispatch = useDispatch();
 
+    let tabNames = [
+        {id: 'preview', name: 'Antesala'}, {id: 'uploading', name: 'Por subir'},
+        {id: 'completed', name: 'Subidos'}, {id: 'error', name: 'Errores'}];
+
+    const showPreview = () => {
+        setCurrent('preview')
+        let newItems = []
+        tabNames.forEach((item,index) => {
+            if(index == 0){
+                newItems.push(true)
+                document.getElementById(item.id).style.display = 'block';
+            }
+            else {
+                newItems.push(false)
+                document.getElementById(item.id).style.display = 'none';
+            }
+        })
+        setNavItems(newItems)
+    }
+
     const handleFileUpload = e => {
         filterFilesAndDirs(e.target.files)
+        showPreview();
     }
 
     const allowDrop = (e) => {
@@ -55,6 +77,7 @@ function Content(){
         document.getElementById('innerBox').removeAttribute("drop-active");
         document.querySelector('#file + label').style.display = 'block';
         filterFilesAndDirs(e.dataTransfer.items)
+        showPreview();
     }
 
     const filterFilesAndDirs = (items) => {

@@ -1,0 +1,35 @@
+{% extends 'selia_templates/list/base.html' %}
+{% load i18n %}
+{% load selia_buttons %}
+
+{% block secondary-navbar %}
+  {% include 'selia/navbars/collection.html' %}
+{% endblock secondary-navbar %}
+
+{% block toolbar-title %}
+{% trans 'Deployed Device' %} {% trans 'List' %}
+{% endblock %}
+
+{% block toolbar-items %}
+  {% if permissions.create %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'selia:create_deployment' %}?collection_device={{ item.id }}">{% trans 'Deploy device' %} <i class="fas fa-plus"></i> <i class="fas fa-tools"></i></a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+    <a class="nav-link" href="#">{% trans 'Help' %} <i class="fas fa-question"></i></a>
+  </li>
+{% endblock toolbar-items %}
+
+{% block empty-message %}
+<h4>
+  {% blocktrans %}
+    No deploy was found for this device.
+  {% endblocktrans%}
+</h4>
+<p>
+  <a href="{% url 'selia:create_deployment' %}?collection_device={{ item.id }}">
+    {% trans 'Create a deploy for this device' %}
+  </a>
+</p>
+{% endblock %}

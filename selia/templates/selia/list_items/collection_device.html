@@ -95,14 +95,14 @@
     </div>
     <div class="row">
       {% listsummary %}
-        {% trans 'Sampling events' %}
+        {% trans 'Deployments' %}
       {% summarycount %}
-        {{ item.collection.samplingevent_set.all.count }}
+        {{ item.deployment_set.all.count }}
         {% summarybuttons %}
-        <a href="{% url 'selia:create_collection_device_create_form' %}?collection={{ collection.name }}&collection_device={{ item.pk }}">
+        <a href="{% url 'selia:create_deployment' %}?collection={{ collection.name }}&collection_device={{ item.pk }}">
           {% add_button %}
         </a>
-        <a class="ml-2" href="{% url 'selia:collection_sampling_events' collection.name %}?collection_device={{ item.pk }}">
+        <a class="ml-2" href="{% url 'selia:device_deployments' item.id %}">
           {% see_button %}
         </a>
       {% endlistsummary %}

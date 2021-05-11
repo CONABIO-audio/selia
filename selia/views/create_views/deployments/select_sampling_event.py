@@ -41,9 +41,7 @@ class SelectDeploymentSamplingEventView(SeliaSelectView):
             collection_device_pk = self.request.GET["collection_device"]
             collection_device = CollectionDevice.objects.get(pk=collection_device_pk)
 
-            query = Q(restrict_device_types=False) | Q(
-                device_types=collection_device.physical_device.device.device_type
-            )
+            query = Q(restrict_deployment_types=False) 
             valid_types = SamplingEventType.objects.filter(query)
 
             print(valid_types.all())

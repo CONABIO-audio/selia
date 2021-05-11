@@ -5,6 +5,7 @@ from .collection_users import ListCollectionUserView
 from .licences import ListCollectionLicencesView
 from .open_collections import ListOpenCollectionsView
 from .deployments import ListDeploymentsView
+from .deployments import ListDeviceDeploymentsView
 from .sampling_events import ListCollectionSamplingEventView
 from .user_collections import ListUserCollectionsView
 from .user_devices import ListUserPhysicalDeviceView
