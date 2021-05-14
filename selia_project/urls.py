@@ -26,5 +26,6 @@ urlpatterns = [
     url("about/", include(("selia_about.urls", "selia_about"))),
     # Upload App
     url("upload/", include(("selia_uploader.urls", "selia_uploader"))),
-    url(r'^api/', include(('irekua_api_project.urls', "irekua_api_project")))
+    url("visualizer/", include(("selia_visualizers.urls", "selia_visualizers"))),
+    url(r"^api/", include(("irekua_api_project.urls", "irekua_api_project"))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

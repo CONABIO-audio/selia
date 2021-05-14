@@ -1,18 +1,18 @@
 from django.shortcuts import render
 from django.views.generic import DetailView
 
-from irekua_collections.models import DeploymentItem
+from irekua_items.models import Item
 from irekua_permissions.items import items
 from selia_visualizers import utils
 
 
 class ItemVisualizerView(DetailView):
     model = Item
-    template_name = 'selia_visualizers/visualizer.html'
-    no_permission_template = 'selia_templates/generic/no_permission.html'
+    template_name = "selia_visualizers/visualizer.html"
+    no_permission_template = "selia_templates/generic/no_permission.html"
 
     def has_view_permission(self):
-        if not hasattr(self, 'object'):
+        if not hasattr(self, "object"):
             self.object = self.get_object()
         return items.view(self.request.user, item=self.object)
 
@@ -33,5 +33,5 @@ class ItemVisualizerView(DetailView):
 
         return {
             **super().get_context_data(*args, **kwargs),
-            'module': module,
+            "module": module,
         }
