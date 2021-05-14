@@ -9,6 +9,7 @@ from selia_maps.settings import *
 from selia.settings import *
 from selia_user_home.settings import *
 from selia_uploader.settings import *
+from selia_visualizers.settings import *
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,6 +52,7 @@ INSTALLED_APPS = list(
         + SELIA_ABOUT_APPS
         + SELIA_REGISTRATION_APPS
         + SELIA_TEMPLATES_APPS
+        + SELIA_VISUALIZERS_APPS
     )
 )
 

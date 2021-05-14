@@ -29,6 +29,7 @@ class ItemVisualizerView(DetailView):
         try:
             module = utils.get_visualizer_module(self.object.item_type)
         except Exception as error:
+            print(error)
             module = None
 
         return {
