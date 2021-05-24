@@ -28,4 +28,5 @@ urlpatterns = [
     url("upload/", include(("selia_uploader.urls", "selia_uploader"))),
     url("visualizer/", include(("selia_visualizers.urls", "selia_visualizers"))),
     #  url(r"^api/", include(("irekua_api_project.urls", "irekua_api_project"))),
+    url("annotator/", include(("selia_annotator.urls", "selia_annotator")))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

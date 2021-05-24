@@ -4,10 +4,11 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 
-from irekua_collections.models import DeploymentItem
-from irekua_collections.models import DeploymentItemType
-from irekua_collections.models import CollectionAnnotationType
-from irekua_rest_api.serializers import object_types
+from irekua_collections.models import Deployment
+from irekua_collections.models import DeploymentType
+from irekua_collections.models import CollectionTypeAnnotationType
+from irekua_collections.models import CollectionItem
+#from irekua_rest_api.serializers import object_types
 
 # from selia_annotator.models import AnnotationToolComponent
 
@@ -47,21 +48,20 @@ class CollectionItemAnnotatorView(TemplateView):
 
     def get_objects(self):
         self.item = get_object_or_404(
-            Item,
+            CollectionItem,
             pk=self.request.GET.get('pk', None))
 
-        self.sampling_event_device = self.item.sampling_event_device
-        self.sampling_event = self.sampling_event_device.sampling_event
-        self.collection = self.sampling_event.collection
+        self.deployment = self.item.deployment
+        self.sampling_event = self.item.sampling_event
+        self.collection = self.item.collection
         self.collection_type = self.collection.collection_type
 
-        collection_device = self.sampling_event_device.collection_device
-        self.device_type = collection_device.physical_device.device.device_type
+        self.item_type = self.item.item_type
 
     def get_items(self):
         queryset = (
-            Item.objects
-            .filter(sampling_event_device=self.item.sampling_event_device)
+            CollectionItem.objects
+            .filter(deployment=self.item.deployment)
             .only('id'))
         return [item.id for item in queryset]
 
@@ -72,7 +72,7 @@ class CollectionItemAnnotatorView(TemplateView):
             queryset = ItemType.objects.all()
 
         queryset = queryset.filter(
-            mime_types__in=self.device_type.mime_types.all())
+            mime_types__in=self.item_type.mime_types.all())
         queryset = queryset.distinct()
 
         serializer = object_types.items.DetailSerializer(
@@ -122,11 +122,11 @@ class CollectionItemAnnotatorView(TemplateView):
         return {
             **super().get_context_data(*args, **kwargs),
             'items': self.get_items(),
-            'item_types': self.get_item_types(),
-            'annotation_types': self.get_annotation_types(),
+            #'item_types': self.get_item_types(),
+            #'annotation_types': self.get_annotation_types(),
             # 'annotators': self.get_annotators(),
             'item': self.item,
-            'sampling_event_device': self.sampling_event_device,
+            'deployment': self.deployment,
             'sampling_event': self.sampling_event,
             'collection': self.collection,
             'urls': self.get_urls(),

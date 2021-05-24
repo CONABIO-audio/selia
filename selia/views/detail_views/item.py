@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.http import urlencode
 
 from irekua_database.autocomplete import get_autocomplete_widget
-from irekua_items.models import Item
+from irekua_collections.models import CollectionItem
 from irekua_items.models import Tag
 from irekua_permissions.items import items as item_permissions
 from selia_templates.widgets import BootstrapDateTimePickerInput
@@ -17,7 +17,7 @@ mimetypes.init()
 
 
 class DetailItemView(SeliaDetailView):
-    model = Item
+    model = CollectionItem
     delete_redirect_url = "selia:collection_items"
 
     template_name = "selia/detail/item.html"
@@ -32,7 +32,7 @@ class DetailItemView(SeliaDetailView):
             metadata = JsonField()
 
             class Meta:
-                model = Item
+                model = CollectionItem
                 fields = ["captured_on", "tags", "metadata"]
 
                 widgets = {
@@ -74,7 +74,7 @@ class DetailItemView(SeliaDetailView):
 
     def get_next_object(self):
         next_object = (
-            Item.objects.filter(
+            CollectionItem.objects.filter(
                 pk__gt=self.kwargs["pk"],
             )
             .order_by("pk")
@@ -84,7 +84,7 @@ class DetailItemView(SeliaDetailView):
 
     def get_prev_object(self):
         prev_object = (
-            Item.objects.filter(
+            CollectionItem.objects.filter(
                 pk__lt=self.kwargs["pk"],
             )
             .order_by("pk")
@@ -95,23 +95,19 @@ class DetailItemView(SeliaDetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        '''
         context["item"] = self.object
-        context["sampling_event_device"] = self.object.sampling_event_device
-        context["sampling_event"] = self.object.sampling_event_device.sampling_event
+        context["deployment"] = self.object.deployment
+        context["sampling_event"] = self.object.sampling_event
         context[
             "collection"
-        ] = self.object.sampling_event_device.sampling_event.collection
-        '''
+        ] = self.object.collection
 
         context["next_object"] = self.get_next_object()
         context["prev_object"] = self.get_prev_object()
 
-        '''
         context["annotation_app_url"] = "{}?{}".format(
             reverse("selia_annotator:annotator_app"), urlencode({"pk": self.object.pk})
         )
-        '''
 
         if context["permissions"]["download"]:
             context["visualizer_url"] = self.get_visualizer()
