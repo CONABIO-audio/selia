@@ -19,7 +19,7 @@
   </div>
 </div>
 
-{% if object.sampling_event_type.metadata_schema|is_not_trivial_schema %}
+{% if object.sampling_event_type.metadata_schema.schema|is_not_trivial_schema %}
 <div class="row mt-3">
   <div class="col">
     {% selia_form_error form.metadata %}
