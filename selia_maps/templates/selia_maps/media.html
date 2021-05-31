@@ -170,7 +170,15 @@
   }
 
   function createPolygonFeatureFromInfo(featureInfo) {
-    throw 'createPolygonFeatureFromInfo Not implemented';
+
+    let feature = new ol.Feature({
+      geometry: new ol.geom.Polygon(featureInfo.coordinates[0]),
+      labelPoint: new ol.geom.Polygon(featureInfo.coordinates[0]),
+      name: featureInfo.name,
+    });
+
+    feature.setStyle(createStyleFromInfo(featureInfo.style));
+    return feature;
   }
 
   function createStyleFromInfo(styleInfo) {
