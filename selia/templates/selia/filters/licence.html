@@ -23,64 +23,18 @@
   </div>
   <div class="col">
       <div class="dropdown">
-        <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseUserName">
-          {% trans 'User' %}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div class="container p-3">
-            <div class="row w-100">
-              <h6 class="dropdown-header w-100 text-center">{% trans 'Name' %}</h6>
-            </div>
-            <div class="row">
-              <div class="col">
-                {% trans 'Contains' as label %}
-                {{ filter.form.created_by__username__icontains | selia_filter:label }}
-              </div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="row w-100">
-              <h6 class="dropdown-header w-100 text-center">{% trans 'First name' %}</h6>
-            </div>
-            <div class="row">
-              <div class="col">
-                {% trans 'Contains' as label %}
-                {{ filter.form.created_by__first_name__icontains | selia_filter:label }}
-              </div>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="row w-100">
-              <h6 class="dropdown-header w-100 text-center">{% trans 'Last name' %}</h6>
-            </div>
-            <div class="row">
-              <div class="col">
-                {% trans 'Contains' as label %}
-                {{ filter.form.created_by__last_name__icontains | selia_filter:label }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  </div>
-  <div class="col">
-      <div class="dropdown">
         <a class="btn btn-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-controls="collapseEndedOn">
-          {% trans 'Date of creation' %}
+          {% trans 'Years valid' %}
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div class="container p-3">
           {% trans 'From' as label %}
-          {{ filter.form.created_on__gt | selia_filter:label }}
+          {{ filter.form.licence_type__years_valid_for__gt | selia_filter:label }}
 
           {% trans 'To' as label %}
-          {{ filter.form.created_on__lt | selia_filter:label }}
+          {{ filter.form.licence_type__years_valid_for__lt | selia_filter:label }}
           </div>
         </div>
       </div>
-  </div>
-  <div class="col">
-    <label class="text-light">
-      {% is_own_checkbox filter.form %}
-    </label>
   </div>
 </div>

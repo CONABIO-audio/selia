@@ -35,20 +35,20 @@
   const items = [{% for pk in items %}'{{ pk }}',{%endfor%}];
   const item = '{{ item.pk }}';
   const annotators = JSON.parse('{{ annotators | safe }}');
-  const visualizers = JSON.parse('{{ visualizers | safe }}');
-  const itemTypes = JSON.parse('{{ item_types | safe }}');
-  const annotationTypes = JSON.parse('{{ annotation_types | safe }}');
+  const visualizers = '{{ visualizers | safe }}';
+  //const itemTypes = JSON.parse('{{ item_types | safe }}');
+  //const annotationTypes = JSON.parse('{{ annotation_types | safe }}');
 
   const props = {
     urls,
     items,
     item,
-    itemTypes,
-    annotationTypes,
+    //itemTypes,
+    //annotationTypes,
     annotators,
     visualizers,
   };
 
-  startApp('annotator', props);
+  new startApp('annotator', props);
 </script>
 {% endblock scripts-extra %}

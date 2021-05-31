@@ -50,20 +50,12 @@ class DetailLicenceView(SeliaDetailView, SingleObjectMixin):
     def get_permissions(self):
         permissions = super().get_permissions()
         user = self.request.user
-        permissions['list_collection_users'] = user_permissions.list(
-            user, collection=self.object.collection)
-        permissions['list_collection_licences'] = licence_permissions.list(
-            user, collection=self.object.collection)
         return permissions
-
-    def get_delete_redirect_url_args(self):
-        return [self.object.collection.name]
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
         context['licence'] = self.object
-        context['collection'] = self.object.collection
 
         schema = self.object.licence_type.metadata_schema
         context['form'].fields['metadata'].update_schema(schema)

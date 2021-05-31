@@ -6,11 +6,14 @@ from django.views.generic import TemplateView
 
 from irekua_collections.models import Deployment
 from irekua_collections.models import DeploymentType
-from irekua_collections.models import CollectionTypeAnnotationType
 from irekua_collections.models import CollectionItem
-#from irekua_rest_api.serializers import object_types
 
-# from selia_annotator.models import AnnotationToolComponent
+from irekua_api_annotations.serializers import annotation_types
+
+from irekua_annotations.models import AnnotationType
+from irekua_annotators.models import AnnotatorModule
+
+from selia_visualizers.utils import get_visualizer_module
 
 
 class CollectionItemAnnotatorView(TemplateView):
@@ -87,36 +90,42 @@ class CollectionItemAnnotatorView(TemplateView):
         else:
             queryset = AnnotationType.objects.all()
 
-        serializer = object_types.annotations.DetailSerializer(
+        serializer = annotation_types.AnnotationTypeDetailSerializer(
             queryset,
             many=True,
             context={'request': self.request})
         return json.dumps(serializer.data)
 
-    # def get_annotators(self):
-    #     if self.collection_type.restrict_annotation_types:
-    #         types = self.collection_type.annotation_types.all()
-    #     else:
-    #         types = AnnotationType.objects.all()
-    #
-    #     queryset = (
-    #         AnnotationToolComponent.objects
-    #         .filter(
-    #             annotation_tool__annotation_type__in=types,
-    #             is_active=True)
-    #         .select_related(
-    #             'annotation_tool',
-    #             'annotation_tool__annotation_type'))
-    #
-    #     return json.dumps({
-    #         item.annotation_tool.annotation_type.id: {
-    #             'id': item.id,
-    #             'name': item.annotation_tool.name,
-    #             'version': item.annotation_tool.version,
-    #             'module': item.javascript_file.url,
-    #         }
-    #         for item in queryset
-    #     })
+    def get_annotators(self):
+        if self.collection_type.restrict_annotation_types:
+            types = self.collection_type.annotation_types.all()
+        else:
+            types = AnnotationType.objects.all()
+        queryset = (
+        AnnotatorModule.objects
+        .filter(
+            annotator_version__annotator__annotation_type__in=types,
+            is_active=True)
+        .select_related(
+            'annotator_version__annotator',
+            'annotator_version__annotator__annotation_type'))
+        return json.dumps({
+        item.annotator_version.annotator.annotation_type.id: {
+            'id': item.id,
+            'name': item.annotator_version.annotator.name,
+            'version': item.annotator_version.version,
+            'module': item.javascript_file.url,
+        }
+        for item in queryset
+        })
+
+    def get_visualizer(self,item):
+        item_type = item.item_type
+        try:
+            visualizer = get_visualizer_module(item_type)
+            return visualizer.javascript_file.url
+        except:
+            return None
 
     def get_context_data(self, *args, **kwargs):
         return {
@@ -124,7 +133,8 @@ class CollectionItemAnnotatorView(TemplateView):
             'items': self.get_items(),
             #'item_types': self.get_item_types(),
             #'annotation_types': self.get_annotation_types(),
-            # 'annotators': self.get_annotators(),
+            'annotators': self.get_annotators(),
+            'visualizers': self.get_visualizer(self.item),
             'item': self.item,
             'deployment': self.deployment,
             'sampling_event': self.sampling_event,

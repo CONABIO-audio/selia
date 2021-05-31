@@ -56,7 +56,10 @@ class DetailSamplingEventView(SeliaDetailView):
 
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)
-        self.schema = self.object.sampling_event_type.metadata_schema
+        try: 
+            self.schema = self.object.sampling_event_type.metadata_schema.schema
+        except: 
+            self.schema = self.object.sampling_event_type.metadata_schema
         form.fields['metadata'].update_schema(self.schema)
         return form
 
