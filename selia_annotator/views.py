@@ -8,12 +8,8 @@ from irekua_collections.models import Deployment
 from irekua_collections.models import DeploymentType
 from irekua_collections.models import CollectionItem
 
-from irekua_api_annotations.serializers import annotation_types
-
 from irekua_annotations.models import AnnotationType
 from irekua_annotators.models import AnnotatorModule
-
-from selia_visualizers.utils import get_visualizer_module
 
 
 class CollectionItemAnnotatorView(TemplateView):
@@ -119,14 +115,6 @@ class CollectionItemAnnotatorView(TemplateView):
         for item in queryset
         })
 
-    def get_visualizer(self,item):
-        item_type = item.item_type
-        try:
-            visualizer = get_visualizer_module(item_type)
-            return visualizer.javascript_file.url
-        except:
-            return None
-
     def get_context_data(self, *args, **kwargs):
         return {
             **super().get_context_data(*args, **kwargs),
@@ -134,7 +122,6 @@ class CollectionItemAnnotatorView(TemplateView):
             #'item_types': self.get_item_types(),
             #'annotation_types': self.get_annotation_types(),
             'annotators': self.get_annotators(),
-            'visualizers': self.get_visualizer(self.item),
             'item': self.item,
             'deployment': self.deployment,
             'sampling_event': self.sampling_event,
