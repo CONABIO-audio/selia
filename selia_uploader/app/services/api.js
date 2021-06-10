@@ -6,7 +6,8 @@ export default {
         const csrftoken = Cookies.get('csrftoken');
         return axios({
             method: 'post',
-            url: 'http://localhost:8000/api/collections/v1/collection_items/validate/',
+            //url: 'http://localhost:8000/api/collections/v1/collection_items/validate/',
+            url: "http://irekuaapi-env.eba-gj4jy7ue.us-west-2.elasticbeanstalk.com/api/collections/v1/collection_items/validate/", 
             withCredentials: true,
             headers: {
                 'X-CSRFToken': csrftoken,
@@ -19,7 +20,8 @@ export default {
         const csrftoken = Cookies.get('csrftoken');
         return axios({
             method: 'post',
-            url: 'http://localhost:8000/api/collections/v1/collection_items/',
+            //url: 'http://localhost:8000/api/collections/v1/collection_items/',
+            url: "http://irekuaapi-env.eba-gj4jy7ue.us-west-2.elasticbeanstalk.com/api/collections/v1/collection_items/", 
             withCredentials: true,
             headers: {
                 'X-CSRFToken': csrftoken,

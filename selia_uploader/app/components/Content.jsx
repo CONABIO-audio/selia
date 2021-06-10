@@ -144,14 +144,15 @@ function Content(){
     const extractData = (file) => {
         mediaInfo.getMediaInfo(file).then(metadata => { 
             if(file.type.includes('image')) {
-                let timezone = timezones.getTimeZones(metadata[1])
+                let timezone = timezones.getTimeZones(metadata[1]);
+                let localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                 dispatch({type: 'ADD_ITEM',
                     payload: {
                         file: file.name,
                         type: file.type,
                         date: metadata[1],
                         timezones: timezone,
-                        timezoneValue: timezone[0],
+                        timezoneValue: timezone.includes(localTimezone) ? localTimezone : timezone[0],
                         metadata: metadata[0],
                         status: {
                             value: 'preview',

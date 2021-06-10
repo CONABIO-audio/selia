@@ -1,9 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
-import setSeconds from "date-fns/setSeconds";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DatePicker from 'react-datepicker';
 import classNames from 'classnames';
@@ -11,7 +8,7 @@ import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import { errorMessageAtom } from '../../services/state';
 
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { faCheckCircle, faEye } from '@fortawesome/free-regular-svg-icons';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -84,7 +81,18 @@ function Items(props) {
                                     `} onClick={() => setMessage({status: true, message: item.errorMeaning})}>?</button>
                                     </div>
                                 ):
-                                <p>{item.status ? item.status.name : null}</p>
+                                <p css={css`
+                                    display: flex;
+                                `}>
+                                    {item.status ? item.status.name + ' ' : null}
+                                    {(item.status && item.status.url) ? 
+                                    <a css={css`
+                                        color: white;
+                                        display: block;
+                                        padding-top: 1px;
+                                        margin-left: 7px;
+                                    `} href={item.status.url}><FontAwesomeIcon icon={faEye}/></a> : null}
+                                </p>
                                 }
                         </li>)
                     }

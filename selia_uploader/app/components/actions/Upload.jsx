@@ -37,10 +37,12 @@ export default function Upload(props) {
                     else
                         data.append(key,value)
             })
-            api.upload(data,onUpload).then(() => {
+            api.upload(data,onUpload).then((resp) => {
                 dispatch({type: 'CHANGE_STATUS',
                     payload:{item: toUpload[i],
-                            newStatus: {value: 'completed', name: 'Subido'}}
+                            newStatus: {value: 'completed', 
+                                        name: 'Subido', 
+                                        url: window.location.origin + '/items/detail/' + resp.data.id + '/'}}
                 });
             })
             .catch((err) => {
