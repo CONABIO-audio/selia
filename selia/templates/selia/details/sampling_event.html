@@ -47,32 +47,20 @@
     </div>
     <div class="col">
       {% detailitem %}
-        {% trans 'Site locality' %}
+        {% trans 'Site type' %}
       {% endhead %}
-        {{ object.collection_site.site.locality }}
+        {{ object.collection_site.site_type.name }}
       {% enddetailitem %}
     </div>
   </div>
   <div class="row">
     <div class="col">
       {% detailitem %}
-        {% trans 'Site altitude' %}
+        {% trans 'Site localities' %}
       {% endhead %}
-        {{ object.collection_site.site.altitude | floatformat:'1' }}
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Site latitude' %}
-      {% endhead %}
-        {{ object.collection_site.site.latitude | floatformat:'3' }}
-      {% enddetailitem %}
-    </div>
-    <div class="col">
-      {% detailitem %}
-        {% trans 'Site longitude' %}
-      {% endhead %}
-        {{ object.collection_site.site.longitude | floatformat:'3' }}
+        {% for loc in object.collection_site.site.localities.all %}
+          {{ loc }}
+        {% endfor %}
       {% enddetailitem %}
     </div>
   </div>

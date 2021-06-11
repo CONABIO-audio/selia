@@ -7,4 +7,13 @@ for (var i = 0; i < layerInfoList.length; i++) {
   let layerInfo = layerInfoList[i];
   layers.push(createLayerFromInfo(layerInfo));
 }
+
+
+layers.push(new ol.layer.Vector({
+  source: new ol.source.Vector({
+    features: geometryFeatures,
+  }),
+  style: getStyle(geometryFeature)
+}));
+
 {% endblock %}

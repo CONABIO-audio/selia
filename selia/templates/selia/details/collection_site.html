@@ -43,8 +43,8 @@
       {% detailitem %}
         {% trans 'Locality' %}
       {% endhead %}
-        {% if object.site.locality %}
-          {% for locality in object.site.locality.all %}
+        {% if object.site.localities %}
+          {% for locality in object.site.localities.all %}
             {{ locality }}
           {% endfor %}
         {% else %}

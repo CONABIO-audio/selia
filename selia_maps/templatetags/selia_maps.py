@@ -53,10 +53,9 @@ def collection_site_map(collection_site):
         {"title": _("Deployed devices"), "type": VECTOR_LAYER, "features": devices},
         {"title": _("Collection Site"), "type": VECTOR_LAYER, "features": site},
     ]
-
     return {
         "geom": collection_site.site.geom().geojson,
-        "zoom": 14,
+        "zoom": 17,
         "map_id": "map_{}_{}".format(collection_site.pk, str(uuid4())[:5]),
         "layer_list": json.dumps(layer_list),
     }

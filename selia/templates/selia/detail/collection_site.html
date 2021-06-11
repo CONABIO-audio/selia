@@ -22,7 +22,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ collection_site.collection.name }}&collection_site={{ collection_site.pk }}&sampling_event_filter-collection_site={{ collection_site.pk }}">
+    <a class="nav-link" href="{% url 'selia:create_item' %}?collection={{ collection_site.collection.pk }}&collection_site={{ collection_site.pk }}&sampling_event_filter-collection_site={{ collection_site.pk }}">
       {% trans 'Add item' %} <i class="fas fa-plus"></i> <i class="fas fa-file"></i>
     </a>
   </li>

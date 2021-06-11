@@ -38,6 +38,7 @@
     </div>
   </div>
 
+  {% comment %}
   {% detailsection %}
     {% if object.created_by == user %}
     <a href="{% url 'selia:physical_device_detail' object.physical_device.pk %}">
@@ -47,6 +48,7 @@
       {% trans 'Device Info' %}
     {% endif %}
   {% enddetailsection %}
+  {% endcomment %}
 
 
   <div class="row">

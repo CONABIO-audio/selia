@@ -26,10 +26,10 @@
     <strong class="d-block text-gray-dark">{% trans 'Deployments' %}</strong>
     <div class="row">
       <div class="col-3">
-        {% trans 'Number' %}: {{ object.samplingeventdevice_set.count }}
+        {% trans 'Number' %}: {{ object.deployment_set.count }}
       </div>
       <div class="col-6">
-        {% trans 'Last added on' %}: {{ object.samplingeventdevice_set.first.created_on }}
+        {% trans 'Last added on' %}: {{ object.deployment_set.first.created_on }}
       </div>
       <div class="col-1">
         <a href="{% url 'selia:collection_sampling_events' object.collection %}?">{% see_button %}</a>
