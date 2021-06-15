@@ -7,7 +7,7 @@ var total_error_pages = 0;
 var error_page_step = 5;
 
 
-$(function() {
+$(window).on("load",function() {
   $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 });
 
