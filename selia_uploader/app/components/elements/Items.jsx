@@ -34,7 +34,9 @@ function Items(props) {
         })
     }
     return (
-        <ul id={props.idDiv} className={classNames(
+        <ul css={css`
+            height: calc(100% - ${props.idDiv == 'error' ? '9em' : '6em'})!important;
+        `} id={props.idDiv} className={classNames(
                 'statusDiv',
                 { hidden: props.position >= 1 ? true : false }
             )}>
@@ -91,7 +93,7 @@ function Items(props) {
                                         display: block;
                                         padding-top: 1px;
                                         margin-left: 7px;
-                                    `} href={item.status.url}><FontAwesomeIcon icon={faEye}/></a> : null}
+                                    `} href={item.status.url} target="_blank"><FontAwesomeIcon icon={faEye}/></a> : null}
                                 </p>
                                 }
                         </li>)
