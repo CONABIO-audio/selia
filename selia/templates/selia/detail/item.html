@@ -97,10 +97,17 @@
   var isLoaded = false;
   var visualizer;
 
-  $("#visualizerModal").on("shown.bs.modal", function (e) {
-    if (!(isLoaded)) {
-      visualizer = new Visualizer.default(config);
-    }
-  });
+  //$("#visualizerModal").on("shown.bs.modal", function (e) {
+  //  if (!(isLoaded)) {
+  //    visualizer = new Visualizer.default(config);
+  //  }
+  //});
+  $("#openVisualizerButton").on("click", () => {
+    setTimeout(() => {
+      if (!(isLoaded)) {
+        visualizer = new Visualizer.default(config);
+      }
+    },800)
+  })
 </script>
 {% endblock %}
