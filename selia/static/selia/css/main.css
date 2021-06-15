@@ -169,3 +169,7 @@
   border-color: var(--user-color-text);
   border-bottom-width: 0px;
 }
+
+.p-home {
+  padding-bottom: 256px!important;
+}
