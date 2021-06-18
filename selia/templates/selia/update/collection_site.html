@@ -8,7 +8,7 @@
   </div>
 </div>
 
-{% if object.site_type.metadata_schema|is_not_trivial_schema %}
+{% if object.site_type.metadata_schema.schema|is_not_trivial_schema %}
 <div class="row">
   <div class="col">
     <h5>{% trans 'Metadata' %}</h5>
