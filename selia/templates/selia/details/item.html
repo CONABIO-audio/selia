@@ -200,6 +200,16 @@
   </div>
 {% endif %}
 
+{% if object.collection_metadata %}
+  {% detailsection %}
+    {% trans 'Collection Metadata' %}
+  {% enddetailsection %}
+
+  <div class="d-flex flex-wrap">
+    {% show_json object.collection_metadata %}
+  </div>
+{% endif %}
+
 {% if object.sampling_event_device.configuration %}
   {% detailsection %}
     {% trans 'Device configuration' %}
